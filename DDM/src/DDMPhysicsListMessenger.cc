@@ -30,26 +30,26 @@
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-#include "OpNovicePhysicsListMessenger.hh"
+#include "DDMPhysicsListMessenger.hh"
 
-#include "OpNovicePhysicsList.hh"
+#include "DDMPhysicsList.hh"
 #include "G4UIdirectory.hh"
 #include "G4UIcmdWithAnInteger.hh"
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-OpNovicePhysicsListMessenger::
-  OpNovicePhysicsListMessenger(OpNovicePhysicsList* pPhys) 
+DDMPhysicsListMessenger::
+  DDMPhysicsListMessenger(DDMPhysicsList* pPhys) 
   : G4UImessenger(),
     fPhysicsList(pPhys)
 {
-  fOpNoviceDir = new G4UIdirectory("/OpNovice/");
-  fOpNoviceDir->SetGuidance("UI commands of this example");
+  fDDMDir = new G4UIdirectory("/DDM/");
+  fDDMDir->SetGuidance("UI commands of this example");
 
-  fPhysDir = new G4UIdirectory("/OpNovice/phys/");
+  fPhysDir = new G4UIdirectory("/DDM/phys/");
   fPhysDir->SetGuidance("PhysicsList control");
  
-  fVerboseCmd = new G4UIcmdWithAnInteger("/OpNovice/phys/verbose",this);
+  fVerboseCmd = new G4UIcmdWithAnInteger("/DDM/phys/verbose",this);
   fVerboseCmd->SetGuidance("set verbose for physics processes");
   fVerboseCmd->SetParameterName("verbose",true);
   fVerboseCmd->SetDefaultValue(1);
@@ -57,7 +57,7 @@ OpNovicePhysicsListMessenger::
   fVerboseCmd->AvailableForStates(G4State_PreInit, G4State_Idle);
  
   fCerenkovCmd =
-           new G4UIcmdWithAnInteger("/OpNovice/phys/cerenkovMaxPhotons",this);
+           new G4UIcmdWithAnInteger("/DDM/phys/cerenkovMaxPhotons",this);
   fCerenkovCmd->SetGuidance("set max nb of photons per step");
   fCerenkovCmd->SetParameterName("MaxNumber",false);
   fCerenkovCmd->SetRange("MaxNumber>=0");
@@ -66,17 +66,17 @@ OpNovicePhysicsListMessenger::
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-OpNovicePhysicsListMessenger::~OpNovicePhysicsListMessenger()
+DDMPhysicsListMessenger::~DDMPhysicsListMessenger()
 {
   delete fVerboseCmd;
   delete fCerenkovCmd;
   delete fPhysDir;
-  delete fOpNoviceDir;
+  delete fDDMDir;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void OpNovicePhysicsListMessenger::SetNewValue(G4UIcommand* command,
+void DDMPhysicsListMessenger::SetNewValue(G4UIcommand* command,
                                                G4String newValue)
 {
   if( command == fVerboseCmd )
