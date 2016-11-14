@@ -50,13 +50,12 @@ class DDMDetectorConstruction : public G4VUserDetectorConstruction
     G4double fExpHall_y;
     G4double fExpHall_z;
 
-    G4double fTank_x;
-    G4double fTank_y;
+    G4double fTank_rad;
     G4double fTank_z;
 
-    G4double fBubble_x;
-    G4double fBubble_y;
-    G4double fBubble_z;
+    //G4double fBubble_x;
+    //G4double fBubble_y;
+    //G4double fBubble_z;
 };
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
