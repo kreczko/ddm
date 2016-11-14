@@ -46,8 +46,8 @@
 DDMDetectorConstruction::DDMDetectorConstruction()
  : G4VUserDetectorConstruction()
 {
-  fExpHall_x = fExpHall_y = fExpHall_z = 10.0*m;
-  fTank_x    = fTank_y    = fTank_z    =  5.0*m;
+  fExpHall_x = fExpHall_y = fExpHall_z = 2.0*m;
+  fTank_z    = fTank_rad  =  1.0*m;
   // fBubble_x  = fBubble_y  = fBubble_z  =  0.5*m;
 }
 
@@ -253,7 +253,7 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
 
 // The Water Tank
 //
-  G4Box* waterTank_box = new G4Box("Tank",fTank_x,fTank_y,fTank_z);
+  G4Tubs* waterTank_box = new G4Tubs("Tank",0,fTank_rad,fTank_z,0*deg,360*deg);
 
   G4LogicalVolume* waterTank_log
     = new G4LogicalVolume(waterTank_box,water,"Tank",0,0,0);
