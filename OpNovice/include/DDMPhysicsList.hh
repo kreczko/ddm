@@ -28,13 +28,13 @@
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-#ifndef OpNovicePhysicsList_h
-#define OpNovicePhysicsList_h 1
+#ifndef DDMPhysicsList_h
+#define DDMPhysicsList_h 1
 
 #include "globals.hh"
 #include "G4VUserPhysicsList.hh"
 
-class OpNovicePhysicsListMessenger;
+class DDMPhysicsListMessenger;
 
 class G4Cerenkov;
 class G4Scintillation;
@@ -45,12 +45,12 @@ class G4OpBoundaryProcess;
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-class OpNovicePhysicsList : public G4VUserPhysicsList
+class DDMPhysicsList : public G4VUserPhysicsList
 {
   public:
 
-    OpNovicePhysicsList();
-    virtual ~OpNovicePhysicsList();
+    DDMPhysicsList();
+    virtual ~DDMPhysicsList();
 
   public:
 
@@ -70,7 +70,7 @@ class OpNovicePhysicsList : public G4VUserPhysicsList
  
   private:
 
-    OpNovicePhysicsListMessenger* fMessenger;
+    DDMPhysicsListMessenger* fMessenger;
 
     static G4ThreadLocal G4int fVerboseLevel;
     static G4ThreadLocal G4int fMaxNumPhotonStep;
@@ -85,4 +85,4 @@ class OpNovicePhysicsList : public G4VUserPhysicsList
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-#endif /* OpNovicePhysicsList_h */
+#endif /* DDMPhysicsList_h */
