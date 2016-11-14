@@ -259,15 +259,15 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
   G4VPhysicalVolume* expHall_phys
     = new G4PVPlacement(0,G4ThreeVector(),expHall_log,"World",0,false,0);
 
-// The Water Tank
+// The Argon Tank
 //
-  G4Tubs* waterTank_box = new G4Tubs("Tank",0,fTank_rad,fTank_z,0*deg,360*deg);
+  G4Tubs* argonTank_box = new G4Tubs("Tank",0,fTank_rad,fTank_z,0*deg,360*deg);
 
-  G4LogicalVolume* waterTank_log
-    = new G4LogicalVolume(waterTank_box,water,"Tank",0,0,0);
+  G4LogicalVolume* argonTank_log
+    = new G4LogicalVolume(argonTank_box,argon_gas,"Tank",0,0,0);
 
-  G4VPhysicalVolume* waterTank_phys
-    = new G4PVPlacement(0,G4ThreeVector(),waterTank_log,"Tank",
+  G4VPhysicalVolume* argonTank_phys
+    = new G4PVPlacement(0,G4ThreeVector(),argonTank_log,"Tank",
                         expHall_log,false,0);
 /*
 // The Air Bubble
@@ -280,7 +280,7 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
 //G4VPhysicalVolume* bubbleAir_phys =
       new G4PVPlacement(0,G4ThreeVector(0,2.5*m,0),bubbleAir_log,"Bubble",
                         waterTank_log,false,0);*/
-
+/*
 // ------------- Surfaces --------------
 //
 // Water Tank
@@ -300,13 +300,13 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
   opAirSurface->SetFinish(polished);
   opAirSurface->SetModel(glisur);
 
-  /*G4LogicalSkinSurface* airSurface =
+  G4LogicalSkinSurface* airSurface =
           new G4LogicalSkinSurface("AirSurface", bubbleAir_log, opAirSurface);
 
   G4OpticalSurface* opticalSurface = dynamic_cast <G4OpticalSurface*>
         (airSurface->GetSurface(bubbleAir_log)->GetSurfaceProperty());
 
-  if (opticalSurface) opticalSurface->DumpInfo();*/
+  if (opticalSurface) opticalSurface->DumpInfo();
 
 //
 // Generate & Add Material Properties Table attached to the optical surfaces
@@ -344,7 +344,7 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
   G4cout << "Air Surface G4MaterialPropertiesTable" << G4endl;
   myST2->DumpTable();
 
-  opAirSurface->SetMaterialPropertiesTable(myST2);
+  opAirSurface->SetMaterialPropertiesTable(myST2);/*
 
 //always return the physical World
   return expHall_phys;
