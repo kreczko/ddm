@@ -28,19 +28,19 @@
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-#ifndef OpNoviceDetectorConstruction_h
-#define OpNoviceDetectorConstruction_h 1
+#ifndef DDMDetectorConstruction_h
+#define DDMDetectorConstruction_h 1
 
 #include "globals.hh"
 #include "G4VUserDetectorConstruction.hh"
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-class OpNoviceDetectorConstruction : public G4VUserDetectorConstruction
+class DDMDetectorConstruction : public G4VUserDetectorConstruction
 {
   public:
-    OpNoviceDetectorConstruction();
-    virtual ~OpNoviceDetectorConstruction();
+    DDMDetectorConstruction();
+    virtual ~DDMDetectorConstruction();
 
   public:
     virtual G4VPhysicalVolume* Construct();
@@ -61,4 +61,4 @@ class OpNoviceDetectorConstruction : public G4VUserDetectorConstruction
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-#endif /*OpNoviceDetectorConstruction_h*/
+#endif /*DDMDetectorConstruction_h*/
