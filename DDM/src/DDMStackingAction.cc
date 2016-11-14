@@ -27,7 +27,7 @@
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-#include "OpNoviceStackingAction.hh"
+#include "DDMStackingAction.hh"
 
 #include "G4VProcess.hh"
 
@@ -37,21 +37,20 @@
 #include "G4ios.hh"
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
-
-OpNoviceStackingAction::OpNoviceStackingAction()
+DDMStackingAction::DDMStackingAction()
   : G4UserStackingAction(),
     fScintillationCounter(0), fCerenkovCounter(0)
 {}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-OpNoviceStackingAction::~OpNoviceStackingAction()
+DDMStackingAction::~DDMStackingAction()
 {}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 G4ClassificationOfNewTrack
-OpNoviceStackingAction::ClassifyNewTrack(const G4Track * aTrack)
+DDMStackingAction::ClassifyNewTrack(const G4Track * aTrack)
 {
   if(aTrack->GetDefinition() == G4OpticalPhoton::OpticalPhotonDefinition())
   { // particle is optical photon
@@ -68,7 +67,7 @@ OpNoviceStackingAction::ClassifyNewTrack(const G4Track * aTrack)
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void OpNoviceStackingAction::NewStage()
+void DDMStackingAction::NewStage()
 {
   G4cout << "Number of Scintillation photons produced in this event : "
          << fScintillationCounter << G4endl;
@@ -78,7 +77,7 @@ void OpNoviceStackingAction::NewStage()
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void OpNoviceStackingAction::PrepareNewEvent()
+void DDMStackingAction::PrepareNewEvent()
 {
   fScintillationCounter = 0;
   fCerenkovCounter = 0;
