@@ -23,13 +23,13 @@
 // * acceptance of all terms of the Geant4 Software license.          *
 // ********************************************************************
 //
-// $Id: OpNoviceSteppingAction.hh 69469 2013-05-05 21:42:35Z ihrivnac $
+// $Id: DDMSteppingAction.hh 69469 2013-05-05 21:42:35Z ihrivnac $
 //
-/// \file OpNoviceSteppingAction.hh
-/// \brief Definition of the OpNoviceSteppingAction class
+/// \file DDMSteppingAction.hh
+/// \brief Definition of the DDMSteppingAction class
 
-#ifndef OpNoviceSteppingAction_h
-#define OpNoviceSteppingAction_h 1
+#ifndef DDMSteppingAction_h
+#define DDMSteppingAction_h 1
 
 #include "G4UserSteppingAction.hh"
 #include "globals.hh"
@@ -37,11 +37,11 @@
 /// Stepping action class
 /// 
 
-class OpNoviceSteppingAction : public G4UserSteppingAction
+class DDMSteppingAction : public G4UserSteppingAction
 {
   public:
-    OpNoviceSteppingAction();
-    virtual ~OpNoviceSteppingAction();
+    DDMSteppingAction();
+    virtual ~DDMSteppingAction();
 
     // method from the base class
     virtual void UserSteppingAction(const G4Step*);
