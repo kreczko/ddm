@@ -344,7 +344,7 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
   G4cout << "Air Surface G4MaterialPropertiesTable" << G4endl;
   myST2->DumpTable();
 
-  opAirSurface->SetMaterialPropertiesTable(myST2);/*
+  opAirSurface->SetMaterialPropertiesTable(myST2);*/
 
 //always return the physical World
   return expHall_phys;
