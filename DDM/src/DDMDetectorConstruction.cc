@@ -48,7 +48,6 @@ DDMDetectorConstruction::DDMDetectorConstruction()
 {
   fExpHall_x = fExpHall_y = fExpHall_z = 10.0*m;
   fTank_x    = fTank_y    = fTank_z    =  5.0*m;
-  fBubble_x  = fBubble_y  = fBubble_z  =  0.5*m;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -261,17 +260,7 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
   G4VPhysicalVolume* waterTank_phys
     = new G4PVPlacement(0,G4ThreeVector(),waterTank_log,"Tank",
                         expHall_log,false,0);
-
-// The Air Bubble
-//
-  G4Box* bubbleAir_box = new G4Box("Bubble",fBubble_x,fBubble_y,fBubble_z);
-
-  G4LogicalVolume* bubbleAir_log
-    = new G4LogicalVolume(bubbleAir_box,air,"Bubble",0,0,0);
-
-//G4VPhysicalVolume* bubbleAir_phys =
-      new G4PVPlacement(0,G4ThreeVector(0,2.5*m,0),bubbleAir_log,"Bubble",
-                        waterTank_log,false,0);
+ 
 
 // ------------- Surfaces --------------
 //
@@ -285,20 +274,6 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
   new G4LogicalBorderSurface("WaterSurface",
                                  waterTank_phys,expHall_phys,opWaterSurface);
 
-// Air Bubble
-//
-  G4OpticalSurface* opAirSurface = new G4OpticalSurface("AirSurface");
-  opAirSurface->SetType(dielectric_dielectric);
-  opAirSurface->SetFinish(polished);
-  opAirSurface->SetModel(glisur);
-
-  G4LogicalSkinSurface* airSurface =
-          new G4LogicalSkinSurface("AirSurface", bubbleAir_log, opAirSurface);
-
-  G4OpticalSurface* opticalSurface = dynamic_cast <G4OpticalSurface*>
-        (airSurface->GetSurface(bubbleAir_log)->GetSurfaceProperty());
-
-  if (opticalSurface) opticalSurface->DumpInfo();
 
 //
 // Generate & Add Material Properties Table attached to the optical surfaces
