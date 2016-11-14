@@ -31,13 +31,13 @@
 // Make this appear first!
 #include "G4Timer.hh"
 
-#include "OpNoviceRunAction.hh"
+#include "DDMRunAction.hh"
 
 #include "G4Run.hh"
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-OpNoviceRunAction::OpNoviceRunAction()
+DDMRunAction::DDMRunAction()
  : G4UserRunAction(),
    fTimer(0)
 {
@@ -46,14 +46,14 @@ OpNoviceRunAction::OpNoviceRunAction()
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-OpNoviceRunAction::~OpNoviceRunAction()
+DDMRunAction::~DDMRunAction()
 {
   delete fTimer;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void OpNoviceRunAction::BeginOfRunAction(const G4Run* aRun)
+void DDMRunAction::BeginOfRunAction(const G4Run* aRun)
 {
   G4cout << "### Run " << aRun->GetRunID() << " start." << G4endl;
   fTimer->Start();
@@ -61,7 +61,7 @@ void OpNoviceRunAction::BeginOfRunAction(const G4Run* aRun)
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void OpNoviceRunAction::EndOfRunAction(const G4Run* aRun)
+void DDMRunAction::EndOfRunAction(const G4Run* aRun)
 {
   fTimer->Stop();
   G4cout << "number of event = " << aRun->GetNumberOfEvent()
