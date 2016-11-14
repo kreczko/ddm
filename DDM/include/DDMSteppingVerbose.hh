@@ -29,21 +29,21 @@
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-class OpNoviceSteppingVerbose;
+class DDMSteppingVerbose;
 
-#ifndef OpNoviceSteppingVerbose_h
-#define OpNoviceSteppingVerbose_h 1
+#ifndef DDMSteppingVerbose_h
+#define DDMSteppingVerbose_h 1
 
 #include "G4SteppingVerbose.hh"
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-class OpNoviceSteppingVerbose : public G4SteppingVerbose
+class DDMSteppingVerbose : public G4SteppingVerbose
 {
  public:
 
-   OpNoviceSteppingVerbose();
-   virtual ~OpNoviceSteppingVerbose();
+   DDMSteppingVerbose();
+   virtual ~DDMSteppingVerbose();
 
    virtual void StepInfo();
    virtual void TrackingStarted();
