@@ -28,23 +28,23 @@
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-#ifndef OpNovicePrimaryGeneratorAction_h
-#define OpNovicePrimaryGeneratorAction_h 1
+#ifndef DDMPrimaryGeneratorAction_h
+#define DDMPrimaryGeneratorAction_h 1
 
 #include "G4VUserPrimaryGeneratorAction.hh"
 #include "globals.hh"
 
 class G4ParticleGun;
 class G4Event;
-class OpNovicePrimaryGeneratorMessenger;
+class DDMPrimaryGeneratorMessenger;
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-class OpNovicePrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
+class DDMPrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
 {
   public:
-    OpNovicePrimaryGeneratorAction();
-    virtual ~OpNovicePrimaryGeneratorAction();
+    DDMPrimaryGeneratorAction();
+    virtual ~DDMPrimaryGeneratorAction();
 
   public:
     virtual void GeneratePrimaries(G4Event*);
@@ -54,9 +54,9 @@ class OpNovicePrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
 
   private:
     G4ParticleGun* fParticleGun;
-    OpNovicePrimaryGeneratorMessenger* fGunMessenger;
+    DDMPrimaryGeneratorMessenger* fGunMessenger;
 };
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-#endif /*OpNovicePrimaryGeneratorAction_h*/
+#endif /*DDMPrimaryGeneratorAction_h*/
