@@ -23,12 +23,12 @@
 // * acceptance of all terms of the Geant4 Software license.          *
 // ********************************************************************
 //
-// $Id: OpNoviceSteppingAction.cc 71007 2013-06-09 16:14:59Z maire $
+// $Id: DDMSteppingAction.cc 71007 2013-06-09 16:14:59Z maire $
 //
-/// \file OpNoviceSteppingAction.cc
-/// \brief Implementation of the OpNoviceSteppingAction class
+/// \file DDMSteppingAction.cc
+/// \brief Implementation of the DDMSteppingAction class
 
-#include "OpNoviceSteppingAction.hh"
+#include "DDMSteppingAction.hh"
 
 #include "G4Step.hh"
 #include "G4Track.hh"
@@ -39,7 +39,7 @@
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-OpNoviceSteppingAction::OpNoviceSteppingAction()
+DDMSteppingAction::DDMSteppingAction()
 : G4UserSteppingAction()
 { 
   fScintillationCounter = 0;
@@ -48,13 +48,12 @@ OpNoviceSteppingAction::OpNoviceSteppingAction()
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
-
-OpNoviceSteppingAction::~OpNoviceSteppingAction()
+DDMSteppingAction::~DDMSteppingAction()
 { ; }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void OpNoviceSteppingAction::UserSteppingAction(const G4Step* step)
+void DDMSteppingAction::UserSteppingAction(const G4Step* step)
 {
   G4int eventNumber = G4RunManager::GetRunManager()->
                                               GetCurrentEvent()->GetEventID();
