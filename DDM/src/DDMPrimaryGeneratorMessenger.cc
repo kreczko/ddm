@@ -30,25 +30,25 @@
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-#include "OpNovicePrimaryGeneratorMessenger.hh"
+#include "DDMPrimaryGeneratorMessenger.hh"
 
-#include "OpNovicePrimaryGeneratorAction.hh"
+#include "DDMPrimaryGeneratorAction.hh"
 #include "G4UIdirectory.hh"
 #include "G4UIcmdWithADoubleAndUnit.hh"
 #include "G4SystemOfUnits.hh"
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-OpNovicePrimaryGeneratorMessenger::
-  OpNovicePrimaryGeneratorMessenger(OpNovicePrimaryGeneratorAction* OpNoviceGun)
+DDMPrimaryGeneratorMessenger::
+  DDMPrimaryGeneratorMessenger(DDMPrimaryGeneratorAction* DDMGun)
   : G4UImessenger(),
-    fOpNoviceAction(OpNoviceGun)
+    fDDMAction(DDMGun)
 {
-  fGunDir = new G4UIdirectory("/OpNovice/gun/");
+  fGunDir = new G4UIdirectory("/DDM/gun/");
   fGunDir->SetGuidance("PrimaryGenerator control");
 
   fPolarCmd =
-           new G4UIcmdWithADoubleAndUnit("/OpNovice/gun/optPhotonPolar",this);
+           new G4UIcmdWithADoubleAndUnit("/DDM/gun/optPhotonPolar",this);
   fPolarCmd->SetGuidance("Set linear polarization");
   fPolarCmd->SetGuidance("  angle w.r.t. (k,n) plane");
   fPolarCmd->SetParameterName("angle",true);
@@ -60,7 +60,7 @@ OpNovicePrimaryGeneratorMessenger::
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-OpNovicePrimaryGeneratorMessenger::~OpNovicePrimaryGeneratorMessenger()
+DDMPrimaryGeneratorMessenger::~DDMPrimaryGeneratorMessenger()
 {
   delete fPolarCmd;
   delete fGunDir;
@@ -68,15 +68,15 @@ OpNovicePrimaryGeneratorMessenger::~OpNovicePrimaryGeneratorMessenger()
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void OpNovicePrimaryGeneratorMessenger::SetNewValue(
+void DDMPrimaryGeneratorMessenger::SetNewValue(
                                         G4UIcommand* command, G4String newValue)
 {
   if( command == fPolarCmd ) {
       G4double angle = fPolarCmd->GetNewDoubleValue(newValue);
       if ( angle == -360.0*deg ) {
-         fOpNoviceAction->SetOptPhotonPolar();
+         fDDMAction->SetOptPhotonPolar();
       } else {
-         fOpNoviceAction->SetOptPhotonPolar(angle);
+         fDDMAction->SetOptPhotonPolar(angle);
       }
   }
 }
