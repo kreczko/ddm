@@ -30,30 +30,30 @@
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-#ifndef OpNovicePhysicsListMessenger_h
-#define OpNovicePhysicsListMessenger_h 1
+#ifndef DDMPhysicsListMessenger_h
+#define DDMPhysicsListMessenger_h 1
 
 #include "globals.hh"
 #include "G4UImessenger.hh"
 
-class OpNovicePhysicsList;
+class DDMPhysicsList;
 class G4UIdirectory;
 class G4UIcmdWithAnInteger;
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-class OpNovicePhysicsListMessenger: public G4UImessenger
+class DDMPhysicsListMessenger: public G4UImessenger
 {
   public:
-    OpNovicePhysicsListMessenger(OpNovicePhysicsList* );
-    virtual ~OpNovicePhysicsListMessenger();
+    DDMPhysicsListMessenger(DDMPhysicsList* );
+    virtual ~DDMPhysicsListMessenger();
  
     virtual void SetNewValue(G4UIcommand*, G4String);
  
   private:
-    OpNovicePhysicsList*  fPhysicsList;
+    DDMPhysicsList*  fPhysicsList;
  
-    G4UIdirectory*        fOpNoviceDir;
+    G4UIdirectory*        fDDMDir;
     G4UIdirectory*        fPhysDir;
     G4UIcmdWithAnInteger* fVerboseCmd;
     G4UIcmdWithAnInteger* fCerenkovCmd;
