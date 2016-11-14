@@ -23,52 +23,52 @@
 // * acceptance of all terms of the Geant4 Software license.          *
 // ********************************************************************
 //
-// $Id: OpNoviceActionInitialization.cc 68058 2013-03-13 14:47:43Z gcosmo $
+// $Id: DDMActionInitialization.cc 68058 2013-03-13 14:47:43Z gcosmo $
 //
-/// \file OpNoviceActionInitialization.cc
-/// \brief Implementation of the OpNoviceActionInitialization class
+/// \file DDMActionInitialization.cc
+/// \brief Implementation of the DDMActionInitialization class
 
-#include "OpNoviceActionInitialization.hh"
-#include "OpNovicePrimaryGeneratorAction.hh"
-#include "OpNoviceRunAction.hh"
-#include "OpNoviceSteppingAction.hh"
-#include "OpNoviceStackingAction.hh"
-#include "OpNoviceSteppingVerbose.hh"
+#include "DDMActionInitialization.hh"
+#include "DDMPrimaryGeneratorAction.hh"
+#include "DDMRunAction.hh"
+#include "DDMSteppingAction.hh"
+#include "DDMStackingAction.hh"
+#include "DDMSteppingVerbose.hh"
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-OpNoviceActionInitialization::OpNoviceActionInitialization()
+DDMActionInitialization::DDMActionInitialization()
  : G4VUserActionInitialization()
 {}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-OpNoviceActionInitialization::~OpNoviceActionInitialization()
+DDMActionInitialization::~DDMActionInitialization()
 {}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void OpNoviceActionInitialization::BuildForMaster() const
+void DDMActionInitialization::BuildForMaster() const
 {
-  SetUserAction(new OpNoviceRunAction());
+  SetUserAction(new DDMRunAction());
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void OpNoviceActionInitialization::Build() const
+void DDMActionInitialization::Build() const
 {
-  SetUserAction(new OpNovicePrimaryGeneratorAction());
-  SetUserAction(new OpNoviceRunAction());
-  SetUserAction(new OpNoviceSteppingAction());
-  SetUserAction(new OpNoviceStackingAction());
+  SetUserAction(new DDMPrimaryGeneratorAction());
+  SetUserAction(new DDMRunAction());
+  SetUserAction(new DDMSteppingAction());
+  SetUserAction(new DDMStackingAction());
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 G4VSteppingVerbose*
-               OpNoviceActionInitialization::InitializeSteppingVerbose() const
+               DDMActionInitialization::InitializeSteppingVerbose() const
 {
-  return new OpNoviceSteppingVerbose();
+  return new DDMSteppingVerbose();
 }  
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
