@@ -28,8 +28,8 @@
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-#include "OpNovicePrimaryGeneratorAction.hh"
-#include "OpNovicePrimaryGeneratorMessenger.hh"
+#include "DDMPrimaryGeneratorAction.hh"
+#include "DDMPrimaryGeneratorMessenger.hh"
 
 #include "Randomize.hh"
 
@@ -41,7 +41,7 @@
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-OpNovicePrimaryGeneratorAction::OpNovicePrimaryGeneratorAction()
+DDMPrimaryGeneratorAction::DDMPrimaryGeneratorAction()
  : G4VUserPrimaryGeneratorAction(), 
    fParticleGun(0)
 {
@@ -49,7 +49,7 @@ OpNovicePrimaryGeneratorAction::OpNovicePrimaryGeneratorAction()
   fParticleGun = new G4ParticleGun(n_particle);
 
   //create a messenger for this class
-  fGunMessenger = new OpNovicePrimaryGeneratorMessenger(this);
+  fGunMessenger = new DDMPrimaryGeneratorMessenger(this);
 
   //default kinematic
   //
@@ -65,7 +65,7 @@ OpNovicePrimaryGeneratorAction::OpNovicePrimaryGeneratorAction()
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-OpNovicePrimaryGeneratorAction::~OpNovicePrimaryGeneratorAction()
+DDMPrimaryGeneratorAction::~DDMPrimaryGeneratorAction()
 {
   delete fParticleGun;
   delete fGunMessenger;
@@ -73,14 +73,14 @@ OpNovicePrimaryGeneratorAction::~OpNovicePrimaryGeneratorAction()
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void OpNovicePrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
+void DDMPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 {
   fParticleGun->GeneratePrimaryVertex(anEvent);
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void OpNovicePrimaryGeneratorAction::SetOptPhotonPolar()
+void DDMPrimaryGeneratorAction::SetOptPhotonPolar()
 {
  G4double angle = G4UniformRand() * 360.0*deg;
  SetOptPhotonPolar(angle);
@@ -88,7 +88,7 @@ void OpNovicePrimaryGeneratorAction::SetOptPhotonPolar()
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void OpNovicePrimaryGeneratorAction::SetOptPhotonPolar(G4double angle)
+void DDMPrimaryGeneratorAction::SetOptPhotonPolar(G4double angle)
 {
  if (fParticleGun->GetParticleDefinition()->GetParticleName()!="opticalphoton")
    {
