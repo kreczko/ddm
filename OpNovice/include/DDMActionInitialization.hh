@@ -23,13 +23,13 @@
 // * acceptance of all terms of the Geant4 Software license.          *
 // ********************************************************************
 //
-// $Id: OpNoviceActionInitialization.hh 68058 2013-03-13 14:47:43Z gcosmo $
+// $Id: DDMActionInitialization.hh 68058 2013-03-13 14:47:43Z gcosmo $
 //
-/// \file OpNoviceActionInitialization.hh
-/// \brief Definition of the OpNoviceActionInitialization class
+/// \file DDMActionInitialization.hh
+/// \brief Definition of the DDMActionInitialization class
 
-#ifndef OpNoviceActionInitialization_h
-#define OpNoviceActionInitialization_h 1
+#ifndef DDMActionInitialization_h
+#define DDMActionInitialization_h 1
 
 #include "G4VUserActionInitialization.hh"
 
@@ -38,11 +38,11 @@ class B4DetectorConstruction;
 /// Action initialization class.
 ///
 
-class OpNoviceActionInitialization : public G4VUserActionInitialization
+class DDMActionInitialization : public G4VUserActionInitialization
 {
   public:
-    OpNoviceActionInitialization();
-    virtual ~OpNoviceActionInitialization();
+    DDMActionInitialization();
+    virtual ~DDMActionInitialization();
 
     virtual void BuildForMaster() const;
     virtual void Build() const;
