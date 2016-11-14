@@ -28,25 +28,25 @@
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-#include "OpNoviceSteppingVerbose.hh"
+#include "DDMSteppingVerbose.hh"
 
 #include "G4SteppingManager.hh"
 #include "G4UnitsTable.hh"
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-OpNoviceSteppingVerbose::OpNoviceSteppingVerbose()
+DDMSteppingVerbose::DDMSteppingVerbose()
  : G4SteppingVerbose()
 {}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-OpNoviceSteppingVerbose::~OpNoviceSteppingVerbose()
+DDMSteppingVerbose::~DDMSteppingVerbose()
 {}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void OpNoviceSteppingVerbose::StepInfo()
+void DDMSteppingVerbose::StepInfo()
 {
   CopyState();
 
@@ -140,7 +140,7 @@ void OpNoviceSteppingVerbose::StepInfo()
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void OpNoviceSteppingVerbose::TrackingStarted()
+void DDMSteppingVerbose::TrackingStarted()
 {
 
   CopyState();
