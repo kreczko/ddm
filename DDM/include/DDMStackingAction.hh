@@ -27,19 +27,19 @@
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-#ifndef OpNoviceStackingAction_H
-#define OpNoviceStackingAction_H 1
+#ifndef DDMStackingAction_H
+#define DDMStackingAction_H 1
 
 #include "globals.hh"
 #include "G4UserStackingAction.hh"
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-class OpNoviceStackingAction : public G4UserStackingAction
+class DDMStackingAction : public G4UserStackingAction
 {
   public:
-    OpNoviceStackingAction();
-    virtual ~OpNoviceStackingAction();
+    DDMStackingAction();
+    virtual ~DDMStackingAction();
 
   public:
     virtual G4ClassificationOfNewTrack ClassifyNewTrack(const G4Track* aTrack);
