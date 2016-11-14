@@ -28,8 +28,8 @@
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-#ifndef OpNoviceRunAction_h
-#define OpNoviceRunAction_h 1
+#ifndef DDMRunAction_h
+#define DDMRunAction_h 1
 
 #include "globals.hh"
 #include "G4UserRunAction.hh"
@@ -39,11 +39,11 @@
 class G4Timer;
 class G4Run;
 
-class OpNoviceRunAction : public G4UserRunAction
+class DDMRunAction : public G4UserRunAction
 {
   public:
-    OpNoviceRunAction();
-    virtual ~OpNoviceRunAction();
+    DDMRunAction();
+    virtual ~DDMRunAction();
 
   public:
     virtual void BeginOfRunAction(const G4Run* aRun);
@@ -55,4 +55,4 @@ class OpNoviceRunAction : public G4UserRunAction
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-#endif /*OpNoviceRunAction_h*/
+#endif /*DDMRunAction_h*/
