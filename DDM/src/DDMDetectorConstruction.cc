@@ -28,7 +28,7 @@
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-#include "OpNoviceDetectorConstruction.hh"
+#include "DDMDetectorConstruction.hh"
 
 #include "G4Material.hh"
 #include "G4Element.hh"
@@ -43,7 +43,7 @@
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-OpNoviceDetectorConstruction::OpNoviceDetectorConstruction()
+DDMDetectorConstruction::DDMDetectorConstruction()
  : G4VUserDetectorConstruction()
 {
   fExpHall_x = fExpHall_y = fExpHall_z = 10.0*m;
@@ -53,11 +53,11 @@ OpNoviceDetectorConstruction::OpNoviceDetectorConstruction()
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-OpNoviceDetectorConstruction::~OpNoviceDetectorConstruction(){;}
+DDMDetectorConstruction::~DDMDetectorConstruction(){;}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-G4VPhysicalVolume* OpNoviceDetectorConstruction::Construct()
+G4VPhysicalVolume* DDMDetectorConstruction::Construct()
 {
 
 // ------------- Materials -------------
