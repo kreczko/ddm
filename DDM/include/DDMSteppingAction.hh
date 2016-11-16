@@ -49,6 +49,7 @@ class DDMSteppingAction : public G4UserSteppingAction
   private:
     G4int fScintillationCounter;
     G4int fCerenkovCounter;
+    G4int fIonisationCounter;
     G4int fEventNumber;
 };
 
