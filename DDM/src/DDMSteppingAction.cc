@@ -76,17 +76,27 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
                                             step->GetSecondaryInCurrentStep();
 
   if (secondaries->size()>0) {
-     for(unsigned int i=0; i<secondaries->size(); ++i) {
-        if (secondaries->at(i)->GetParentID()>0) {
+     for(unsigned int i=0; i<secondaries->size(); ++i) 
+     {
+        if (secondaries->at(i)->GetParentID()>0)
+        {
            if(secondaries->at(i)->GetDynamicParticle()->GetParticleDefinition()
-               == G4OpticalPhoton::OpticalPhotonDefinition()){
+               == G4OpticalPhoton::OpticalPhotonDefinition())
+           {
               if (secondaries->at(i)->GetCreatorProcess()->GetProcessName()
-               == "Scintillation")fScintillationCounter++;
+               == "Scintillation")
+              {
+                fScintillationCounter++;
+              }
               if (secondaries->at(i)->GetCreatorProcess()->GetProcessName()
-               == "Cerenkov")fCerenkovCounter++;
+               == "Cerenkov")
+              {
+                fCerenkovCounter++;
+              }
            }
             else if(secondaries->at(i)->GetDynamicParticle()->GetParticleDefinition()
-               == G4Electron::ElectronDefinition()){
+               == G4Electron::ElectronDefinition())
+            {
               /*if (secondaries->at(i)->GetCreatorProcess()->GetProcessName()
                == "Ionisation")*/fIonisationCounter++;
             }
