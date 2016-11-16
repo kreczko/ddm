@@ -75,6 +75,10 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
   air->AddElement(N, 70.*perCent);
   air->AddElement(O, 30.*perCent);
  
+  G4Material* vacuum_air = new G4Material("Vacuum", density=universe_mean_density, nelements=2);
+  vacuum_air->AddElement(N, 70.*perCent);
+  vacuum_air->AddElement(O, 30.*perCent);
+ 
 // Argon
 //
   G4Element* Ar = new G4Element("Argon", "Ar", z=18, a=39.95*g/mole);
@@ -254,7 +258,7 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
   G4Box* expHall_box = new G4Box("World",fExpHall_x,fExpHall_y,fExpHall_z);
 
   G4LogicalVolume* expHall_log
-    = new G4LogicalVolume(expHall_box,air,"World",0,0,0);
+    = new G4LogicalVolume(expHall_box,vacuum_air,"World",0,0,0);
 
   G4VPhysicalVolume* expHall_phys
     = new G4PVPlacement(0,G4ThreeVector(),expHall_log,"World",0,false,0);
