@@ -49,6 +49,7 @@
 #include "G4MagIntegratorStepper.hh"
 #include "G4ChordFinder.hh"
 #include "G4ClassicalRK4.hh"
+#include "G4TransportationManager.hh"
 
 G4ElectricField*        fEMfield;
 G4EqMagElectricField*   fEquation;
