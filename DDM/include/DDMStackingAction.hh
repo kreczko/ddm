@@ -49,6 +49,7 @@ class DDMStackingAction : public G4UserStackingAction
   private:
     G4int fScintillationCounter;
     G4int fCerenkovCounter;
+    G4int fIonisationCounter;
 };
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
