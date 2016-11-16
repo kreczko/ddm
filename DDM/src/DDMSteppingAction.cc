@@ -87,8 +87,8 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
            }
             else if(secondaries->at(i)->GetDynamicParticle()->GetParticleDefinition()
                == G4Electron::ElectronDefinition()){
-              if (secondaries->at(i)->GetCreatorProcess()->GetProcessName()
-               == "Ionisation")fIonisationCounter++;
+              /*if (secondaries->at(i)->GetCreatorProcess()->GetProcessName()
+               == "Ionisation")*/fIonisationCounter++;
             }
         }
      }
