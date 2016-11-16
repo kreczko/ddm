@@ -395,7 +395,7 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
                                      fStepper->GetNumberOfVariables() );
 
     fChordFinder = new G4ChordFinder(fIntgrDriver);
-    fFieldManager->SetChordFinder( fChordFinder );
+    fFieldMgr->SetChordFinder( fChordFinder );
 
 //always return the physical World
   return expHall_phys;
