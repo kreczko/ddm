@@ -46,6 +46,9 @@
 #include "G4EqMagElectricField.hh"
 #include "G4UniformElectricField.hh"
 
+#include "G4MagIntegratorStepper.hh"
+#include "G4ChordFinder.hh"
+
 G4ElectricField*        fEMfield;
 G4EqMagElectricField*   fEquation;
 G4MagIntegratorStepper* fStepper;
