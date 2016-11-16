@@ -33,6 +33,7 @@
 #include "G4Step.hh"
 #include "G4Track.hh"
 #include "G4OpticalPhoton.hh"
+#include "G4Electron.hh"
 
 #include "G4Event.hh"
 #include "G4RunManager.hh"
