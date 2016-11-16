@@ -380,10 +380,10 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
     fStepper = new G4ClassicalRK4( fEquation, nvar );       
 
     // Get the global field manager 
-    fFieldManager= G4TransportationManager::GetTransportationManager()->
+    fFieldMgr= G4TransportationManager::GetTransportationManager()->
          GetFieldManager();
     // Set this field to the global field manager 
-    fFieldManager->SetDetectorField(fEMfield );
+    fFieldMgr->SetDetectorField(fEMfield );
 
     fMinStep     = 0.010*mm ; // minimal step of 10 microns
 
