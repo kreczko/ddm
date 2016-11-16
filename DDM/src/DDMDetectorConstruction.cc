@@ -41,6 +41,7 @@
 #include "G4ThreeVector.hh"
 #include "G4PVPlacement.hh"
 #include "G4SystemOfUnits.hh"
+#include "G4RotationMatrix.hh"
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
@@ -269,6 +270,9 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
 
   G4LogicalVolume* argonTank_log
     = new G4LogicalVolume(argonTank_box,argon_gas,"Tank",0,0,0);
+ 
+  G4RotationMatrix rotm  = G4RotationMatrix();
+  rotm.rotateX(90*deg);
 
   G4VPhysicalVolume* argonTank_phys
     = new G4PVPlacement(0,G4ThreeVector(),argonTank_log,"Tank",
