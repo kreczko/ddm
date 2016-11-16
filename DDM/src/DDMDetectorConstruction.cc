@@ -41,7 +41,6 @@
 #include "G4ThreeVector.hh"
 #include "G4PVPlacement.hh"
 #include "G4SystemOfUnits.hh"
-#include "PhysicalConstants.h"
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
@@ -76,7 +75,7 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
   air->AddElement(N, 70.*perCent);
   air->AddElement(O, 30.*perCent);
  
-  G4Material* vacuum_air = new G4Material("Vacuum", density=universe_mean_density, nelements=2);
+  G4Material* vacuum_air = new G4Material("Vacuum", density=1.e-25*g/cm3, nelements=2);
   vacuum_air->AddElement(N, 70.*perCent);
   vacuum_air->AddElement(O, 30.*perCent);
  
