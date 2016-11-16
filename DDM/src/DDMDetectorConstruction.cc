@@ -51,6 +51,7 @@
 #include "G4ClassicalRK4.hh"
 #include "G4TransportationManager.hh"
 #include "G4FieldManager.hh"
+#include "G4MagInt_Driver.hh"
 
 G4ElectricField*        fEMfield;
 G4EqMagElectricField*   fEquation;
@@ -58,6 +59,7 @@ G4MagIntegratorStepper* fStepper;
 G4FieldManager*         fFieldMgr;
 G4double                fMinStep ;
 G4ChordFinder*          fChordFinder ;
+G4MagInt_Driver*        fIntgrDriver;
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
