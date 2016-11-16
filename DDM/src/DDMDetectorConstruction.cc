@@ -374,7 +374,7 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
 // ------------- Fields --------------
  
     fEMfield = new G4UniformElectricField(
-                 G4ThreeVector(0.0,-100000.0*kilovolt/cm,0.0));
+                 G4ThreeVector(0.0,-100.0*kilovolt/cm,0.0));
 
     // Create an equation of motion for this field
     fEquation = new G4EqMagElectricField(fEMfield); 
