@@ -43,6 +43,16 @@
 #include "G4SystemOfUnits.hh"
 #include "G4RotationMatrix.hh"
 
+#include "G4EqMagElectricField.hh"
+#include "G4UniformElectricField.hh"
+
+G4ElectricField*        fEMfield;
+G4EqMagElectricField*   fEquation;
+G4MagIntegratorStepper* fStepper;
+G4FieldManager*         fFieldMgr;
+G4double                fMinStep ;
+G4ChordFinder*          fChordFinder ;
+
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 DDMDetectorConstruction::DDMDetectorConstruction()
@@ -353,6 +363,32 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
   myST2->DumpTable();
 
   opAirSurface->SetMaterialPropertiesTable(myST2);*/
+ 
+// ------------- Fields --------------
+ 
+    fEMfield = new G4UniformElectricField(
+                 G4ThreeVector(0.0,-100000.0*kilovolt/cm,0.0));
+
+    // Create an equation of motion for this field
+    fEquation = new G4EqMagElectricField(fEMfield); 
+
+    G4int nvar = 8;
+    fStepper = new G4ClassicalRK4( fEquation, nvar );       
+
+    // Get the global field manager 
+    fFieldManager= G4TransportationManager::GetTransportationManager()->
+         GetFieldManager();
+    // Set this field to the global field manager 
+    fFieldManager->SetDetectorField(fEMfield );
+
+    fMinStep     = 0.010*mm ; // minimal step of 10 microns
+
+    fIntgrDriver = new G4MagInt_Driver(fMinStep, 
+                                     fStepper, 
+                                     fStepper->GetNumberOfVariables() );
+
+    fChordFinder = new G4ChordFinder(fIntgrDriver);
+    fFieldManager->SetChordFinder( fChordFinder );
 
 //always return the physical World
   return expHall_phys;
