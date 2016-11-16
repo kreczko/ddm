@@ -275,7 +275,7 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
   rotm.rotateX(90*deg);
 
   G4VPhysicalVolume* argonTank_phys
-    = new G4PVPlacement(0,G4ThreeVector(),argonTank_log,"Tank",
+    = new G4PVPlacement(rotm,G4ThreeVector(),argonTank_log,"Tank",
                         expHall_log,false,0);
 /*
 // The Air Bubble
