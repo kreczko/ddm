@@ -61,13 +61,13 @@ DDMStackingAction::ClassifyNewTrack(const G4Track * aTrack)
       if(aTrack->GetCreatorProcess()->GetProcessName() == "Cerenkov")
         fCerenkovCounter++;
     }
-    else if (aTrack->GetDefinition() == G4Electron::ElectronDefinition())
-    { // particle is electron
-      if (aTrack->GetParentID()>0)
-      { // particle is secondary
-        //if(aTrack->GetCreatorProcess()->GetProcessName() == "Ionisation")
-        fIonisationCounter++;
-      }
+  }
+  else if (aTrack->GetDefinition() == G4Electron::ElectronDefinition())
+  { // particle is electron
+    if (aTrack->GetParentID()>0)
+    { // particle is secondary
+      //if(aTrack->GetCreatorProcess()->GetProcessName() == "Ionisation")
+      fIonisationCounter++;
     }
   }
   return fUrgent;
@@ -81,7 +81,7 @@ void DDMStackingAction::NewStage()
          << fScintillationCounter << G4endl;
   G4cout << "Number of Cerenkov photons produced in this event : "
          << fCerenkovCounter << G4endl;
-  G4cout << "Number of Ionisation electrons produced in this event : "
+  G4cout << "Number of electrons produced in this event : "
          << fIonisationCounter << G4endl;
 }
 
