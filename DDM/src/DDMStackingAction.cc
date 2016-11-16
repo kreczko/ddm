@@ -65,7 +65,7 @@ DDMStackingAction::ClassifyNewTrack(const G4Track * aTrack)
     { // particle is electron
       if (aTrack->GetParentID()>0)
       { // particle is secondary
-        if(aTrack->GetCreatorProcess()->GetProcessName() == "Ionisation")
+        //if(aTrack->GetCreatorProcess()->GetProcessName() == "Ionisation")
         fIonisationCounter++;
       }
     }
