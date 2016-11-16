@@ -47,6 +47,7 @@ set(DDM_SCRIPTS
     icons.mac
     run.png
     vis.mac
+    testProton.mac
   )
 
 foreach(_script ${DDM_SCRIPTS})
