@@ -112,6 +112,8 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
     G4double ionisationEnergy = step->GetDeltaEnergy() - step->GetNonIonizingEnergyDeposit();
     G4cout << "Ionisation energy: " << ionisationEnergy << G4endl;
   }
+  
+  G4cout << "TrackID: " << track->GetTrackID() << G4endl;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
