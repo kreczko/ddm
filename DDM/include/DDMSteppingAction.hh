@@ -33,8 +33,6 @@
 
 #include "G4UserSteppingAction.hh"
 #include "globals.hh"
-#include <iostream>
-#include <fstream>
 
 /// Stepping action class
 /// 
