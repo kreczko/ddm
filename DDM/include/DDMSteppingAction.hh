@@ -51,6 +51,7 @@ class DDMSteppingAction : public G4UserSteppingAction
     G4int fCerenkovCounter;
     G4int fIonisationCounter;
     G4int fEventNumber;
+    ofstream testFile;
 };
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
