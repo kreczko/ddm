@@ -46,11 +46,15 @@ DDMSteppingAction::DDMSteppingAction()
   fScintillationCounter = 0;
   fCerenkovCounter      = 0;
   fEventNumber = -1;
+  
+  testFile.open("ionisationTest.txt");
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 DDMSteppingAction::~DDMSteppingAction()
-{ ; }
+{
+  testFile.close();
+}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
@@ -108,7 +112,7 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
   if (track == 0)
   {
     G4double ionisationEnergy = step->GetDeltaEnergy() - step->GetNonIonizingEnergyDeposit();
-    std::cout << "Ionisation energy: " << ionisationEnergy << std::endl;
+    testFile << "Ionisation energy: " << ionisationEnergy << std::endl;
   }
 }
 
