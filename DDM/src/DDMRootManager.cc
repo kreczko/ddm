@@ -1,31 +1,31 @@
-#include "WLSRootManager.hh"
+#include "DDMRootManager.hh"
 
-WLSRootManager* the_root_manager;
+DDMRootManager* the_root_manager;
 TTree* photon_tree;
 TTree* meta_tree;
 TTree* macro_photon_tree;
-void WLSRootManager::CreateRootManager(G4String filename)
+void DDMRootManager::CreateRootManager(G4String filename)
 {
-	the_root_manager = new WLSRootManager(filename);
+	the_root_manager = new DDMRootManager(filename);
 	the_root_manager->TurnOffBatchInputs();
 }
 
-WLSRootManager* WLSRootManager::GetRootManager()
+DDMRootManager* DDMRootManager::GetRootManager()
 {
 	return the_root_manager;
 }
 
-void WLSRootManager::DestroyRootManager()
+void DDMRootManager::DestroyRootManager()
 {
 	delete the_root_manager;
 }
 
-WLSRootManager::WLSRootManager(G4String filename)
+DDMRootManager::DDMRootManager(G4String filename)
 {
 	root_file = new TFile(filename.c_str(),"RECREATE");
 }
 
-void WLSRootManager::InitialiseTree(G4String treename1, G4String treename2, G4String treename3)
+void DDMRootManager::InitialiseTree(G4String treename1, G4String treename2, G4String treename3)
 {
 	photon_tree = new TTree("T", treename1.c_str());
 	meta_tree = new TTree ("T2", treename2.c_str());
@@ -40,7 +40,7 @@ void WLSRootManager::InitialiseTree(G4String treename1, G4String treename2, G4St
 
 }
 
-void WLSRootManager::FillTree_PhotonInformation(G4int input_photontrackid, G4ThreeVector inputvector, G4double input_photonenergy, G4double input_pathlength, G4double input_tracktime)
+void DDMRootManager::FillTree_PhotonInformation(G4int input_photontrackid, G4ThreeVector inputvector, G4double input_photonenergy, G4double input_pathlength, G4double input_tracktime)
 
 {
 	PhotonInformation_mng[0]=EventID_mng;
@@ -60,7 +60,7 @@ void WLSRootManager::FillTree_PhotonInformation(G4int input_photontrackid, G4Thr
 
 }
 
-void WLSRootManager::FillTree_BoxInformation(G4double input_x, G4double input_y,G4double input_z)
+void DDMRootManager::FillTree_BoxInformation(G4double input_x, G4double input_y,G4double input_z)
 
 {
 
@@ -74,7 +74,7 @@ void WLSRootManager::FillTree_BoxInformation(G4double input_x, G4double input_y,
 	meta_tree-> Fill();
 }
 
-void WLSRootManager::FillTree_ClockTime(string inputclock_time)
+void DDMRootManager::FillTree_ClockTime(string inputclock_time)
 {
 	ClockTime_mng=inputclock_time;
 
@@ -82,14 +82,14 @@ void WLSRootManager::FillTree_ClockTime(string inputclock_time)
 }		
 
 
-void WLSRootManager::FillTree_GpsData(G4String inputgps_data)
+void DDMRootManager::FillTree_GpsData(G4String inputgps_data)
 {
 	GpsData_mng=inputgps_data;
 
 	meta_tree-> Fill();
 }
 
-void WLSRootManager::FillTree_MacroPhotonData()
+void DDMRootManager::FillTree_MacroPhotonData()
 
 {
 	MacroPhotonData_mng[0]=RunID_mng;
@@ -108,7 +108,7 @@ void WLSRootManager::FillTree_MacroPhotonData()
 
 
 
-void WLSRootManager::CloseTree()
+void DDMRootManager::CloseTree()
 {
 	photon_tree->Write();
 	meta_tree->Write();
@@ -118,7 +118,7 @@ void WLSRootManager::CloseTree()
 	delete macro_photon_tree;
 }
 
-WLSRootManager::~WLSRootManager()
+DDMRootManager::~DDMRootManager()
 {
 	root_file->Write();
 	delete root_file;
