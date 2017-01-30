@@ -13,7 +13,7 @@
 
 using namespace std;
 
-class WLSRootManager
+class DDMRootManager
 {
 	private:
 		TFile* root_file;
@@ -46,7 +46,7 @@ class WLSRootManager
 
 	public:
 		static void CreateRootManager(G4String filename);
-		static WLSRootManager* GetRootManager();
+		static DDMRootManager* GetRootManager();
 		static void DestroyRootManager();
 
 		WLSRootManager(G4String filename);
@@ -109,7 +109,7 @@ class WLSRootManager
 
 
 
-		~WLSRootManager();
+		~DDMRootManager();
 
 };
 
