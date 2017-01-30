@@ -108,7 +108,7 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
   if (track == 0)
   {
     G4double ionisationEnergy = step->GetDeltaEnergy() - step->GetNonIonizingEnergyDeposit();
-    cout << "Ionisation energy: " << ionisationEnergy << endl;
+    std::cout << "Ionisation energy: " << ionisationEnergy << std::endl;
   }
 }
 
