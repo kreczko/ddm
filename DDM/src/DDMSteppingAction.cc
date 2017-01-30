@@ -90,7 +90,7 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
               }
               if (secondaries->at(i)->GetCreatorProcess()->GetProcessName()
                == "Cerenkov")
-              {G
+              {
                 fCerenkovCounter++;
               }
            }
