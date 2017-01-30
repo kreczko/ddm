@@ -47,6 +47,7 @@ DDMSteppingAction::DDMSteppingAction()
   fCerenkovCounter      = 0;
   fEventNumber = -1;
   
+  ofstream testFile;
   testFile.open("ionisationTest.txt");
 }
 
