@@ -33,7 +33,6 @@
 
 #include "G4UserSteppingAction.hh"
 #include "globals.hh"
-#include <iostream>
 #include <fstream>
 
 /// Stepping action class
@@ -53,7 +52,6 @@ class DDMSteppingAction : public G4UserSteppingAction
     G4int fCerenkovCounter;
     G4int fIonisationCounter;
     G4int fEventNumber;
-    fstream testFile;
 };
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
