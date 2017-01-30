@@ -90,7 +90,7 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
               }
               if (secondaries->at(i)->GetCreatorProcess()->GetProcessName()
                == "Cerenkov")
-              {
+              {G
                 fCerenkovCounter++;
               }
            }
@@ -102,6 +102,13 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
             }
         }
      }
+  }
+  
+  // Get ionisation energy at each time step:
+  if (track = 0)
+  {
+    G4double ionisationEnergy = step->GetDeltaEnergy() - step->GetNonIonizingEnergyDeposit();
+    cout << "Ionisation energy: " << ionisationEnergy << endl;
   }
 }
 
