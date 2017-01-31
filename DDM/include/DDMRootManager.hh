@@ -49,7 +49,7 @@ class DDMRootManager
 		static DDMRootManager* GetRootManager();
 		static void DestroyRootManager();
 
-		WLSRootManager(G4String filename);
+		DDMRootManager(G4String filename);
 
 		void InitialiseTree(G4String treename1, G4String treename2, G4String treename3);//Add more trees as arguments if desired.
 
