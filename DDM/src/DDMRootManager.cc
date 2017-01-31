@@ -32,7 +32,7 @@ void DDMRootManager::InitialiseTree(G4String treename1)
 	
 }
 
-void DDMRootManager::FillTree_TimeStepData(G4int input_time, G4ThreeVector input_vector, G4double input_energy)
+void DDMRootManager::FillTree_TimeStepData(G4double input_time, G4ThreeVector input_vector, G4double input_energy)
 {
 	TimeStepData_mng[0]=input_time/ms;
 	TimeStepData_mng[1]=input_vector.x()/mm;
