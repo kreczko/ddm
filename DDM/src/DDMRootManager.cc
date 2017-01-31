@@ -7,7 +7,6 @@ TTree* macro_photon_tree;
 void DDMRootManager::CreateRootManager(G4String filename)
 {
 	the_root_manager = new DDMRootManager(filename);
-	the_root_manager->TurnOffBatchInputs();
 }
 
 DDMRootManager* DDMRootManager::GetRootManager()
