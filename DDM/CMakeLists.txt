@@ -26,8 +26,9 @@ include(${Geant4_USE_FILE})
 #
 list(APPEND CMAKE_PREFIX_PATH $ENV{ROOTSYS})
 find_package(ROOT REQUIRED)
-MESSAGE( STATUS "ROOT_USE_FILE:         " ${ROOT_USE_FILE} )
-include(${ROOT_USE_FILE})
+# MESSAGE( STATUS "ROOT_USE_FILE:         " ${ROOT_USE_FILE} )
+# include(${ROOT_USE_FILE})
+include_directories(${ROOT_INCLUDE_DIR})
 
 #----------------------------------------------------------------------------
 # Locate sources and headers for this project
