@@ -18,6 +18,7 @@ endif()
 #----------------------------------------------------------------------------
 # Setup Geant4 include directories and compile definitions
 #
+MESSAGE( STATUS "Geant4_USE_FILE:         " ${Geant4_USE_FILE} )
 include(${Geant4_USE_FILE})
 
 #----------------------------------------------------------------------------
@@ -25,6 +26,7 @@ include(${Geant4_USE_FILE})
 #
 list(APPEND CMAKE_PREFIX_PATH $ENV{ROOTSYS})
 find_package(ROOT REQUIRED)
+MESSAGE( STATUS "ROOT_USE_FILE:         " ${ROOT_USE_FILE} )
 include(${ROOT_USE_FILE})
 
 #----------------------------------------------------------------------------
