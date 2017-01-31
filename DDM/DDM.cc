@@ -44,6 +44,7 @@
 
 #include "DDMPhysicsList.hh"
 #include "DDMDetectorConstruction.hh"
+#include "DDMRootManager.hh"
 
 #include "DDMActionInitialization.hh"
 
