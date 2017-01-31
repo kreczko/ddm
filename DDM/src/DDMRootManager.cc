@@ -1,9 +1,8 @@
 #include "DDMRootManager.hh"
 
 DDMRootManager* the_root_manager;
-TTree* photon_tree;
-TTree* meta_tree;
-TTree* macro_photon_tree;
+TTree* energyLoss_tree;
+
 void DDMRootManager::CreateRootManager(G4String filename)
 {
 	the_root_manager = new DDMRootManager(filename);
