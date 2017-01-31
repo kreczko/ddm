@@ -24,7 +24,7 @@ include(${Geant4_USE_FILE})
 # Set up ROOT
 #
 list(APPEND CMAKE_PREFIX_PATH $ENV{ROOTSYS})
-find_package(ROOT REQUIRED COMPONENTS RIO Net)
+find_package(ROOT REQUIRED)
 include(${ROOT_USE_FILE})
 
 #----------------------------------------------------------------------------
