@@ -29,6 +29,7 @@
 /// \brief Implementation of the DDMSteppingAction class
 
 #include "DDMSteppingAction.hh"
+#include "DDMRootManager.hh"
 
 #include "G4Step.hh"
 #include "G4Track.hh"
@@ -58,7 +59,7 @@ DDMSteppingAction::~DDMSteppingAction()
 
 void DDMSteppingAction::UserSteppingAction(const G4Step* step)
 {
-  root_manager* = DDMRootManager::GetRootManager();
+  DDMRootManager* root_manager = DDMRootManager::GetRootManager();
   
   G4int eventNumber = G4RunManager::GetRunManager()->
                                               GetCurrentEvent()->GetEventID();
