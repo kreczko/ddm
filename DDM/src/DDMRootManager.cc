@@ -29,7 +29,6 @@ void DDMRootManager::InitialiseTree(G4String treename1)
 
 	// # BRANCH
 	energyLoss_tree -> Branch("energyLoss_data",&TimeStepData_mng, "Time:posx:posy:posz:IonisationEnergy_ev");
-	
 }
 
 void DDMRootManager::FillTree_TimeStepData(G4double input_time, G4ThreeVector input_vector, G4double input_energy)
@@ -41,7 +40,6 @@ void DDMRootManager::FillTree_TimeStepData(G4double input_time, G4ThreeVector in
 	TimeStepData_mng[4]=input_energy/eV;
 
 	energyLoss_tree->Fill(); //Will this fill this branch?
-
 }
 
 void DDMRootManager::CloseTree()
@@ -55,5 +53,4 @@ DDMRootManager::~DDMRootManager()
 {
 	root_file->Write();
 	delete root_file;
-
 }
