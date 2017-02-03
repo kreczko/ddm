@@ -99,6 +99,12 @@ int main(int argc,char** argv)
       return 1;
     }
   }
+  
+  // Set up root manager
+  //
+  DDMRootManager::CreateRootManager("test.root");
+  DDMRootManager* root_manager = DDMRootManager::GetRootManager();
+  root_manager->InitialiseTree("timestep_tree");
 
   // Choose the Random engine
   //
@@ -172,6 +178,9 @@ int main(int argc,char** argv)
   delete visManager;
 #endif
   delete runManager;
+  
+  root_manager->CloseTree();
+  DDMRootManager::DestroyRootManager();
 
   return 0;
 }
