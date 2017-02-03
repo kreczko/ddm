@@ -58,6 +58,8 @@ DDMSteppingAction::~DDMSteppingAction()
 
 void DDMSteppingAction::UserSteppingAction(const G4Step* step)
 {
+  root_manager* = DDMRootManager::GetRootManager();
+  
   G4int eventNumber = G4RunManager::GetRunManager()->
                                               GetCurrentEvent()->GetEventID();
 
@@ -110,7 +112,10 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
   if (track->GetTrackID() == 1)
   {
     G4double ionisationEnergy = step->GetTotalEnergyDeposit() - step->GetNonIonizingEnergyDeposit();
-    G4cout << "Ionisation energy: " << ionisationEnergy << G4endl;
+    G4ThreeVector position = step->GetPostStepPoint()->GetPosition();
+    G4double time = step->GetPostStepPoint()->GetLocalTime();
+    //G4cout << "Ionisation energy: " << ionisationEnergy << G4endl;
+    root_manager->FillTree_TimeStepData(time,position,ionisationEnergy);
   }
   
   //G4cout << "TrackID: " << track->GetTrackID() << G4endl;
