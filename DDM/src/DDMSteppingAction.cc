@@ -115,7 +115,7 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
     G4double ionisationEnergy = step->GetTotalEnergyDeposit() - step->GetNonIonizingEnergyDeposit();
     G4ThreeVector position = step->GetPostStepPoint()->GetPosition();
     G4double time = step->GetPostStepPoint()->GetLocalTime();
-    //G4cout << "Ionisation energy: " << ionisationEnergy << G4endl;
+    G4cout << "Ionisation energy: " << ionisationEnergy << G4endl;
     root_manager->FillTree_TimeStepData(time,position,ionisationEnergy);
   }
   
