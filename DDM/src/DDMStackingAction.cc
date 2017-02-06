@@ -28,6 +28,7 @@
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 #include "DDMStackingAction.hh"
+#include "DDMRootManager.hh"
 
 #include "G4VProcess.hh"
 
@@ -92,6 +93,7 @@ void DDMStackingAction::PrepareNewEvent()
   fScintillationCounter = 0;
   fCerenkovCounter = 0;
   fIonisationCounter = 0;
+  DDMRootManager::GetRootManager()->NewBranch();
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
