@@ -117,7 +117,7 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
     G4double stepTime = step->GetPreStepPoint()->GetLocalTime();
     G4cout << "time: " << stepTime << ", pos: " << position << ", E: " << ionisationEnergy << G4endl;
     //root_manager->FillTree_TimeStepData(stepTime,position,ionisationEnergy);
-    root_manager->FillTree_TimeStepData(1.0, 2.0, 3.0, 4.0, 5.0);
+    root_manager->FillTree_TimeStepData(stepTime, position.x(), position.y(), position.z(), ionisationEnergy);
   }
   
   //G4cout << "TrackID: " << track->GetTrackID() << G4endl;
