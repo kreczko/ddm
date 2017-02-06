@@ -31,12 +31,12 @@ void DDMRootManager::InitialiseTree(G4String treename1)
 	energyLoss_tree -> Branch("energyLoss_data",&TimeStepData_mng, "Time:posx:posy:posz:IonisationEnergy_ev");
 }
 
-void DDMRootManager::FillTree_TimeStepData(G4double input_time, G4ThreeVector input_vector, G4double input_energy)
+void DDMRootManager::FillTree_TimeStepData(G4double input_time, G4double input_x, G4double input_y, G4double input_z, G4double input_energy)
 {
 	TimeStepData_mng[0]=input_time/ms;
-	TimeStepData_mng[1]=input_vector.x()/mm;
-	TimeStepData_mng[2]=input_vector.y()/mm;
-	TimeStepData_mng[3]=input_vector.z()/mm;
+	TimeStepData_mng[1]=input_x/mm;
+	TimeStepData_mng[2]=input_y/mm;
+	TimeStepData_mng[3]=input_z/mm;
 	TimeStepData_mng[4]=input_energy/eV;
 
 	energyLoss_tree->Fill(); //Will this fill this branch?
