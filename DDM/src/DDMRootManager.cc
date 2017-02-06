@@ -33,11 +33,11 @@ void DDMRootManager::InitialiseTree(G4String treename1)
 
 void DDMRootManager::FillTree_TimeStepData(G4double input_time, G4double input_x, G4double input_y, G4double input_z, G4double input_energy)
 {
-	TimeStepData_mng[0]=input_time;
-	TimeStepData_mng[1]=input_x;
-	TimeStepData_mng[2]=input_y;
-	TimeStepData_mng[3]=input_z;
-	TimeStepData_mng[4]=input_energy;
+	TimeStepData_mng[0]=1.0;
+	TimeStepData_mng[1]=2.0;
+	TimeStepData_mng[2]=3.0;
+	TimeStepData_mng[3]=4.0;
+	TimeStepData_mng[4]=5.0;
 
 	energyLoss_tree->Fill(); //Will this fill this branch?
 }
