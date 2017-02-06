@@ -2,6 +2,7 @@
 
 DDMRootManager* the_root_manager;
 TTree* trueTrack_tree;
+TBranch* current_trueTrack_branch;
 
 void DDMRootManager::CreateRootManager(G4String filename)
 {
