@@ -19,6 +19,7 @@ class DDMRootManager
 		TFile* root_file;
 		//Define _mng variables/arrays as needed.
 		Double_t TimeStepData_mng[5] = {0};
+		Int_t branch_counter = -1;
 		
 
 
@@ -35,6 +36,8 @@ class DDMRootManager
 		void FillTree_TimeStepData(G4double input_time, G4double input_x, G4double input_y, G4double input_z, G4double input_energy);
 
 		void CloseTree();
+	
+		void NewBranch();
 
 		//Define Get and Set methods for each _mng variable: can be defined inline.
 
