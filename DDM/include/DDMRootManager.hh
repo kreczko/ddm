@@ -18,7 +18,7 @@ class DDMRootManager
 	private:
 		TFile* root_file;
 		//Define _mng variables/arrays as needed.
-		G4double TimeStepData_mng[5];
+		G4double TimeStepData_mng[5] = {0};
 		
 
 
