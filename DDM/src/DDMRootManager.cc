@@ -28,16 +28,16 @@ void DDMRootManager::InitialiseTree(G4String treename1)
 	energyLoss_tree = new TTree("T", treename1.c_str());
 
 	// # BRANCH
-	energyLoss_tree -> Branch("energyLoss_data",&TimeStepData_mng, "Time/D:posx/D:posy/D:posz/D:IonisationEnergy_ev/D");
+	energyLoss_tree -> Branch("energyLoss_data",&TimeStepData_mng, "Time_ns/D:posx_m/D:posy_m/D:posz_m/D:IonisationEnergy_keV/D");
 }
 
 void DDMRootManager::FillTree_TimeStepData(G4double input_time, G4double input_x, G4double input_y, G4double input_z, G4double input_energy)
 {
-	TimeStepData_mng[0]=input_time/ms;
-	TimeStepData_mng[1]=input_x/mm;
-	TimeStepData_mng[2]=input_y/mm;
-	TimeStepData_mng[3]=input_z/mm;
-	TimeStepData_mng[4]=input_energy/eV;
+	TimeStepData_mng[0]=input_time/ns;
+	TimeStepData_mng[1]=input_x/m;
+	TimeStepData_mng[2]=input_y/m;
+	TimeStepData_mng[3]=input_z/m;
+	TimeStepData_mng[4]=input_energy/keV;
 
 	energyLoss_tree->Fill();
 }
