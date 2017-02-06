@@ -1,7 +1,7 @@
 #include "DDMRootManager.hh"
 
 DDMRootManager* the_root_manager;
-TTree* energyLoss_tree;
+TTree* trueTrack_tree;
 
 void DDMRootManager::CreateRootManager(G4String filename)
 {
@@ -25,10 +25,10 @@ DDMRootManager::DDMRootManager(G4String filename)
 
 void DDMRootManager::InitialiseTree(G4String treename1)
 {
-	energyLoss_tree = new TTree("T", treename1.c_str());
+	trueTrack_tree = new TTree("T", treename1.c_str());
 
 	// # BRANCH
-	energyLoss_tree -> Branch("energyLoss_data",&TimeStepData_mng, "Time_ns/D:posx_m/D:posy_m/D:posz_m/D:IonisationEnergy_keV/D");
+	trueTrack_tree -> Branch("trueTrack_tree",&TimeStepData_mng, "Time_ns/D:posx_m/D:posy_m/D:posz_m/D:IonisationEnergy_keV/D");
 }
 
 void DDMRootManager::FillTree_TimeStepData(G4double input_time, G4double input_x, G4double input_y, G4double input_z, G4double input_energy)
@@ -39,14 +39,14 @@ void DDMRootManager::FillTree_TimeStepData(G4double input_time, G4double input_x
 	TimeStepData_mng[3]=input_z/m;
 	TimeStepData_mng[4]=input_energy/keV;
 
-	energyLoss_tree->Fill();
+	trueTrack_tree->Fill();
 }
 
 void DDMRootManager::CloseTree()
 {
-	energyLoss_tree->Write();
+	trueTrack_tree->Write();
 	
-	delete energyLoss_tree;
+	delete trueTrack_tree;
 }
 
 DDMRootManager::~DDMRootManager()
