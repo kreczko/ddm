@@ -3,6 +3,8 @@
 DDMRootManager* the_root_manager;
 TTree* trueTrack_tree;
 TBranch* current_trueTrack_branch;
+TTree* electronData_tree;
+TBranch* current_electronData_branch;
 
 void DDMRootManager::CreateRootManager(G4String filename)
 {
@@ -28,12 +30,18 @@ void DDMRootManager::InitialiseTrees()
 {
 	EventCounter_mng++;
 	
+	// True track information:
 	stringstream trueTrack_treename;
 	trueTrack_treename << "trueTrack_" << EventCounter_mng;
 	trueTrack_tree = new TTree(trueTrack_treename.str().c_str(), trueTrack_treename.str().c_str());
 
-	// # BRANCH
 	trueTrack_tree -> Branch("trueTrack_branch",&TimeStepData_mng, "Time_ns/D:posx_m/D:posy_m/D:posz_m/D:IonisationEnergy_keV/D");
+	
+	// Electron information:
+	stringstream electronData_treename;
+	electronData_treename << "electronData_" << EventCounter_mng;
+	electronData_tree = new TTree(electronData_treename.str().c_str(), electronData_treename.str().c_str());
+	
 }
 
 /*void DDMRootManager::NewBranch()
@@ -55,11 +63,13 @@ void DDMRootManager::FillTree_TimeStepData(G4double input_time, G4double input_x
 	trueTrack_tree->Fill();
 }
 
-void DDMRootManager::CloseTree()
+void DDMRootManager::CloseTrees()
 {
 	trueTrack_tree->Write();
+	electronData_tree->Write();
 	
 	delete trueTrack_tree;
+	delete electronData_tree();
 }
 
 DDMRootManager::~DDMRootManager()
