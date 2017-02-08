@@ -27,10 +27,10 @@ DDMRootManager::DDMRootManager(G4String filename)
 void DDMRootManager::InitialiseTree(G4String treename1)
 {
 	EventCounter_mng++;
-	trueTrack_tree = new TTree("T", treename1.c_str());
+	trueTrack_tree = new TTree("trueTrack", treename1.c_str());
 
 	// # BRANCH
-	trueTrack_tree -> Branch("trueTrack_tree",&TimeStepData_mng, "Time_ns/D:posx_m/D:posy_m/D:posz_m/D:IonisationEnergy_keV/D");
+	trueTrack_tree -> Branch("trueTrack_branch",&TimeStepData_mng, "Time_ns/D:posx_m/D:posy_m/D:posz_m/D:IonisationEnergy_keV/D");
 }
 
 /*void DDMRootManager::NewBranch()
