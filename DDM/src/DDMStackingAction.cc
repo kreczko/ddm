@@ -98,7 +98,7 @@ void DDMStackingAction::PrepareNewEvent()
   // close current tree if one exists
   if ((root_manager -> GetEventCounter()) >= 0) {root_manager->CloseTree();}
   // initialise new tree
-  root_manager->InitialiseTree("timestep_tree");
+  root_manager->InitialiseTrees();
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
