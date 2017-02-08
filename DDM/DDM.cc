@@ -104,7 +104,7 @@ int main(int argc,char** argv)
   //
   DDMRootManager::CreateRootManager("test.root");
   DDMRootManager* root_manager = DDMRootManager::GetRootManager();
-  root_manager->InitialiseTree("timestep_tree");
+  //root_manager->InitialiseTree("timestep_tree");
 
   // Choose the Random engine
   //
