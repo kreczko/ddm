@@ -2,9 +2,7 @@
 
 DDMRootManager* the_root_manager;
 TTree* trueTrack_tree;
-TBranch* current_trueTrack_branch;
 TTree* electronData_tree;
-TBranch* current_electronData_branch;
 
 void DDMRootManager::CreateRootManager(G4String filename)
 {
@@ -42,15 +40,8 @@ void DDMRootManager::InitialiseTrees()
 	electronData_treename << "electronData_" << EventCounter_mng;
 	electronData_tree = new TTree(electronData_treename.str().c_str(), electronData_treename.str().c_str());
 	
+	electronData_tree -> Branch("electronData_branch",&ElectronData_mng, "Time_ns/D:posx_m/D:posz_m/D");
 }
-
-/*void DDMRootManager::NewBranch()
-{
-	BranchCounter_mng++;
-	stringstream trueTrack_branchname;
-	trueTrack_branchname << "trueTrack_" << BranchCounter_mng;
-	current_trueTrack_branch = trueTrack_tree -> Branch(trueTrack_branchname.str().c_str(),&TimeStepData_mng, "Time_ns/D:posx_m/D:posy_m/D:posz_m/D:IonisationEnergy_keV/D");
-}*/
 
 void DDMRootManager::FillTree_TimeStepData(G4double input_time, G4double input_x, G4double input_y, G4double input_z, G4double input_energy)
 {
