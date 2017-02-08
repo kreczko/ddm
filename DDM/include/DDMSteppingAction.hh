@@ -45,12 +45,16 @@ class DDMSteppingAction : public G4UserSteppingAction
 
     // method from the base class
     virtual void UserSteppingAction(const G4Step*);
+   
+    
 
   private:
     G4int fScintillationCounter;
     G4int fCerenkovCounter;
     G4int fIonisationCounter;
     G4int fEventNumber;
+    
+    G4int GenerateElectrons(G4double energy, G4double elementIonE);
 };
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
