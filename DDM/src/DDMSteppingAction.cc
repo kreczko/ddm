@@ -122,10 +122,27 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
     //root_manager->FillTree_TimeStepData(stepTime,position,ionisationEnergy);
     root_manager->FillTree_TimeStepData(stepTime, position.x(), position.y(), position.z(), ionisationEnergy);
     
-    // generate and propagate electrons
+    // generate electrons
     G4int num_of_electrons = ionisationEnergy/(15.75962*eV);
     fIonisationCounter += num_of_electrons;
     G4cout << "Electrons manually generated in this step: " << num_of_electrons << G4endl;
+    
+    // propagate and save electrons
+    for (i = 0; i < num_of_electrons; i++)
+    {
+      // Set initial coords
+      G4double step_fraction = 0.5; // This should be randomly generated between 0 and 1
+      G4double initial_x = step->GetPreStepPoint()->GetPosition().x()
+                         + step_fraction*(step->GetPostStepPoint()->GetPosition().x() - step->GetPreStepPoint()->GetPosition().x());
+      G4double initial_y = step->GetPreStepPoint()->GetPosition().y()
+                         + step_fraction*(step->GetPostStepPoint()->GetPosition().y() - step->GetPreStepPoint()->GetPosition().y());
+      G4double initial_z = step->GetPreStepPoint()->GetPosition().x()
+                         + step_fraction*(step->GetPostStepPoint()->GetPosition().z() - step->GetPreStepPoint()->GetPosition().z());
+      G4double initial_t = step->GetPreStepPoint()->GetLocalTime()
+                         + step_fraction*(step->GetPostStepPoint()->GetLocalTime() - step->GetPreStepPoint()->GetLocalTime());
+     
+    }
+    
   }
   
   //G4cout << "TrackID: " << track->GetTrackID() << G4endl;
