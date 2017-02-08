@@ -29,18 +29,18 @@ void DDMRootManager::InitialiseTree(G4String treename1)
 	trueTrack_tree = new TTree("T", treename1.c_str());
 
 	// # BRANCH
-	// trueTrack_tree -> Branch("trueTrack_tree",&TimeStepData_mng, "Time_ns/D:posx_m/D:posy_m/D:posz_m/D:IonisationEnergy_keV/D");
+	trueTrack_tree -> Branch("trueTrack_tree",&TimeStepData_mng, "Time_ns/D:posx_m/D:posy_m/D:posz_m/D:IonisationEnergy_keV/D");
 }
 
-void DDMRootManager::NewBranch()
+/*void DDMRootManager::NewBranch()
 {
 	BranchCounter_mng++;
 	stringstream trueTrack_branchname;
 	trueTrack_branchname << "trueTrack_" << BranchCounter_mng;
 	current_trueTrack_branch = trueTrack_tree -> Branch(trueTrack_branchname.str().c_str(),&TimeStepData_mng, "Time_ns/D:posx_m/D:posy_m/D:posz_m/D:IonisationEnergy_keV/D");
-}
+}*/
 
-void DDMRootManager::FillBranch_TimeStepData(G4double input_time, G4double input_x, G4double input_y, G4double input_z, G4double input_energy)
+void DDMRootManager::FillTree_TimeStepData(G4double input_time, G4double input_x, G4double input_y, G4double input_z, G4double input_energy)
 {
 	TimeStepData_mng[0]=input_time/ns;
 	TimeStepData_mng[1]=input_x/m;
@@ -48,7 +48,7 @@ void DDMRootManager::FillBranch_TimeStepData(G4double input_time, G4double input
 	TimeStepData_mng[3]=input_z/m;
 	TimeStepData_mng[4]=input_energy/keV;
 
-	current_trueTrack_branch->Fill();
+	trueTrack_tree->Fill();
 }
 
 void DDMRootManager::CloseTree()
