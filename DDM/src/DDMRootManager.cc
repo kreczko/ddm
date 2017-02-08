@@ -26,6 +26,7 @@ DDMRootManager::DDMRootManager(G4String filename)
 
 void DDMRootManager::InitialiseTree(G4String treename1)
 {
+	EventCounter_mng++;
 	trueTrack_tree = new TTree("T", treename1.c_str());
 
 	// # BRANCH
