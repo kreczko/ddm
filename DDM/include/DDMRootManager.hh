@@ -40,6 +40,7 @@ class DDMRootManager
 		//void NewBranch();
 
 		//Define Get and Set methods for each _mng variable: can be defined inline.
+		Int_t GetEventCounter() {return EventCounter_mng;}
 
 		void PrintToScreen(G4String input) {G4cout << input << G4endl;}
 
