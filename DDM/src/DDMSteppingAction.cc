@@ -123,12 +123,12 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
     root_manager->FillTree_TimeStepData(stepTime, position.x(), position.y(), position.z(), ionisationEnergy);
     
     // generate electrons
-    G4int num_of_electrons = ionisationEnergy/(15.75962*eV);
-    fIonisationCounter += num_of_electrons;
-    G4cout << "Electrons manually generated in this step: " << num_of_electrons << G4endl;
+    G4int numOfElectrons = ionisationEnergy/(15.75962*eV);
+    fIonisationCounter += numOfElectrons;
+    G4cout << "Electrons manually generated in this step: " << numOfElectrons << G4endl;
     
     // propagate and save electrons
-    for (G4int i = 0; i < num_of_electrons; i++)
+    for (G4int i = 0; i < numOfElectrons; i++)
     {
       // randomly generate step fraction
       G4double stepFraction = G4UniformRand();
