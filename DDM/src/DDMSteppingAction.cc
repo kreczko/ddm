@@ -131,7 +131,7 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
     for (i = 0; i < num_of_electrons; i++)
     {
       // Set initial coords
-      G4double step_fraction = 0.5; // This should be randomly generated between 0 and 1
+      G4double step_fraction = G4UniformRand(); // This should be randomly generated between 0 and 1
       G4double initial_x = step->GetPreStepPoint()->GetPosition().x()
                          + step_fraction*(step->GetPostStepPoint()->GetPosition().x() - step->GetPreStepPoint()->GetPosition().x());
       G4double initial_y = step->GetPreStepPoint()->GetPosition().y()
