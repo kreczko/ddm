@@ -30,7 +30,7 @@ class DDMRootManager
 
 		DDMRootManager(G4String filename);
 
-		void InitialiseTree(G4String treename1);//Add more trees as arguments if desired.
+		void InitialiseTrees();//Add more trees as arguments if desired.
 
 		//void FillTree(); Make more of these (with specific names and the required parameters) for the individual branches as needed.
 		void FillTree_TimeStepData(G4double input_time, G4double input_x, G4double input_y, G4double input_z, G4double input_energy);
