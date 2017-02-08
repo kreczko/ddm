@@ -140,7 +140,14 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
                          + step_fraction*(step->GetPostStepPoint()->GetPosition().z() - step->GetPreStepPoint()->GetPosition().z());
       G4double initial_time = step->GetPreStepPoint()->GetLocalTime()
                          + step_fraction*(step->GetPostStepPoint()->GetLocalTime() - step->GetPreStepPoint()->GetLocalTime());
-     
+      // Drift
+      G4double tankHeight = 1.0*m; // Get this directly from the detector construction?
+      //G4double driftVelocity = ;
+      G4double distanceToDrift = tankHeight - initial_y;
+      //G4double timeToDrift = distanceToDrift/driftVelocity;
+      //G4double final_time = initial_time + timeToDrift;
+      
+      // Diffusion
     }
     
   }
