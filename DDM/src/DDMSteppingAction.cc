@@ -128,7 +128,7 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
     G4cout << "Electrons manually generated in this step: " << num_of_electrons << G4endl;
     
     // propagate and save electrons
-    for (i = 0; i < num_of_electrons; i++)
+    for (G4int i = 0; i < num_of_electrons; i++)
     {
       // Set initial coords
       G4double step_fraction = G4UniformRand(); // This should be randomly generated between 0 and 1
