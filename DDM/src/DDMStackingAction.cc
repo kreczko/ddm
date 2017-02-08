@@ -93,7 +93,10 @@ void DDMStackingAction::PrepareNewEvent()
   fScintillationCounter = 0;
   fCerenkovCounter = 0;
   fIonisationCounter = 0;
-  DDMRootManager::GetRootManager()->NewBranch();
+  
+  DDMRootManager* root_manager = DDMRootManager::GetRootManager();
+  if ((root_manager -> GetEventCounter()) >= 0) {root_manager->CloseTree();}
+  root_manager->InitialiseTree("timestep_tree");
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
