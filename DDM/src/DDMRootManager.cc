@@ -54,6 +54,15 @@ void DDMRootManager::FillTree_TimeStepData(G4double input_time, G4double input_x
 	trueTrack_tree->Fill();
 }
 
+void DDMRootManager::FillTree_ElectronData(G4double input_time, G4double input_x, G4double input_z)
+{
+	ElectronData_mng[0]=input_time/ns;
+	ElectronData_mng[1]=input_x/m;
+	ElectronData_mng[2]=input_z/m;
+	
+	electronData_tree->Fill();
+}
+
 void DDMRootManager::CloseTrees()
 {
 	trueTrack_tree->Write();
