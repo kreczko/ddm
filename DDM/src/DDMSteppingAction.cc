@@ -131,17 +131,17 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
     for (G4int i = 0; i < num_of_electrons; i++)
     {
       // randomly generate step fraction
-      G4double step_fraction = G4UniformRand();
+      G4double stepFraction = G4UniformRand();
       
       // set initial x, y and z coords
       G4double initial_x = step->GetPreStepPoint()->GetPosition().x()
-                         + step_fraction*(step->GetPostStepPoint()->GetPosition().x() - step->GetPreStepPoint()->GetPosition().x());
+                         + stepFraction*(step->GetPostStepPoint()->GetPosition().x() - step->GetPreStepPoint()->GetPosition().x());
       G4double initial_y = step->GetPreStepPoint()->GetPosition().y()
-                         + step_fraction*(step->GetPostStepPoint()->GetPosition().y() - step->GetPreStepPoint()->GetPosition().y());
+                         + stepFraction*(step->GetPostStepPoint()->GetPosition().y() - step->GetPreStepPoint()->GetPosition().y());
       G4double initial_z = step->GetPreStepPoint()->GetPosition().x()
-                         + step_fraction*(step->GetPostStepPoint()->GetPosition().z() - step->GetPreStepPoint()->GetPosition().z());
+                         + stepFraction*(step->GetPostStepPoint()->GetPosition().z() - step->GetPreStepPoint()->GetPosition().z());
       G4double initial_time = step->GetPreStepPoint()->GetLocalTime()
-                         + step_fraction*(step->GetPostStepPoint()->GetLocalTime() - step->GetPreStepPoint()->GetLocalTime());
+                         + stepFraction*(step->GetPostStepPoint()->GetLocalTime() - step->GetPreStepPoint()->GetLocalTime());
       // Drift
       G4double tankHeight = 1.0*m; // Get this directly from the detector construction?
       //G4double driftVelocity = ;
