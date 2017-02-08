@@ -138,7 +138,7 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
                          + step_fraction*(step->GetPostStepPoint()->GetPosition().y() - step->GetPreStepPoint()->GetPosition().y());
       G4double initial_z = step->GetPreStepPoint()->GetPosition().x()
                          + step_fraction*(step->GetPostStepPoint()->GetPosition().z() - step->GetPreStepPoint()->GetPosition().z());
-      G4double initial_t = step->GetPreStepPoint()->GetLocalTime()
+      G4double initial_time = step->GetPreStepPoint()->GetLocalTime()
                          + step_fraction*(step->GetPostStepPoint()->GetLocalTime() - step->GetPreStepPoint()->GetLocalTime());
      
     }
