@@ -54,7 +54,7 @@ class DDMSteppingAction : public G4UserSteppingAction
     G4int fIonisationCounter;
     G4int fEventNumber;
     
-    G4int GenerateElectrons(G4double energy, G4double elementIonE);
+    G4int GenerateElectrons(G4double, G4double);
 };
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
