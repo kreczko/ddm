@@ -24,10 +24,13 @@ DDMRootManager::DDMRootManager(G4String filename)
 	root_file = new TFile(filename.c_str(),"RECREATE");
 }
 
-void DDMRootManager::InitialiseTree(G4String treename1)
+void DDMRootManager::InitialiseTrees()
 {
 	EventCounter_mng++;
-	trueTrack_tree = new TTree("trueTrack", treename1.c_str());
+	
+	stringstream trueTrack_treename;
+	trueTrack_treename << "trueTrack_" << EventCounter_mng;
+	trueTrack_tree = new TTree(trueTrack_treename.str().c_str(), trueTrack_treename.str().c_str());
 
 	// # BRANCH
 	trueTrack_tree -> Branch("trueTrack_branch",&TimeStepData_mng, "Time_ns/D:posx_m/D:posy_m/D:posz_m/D:IonisationEnergy_keV/D");
