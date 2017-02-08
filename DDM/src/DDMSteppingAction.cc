@@ -112,15 +112,17 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
 
   if (track->GetTrackID() == 1)
   {
-    // Get and write ionisation energy of step
+    // get time, ionisation energy and position of step
     G4double ionisationEnergy = step->GetTotalEnergyDeposit() - step->GetNonIonizingEnergyDeposit();
     G4ThreeVector position = step->GetPreStepPoint()->GetPosition();
     G4double stepTime = step->GetPreStepPoint()->GetLocalTime();
     G4cout << "time: " << stepTime << ", pos: " << position << ", E: " << ionisationEnergy << G4endl;
+    
+    // fill tree
     //root_manager->FillTree_TimeStepData(stepTime,position,ionisationEnergy);
     root_manager->FillTree_TimeStepData(stepTime, position.x(), position.y(), position.z(), ionisationEnergy);
     
-    // Generate and propagate electrons
+    // generate and propagate electrons
     G4int num_of_electrons = ionisationEnergy/(15.75962*eV);
     G4cout << "Electrons generated in this step: " << num_of_electrons << G4endl;
   }
