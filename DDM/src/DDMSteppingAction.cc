@@ -124,7 +124,8 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
     
     // generate and propagate electrons
     G4int num_of_electrons = ionisationEnergy/(15.75962*eV);
-    G4cout << "Electrons generated in this step: " << num_of_electrons << G4endl;
+    fIonisationCounter += num_of_electrons;
+    G4cout << "Electrons manually generated in this step: " << num_of_electrons << G4endl;
   }
   
   //G4cout << "TrackID: " << track->GetTrackID() << G4endl;
