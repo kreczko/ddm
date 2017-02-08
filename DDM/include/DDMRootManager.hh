@@ -19,7 +19,7 @@ class DDMRootManager
 		TFile* root_file;
 		//Define _mng variables/arrays as needed.
 		Double_t TimeStepData_mng[5] = {0};
-		Int_t TreeCounter_mng = -1;
+		Int_t EventCounter_mng = -1;
 		
 
 
