@@ -22,8 +22,6 @@ class DDMRootManager
 		Double_t ElectronData_mng[3] = {0};
 		Int_t EventCounter_mng = -1;
 		
-
-
 	public:
 		static void CreateRootManager(G4String filename);
 		static DDMRootManager* GetRootManager();
@@ -47,7 +45,6 @@ class DDMRootManager
 		void PrintToScreen(G4String input) {G4cout << input << G4endl;}
 
 		~DDMRootManager();
-
 };
 
 #endif
