@@ -101,7 +101,7 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
 //
   G4Element* Ar = new G4Element("Argon", "Ar", z=18, a=39.95*g/mole);
  
-  G4Material* argon_gas = new G4Material("Gaseous Argon", density=1.784*mg/cm3, nelements=1);
+  G4Material* argon_gas = new G4Material("Gaseous Argon", density=0.1*1.784*mg/cm3, nelements=1);
   argon_gas->AddElement(Ar, 100.*perCent);
 
 // Water
