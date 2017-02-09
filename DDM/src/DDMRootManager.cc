@@ -3,6 +3,7 @@
 DDMRootManager* the_root_manager;
 TTree* trueTrack_tree;
 TTree* electronData_tree;
+TCanvas* c1;
 
 void DDMRootManager::CreateRootManager(G4String filename)
 {
@@ -27,6 +28,8 @@ DDMRootManager::DDMRootManager(G4String filename)
 void DDMRootManager::InitialiseTrees()
 {
 	EventCounter_mng++;
+	
+	c1 = new TCanvas("c1");
 	
 	// True track information:
 	stringstream trueTrack_treename;
