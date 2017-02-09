@@ -61,7 +61,7 @@ void DDMRootManager::FillTree_TimeStepData(G4double input_time, G4double input_x
 
 void DDMRootManager::FillHist_ElectronGen(G4double input_x, G4double input_y, G4double input_z)
 {
-	electronGen_Hist->Fill(input_x/m, input_y/m, input_z/m);
+	electronGen_hist->Fill(input_x/m, input_y/m, input_z/m);
 }
 
 void DDMRootManager::FillTree_ElectronData(G4double input_time, G4double input_x, G4double input_z)
