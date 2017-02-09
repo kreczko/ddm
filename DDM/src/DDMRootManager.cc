@@ -29,7 +29,7 @@ void DDMRootManager::InitialiseTrees()
 {
 	EventCounter_mng++;
 	
-	c1 = new TCanvas("c1");
+	//c1 = new TCanvas("c1");
 	
 	// True track information:
 	stringstream trueTrack_treename;
