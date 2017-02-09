@@ -10,7 +10,7 @@
 #include "TH3I.h"
 #include "G4ThreeVector.hh"
 #include "G4SystemOfUnits.hh"
-#include "TCanvas.h"
+//#include "TCanvas.h"
 #include <sstream>
 
 using namespace std;
