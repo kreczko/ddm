@@ -179,7 +179,12 @@ int main(int argc,char** argv)
 #endif
   delete runManager;
   
-  root_manager->CloseTrees();
+  // close current tree if one exists
+  if ((root_manager -> GetEventCounter()) >= 0)
+  {
+    root_manager->CloseTrees();
+  }
+  
   DDMRootManager::DestroyRootManager();
 
   return 0;
