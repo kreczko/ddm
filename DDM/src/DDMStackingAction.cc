@@ -98,7 +98,7 @@ void DDMStackingAction::PrepareNewEvent()
   // close current tree if one exists
   if ((root_manager -> GetEventCounter()) >= 0)
   {
-    root_manager->CloseTree();
+    root_manager->CloseTrees();
   }
   // initialise new tree
   root_manager->InitialiseTrees();
