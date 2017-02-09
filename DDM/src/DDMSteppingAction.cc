@@ -142,6 +142,9 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
                          + stepFraction*(step->GetPostStepPoint()->GetPosition().z() - step->GetPreStepPoint()->GetPosition().z());
       G4double initial_time = step->GetPreStepPoint()->GetLocalTime()
                          + stepFraction*(step->GetPostStepPoint()->GetLocalTime() - step->GetPreStepPoint()->GetLocalTime());
+      
+      root_manager->FillHist_ElectronGen(initial_x, initial_y, initial_z);
+      
       // Drift
       G4double tankHeight = 1.0*m; // Get this directly from the detector construction?
       //G4double driftVelocity = ;
