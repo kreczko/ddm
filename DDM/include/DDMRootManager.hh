@@ -7,6 +7,7 @@
 #include <string>
 #include "G4String.hh"
 #include "TH1D.h"
+#include "TH3I.h"
 #include "G4ThreeVector.hh"
 #include "G4SystemOfUnits.hh"
 #include "TCanvas.h"
