@@ -179,7 +179,7 @@ int main(int argc,char** argv)
 #endif
   delete runManager;
   
-  root_manager->CloseTree();
+  root_manager->CloseTrees();
   DDMRootManager::DestroyRootManager();
 
   return 0;
