@@ -72,7 +72,7 @@ void DDMRootManager::CloseTrees()
 	electronData_tree->Write();
 	
 	delete trueTrack_tree;
-	delete electronData_tree();
+	delete electronData_tree;
 }
 
 DDMRootManager::~DDMRootManager()
