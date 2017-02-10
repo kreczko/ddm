@@ -147,7 +147,7 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       
       // Drift
       G4double tankHeight = 1.0*m; // Get this directly from the detector construction?
-      G4double driftVelocity = 5.0e5*(cm/s);
+      G4double driftVelocity = root_manager->GetDriftVelocity();
       G4double distanceToDrift = tankHeight - initial_y;
       G4double timeToDrift = distanceToDrift/driftVelocity;
       G4double final_time = initial_time + timeToDrift;
