@@ -165,7 +165,7 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       G4double recorded_z = final_z;
       G4double recorded_time = final_time;
 
-      root_manager->FillHist_RecoTrack(initial_x, initial_y, initial_z);
+      root_manager->FillHist_RecoTrack(recorded_x, initial_y, recorded_z);
       
     }
     
