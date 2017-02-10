@@ -51,7 +51,7 @@ class DDMRootManager
 		Double_t GetDriftVelocity() {return DriftVelocity_mng;}
 	
 		void SetTankHeight(Double_t input) {TankHeight_mng = input;}
-		Double_t GetTankHeight() {return TankHeight_mng;)
+		Double_t GetTankHeight() {return TankHeight_mng;}
 
 		void PrintToScreen(G4String input) {G4cout << input << G4endl;}
 
