@@ -3,6 +3,7 @@
 DDMRootManager* the_root_manager;
 TTree* trueTrack_tree;
 TTree* electronData_tree;
+TTree* recoTrack_tree;
 //TCanvas* c1;
 TH3I* electronGen_hist;
 TH3I* recoTrack_hist;
@@ -46,10 +47,21 @@ void DDMRootManager::InitialiseTrees()
 	electronData_tree = new TTree(electronData_treename.str().c_str(), electronData_treename.str().c_str());
 	
 	electronData_tree -> Branch("electronData_branch",&ElectronData_mng, "Time_ns/D:posx_m/D:posz_m/D");
-	electronGen_hist = new TH3I("electronGen_hist", "Electron generation", 200, -1.0, 1.0, 200, -1.0, 1.0, 200, -1.0, 1.0);
+	
+	stringstream electronGen_histname;
+	electronGen_histname << "electronGen_" << EventCounter_mng;
+	electronGen_hist = new TH3I(electronGen_histname.str().c_str(), "Electron generation", 200, -1.0, 1.0, 200, -1.0, 1.0, 200, -1.0, 1.0);
 	
 	// reconstructed track information
-	recoTrack_hist = new TH3I("recoTrack_hist", "Reconstructed positions", 200, -1.0, 1.0, 200, -1.0, 1.0, 200, -1.0, 1.0);
+	stringstream recoTrack_treename;
+	recoTrack_treename << "recoTrack_" << EventCounter_mng;
+	recoTrack_tree = new TTree(recoTrack_treename.str().c_str(), recoTrack_treename.str().c_str());
+	
+	recoTrack_tree -> Branch("recoTrack_branch",&RecoData_mng, "posx_m/D:posy_m/D:posz_m/D");
+	
+	stringstream recoTrack_histname;
+	recoTrack_histname << "recoTrack_H_" << EventCounter_mng;
+	recoTrack_hist = new TH3I(recoTrack_histname.str().c_str(), "Reconstructed positions", 200, -1.0, 1.0, 200, -1.0, 1.0, 200, -1.0, 1.0);
 }
 
 void DDMRootManager::FillTree_TimeStepData(G4double input_time, G4double input_x, G4double input_y, G4double input_z, G4double input_energy)
@@ -82,16 +94,27 @@ void DDMRootManager::FillHist_RecoTrack(G4double input_x, G4double input_y, G4do
 	recoTrack_hist->Fill(input_x/m, input_y/m, input_z/m);
 }
 
+void DDMRootManager::FillTree_RecoTrack(G4double input_x, G4double input_y, G4double input_z)
+{
+	RecoData_mng[0] = input_x/m;
+	RecoData_mng[1] = input_y/m;
+	RecoData_mng[2] = input_z/m;
+	
+	recoTrack_tree->Fill();
+}
+
 void DDMRootManager::CloseTrees()
 {
 	trueTrack_tree->Write();
 	electronData_tree->Write();
 	electronGen_hist->Write();
+	recoTrack_tree->Write();
 	recoTrack_hist->Write();
 	
 	delete trueTrack_tree;
 	delete electronData_tree;
 	delete electronGen_hist;
+	delete recoTrack_tree;
 	delete recoTrack_hist;
 }
 
