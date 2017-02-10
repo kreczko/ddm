@@ -29,6 +29,7 @@
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 #include "DDMDetectorConstruction.hh"
+#include "DDMRootManager.hh"
 
 #include "G4Material.hh"
 #include "G4Element.hh"
@@ -51,6 +52,7 @@
 #include "G4ClassicalRK4.hh"
 #include "G4TransportationManager.hh"
 #include "G4FieldManager.hh"
+
 
 G4ElectricField*        fEMfield;
 G4EqMagElectricField*   fEquation;
@@ -78,6 +80,8 @@ DDMDetectorConstruction::~DDMDetectorConstruction(){;}
 
 G4VPhysicalVolume* DDMDetectorConstruction::Construct()
 {
+ // get root manager
+ DDMRootManager* root_manager = DDMRootManager::GetRootManager();
 
 // ------------- Materials -------------
 
@@ -101,7 +105,12 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
 //
   G4Element* Ar = new G4Element("Argon", "Ar", z=18, a=39.95*g/mole);
  
-  G4Material* argon_gas = new G4Material("Gaseous Argon", density=0.1*1.784*mg/cm3, nelements=1);
+  G4double argonPressure = 0.1; // pressure in atmospheres
+  G4double argonDriftVelocity = 5.05e5*(cm/s);
+ 
+  root_manager->SetDriftVelocity(argonDriftVelocity);
+ 
+  G4Material* argon_gas = new G4Material("Gaseous Argon", density=argonPressure*1.784*mg/cm3, nelements=1);
   argon_gas->AddElement(Ar, 100.*perCent);
 
 // Water
