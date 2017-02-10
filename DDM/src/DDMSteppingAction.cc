@@ -151,12 +151,15 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       G4double distanceToDrift = tankHeight - initial_y;
       G4double timeToDrift = distanceToDrift/driftVelocity;
       G4double final_time = initial_time + timeToDrift;
+      G4double final_x = initial_x;
+      G4double final_y = tankHeight;
+      G4double final_z = initial_z;
       
       // Diffusion
       
       
       // input data
-      root_manager->FillTree_ElectronData(final_time, initial_x, initial_z);
+      root_manager->FillTree_ElectronData(final_time, final_x, final_z);
       
     }
     
