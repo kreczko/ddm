@@ -39,6 +39,7 @@ class DDMRootManager
 		void FillTree_TimeStepData(G4double input_time, G4double input_x, G4double input_y, G4double input_z, G4double input_energy);
 		void FillTree_ElectronData(G4double input_time, G4double input_x, G4double input_z);
 		void FillHist_ElectronGen(G4double input_x, G4double input_y, G4double input_z);
+		void FillHist_RecoTrack(G4double input_x, G4double input_y, G4double input_z);
 	
 		void CloseTrees();
 	
