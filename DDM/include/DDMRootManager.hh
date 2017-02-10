@@ -23,6 +23,7 @@ class DDMRootManager
 		Double_t TimeStepData_mng[5] = {0};
 		Double_t ElectronData_mng[3] = {0};
 		Int_t EventCounter_mng = -1;
+		Double_t DriftVelocity_mng = 0;
 		
 	public:
 		static void CreateRootManager(G4String filename);
@@ -44,6 +45,9 @@ class DDMRootManager
 
 		//Define Get and Set methods for each _mng variable: can be defined inline.
 		Int_t GetEventCounter() {return EventCounter_mng;}
+		
+		void SetDriftVelocity(Double_t input) {DriftVelocity_mng = input;}
+		Double_t GetDriftVelocity() {return DriftVelocity_mng;}
 
 		void PrintToScreen(G4String input) {G4cout << input << G4endl;}
 
