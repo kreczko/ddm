@@ -303,6 +303,9 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
   G4VPhysicalVolume* argonTank_phys
     = new G4PVPlacement(rotm,G4ThreeVector(),argonTank_log,"Tank",
                         expHall_log,false,0);
+  
+  root_manager->SetTankHeight(tank_z);
+ 
 /*
 // The Air Bubble
 //
