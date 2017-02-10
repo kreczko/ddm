@@ -19,7 +19,7 @@ class DDMRootManager
 {
 	private:
 		TFile* root_file;
-		//Define _mng variables/arrays as needed.
+		// Define _mng variables/arrays as needed.
 		Double_t TimeStepData_mng[5] = {0};
 		Double_t ElectronData_mng[3] = {0};
 		Int_t EventCounter_mng = -1;
@@ -33,7 +33,7 @@ class DDMRootManager
 
 		DDMRootManager(G4String filename);
 
-		void InitialiseTrees();//Add more trees as arguments if desired.
+		void InitialiseTrees();// Add more trees as arguments if desired.
 
 		//void FillTree(); Make more of these (with specific names and the required parameters) for the individual branches as needed.
 		void FillTree_TimeStepData(G4double input_time, G4double input_x, G4double input_y, G4double input_z, G4double input_energy);
@@ -44,7 +44,7 @@ class DDMRootManager
 	
 		//void NewBranch();
 
-		//Define Get and Set methods for each _mng variable: can be defined inline.
+		// Define Get and Set methods for each _mng variable: can be defined inline.
 		Int_t GetEventCounter() {return EventCounter_mng;}
 		
 		void SetDriftVelocity(Double_t input) {DriftVelocity_mng = input;}
