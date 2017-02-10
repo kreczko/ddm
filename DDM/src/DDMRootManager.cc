@@ -5,6 +5,7 @@ TTree* trueTrack_tree;
 TTree* electronData_tree;
 //TCanvas* c1;
 TH3I* electronGen_hist;
+TH3I* recoTrack_hist;
 
 void DDMRootManager::CreateRootManager(G4String filename)
 {
@@ -78,11 +79,12 @@ void DDMRootManager::CloseTrees()
 	trueTrack_tree->Write();
 	electronData_tree->Write();
 	electronGen_hist->Write();
-	
+	recoTrack_hist->Write();
 	
 	delete trueTrack_tree;
 	delete electronData_tree;
 	delete electronGen_hist;
+	delete recoTrack_hist;
 }
 
 DDMRootManager::~DDMRootManager()
