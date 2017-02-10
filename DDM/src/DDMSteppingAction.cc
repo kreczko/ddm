@@ -160,6 +160,7 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       
       // input data
       root_manager->FillTree_ElectronData(final_time, final_x, final_z);
+      root_manager->FillHist_RecoTrack(final_x, final_time*driftVelocity, final_z);
       
     }
     
