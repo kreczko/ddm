@@ -164,7 +164,8 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       G4double recorded_x = final_x;
       G4double recorded_z = final_z;
       G4double recorded_time = final_time;
-      G4double reconstructed_y = tankHeight - (final_time*driftVelocity);
+      //G4double reconstructed_y = tankHeight - (final_time*driftVelocity);
+      G4double reconstructed_y = tankHeight - (timeToDrift*driftVelocity);
 
       root_manager->FillHist_RecoTrack(recorded_x, reconstructed_y, recorded_z);
       
