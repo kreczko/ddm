@@ -24,6 +24,7 @@ class DDMRootManager
 		Double_t ElectronData_mng[3] = {0};
 		Int_t EventCounter_mng = -1;
 		Double_t DriftVelocity_mng = 0;
+		Double_t TankHeight_mng = 0;
 		
 	public:
 		static void CreateRootManager(G4String filename);
@@ -48,6 +49,9 @@ class DDMRootManager
 		
 		void SetDriftVelocity(Double_t input) {DriftVelocity_mng = input;}
 		Double_t GetDriftVelocity() {return DriftVelocity_mng;}
+	
+		void SetTankHeight(Double_t input) {TankHeight_mng = input;}
+		Double_t GetTankHeight() {return TankHeight_mng;)
 
 		void PrintToScreen(G4String input) {G4cout << input << G4endl;}
 
