@@ -146,7 +146,7 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       root_manager->FillHist_ElectronGen(initial_x, initial_y, initial_z);
       
       // Drift
-      G4double tankHeight = 1.0*m; // Get this directly from the detector construction?
+      G4double tankHeight = root_manager->GetTankHeight();
       G4double driftVelocity = root_manager->GetDriftVelocity();
       G4double distanceToDrift = tankHeight - initial_y;
       G4double timeToDrift = distanceToDrift/driftVelocity;
