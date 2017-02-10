@@ -33,20 +33,23 @@ void DDMRootManager::InitialiseTrees()
 	
 	//c1 = new TCanvas("c1");
 	
-	// True track information:
+	// true track information
 	stringstream trueTrack_treename;
 	trueTrack_treename << "trueTrack_" << EventCounter_mng;
 	trueTrack_tree = new TTree(trueTrack_treename.str().c_str(), trueTrack_treename.str().c_str());
 
 	trueTrack_tree -> Branch("trueTrack_branch",&TimeStepData_mng, "Time_ns/D:posx_m/D:posy_m/D:posz_m/D:IonisationEnergy_keV/D");
 	
-	// Electron information:
+	// electron information
 	stringstream electronData_treename;
 	electronData_treename << "electronData_" << EventCounter_mng;
 	electronData_tree = new TTree(electronData_treename.str().c_str(), electronData_treename.str().c_str());
 	
 	electronData_tree -> Branch("electronData_branch",&ElectronData_mng, "Time_ns/D:posx_m/D:posz_m/D");
 	electronGen_hist = new TH3I("electronGen_hist", "Electron generation", 200, -1.0, 1.0, 200, -1.0, 1.0, 200, -1.0, 1.0);
+	
+	// reconstructed track information
+	recoTrack_hist = new TH3I("recoTrack_hist", "Reconstructed positions", 200, -1.0, 1.0, 200, -1.0, 1.0, 200, -1.0, 1.0);
 }
 
 void DDMRootManager::FillTree_TimeStepData(G4double input_time, G4double input_x, G4double input_y, G4double input_z, G4double input_energy)
