@@ -157,8 +157,7 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       
       // Diffusion
       
-      
-      // input data
+      // fill data
       root_manager->FillTree_ElectronData(final_time, final_x, final_z);
       
       G4double recorded_x = final_x;
