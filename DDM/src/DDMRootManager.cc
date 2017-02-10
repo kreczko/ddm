@@ -77,6 +77,11 @@ void DDMRootManager::FillTree_ElectronData(G4double input_time, G4double input_x
 	electronData_tree->Fill();
 }
 
+void DDMRootManager::FillHist_RecoTrack(G4double input_x, G4double input_y, G4double input_z);
+{
+	recoTrack_hist->Fill(input_x/m, input_y/m, input_z/m);
+}
+
 void DDMRootManager::CloseTrees()
 {
 	trueTrack_tree->Write();
