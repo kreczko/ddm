@@ -44,7 +44,7 @@ class DDMRootManager
 		void FillHist_ElectronGen(G4double input_x, G4double input_y, G4double input_z);
 		void FillTree_RecoTrack(G4double input_x, G4double input_y, G4double input_z, G4double input_time);
 		void FillHist_RecoTrack(G4double input_x, G4double input_y, G4double input_z);
-		void FillGraph_RecoGraphXZ(G4double input_x, G4double input_z);
+		void FillGraph_RecoTrackXZ(G4double input_x, G4double input_z);
 	
 		void CloseTrees();
 	
