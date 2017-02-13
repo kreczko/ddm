@@ -130,6 +130,8 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
     // propagate and save electrons
     for (G4int i = 0; i < numOfElectrons; i++)
     {
+      root_manager->IncrementElectronCounter();
+      
       // randomly generate step fraction
       G4double stepFraction = G4UniformRand();
       
@@ -168,6 +170,7 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       
       root_manager->FillHist_RecoTrack(recorded_x, reconstructed_y, recorded_z);
       root_manager->FillTree_RecoTrack(recorded_x, reconstructed_y, recorded_z, recorded_time);
+      root_manager->FillGraph_RecoTrackXZ(recorded_x, recorded_z);
     }
   }
   
