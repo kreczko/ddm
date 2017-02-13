@@ -47,7 +47,7 @@ class DDMRootManager
 	
 		//void NewBranch();
 
-		// Define Get and Set methods for each _mng variable: can be defined inline.
+		// define Get and Set methods for each _mng variable: can be defined inline.
 		Int_t GetEventCounter() {return EventCounter_mng;}
 		
 		void SetDriftVelocity(Double_t input) {DriftVelocity_mng = input;}
