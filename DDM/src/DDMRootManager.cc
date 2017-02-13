@@ -7,6 +7,7 @@ TTree* recoTrack_tree;
 //TCanvas* c1;
 TH3I* electronGen_hist;
 TH3I* recoTrack_hist;
+TGraph* recoTrackXZ_graph;
 
 void DDMRootManager::CreateRootManager(G4String filename)
 {
@@ -62,6 +63,12 @@ void DDMRootManager::InitialiseTrees()
 	stringstream recoTrack_histname;
 	recoTrack_histname << "recoTrack_H_" << EventCounter_mng;
 	recoTrack_hist = new TH3I(recoTrack_histname.str().c_str(), "Reconstructed positions", 200, -1.0, 1.0, 200, -1.0, 1.0, 200, -1.0, 1.0);
+	
+	recoTrackXZ_graph = new TGraph(1);
+	stringstream recoTrackXZ_graphname;
+	recoTrackXZ_graphname << "recoTrack_G_" << EventCounter_mng;
+	recoTrackXZ_graph->SetTitle(recoTrackXZ_graphname.str().c_str());
+	recoTrackXZ_graph->SetName(recoTrackXZ_graphname.str().c_str());
 }
 
 void DDMRootManager::FillTree_TimeStepData(G4double input_time, G4double input_x, G4double input_y, G4double input_z, G4double input_energy)
@@ -111,12 +118,14 @@ void DDMRootManager::CloseTrees()
 	electronGen_hist->Write();
 	recoTrack_tree->Write();
 	recoTrack_hist->Write();
+	recoTrackXZ_graph->Write();
 	
 	delete trueTrack_tree;
 	delete electronData_tree;
 	delete electronGen_hist;
 	delete recoTrack_tree;
 	delete recoTrack_hist;
+	delete recoTrackXZ_graph;
 }
 
 DDMRootManager::~DDMRootManager()
