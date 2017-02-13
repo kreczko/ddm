@@ -102,6 +102,9 @@ void DDMStackingAction::PrepareNewEvent()
   }
   // initialise new tree
   root_manager->InitialiseTrees();
+  
+  // initialise electron counter
+  root_manager->InitialiseElectronCounter();
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
