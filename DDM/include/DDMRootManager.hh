@@ -10,6 +10,7 @@
 #include "TH3I.h"
 #include "G4ThreeVector.hh"
 #include "G4SystemOfUnits.hh"
+#include "TGraph.h"
 //#include "TCanvas.h"
 #include <sstream>
 
@@ -24,6 +25,7 @@ class DDMRootManager
 		Double_t ElectronData_mng[3] = {0};
 		Double_t RecoData_mng[4] = {0};
 		Int_t EventCounter_mng = -1;
+		Int_t ElectronCounter_mng = 0;
 		Double_t DriftVelocity_mng = 0;
 		Double_t TankHeight_mng = 0;
 		
@@ -42,6 +44,7 @@ class DDMRootManager
 		void FillHist_ElectronGen(G4double input_x, G4double input_y, G4double input_z);
 		void FillTree_RecoTrack(G4double input_x, G4double input_y, G4double input_z, G4double input_time);
 		void FillHist_RecoTrack(G4double input_x, G4double input_y, G4double input_z);
+		void FillGraph_RecoGraphXZ(G4double input_x, G4double input_z);
 	
 		void CloseTrees();
 	
@@ -57,6 +60,10 @@ class DDMRootManager
 		Double_t GetTankHeight() {return TankHeight_mng;}
 
 		void PrintToScreen(G4String input) {G4cout << input << G4endl;}
+	
+		void InitialiseElectronCounter() {ElectronCounter_mng = 0;}
+		void IncrementElectronCounter() {ElectronCounter_mng++;}
+		Int_t GetElectronCounter() {return ElectronCounter_mng;}
 
 		~DDMRootManager();
 };
