@@ -57,7 +57,7 @@ void DDMRootManager::InitialiseTrees()
 	recoTrack_treename << "recoTrack_" << EventCounter_mng;
 	recoTrack_tree = new TTree(recoTrack_treename.str().c_str(), recoTrack_treename.str().c_str());
 	
-	recoTrack_tree -> Branch("recoTrack_branch",&RecoData_mng, "posx_m/D:posy_m/D:posz_m/D");
+	recoTrack_tree -> Branch("recoTrack_branch",&RecoData_mng, "posx_m/D:posy_m/D:posz_m/D:Time_ns/D");
 	
 	stringstream recoTrack_histname;
 	recoTrack_histname << "recoTrack_H_" << EventCounter_mng;
@@ -94,11 +94,12 @@ void DDMRootManager::FillHist_RecoTrack(G4double input_x, G4double input_y, G4do
 	recoTrack_hist->Fill(input_x/m, input_y/m, input_z/m);
 }
 
-void DDMRootManager::FillTree_RecoTrack(G4double input_x, G4double input_y, G4double input_z)
+void DDMRootManager::FillTree_RecoTrack(G4double input_x, G4double input_y, G4double input_z, G4double input_time)
 {
 	RecoData_mng[0] = input_x/m;
 	RecoData_mng[1] = input_y/m;
 	RecoData_mng[2] = input_z/m;
+	RecoData_mng[3] = input_time/ns;
 	
 	recoTrack_tree->Fill();
 }
