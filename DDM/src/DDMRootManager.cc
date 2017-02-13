@@ -133,6 +133,9 @@ void DDMRootManager::CloseTrees()
 	electronGen_hist->Write();
 	recoTrack_tree->Write();
 	recoTrack_hist->Write();
+	
+	recoTrackXZ_graph->Fit("pol1");
+	recoTrackXZ_graph->FitPanel();
 	recoTrackXZ_graph->Write();
 	
 	delete trueTrack_tree;
