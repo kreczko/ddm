@@ -123,7 +123,7 @@ void DDMRootManager::FillTree_RecoTrack(G4double input_x, G4double input_y, G4do
 void DDMRootManager::FillGraph_RecoTrackXZ(G4double input_x, G4double input_z)
 {
 	recoTrackXZ_graph->Set(ElectronCounter_mng);
-	recoTrackXZ_graph->SetPoint(ElectronCounter_mng - 1, input_x, input_z);
+	recoTrackXZ_graph->SetPoint(ElectronCounter_mng - 1, input_x/m, input_z/m);
 }
 
 void DDMRootManager::CloseTrees()
