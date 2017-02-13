@@ -136,7 +136,7 @@ void DDMRootManager::CloseTrees()
 	
 	// linear fit of recoTrack_XZ
 	recoTrackXZ_graph->Fit("pol1");
-	recoTrackXZ_graph->FitPanel();
+	//recoTrackXZ_graph->FitPanel();
 	recoTrackXZ_graph->Write();
 	
 	delete trueTrack_tree;
