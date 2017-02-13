@@ -22,7 +22,7 @@ class DDMRootManager
 		// Define _mng variables/arrays as needed.
 		Double_t TimeStepData_mng[5] = {0};
 		Double_t ElectronData_mng[3] = {0};
-		Double_t RecoData_mng[3] = {0};
+		Double_t RecoData_mng[4] = {0};
 		Int_t EventCounter_mng = -1;
 		Double_t DriftVelocity_mng = 0;
 		Double_t TankHeight_mng = 0;
