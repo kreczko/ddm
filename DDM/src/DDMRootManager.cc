@@ -35,35 +35,44 @@ void DDMRootManager::InitialiseTrees()
 	
 	//c1 = new TCanvas("c1");
 	
-	// true track information
+	// *****  true track information  *************************************
+	
+	// trueTrackTree
 	stringstream trueTrack_treename;
 	trueTrack_treename << "trueTrack_" << EventCounter_mng;
 	trueTrack_tree = new TTree(trueTrack_treename.str().c_str(), trueTrack_treename.str().c_str());
 
 	trueTrack_tree -> Branch("trueTrack_branch",&TimeStepData_mng, "Time_ns/D:posx_m/D:posy_m/D:posz_m/D:IonisationEnergy_keV/D");
 	
-	// electron information
+	// ***** electron information *****************************************
+	
+	// electronData_tree
 	stringstream electronData_treename;
 	electronData_treename << "electronData_" << EventCounter_mng;
 	electronData_tree = new TTree(electronData_treename.str().c_str(), electronData_treename.str().c_str());
 	
 	electronData_tree -> Branch("electronData_branch",&ElectronData_mng, "Time_ns/D:posx_m/D:posz_m/D");
 	
+	// electronGen_hist
 	stringstream electronGen_histname;
 	electronGen_histname << "electronGen_" << EventCounter_mng;
 	electronGen_hist = new TH3I(electronGen_histname.str().c_str(), "Electron generation", 200, -1.0, 1.0, 200, -1.0, 1.0, 200, -1.0, 1.0);
 	
-	// reconstructed track information
+	// *****  reconstructed track information  *****************************
+	
+	// recoTrack_tree
 	stringstream recoTrack_treename;
 	recoTrack_treename << "recoTrack_" << EventCounter_mng;
 	recoTrack_tree = new TTree(recoTrack_treename.str().c_str(), recoTrack_treename.str().c_str());
 	
 	recoTrack_tree -> Branch("recoTrack_branch",&RecoData_mng, "posx_m/D:posy_m/D:posz_m/D:Time_ns/D");
 	
+	// recoTrack_hist
 	stringstream recoTrack_histname;
 	recoTrack_histname << "recoTrack_H_" << EventCounter_mng;
 	recoTrack_hist = new TH3I(recoTrack_histname.str().c_str(), "Reconstructed positions", 200, -1.0, 1.0, 200, -1.0, 1.0, 200, -1.0, 1.0);
 	
+	// recoTrackXZ_graph
 	recoTrackXZ_graph = new TGraph(1);
 	stringstream recoTrackXZ_graphname;
 	recoTrackXZ_graphname << "recoTrack_G_" << EventCounter_mng;
