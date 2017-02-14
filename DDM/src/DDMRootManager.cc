@@ -150,7 +150,7 @@ void DDMRootManager::CloseTrees()
 	recoTrack_hist->Write();
 	
 	// linear fit of recoTrack_XZ
-	TFitResult* fitXZ = recoTrackXZ_graph->Fit("pol1");
+	TFitResult* fitXZ = recoTrackXZ_graph->Fit("pol1")->Get();
 	//recoTrackXZ_graph->FitPanel();
 	recoTrackXZ_graph->Write();
 	
