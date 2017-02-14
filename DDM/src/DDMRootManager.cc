@@ -84,7 +84,7 @@ void DDMRootManager::InitialiseTrees()
 void DDMRootManager::InitialiseResultsTree()
 {
 	recoResults_tree = new TTree("recoResults", "recoResults");
-	recoResults_tree -> Branch("recoResults_branch",&RecoResults_mng, "EventNo/D:tantheta/D:tantheta_err/D:Chi2/D");
+	recoResults_tree -> Branch("recoResults_branch",&RecoResults_mng, "EventNo/D:gradXZ/D:gradXZ_err/D:Chi2_XZ/D");
 }
 
 void DDMRootManager::FillTree_TimeStepData(G4double input_time, G4double input_x, G4double input_y, G4double input_z, G4double input_energy)
