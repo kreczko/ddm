@@ -13,6 +13,7 @@
 #include "TGraph.h"
 //#include "TCanvas.h"
 #include <sstream>
+#include "TFitResult.h"
 
 using namespace std;
 
