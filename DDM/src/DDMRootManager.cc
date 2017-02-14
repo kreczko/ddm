@@ -153,7 +153,7 @@ void DDMRootManager::CloseTrees()
 	TFitResultPtr fitXZ = recoTrackXZ_graph->Fit("pol1");
 	//recoTrackXZ_graph->FitPanel();
 	// fill results tree
-	FillTree_RecoResults(fitXZ->Parameter(1), fitXZ->Error(1), fitXZ->Chi2());
+	//FillTree_RecoResults(fitXZ->Parameter(1), fitXZ->Error(1), fitXZ->Chi2());
 	
 	recoTrackXZ_graph->Write();
 	
