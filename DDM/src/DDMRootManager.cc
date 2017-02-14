@@ -150,10 +150,9 @@ void DDMRootManager::CloseTrees()
 	recoTrack_hist->Write();
 	
 	// linear fit of recoTrack_XZ
-	TFitResultPtr fitXZ = recoTrackXZ_graph->Fit("pol1");
-	G4cout << "Fit Chi^2: " << fitXZ->Chi2() << G4endl;
+	TFitResultPtr fitXZ = recoTrackXZ_graph->Fit("pol1", "S");
 	// fill results tree
-	//FillTree_RecoResults(fitXZ->Parameter(1), fitXZ->Error(1), fitXZ->Chi2());
+	FillTree_RecoResults(fitXZ->Parameter(1), fitXZ->Error(1), fitXZ->Chi2());
 	
 	recoTrackXZ_graph->Write();
 	
