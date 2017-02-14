@@ -37,6 +37,7 @@ class DDMRootManager
 		DDMRootManager(G4String filename);
 
 		void InitialiseTrees();// Add more trees as arguments if desired.
+		void InitialiseResultsTree();
 
 		//void FillTree(); Make more of these (with specific names and the required parameters) for the individual branches as needed.
 		void FillTree_TimeStepData(G4double input_time, G4double input_x, G4double input_y, G4double input_z, G4double input_energy);
@@ -45,8 +46,10 @@ class DDMRootManager
 		void FillTree_RecoTrack(G4double input_x, G4double input_y, G4double input_z, G4double input_time);
 		void FillHist_RecoTrack(G4double input_x, G4double input_y, G4double input_z);
 		void FillGraph_RecoTrackXZ(G4double input_x, G4double input_z);
+		void FillTree_RecoResults(G4double input_grad, G4double input_grad_err, G4double input_chi2);
 	
 		void CloseTrees();
+		void CloseResultsTree();
 	
 		//void NewBranch();
 
