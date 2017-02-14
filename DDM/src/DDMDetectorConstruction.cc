@@ -385,7 +385,7 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
   opAirSurface->SetMaterialPropertiesTable(myST2);*/
  
 // ------------- Fields --------------
-/*
+
     fEMfield = new G4UniformElectricField(
                  G4ThreeVector(0.0,-100.0*kilovolt/cm,0.0));
 
@@ -410,7 +410,7 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
     fChordFinder = new G4ChordFinder(fIntgrDriver);
     fFieldMgr->SetChordFinder( fChordFinder );
     
-*/
+
 //always return the physical World
   return expHall_phys;
 }
