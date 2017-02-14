@@ -152,10 +152,12 @@ void DDMRootManager::CloseTrees()
 	// linear fit of recoTrack_XZ
 	TFitResultPtr fitXZ = recoTrackXZ_graph->Fit("pol1");
 	//recoTrackXZ_graph->FitPanel();
-	recoTrackXZ_graph->Write();
-	
 	// fill results tree
 	FillTree_RecoResults(fitXZ->Parameter(1), fitXZ->Error(1), fitXZ->Chi2());
+	
+	recoTrackXZ_graph->Write();
+	
+
 	
 	delete trueTrack_tree;
 	delete electronData_tree;
