@@ -4,6 +4,7 @@ DDMRootManager* the_root_manager;
 TTree* trueTrack_tree;
 TTree* electronData_tree;
 TTree* recoTrack_tree;
+TTree* recoResults_tree;
 //TCanvas* c1;
 TH3I* electronGen_hist;
 TH3I* recoTrack_hist;
@@ -80,6 +81,11 @@ void DDMRootManager::InitialiseTrees()
 	recoTrackXZ_graph->SetName(recoTrackXZ_graphname.str().c_str());
 }
 
+void DDMRootManager::InitialiseResultsTree()
+{
+	recoResults_tree = new TTree("recoResults", "recoResults");
+}
+
 void DDMRootManager::FillTree_TimeStepData(G4double input_time, G4double input_x, G4double input_y, G4double input_z, G4double input_energy)
 {
 	TimeStepData_mng[0]=input_time/ns;
@@ -126,6 +132,11 @@ void DDMRootManager::FillGraph_RecoTrackXZ(G4double input_x, G4double input_z)
 	recoTrackXZ_graph->SetPoint(ElectronCounter_mng - 1, input_x/m, input_z/m);
 }
 
+void DDMRootManager::FillTree_RecoResults(G4double input_grad, G4double input_grad_err, G4double input_chi2)
+{
+	
+}
+
 void DDMRootManager::CloseTrees()
 {
 	trueTrack_tree->Write();
@@ -145,6 +156,11 @@ void DDMRootManager::CloseTrees()
 	delete recoTrack_tree;
 	delete recoTrack_hist;
 	delete recoTrackXZ_graph;
+}
+
+void DDMRootManager::CloseResultsTree()
+{
+	
 }
 
 DDMRootManager::~DDMRootManager()
