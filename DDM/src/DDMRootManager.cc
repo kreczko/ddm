@@ -139,6 +139,8 @@ void DDMRootManager::FillTree_RecoResults(G4double input_grad, G4double input_gr
 	RecoResults_mng[1] = input_grad;
 	RecoResults_mng[2] = input_grad_err;
 	RecoResults_mng[3] = input_chi2;
+	
+	recoResults_tree->Fill();
 }
 
 void DDMRootManager::CloseTrees()
