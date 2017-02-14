@@ -28,7 +28,7 @@ class DDMRootManager
 		Int_t ElectronCounter_mng = 0;
 		Double_t DriftVelocity_mng = 0;
 		Double_t TankHeight_mng = 0;
-		Double_t ResultsData_mng[4] = {0};
+		Double_t RecoResults_mng[4] = {0};
 		
 	public:
 		static void CreateRootManager(G4String filename);
