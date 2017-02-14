@@ -135,7 +135,7 @@ void DDMRootManager::FillGraph_RecoTrackXZ(G4double input_x, G4double input_z)
 
 void DDMRootManager::FillTree_RecoResults(G4double input_grad, G4double input_grad_err, G4double input_chi2)
 {
-	RecoResults_mng[0] = EventNumber_mng;
+	RecoResults_mng[0] = EventCounter_mng;
 	RecoResults_mng[1] = input_grad;
 	RecoResults_mng[2] = input_grad_err;
 	RecoResults_mng[3] = input_chi2;
