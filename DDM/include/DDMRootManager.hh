@@ -31,6 +31,7 @@ class DDMRootManager
 		Double_t TankHeight_mng = 0;
 		Double_t RecoResults_mng[4] = {0};
 		Double_t InitialMomentum_mng[4] = {0};
+		Bool_t IsFirstStep_mng = False;
 		
 	public:
 		static void CreateRootManager(G4String filename);
@@ -78,6 +79,10 @@ class DDMRootManager
 											 InitialMomentum_mng[3] = input_pz;}
 		Double_t GetInitialMomentumTanPhi(){return InitialMomentum_mng[3]/InitialMomentum_mng[1];}
 		Double_t GetInitialMomentumCosTheta(){return InitialMomentum_mng[2]/InitialMomentum_mng[0];}
+	
+		void FlagFirstStep(){IsFirstStep_mng = True;}
+		void UnflagFirstStep(){IsFirstStep_mng = False;}
+		Bool_t IsFirstStep(){return IsFirstStep_mng;}
 
 		~DDMRootManager();
 };
