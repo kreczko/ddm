@@ -30,6 +30,7 @@ class DDMRootManager
 		Double_t DriftVelocity_mng = 0;
 		Double_t TankHeight_mng = 0;
 		Double_t RecoResults_mng[4] = {0};
+		Double_t InitialMomentum_mng[4] = {0};
 		
 	public:
 		static void CreateRootManager(G4String filename);
@@ -69,6 +70,14 @@ class DDMRootManager
 		void InitialiseElectronCounter() {ElectronCounter_mng = 0;}
 		void IncrementElectronCounter() {ElectronCounter_mng++;}
 		Int_t GetElectronCounter() {return ElectronCounter_mng;}
+	
+		void SetInitialMomentum(Double_t input_pabs, Double_t input_px, Double_t input_py, Double_t input_pz)
+											{InitialMomentum_mng[0] = input_pabs;
+											 InitialMomentum_mng[1] = input_px;
+											 InitialMomentum_mng[2] = input_py;
+											 InitialMomentum_mng[3] = input_pz;}
+		Double_t GetInitialMomentumTanPhi(){return InitialMomentum_mng[3]/InitialMomentum_mng[1];}
+		Double_t GetInitialMomentumCosTheta(){return InitialMomentum_mng[2]/InitialMomentum_mng[0];)
 
 		~DDMRootManager();
 };
