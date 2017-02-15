@@ -9,6 +9,7 @@ TTree* recoResults_tree;
 TH3I* electronGen_hist;
 TH3I* recoTrack_hist;
 TGraph* recoTrackXZ_graph;
+TGraph2D* recoTrack_graph;
 
 void DDMRootManager::CreateRootManager(G4String filename)
 {
@@ -76,9 +77,16 @@ void DDMRootManager::InitialiseTrees()
 	// recoTrackXZ_graph
 	recoTrackXZ_graph = new TGraph(1);
 	stringstream recoTrackXZ_graphname;
-	recoTrackXZ_graphname << "recoTrack_G_" << EventCounter_mng;
+	recoTrackXZ_graphname << "recoTrack_Gxz_" << EventCounter_mng;
 	recoTrackXZ_graph->SetTitle(recoTrackXZ_graphname.str().c_str());
 	recoTrackXZ_graph->SetName(recoTrackXZ_graphname.str().c_str());
+	
+	//recoTrack_graph
+	recoTrack_graph = new TGraph2D(1);
+	stringstream recoTrack_graphname;
+	recoTrack_graphname << "recoTrack_G_" << EventCounter_mng;
+	recoTrack_graph->SetTitle(recoTrack_graphname.str().c_str());
+	recoTrack_graph->SetName(recoTrack_graphname.str().c_str());
 }
 
 void DDMRootManager::InitialiseResultsTree()
@@ -129,8 +137,15 @@ void DDMRootManager::FillTree_RecoTrack(G4double input_x, G4double input_y, G4do
 
 void DDMRootManager::FillGraph_RecoTrackXZ(G4double input_x, G4double input_z)
 {
-	recoTrackXZ_graph->Set(ElectronCounter_mng);
-	recoTrackXZ_graph->SetPoint(ElectronCounter_mng - 1, input_x/m, input_z/m);
+	recoTrackXZ_graph->Set(ElectronCounter_mng); // Increase size of TGraph as needed
+	recoTrackXZ_graph->SetPoint(ElectronCounter_mng - 1, input_x/m, input_z/m); // Set coords of newly-created point
+}
+
+
+void DDMRootManager::FillGraph_RecoTrack(G4double input_x, G4double input_y, G4double input_z)
+{
+	recoTrack_graph->Set(ElectronCounter_mng);
+	recoTrack_graph->SetPoint(ElectronCounter_mng - 1, input_x/m, input_y/m, input_z/m);
 }
 
 void DDMRootManager::FillTree_RecoResults(G4double input_grad, G4double input_grad_err, G4double input_chi2)
@@ -153,6 +168,7 @@ void DDMRootManager::CloseTrees()
 	
 	// linear fit of recoTrack_XZ
 	TFitResultPtr fitXZ = recoTrackXZ_graph->Fit("pol1", "S");
+	
 	// fill results tree
 	FillTree_RecoResults(fitXZ->Parameter(1), fitXZ->Error(1), fitXZ->Chi2());
 	
@@ -161,6 +177,7 @@ void DDMRootManager::CloseTrees()
 	recoTrackXZ_graph->GetYaxis()->SetTitle("z (m)");
 	
 	recoTrackXZ_graph->Write();
+	recoTrack_graph->Write();
 	
 	delete trueTrack_tree;
 	delete electronData_tree;
@@ -168,6 +185,7 @@ void DDMRootManager::CloseTrees()
 	delete recoTrack_tree;
 	delete recoTrack_hist;
 	delete recoTrackXZ_graph;
+	delete recoTrack_graph;
 }
 
 void DDMRootManager::CloseResultsTree()
