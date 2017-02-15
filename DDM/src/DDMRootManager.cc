@@ -172,11 +172,12 @@ void DDMRootManager::CloseTrees()
 	// fill results tree
 	FillTree_RecoResults(fitXZ->Parameter(1), fitXZ->Error(1), fitXZ->Chi2());
 	
-	// label axes
+	// label recoTrack_graph axes
 	recoTrack_graph->GetXaxis()->SetTitle("x (m)");
 	recoTrack_graph->GetYaxis()->SetTitle("z (m)");
 	recoTrack_graph->GetZaxis()->SetTitle("y (m)");
 	
+	// label recoTrackXZ_graph axes
 	recoTrackXZ_graph->GetXaxis()->SetTitle("x (m)");
 	recoTrackXZ_graph->GetYaxis()->SetTitle("z (m)");
 	
