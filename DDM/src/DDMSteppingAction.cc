@@ -112,6 +112,14 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
 
   if (track->GetTrackID() == 1)
   {
+    // check for first step to log initial momentum
+    if (root_manager->IsFirstStep())
+    {
+      root_manager->UnflagFirstStep();
+      G4ThreeVector initialMom = step->GetPreStepPoint()->GetMomentum();
+      root_manager->SetInitialMomentum(initialMom.r(), initialMom.x(), initialMom.y(), initialMom.z());
+    }
+    
     // get time, ionisation energy and position of step
     G4double ionisationEnergy = step->GetTotalEnergyDeposit() - step->GetNonIonizingEnergyDeposit();
     G4ThreeVector position = step->GetPreStepPoint()->GetPosition();
