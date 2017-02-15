@@ -158,8 +158,6 @@ void DDMRootManager::CloseTrees()
 	
 	recoTrackXZ_graph->Write();
 	
-
-	
 	delete trueTrack_tree;
 	delete electronData_tree;
 	delete electronGen_hist;
