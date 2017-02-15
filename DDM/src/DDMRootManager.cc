@@ -156,9 +156,9 @@ void DDMRootManager::CloseTrees()
 	// fill results tree
 	FillTree_RecoResults(fitXZ->Parameter(1), fitXZ->Error(1), fitXZ->Chi2());
 	
-	recoTrackXZ_graph->Write();
-	
 	recoTrackXZ_graph->GetXaxis()->SetTitle("This is x");
+	
+	recoTrackXZ_graph->Write();
 	
 	delete trueTrack_tree;
 	delete electronData_tree;
