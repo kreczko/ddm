@@ -179,6 +179,7 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       root_manager->FillHist_RecoTrack(recorded_x, reconstructed_y, recorded_z);
       root_manager->FillTree_RecoTrack(recorded_x, reconstructed_y, recorded_z, recorded_time);
       root_manager->FillGraph_RecoTrackXZ(recorded_x, recorded_z);
+      root_manager->FillGraph_RecoTrack(recorded_x, reconstructed_y, recorded_z);
     }
   }
   
