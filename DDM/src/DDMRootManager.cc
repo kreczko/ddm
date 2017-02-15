@@ -141,7 +141,6 @@ void DDMRootManager::FillGraph_RecoTrackXZ(G4double input_x, G4double input_z)
 	recoTrackXZ_graph->SetPoint(ElectronCounter_mng - 1, input_x/m, input_z/m); // Set coords of newly-created point
 }
 
-
 void DDMRootManager::FillGraph_RecoTrack(G4double input_x, G4double input_y, G4double input_z)
 {
 	recoTrack_graph->Set(ElectronCounter_mng);
