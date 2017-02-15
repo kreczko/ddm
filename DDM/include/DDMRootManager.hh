@@ -11,6 +11,7 @@
 #include "G4ThreeVector.hh"
 #include "G4SystemOfUnits.hh"
 #include "TGraph.h"
+#include "TGraph2D.h"
 //#include "TCanvas.h"
 #include <sstream>
 #include "TFitResult.h"
@@ -50,6 +51,7 @@ class DDMRootManager
 		void FillTree_RecoTrack(G4double input_x, G4double input_y, G4double input_z, G4double input_time);
 		void FillHist_RecoTrack(G4double input_x, G4double input_y, G4double input_z);
 		void FillGraph_RecoTrackXZ(G4double input_x, G4double input_z);
+		void FillGraph_RecoTrack(G4double input_x, G4double input_y, G4double input_z);
 		void FillTree_RecoResults(G4double input_grad, G4double input_grad_err, G4double input_chi2);
 	
 		void CloseTrees();
