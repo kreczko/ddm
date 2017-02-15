@@ -77,7 +77,7 @@ class DDMRootManager
 											 InitialMomentum_mng[2] = input_py;
 											 InitialMomentum_mng[3] = input_pz;}
 		Double_t GetInitialMomentumTanPhi(){return InitialMomentum_mng[3]/InitialMomentum_mng[1];}
-		Double_t GetInitialMomentumCosTheta(){return InitialMomentum_mng[2]/InitialMomentum_mng[0];)
+		Double_t GetInitialMomentumCosTheta(){return InitialMomentum_mng[2]/InitialMomentum_mng[0];}
 
 		~DDMRootManager();
 };
