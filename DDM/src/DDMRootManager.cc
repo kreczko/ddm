@@ -158,7 +158,7 @@ void DDMRootManager::CloseTrees()
 	
 	// label axes
 	recoTrackXZ_graph->GetXaxis()->SetTitle("x (m)");
-	recoTrackXZ_graph->GetZaxis()->SetTitle("z (m)");
+	recoTrackXZ_graph->GetYaxis()->SetTitle("z (m)");
 	
 	recoTrackXZ_graph->Write();
 	
