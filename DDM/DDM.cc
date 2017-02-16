@@ -181,10 +181,10 @@ int main(int argc,char** argv)
 #endif
   delete runManager;
   
-  // close current tree if one exists
+  // finalise last event, if one exists
   if ((root_manager -> GetEventCounter()) >= 0)
   {
-    root_manager->CloseTrees();
+    root_manager->FinaliseEvent();
   }
   
   // close recoResults_tree
