@@ -51,7 +51,8 @@ class DDMRootManager
 		void FillTree_RecoTrack(G4double input_x, G4double input_y, G4double input_z, G4double input_time);
 		void FillHist_RecoTrack(G4double input_x, G4double input_y, G4double input_z);
 		void FillGraph_RecoTrackXY(G4double input_x, G4double input_y);
-		void FillGraph_RecoTrackLZ(G4double input_l, G4double input_z);
+		void FillGraph_RecoTrackXZ(G4double input_x, G4double input_z);
+		void FillGraph_RecoTrackYZ(G4double input_y, G4double input_z);
 		void FillGraph_RecoTrack(G4double input_x, G4double input_y, G4double input_z);
 		void FillTree_RecoResults(G4double input_grad, G4double input_grad_err, G4double input_chi2);
 	
