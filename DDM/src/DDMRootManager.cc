@@ -210,9 +210,11 @@ void DDMRootManager::CloseTrees()
 	// label recoTrackXY_graph axes
 	recoTrackXY_graph->GetXaxis()->SetTitle("x (m)");
 	recoTrackXY_graph->GetYaxis()->SetTitle("y (m)");
+	
 	// label recoTrackXZ_graph axes
 	recoTrackXZ_graph->GetXaxis()->SetTitle("x (m)");
 	recoTrackXZ_graph->GetYaxis()->SetTitle("z (m)");
+	
 	// label recoTrackYZ_graph axes
 	recoTrackYZ_graph->GetXaxis()->SetTitle("y (m)");
 	recoTrackYZ_graph->GetYaxis()->SetTitle("z (m)");
