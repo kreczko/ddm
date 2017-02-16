@@ -109,7 +109,6 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
      }
   }
   
-
   if (track->GetTrackID() == 1)
   {
     // check for first step to log initial momentum
