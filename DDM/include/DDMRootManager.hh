@@ -30,9 +30,11 @@ class DDMRootManager
 		Int_t ElectronCounter_mng = 0;
 		Double_t DriftVelocity_mng = 0;
 		Double_t TankHeight_mng = 0;
-		Double_t RecoResults_mng[4] = {0};
-		Double_t InitialMomentum_mng[4] = {0};
+		Double_t RecoResults_mng[5] = {0};
+		//Double_t InitialMomentum_mng[4] = {0};
 		Bool_t IsFirstStep_mng = false;
+		Double_t TrueTheta_mng = 0;
+		Double_t TruePhi_mng = 0;
 		
 	public:
 		static void CreateRootManager(G4String filename);
@@ -54,7 +56,7 @@ class DDMRootManager
 		void FillGraph_RecoTrackXZ(G4double input_x, G4double input_z);
 		void FillGraph_RecoTrackYZ(G4double input_y, G4double input_z);
 		void FillGraph_RecoTrack(G4double input_x, G4double input_y, G4double input_z);
-		void FillTree_RecoResults(G4double input_grad, G4double input_grad_err, G4double input_chi2);
+		void FillTree_RecoResults(G4double input_tanphi);
 	
 		void CloseTrees();
 		void CloseResultsTree();
@@ -76,13 +78,16 @@ class DDMRootManager
 		void IncrementElectronCounter() {ElectronCounter_mng++;}
 		Int_t GetElectronCounter() {return ElectronCounter_mng;}
 	
-		void SetInitialMomentum(Double_t input_pabs, Double_t input_px, Double_t input_py, Double_t input_pz)
+		/*void SetInitialMomentum(Double_t input_pabs, Double_t input_px, Double_t input_py, Double_t input_pz)
 											{InitialMomentum_mng[0] = input_pabs;
 											 InitialMomentum_mng[1] = input_px;
 											 InitialMomentum_mng[2] = input_py;
 											 InitialMomentum_mng[3] = input_pz;}
 		Double_t GetInitialMomentumTanPhi(){return InitialMomentum_mng[2]/InitialMomentum_mng[1];}
-		Double_t GetInitialMomentumCosTheta(){return InitialMomentum_mng[3]/InitialMomentum_mng[0];}
+		Double_t GetInitialMomentumCosTheta(){return InitialMomentum_mng[3]/InitialMomentum_mng[0];}*/
+	
+		void SetTrueTheta(Double_t input){TrueTheta_mng = input;}
+		void SetTruePhi(Double_t input){TruePhi_mng = input;}
 	
 		void FlagFirstStep(){IsFirstStep_mng = true;}
 		void UnflagFirstStep(){IsFirstStep_mng = false;}
