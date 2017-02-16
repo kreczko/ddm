@@ -195,7 +195,7 @@ void DDMRootManager::CloseTrees()
 	recoTrack_tree->Write();
 	recoTrack_hist->Write();
 	
-	// linear fit
+	// linear fits
 	TFitResultPtr fitXY = recoTrackXY_graph->Fit("pol1", "S");
 	TFitResultPtr fitXZ = recoTrackXZ_graph->Fit("pol1", "S");
 	TFitResultPtr fitYZ = recoTrackYZ_graph->Fit("pol1", "S");
