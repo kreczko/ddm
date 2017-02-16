@@ -118,6 +118,8 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       root_manager->UnflagFirstStep();
       G4ThreeVector initialMom = step->GetPreStepPoint()->GetMomentum();
       root_manager->SetInitialMomentum(initialMom.r(), initialMom.x(), initialMom.y(), initialMom.z());
+      
+      G4cout << "Initial G4ThreeVector theta: " << initialMom.getTheta() << ", phi: " << initialMom.getPhi() << G4endl;
     }
     
     // get time, ionisation energy and position of step
