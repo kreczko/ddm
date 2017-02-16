@@ -186,7 +186,7 @@ void DDMRootManager::FillTree_RecoResults(G4double input_tanphi)
 	recoResults_tree->Fill();
 }
 
-void DDMRootManager::CloseTrees()
+void DDMRootManager::FinaliseEvent()
 {
 	trueTrack_tree->Write();
 	electronData_tree->Write();
