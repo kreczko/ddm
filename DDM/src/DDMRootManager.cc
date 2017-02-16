@@ -8,8 +8,8 @@ TTree* recoResults_tree;
 //TCanvas* c1;
 TH3I* electronGen_hist;
 TH3I* recoTrack_hist;
-TGraph* recoTrackXZ_graph;
-TGraph* recoTrackLY_graph;
+TGraph* recoTrackXY_graph;
+TGraph* recoTrackLZ_graph;
 TGraph2D* recoTrack_graph;
 
 void DDMRootManager::CreateRootManager(G4String filename)
@@ -75,12 +75,12 @@ void DDMRootManager::InitialiseTrees()
 	recoTrack_histname << "recoTrack_H_" << EventCounter_mng;
 	recoTrack_hist = new TH3I(recoTrack_histname.str().c_str(), "Reconstructed positions", 200, -1.0, 1.0, 200, -1.0, 1.0, 200, -1.0, 1.0);
 	
-	// recoTrackXZ_graph
-	recoTrackXZ_graph = new TGraph(1);
-	stringstream recoTrackXZ_graphname;
-	recoTrackXZ_graphname << "recoTrack_Gxz_" << EventCounter_mng;
-	recoTrackXZ_graph->SetTitle(recoTrackXZ_graphname.str().c_str());
-	recoTrackXZ_graph->SetName(recoTrackXZ_graphname.str().c_str());
+	// recoTrackXY_graph
+	recoTrackXY_graph = new TGraph(1);
+	stringstream recoTrackXY_graphname;
+	recoTrackXY_graphname << "recoTrack_Gxz_" << EventCounter_mng;
+	recoTrackXY_graph->SetTitle(recoTrackXY_graphname.str().c_str());
+	recoTrackXY_graph->SetName(recoTrackXY_graphname.str().c_str());
 	
 	// recoTrack_graph
 	recoTrack_graph = new TGraph2D(1);
@@ -89,7 +89,7 @@ void DDMRootManager::InitialiseTrees()
 	recoTrack_graph->SetTitle(recoTrack_graphname.str().c_str());
 	recoTrack_graph->SetName(recoTrack_graphname.str().c_str());
 	
-	// recoTrackLY_graph
+	// recoTrackLZ_graph
 	
 }
 
@@ -115,11 +115,11 @@ void DDMRootManager::FillHist_ElectronGen(G4double input_x, G4double input_y, G4
 	electronGen_hist->Fill(input_x/m, input_y/m, input_z/m);
 }
 
-void DDMRootManager::FillTree_ElectronData(G4double input_time, G4double input_x, G4double input_z)
+void DDMRootManager::FillTree_ElectronData(G4double input_time, G4double input_x, G4double input_y)
 {
 	ElectronData_mng[0]=input_time/ns;
 	ElectronData_mng[1]=input_x/m;
-	ElectronData_mng[2]=input_z/m;
+	ElectronData_mng[2]=input_y/m;
 	
 	electronData_tree->Fill();
 }
@@ -139,10 +139,10 @@ void DDMRootManager::FillTree_RecoTrack(G4double input_x, G4double input_y, G4do
 	recoTrack_tree->Fill();
 }
 
-void DDMRootManager::FillGraph_RecoTrackXZ(G4double input_x, G4double input_z)
+void DDMRootManager::FillGraph_RecoTrackXY(G4double input_x, G4double input_y)
 {
-	recoTrackXZ_graph->Set(ElectronCounter_mng); // Increase size of TGraph as needed
-	recoTrackXZ_graph->SetPoint(ElectronCounter_mng - 1, input_x/m, input_z/m); // Set coords of newly-created point
+	recoTrackXY_graph->Set(ElectronCounter_mng); // Increase size of TGraph as needed
+	recoTrackXY_graph->SetPoint(ElectronCounter_mng - 1, input_x/m, input_y/m); // Set coords of newly-created point
 }
 
 void DDMRootManager::FillGraph_RecoTrack(G4double input_x, G4double input_y, G4double input_z)
@@ -171,21 +171,21 @@ void DDMRootManager::CloseTrees()
 	
 	// linear fit
 	TFitResultPtr fit = recoTrack_graph->Fit("pol1", "S");
-	TFitResultPtr fitXZ = recoTrackXZ_graph->Fit("pol1", "S");
+	TFitResultPtr fitXY = recoTrackXY_graph->Fit("pol1", "S");
 	
 	// fill results tree
-	FillTree_RecoResults(fitXZ->Parameter(1), fitXZ->Error(1), fitXZ->Chi2());
+	FillTree_RecoResults(fitXY->Parameter(1), fitXY->Error(1), fitXY->Chi2());
 	
 	// label recoTrack_graph axes
 	recoTrack_graph->GetXaxis()->SetTitle("x (m)");
-	recoTrack_graph->GetYaxis()->SetTitle("z (m)");
-	recoTrack_graph->GetZaxis()->SetTitle("y (m)");
+	recoTrack_graph->GetYaxis()->SetTitle("y (m)");
+	recoTrack_graph->GetZaxis()->SetTitle("z (m)");
 	
 	// label recoTrackXZ_graph axes
-	recoTrackXZ_graph->GetXaxis()->SetTitle("x (m)");
-	recoTrackXZ_graph->GetYaxis()->SetTitle("z (m)");
+	recoTrackXY_graph->GetXaxis()->SetTitle("x (m)");
+	recoTrackXY_graph->GetYaxis()->SetTitle("y (m)");
 	
-	recoTrackXZ_graph->Write();
+	recoTrackXY_graph->Write();
 	recoTrack_graph->Write();
 	
 	delete trueTrack_tree;
@@ -193,7 +193,7 @@ void DDMRootManager::CloseTrees()
 	delete electronGen_hist;
 	delete recoTrack_tree;
 	delete recoTrack_hist;
-	delete recoTrackXZ_graph;
+	delete recoTrackXY_graph;
 	delete recoTrack_graph;
 }
 
