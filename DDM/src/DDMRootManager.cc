@@ -78,7 +78,7 @@ void DDMRootManager::InitialiseTrees()
 	// recoTrackXY_graph
 	recoTrackXY_graph = new TGraph(1);
 	stringstream recoTrackXY_graphname;
-	recoTrackXY_graphname << "recoTrack_Gxz_" << EventCounter_mng;
+	recoTrackXY_graphname << "recoTrack_Gxy_" << EventCounter_mng;
 	recoTrackXY_graph->SetTitle(recoTrackXY_graphname.str().c_str());
 	recoTrackXY_graph->SetName(recoTrackXY_graphname.str().c_str());
 	
