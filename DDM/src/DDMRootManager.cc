@@ -108,7 +108,7 @@ void DDMRootManager::InitialiseTrees()
 void DDMRootManager::InitialiseResultsTree()
 {
 	recoResults_tree = new TTree("recoResults", "recoResults");
-	recoResults_tree -> Branch("recoResults_branch",&RecoResults_mng, "EventNo/D:gradXY/D:gradXY_err/D:Chi2_XY/D");
+	recoResults_tree -> Branch("recoResults_branch",&RecoResults_mng, "EventNo/D:phi_true/D:theta_true/D:tanphi/D:phi/D");
 }
 
 void DDMRootManager::FillTree_TimeStepData(G4double input_time, G4double input_x, G4double input_y, G4double input_z, G4double input_energy)
@@ -177,12 +177,13 @@ void DDMRootManager::FillGraph_RecoTrack(G4double input_x, G4double input_y, G4d
 	recoTrack_graph->SetPoint(ElectronCounter_mng - 1, input_x/m, input_y/m, input_z/m);
 }
 
-void DDMRootManager::FillTree_RecoResults(G4double input_grad, G4double input_grad_err, G4double input_chi2)
+void DDMRootManager::FillTree_RecoResults(G4double input_tanphi)
 {
 	RecoResults_mng[0] = EventCounter_mng;
-	RecoResults_mng[1] = input_grad;
-	RecoResults_mng[2] = input_grad_err;
-	RecoResults_mng[3] = input_chi2;
+	RecoResults_mng[1] = TruePhi_mng;
+	RecoResults_mng[2] = TrueTheta_mng;
+	RecoResults_mng[3] = input_tanphi;
+	RecoResults_mng[4] = atan(input_tanphi);
 	
 	recoResults_tree->Fill();
 }
@@ -201,7 +202,7 @@ void DDMRootManager::CloseTrees()
 	TFitResultPtr fitYZ = recoTrackYZ_graph->Fit("pol1", "S");
 	
 	// fill results tree
-	FillTree_RecoResults(fitXY->Parameter(1), fitXY->Error(1), fitXY->Chi2());
+	FillTree_RecoResults(fitXY->Parameter(1));
 	
 	// label recoTrack_graph axes
 	recoTrack_graph->GetXaxis()->SetTitle("x (m)");
