@@ -163,7 +163,6 @@ void DDMRootManager::FillGraph_RecoTrackYZ(G4double input_y, G4double input_z)
 	recoTrackYZ_graph->SetPoint(ElectronCounter_mng - 1, input_y/m, input_z/m);
 }
 
-
 void DDMRootManager::FillGraph_RecoTrackXZ(G4double input_x, G4double input_z)
 {
 	recoTrackXZ_graph->Set(ElectronCounter_mng);
