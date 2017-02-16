@@ -97,7 +97,7 @@ void DDMRootManager::InitialiseTrees()
 	recoTrackYZ_graph->SetTitle(recoTrackYZ_graphname.str().c_str());
 	recoTrackYZ_graph->SetName(recoTrackYZ_graphname.str().c_str());
 	
-	// recoTrack_graph
+	// recoTrack_graph (3D graph)
 	recoTrack_graph = new TGraph2D(1);
 	stringstream recoTrack_graphname;
 	recoTrack_graphname << "recoTrack_G_" << EventCounter_mng;
