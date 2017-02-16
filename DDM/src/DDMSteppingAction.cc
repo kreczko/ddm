@@ -150,7 +150,7 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
                          + stepFraction*(step->GetPostStepPoint()->GetPosition().x() - step->GetPreStepPoint()->GetPosition().x());
       G4double initial_y = step->GetPreStepPoint()->GetPosition().y()
                          + stepFraction*(step->GetPostStepPoint()->GetPosition().y() - step->GetPreStepPoint()->GetPosition().y());
-      G4double initial_z = step->GetPreStepPoint()->GetPosition().x()
+      G4double initial_z = step->GetPreStepPoint()->GetPosition().z()
                          + stepFraction*(step->GetPostStepPoint()->GetPosition().z() - step->GetPreStepPoint()->GetPosition().z());
       G4double initial_time = step->GetPreStepPoint()->GetLocalTime()
                          + stepFraction*(step->GetPostStepPoint()->GetLocalTime() - step->GetPreStepPoint()->GetLocalTime());
@@ -160,28 +160,27 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       // Drift
       G4double tankHeight = root_manager->GetTankHeight();
       G4double driftVelocity = root_manager->GetDriftVelocity();
-      G4double distanceToDrift = tankHeight - initial_y;
+      G4double distanceToDrift = tankHeight - initial_z;
       G4double timeToDrift = distanceToDrift/driftVelocity;
       G4double final_time = initial_time + timeToDrift;
       G4double final_x = initial_x;
-      G4double final_y = tankHeight;
-      G4double final_z = initial_z;
+      G4double final_y = initial_y;
+      G4double final_z = tankHeight;
       
       // Diffusion
       
       // fill data
-      root_manager->FillTree_ElectronData(final_time, final_x, final_z);
+      root_manager->FillTree_ElectronData(final_time, final_x, final_y);
       
       G4double recorded_x = final_x;
-      G4double recorded_z = final_z;
+      G4double recorded_y = final_y;
       G4double recorded_time = final_time;
-      //G4double reconstructed_y = tankHeight - (final_time*driftVelocity);
-      G4double reconstructed_y = tankHeight - (timeToDrift*driftVelocity);
+      G4double reconstructed_z = tankHeight - (timeToDrift*driftVelocity);
       
-      root_manager->FillHist_RecoTrack(recorded_x, reconstructed_y, recorded_z);
-      root_manager->FillTree_RecoTrack(recorded_x, reconstructed_y, recorded_z, recorded_time);
-      root_manager->FillGraph_RecoTrackXZ(recorded_x, recorded_z);
-      root_manager->FillGraph_RecoTrack(recorded_x, reconstructed_y, recorded_z);
+      root_manager->FillHist_RecoTrack(recorded_x, recorded_y, reconstructed_z);
+      root_manager->FillTree_RecoTrack(recorded_x, recorded_y, reconstructed_z, recorded_time);
+      root_manager->FillGraph_RecoTrackXY(recorded_x, recorded_y);
+      root_manager->FillGraph_RecoTrack(recorded_x, recorded_y, reconstructed_z);
     }
   }
   
