@@ -62,6 +62,9 @@ class DDMRootManager
 		void CloseResultsTree();
 	
 		//void NewBranch();
+	
+		Double_t CalculateThetaFromXZ(Double_t input_tanphi, Double_t input_tanalpha);
+		Double_t CalculateThetaFromYZ(Double_t input_tanphi, Double_t input_tanbeta);
 
 		// define Get and Set methods for each _mng variable: can be defined inline.
 		Int_t GetEventCounter() {return EventCounter_mng;}
