@@ -210,11 +210,9 @@ void DDMRootManager::CloseTrees()
 	// label recoTrackXY_graph axes
 	recoTrackXY_graph->GetXaxis()->SetTitle("x (m)");
 	recoTrackXY_graph->GetYaxis()->SetTitle("y (m)");
-	
 	// label recoTrackXZ_graph axes
 	recoTrackXZ_graph->GetXaxis()->SetTitle("x (m)");
 	recoTrackXZ_graph->GetYaxis()->SetTitle("z (m)");
-	
 	// label recoTrackYZ_graph axes
 	recoTrackYZ_graph->GetXaxis()->SetTitle("y (m)");
 	recoTrackYZ_graph->GetYaxis()->SetTitle("z (m)");
@@ -234,6 +232,20 @@ void DDMRootManager::CloseTrees()
 	delete recoTrackXZ_graph;
 	delete recoTrackYZ_graph;
 	delete recoTrack_graph;
+}
+
+Double_t DDMRootManager::CalculateTanThetaFromXZ(Double_t input_tanphi, Double_t input_tanalpha)
+{
+	Double_t phi = atan(input_tanphi);
+	Double_t tantheta = 1.0/(input_tanalpha * cos(phi));
+	return tantheta;
+}
+
+Double_t DDMRootManager::CalculateTanThetaFromYZ(Double_t input_tanphi, Double_t input_tanbeta)
+{
+	Double_t phi = atan(input_tanphi);
+	Double_t tantheta = 1.0/(input_tanbeta * sin(phi));
+	return tantheta;
 }
 
 void DDMRootManager::CloseResultsTree()
