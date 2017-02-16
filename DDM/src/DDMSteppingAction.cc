@@ -171,11 +171,13 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       // fill data
       root_manager->FillTree_ElectronData(final_time, final_x, final_y);
       
+      // recorded and reconstructed information
       G4double recorded_x = final_x;
       G4double recorded_y = final_y;
       G4double recorded_time = final_time;
       G4double reconstructed_z = tankHeight - (timeToDrift*driftVelocity);
       
+      // fill data to reconstruct track
       root_manager->FillHist_RecoTrack(recorded_x, recorded_y, reconstructed_z);
       root_manager->FillTree_RecoTrack(recorded_x, recorded_y, reconstructed_z, recorded_time);
       root_manager->FillGraph_RecoTrackXY(recorded_x, recorded_y);
