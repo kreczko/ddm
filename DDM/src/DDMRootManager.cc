@@ -205,7 +205,10 @@ void DDMRootManager::FinaliseEvent()
 	TFitResultPtr fitYZ = recoTrackYZ_graph->Fit("pol1", "S");
 	
 	// fill results tree
-	FillTree_RecoResults(fitXY->Parameter(1), fitXZ->Parameter(1), fitYZ->Parameter(1));
+	Double_t tanThetaXZ = CalculateTanThetaFromXZ(fitXY->Parameter(1), fitXZ->Parameter(1));
+	Double_t tanThetaYZ = CalculateTanThetaFromYZ(fitXY->Parameter(1), fitYZ->Parameter(1));
+	
+	FillTree_RecoResults(fitXY->Parameter(1), tanThetaXZ, tanThetaYZ);
 	
 	// label recoTrack_graph axes
 	recoTrack_graph->GetXaxis()->SetTitle("x (m)");
