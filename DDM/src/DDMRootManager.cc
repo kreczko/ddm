@@ -9,7 +9,8 @@ TTree* recoResults_tree;
 TH3I* electronGen_hist;
 TH3I* recoTrack_hist;
 TGraph* recoTrackXY_graph;
-TGraph* recoTrackLZ_graph;
+TGraph* recoTrackXZ_graph;
+TGraph* recoTrackYZ_graph;
 TGraph2D* recoTrack_graph;
 
 void DDMRootManager::CreateRootManager(G4String filename)
@@ -82,6 +83,20 @@ void DDMRootManager::InitialiseTrees()
 	recoTrackXY_graph->SetTitle(recoTrackXY_graphname.str().c_str());
 	recoTrackXY_graph->SetName(recoTrackXY_graphname.str().c_str());
 	
+	// recoTrackXZ_graph
+	recoTrackXZ_graph = new TGraph(1);
+	stringstream recoTrackXZ_graphname;
+	recoTrackXZ_graphname << "recoTrack_Gxz_" << EventCounter_mng;
+	recoTrackXZ_graph->SetTitle(recoTrackXZ_graphname.str().c_str());
+	recoTrackXZ_graph->SetName(recoTrackXZ_graphname.str().c_str());
+	
+	// recoTrackYZ_graph
+	recoTrackYZ_graph = new TGraph(1);
+	stringstream recoTrackYZ_graphname;
+	recoTrackYZ_graphname << "recoTrack_Gyz_" << EventCounter_mng;
+	recoTrackYZ_graph->SetTitle(recoTrackYZ_graphname.str().c_str());
+	recoTrackYZ_graph->SetName(recoTrackYZ_graphname.str().c_str());
+	
 	// recoTrack_graph
 	recoTrack_graph = new TGraph2D(1);
 	stringstream recoTrack_graphname;
@@ -145,6 +160,20 @@ void DDMRootManager::FillGraph_RecoTrackXY(G4double input_x, G4double input_y)
 	recoTrackXY_graph->SetPoint(ElectronCounter_mng - 1, input_x/m, input_y/m); // Set coords of newly-created point
 }
 
+void DDMRootManager::FillGraph_RecoTrackYZ(G4double input_y, G4double input_z)
+{
+	recoTrackYZ_graph->Set(ElectronCounter_mng);
+	recoTrackYZ_graph->SetPoint(ElectronCounter_mng - 1, input_y/m, input_z/m);
+}
+
+
+void DDMRootManager::FillGraph_RecoTrackXZ(G4double input_x, G4double input_z)
+{
+	recoTrackXZ_graph->Set(ElectronCounter_mng);
+	recoTrackXZ_graph->SetPoint(ElectronCounter_mng - 1, input_x/m, input_z/m);
+}
+
+
 void DDMRootManager::FillGraph_RecoTrack(G4double input_x, G4double input_y, G4double input_z)
 {
 	recoTrack_graph->Set(ElectronCounter_mng);
@@ -170,8 +199,9 @@ void DDMRootManager::CloseTrees()
 	recoTrack_hist->Write();
 	
 	// linear fit
-	TFitResultPtr fit = recoTrack_graph->Fit("pol1", "S");
 	TFitResultPtr fitXY = recoTrackXY_graph->Fit("pol1", "S");
+	TFitResultPtr fitXZ = recoTrackXZ_graph->Fit("pol1", "S");
+	TFitResultPtr fitYZ = recoTrackYZ_graph->Fit("pol1", "S");
 	
 	// fill results tree
 	FillTree_RecoResults(fitXY->Parameter(1), fitXY->Error(1), fitXY->Chi2());
@@ -184,8 +214,17 @@ void DDMRootManager::CloseTrees()
 	// label recoTrackXY_graph axes
 	recoTrackXY_graph->GetXaxis()->SetTitle("x (m)");
 	recoTrackXY_graph->GetYaxis()->SetTitle("y (m)");
+	// label recoTrackXZ_graph axes
+	recoTrackXZ_graph->GetXaxis()->SetTitle("x (m)");
+	recoTrackXZ_graph->GetYaxis()->SetTitle("z (m)");
+	// label recoTrackYZ_graph axes
+	recoTrackYZ_graph->GetXaxis()->SetTitle("y (m)");
+	recoTrackYZ_graph->GetYaxis()->SetTitle("z (m)");
 	
 	recoTrackXY_graph->Write();
+	recoTrackXZ_graph->Write();
+	recoTrackYZ_graph->Write();
+	
 	recoTrack_graph->Write();
 	
 	delete trueTrack_tree;
@@ -194,6 +233,8 @@ void DDMRootManager::CloseTrees()
 	delete recoTrack_tree;
 	delete recoTrack_hist;
 	delete recoTrackXY_graph;
+	delete recoTrackXZ_graph;
+	delete recoTrackYZ_graph;
 	delete recoTrack_graph;
 }
 
