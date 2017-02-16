@@ -298,11 +298,11 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
   G4LogicalVolume* argonTank_log
     = new G4LogicalVolume(argonTank_box,argon_gas,"Tank",0,0,0);
  
-  G4RotationMatrix* rotm  = new G4RotationMatrix();
-  rotm->rotateX(90*deg);
+  //G4RotationMatrix* rotm  = new G4RotationMatrix();
+  //rotm->rotateX(90*deg);
 
   G4VPhysicalVolume* argonTank_phys
-    = new G4PVPlacement(rotm,G4ThreeVector(),argonTank_log,"Tank",
+    = new G4PVPlacement(0,G4ThreeVector(),argonTank_log,"Tank",
                         expHall_log,false,0);
   
   root_manager->SetTankHeight(fTank_z);
