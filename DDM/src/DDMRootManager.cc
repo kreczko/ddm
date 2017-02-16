@@ -102,10 +102,7 @@ void DDMRootManager::InitialiseTrees()
 	stringstream recoTrack_graphname;
 	recoTrack_graphname << "recoTrack_G_" << EventCounter_mng;
 	recoTrack_graph->SetTitle(recoTrack_graphname.str().c_str());
-	recoTrack_graph->SetName(recoTrack_graphname.str().c_str());
-	
-	// recoTrackLZ_graph
-	
+	recoTrack_graph->SetName(recoTrack_graphname.str().c_str());	
 }
 
 void DDMRootManager::InitialiseResultsTree()
