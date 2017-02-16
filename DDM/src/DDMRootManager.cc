@@ -9,6 +9,7 @@ TTree* recoResults_tree;
 TH3I* electronGen_hist;
 TH3I* recoTrack_hist;
 TGraph* recoTrackXZ_graph;
+TGraph* recoTrackLY_graph;
 TGraph2D* recoTrack_graph;
 
 void DDMRootManager::CreateRootManager(G4String filename)
@@ -87,6 +88,9 @@ void DDMRootManager::InitialiseTrees()
 	recoTrack_graphname << "recoTrack_G_" << EventCounter_mng;
 	recoTrack_graph->SetTitle(recoTrack_graphname.str().c_str());
 	recoTrack_graph->SetName(recoTrack_graphname.str().c_str());
+	
+	// recoTrackLY_graph
+	
 }
 
 void DDMRootManager::InitialiseResultsTree()
