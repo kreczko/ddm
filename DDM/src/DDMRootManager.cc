@@ -181,7 +181,7 @@ void DDMRootManager::CloseTrees()
 	recoTrack_graph->GetYaxis()->SetTitle("y (m)");
 	recoTrack_graph->GetZaxis()->SetTitle("z (m)");
 	
-	// label recoTrackXZ_graph axes
+	// label recoTrackXY_graph axes
 	recoTrackXY_graph->GetXaxis()->SetTitle("x (m)");
 	recoTrackXY_graph->GetYaxis()->SetTitle("y (m)");
 	
