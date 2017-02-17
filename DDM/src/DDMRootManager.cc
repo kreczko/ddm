@@ -12,6 +12,7 @@ TGraph* recoTrackXY_graph;
 TGraph* recoTrackXZ_graph;
 TGraph* recoTrackYZ_graph;
 TGraph2D* recoTrack_graph;
+TGraph2D* electronGen_graph;
 
 void DDMRootManager::CreateRootManager(G4String filename)
 {
@@ -102,7 +103,14 @@ void DDMRootManager::InitialiseTrees()
 	stringstream recoTrack_graphname;
 	recoTrack_graphname << "recoTrack_G_" << EventCounter_mng;
 	recoTrack_graph->SetTitle(recoTrack_graphname.str().c_str());
-	recoTrack_graph->SetName(recoTrack_graphname.str().c_str());	
+	recoTrack_graph->SetName(recoTrack_graphname.str().c_str());
+	
+	//electronGen_graph (3D graph)
+	electronGen_graph = new TGraph2D(1);
+	stringstream electronGen_graphname;
+	electronGen_graphname << "electronGen_G_" << EventCounter_mng;
+	electronGen_graph->SetTitle(electronGen_graphname.str().c_str());
+	electronGen_graph->SetName(electronGen_graphname.str().c_str());
 }
 
 void DDMRootManager::InitialiseResultsTree()
@@ -135,6 +143,12 @@ void DDMRootManager::FillTree_ElectronData(G4double input_time, G4double input_x
 	ElectronData_mng[2]=input_y/m;
 	
 	electronData_tree->Fill();
+}
+
+void DDMRootManager::FillGraph_ElectronGen(G4double input_x, G4double input_y, G4double input_z)
+{
+	electronGen_graph->Set(ElectronCounter_mng);
+	electronGen_graph->SetPoint(ElectronCounter_mng - 1, input_x/m, input_y/m, input_z/m);
 }
 
 /*void DDMRootManager::FillHist_RecoTrack(G4double input_x, G4double input_y, G4double input_z)
@@ -195,9 +209,11 @@ void DDMRootManager::FinaliseEvent()
 {
 	trueTrack_tree->Write();
 	electronData_tree->Write();
+	electronGen_graph->Write();
 	//electronGen_hist->Write();
 	recoTrack_tree->Write();
 	//recoTrack_hist->Write();
+	
 	
 	// linear fits
 	TFitResultPtr fitXY = recoTrackXY_graph->Fit("pol1", "S");
@@ -236,6 +252,7 @@ void DDMRootManager::FinaliseEvent()
 	delete trueTrack_tree;
 	delete electronData_tree;
 	//delete electronGen_hist;
+	delete electronGen_graph;
 	delete recoTrack_tree;
 	//delete recoTrack_hist;
 	delete recoTrackXY_graph;
