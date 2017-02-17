@@ -155,7 +155,7 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       G4double initial_time = step->GetPreStepPoint()->GetLocalTime()
                          + stepFraction*(step->GetPostStepPoint()->GetLocalTime() - step->GetPreStepPoint()->GetLocalTime());
       
-      root_manager->FillHist_ElectronGen(initial_x, initial_y, initial_z);
+      //root_manager->FillHist_ElectronGen(initial_x, initial_y, initial_z);
       
       // Drift
       G4double tankHeight = root_manager->GetTankHeight();
@@ -179,7 +179,7 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       G4double reconstructed_z = tankHeight - (timeToDrift*driftVelocity);
       
       // fill data to reconstruct track
-      root_manager->FillHist_RecoTrack(recorded_x, recorded_y, reconstructed_z);
+      //root_manager->FillHist_RecoTrack(recorded_x, recorded_y, reconstructed_z);
       root_manager->FillTree_RecoTrack(recorded_x, recorded_y, reconstructed_z, recorded_time);
       root_manager->FillGraph_RecoTrackXY(recorded_x, recorded_y);
       root_manager->FillGraph_RecoTrack(recorded_x, recorded_y, reconstructed_z);
