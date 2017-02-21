@@ -35,6 +35,7 @@ class DDMRootManager
 		Bool_t IsFirstStep_mng = false;
 		Double_t TrueTheta_mng = 0;
 		Double_t TruePhi_mng = 0;
+		Double_t SigmaLong_mng = 0;
 		
 	public:
 		static void CreateRootManager(G4String filename);
@@ -66,6 +67,8 @@ class DDMRootManager
 	
 		Double_t CalculateTanThetaFromXZ(Double_t input_tanphi, Double_t input_tanalpha);
 		Double_t CalculateTanThetaFromYZ(Double_t input_tanphi, Double_t input_tanbeta);
+	
+		Double_t CalculateSigmaLong();
 
 		// define Get and Set methods for each _mng variable: can be defined inline.
 		Int_t GetEventCounter() {return EventCounter_mng;}
@@ -96,6 +99,8 @@ class DDMRootManager
 		void FlagFirstStep(){IsFirstStep_mng = true;}
 		void UnflagFirstStep(){IsFirstStep_mng = false;}
 		Bool_t IsFirstStep(){return IsFirstStep_mng;}
+	
+		Double_t GetSigmaLong_mng(){return SigmaLong_mng;}
 
 		~DDMRootManager();
 };
