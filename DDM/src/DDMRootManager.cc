@@ -205,12 +205,11 @@ void DDMRootManager::FillTree_RecoResults(G4double input_tanphi, G4double input_
 	recoResults_tree->Fill();
 }
 
-G4double CalculateSigmaT(G4double input_eps, input_L, input_E)
+G4double CalculateSigmaT(G4double input_time, G4double input_mu, G4double input_T)
 {
-	G4double charEnergy = input_eps;
-	G4double electronCharge = 1.6e-19;
+	G4double transverseD = 0;
 	
-	SigmaTransverse_mng = (4*char_energy*input_L)/(3*electronCharge*input_E);
+	SigmaTransverse_mng = sqrt(2*transverseD*input_time);
 	return SigmaTransverse_mng;
 }
 
