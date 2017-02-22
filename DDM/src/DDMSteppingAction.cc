@@ -174,6 +174,8 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       // *****  electron diffusion  ******************************************************
       
       // put Gaussians here
+      //G4double xDiff = G4RandGauss::shoot();
+      //final_x = initial_x + xDiff
       
       // *****  filling data  ************************************************************
       
