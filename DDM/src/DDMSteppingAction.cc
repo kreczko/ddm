@@ -168,7 +168,7 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       G4double final_y = initial_y;
       G4double final_z = tankHeight;
       
-      // Diffusion
+      // Electron diffusion
       
       // fill data
       root_manager->FillTree_ElectronData(final_time, final_x, final_y);
