@@ -173,9 +173,13 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       
       // *****  electron diffusion  ******************************************************
       
-      // put Gaussians here
-      //final_x += G4RandGauss::shoot()*mm;
-      //final_y += G4RandGauss::shoot()*mm;
+      // calculate standard deviation for transerse diffusion
+      G4double sigmaT = root_manager->CalculateSigmaT(timeToDrift, root_manager->GetElectronMobility(),
+                                                                 root_manager->GetTemperature());
+      
+      // add Gaussian terms to x and y coords
+      final_x += G4RandGauss::shoot(0.0, sigmaT)*mm;
+      final_y += G4RandGauss::shoot(0.0, sigmaT)*mm;
       
       // *****  filling data  ************************************************************
       
