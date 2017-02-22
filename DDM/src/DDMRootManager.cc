@@ -63,6 +63,7 @@ void DDMRootManager::InitialiseTrees()
 	electronGen_histname << "electronGen_" << EventCounter_mng;
 	electronGen_hist = new TH3I(electronGen_histname.str().c_str(), "Electron generation", 200, -1.0, 1.0, 200, -1.0, 1.0, 200, -1.0, 1.0);
 	*/
+	
 	// *****  reconstructed track information  *****************************
 	
 	// recoTrack_tree
