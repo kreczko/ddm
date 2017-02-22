@@ -77,6 +77,7 @@ void DDMRootManager::InitialiseTrees()
 	recoTrack_histname << "recoTrack_H_" << EventCounter_mng;
 	recoTrack_hist = new TH3I(recoTrack_histname.str().c_str(), "Reconstructed positions", 200, -1.0, 1.0, 200, -1.0, 1.0, 200, -1.0, 1.0);
 	*/
+	
 	// recoTrackXY_graph
 	recoTrackXY_graph = new TGraph(1);
 	stringstream recoTrackXY_graphname;
