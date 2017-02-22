@@ -207,7 +207,7 @@ void DDMRootManager::FillTree_RecoResults(G4double input_tanphi, G4double input_
 	recoResults_tree->Fill();
 }
 
-G4double CalculateSigmaT(G4double input_time, G4double input_mu, G4double input_T)
+G4double DDMRootManager::CalculateSigmaT(G4double input_time, G4double input_mu, G4double input_T)
 {
 	G4double transverseD = input_mu*input_T*k_Boltzmann/electron_charge;
 	
