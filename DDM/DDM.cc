@@ -191,6 +191,9 @@ int main(int argc,char** argv)
   root_manager->CloseResultsTree();
   
   DDMRootManager::DestroyRootManager();
+  
+  // trial generating Gaussian random numbers
+  G4double randNum = G4RandGauss::shoot();
 
   return 0;
 }
