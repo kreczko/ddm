@@ -194,6 +194,7 @@ int main(int argc,char** argv)
   
   // trial generating Gaussian random numbers
   G4double randNum = G4RandGauss::shoot();
+  G4cout << "randNum = " << randNum << G4endl;
 
   return 0;
 }
