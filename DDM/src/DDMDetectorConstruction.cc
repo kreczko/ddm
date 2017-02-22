@@ -86,6 +86,7 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
 // Define electric field strength:
  
  G4double E = 12.5*kilovolt/m;
+ G4double temperature = 293.0*kelvin;
  
 // ------------- Materials -------------
 
