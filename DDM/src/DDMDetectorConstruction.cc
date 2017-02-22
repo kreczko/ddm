@@ -82,7 +82,11 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
 {
  // get root manager
  DDMRootManager* root_manager = DDMRootManager::GetRootManager();
-
+ 
+// Define electric field strength:
+ 
+ G4double E = 12.5*kilovolt/m;
+ 
 // ------------- Materials -------------
 
   G4double a, z, density;
@@ -105,9 +109,16 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
 //
   G4Element* Ar = new G4Element("Argon", "Ar", z=18, a=39.95*g/mole);
  
-  G4double argonPressure = 0.1; // pressure in atmospheres
-  //G4double argonPressure = 0.001; // pressure in atmospheres
-  G4double argonDriftVelocity = 5.05e5*(cm/s);
+  G4double argonPressure = 0.1*atmosphere; // pressure in atmospheres
+  //G4double argonPressure = 0.001*atmosphere; // pressure in atmospheres
+ 
+  G4cout << "Calculating drift velocity..." << G4endl;
+  G4double argonDriftVelocity = (pow(10*(E/(volt/cm))/((argonPressure/atmosphere)/760), 5)*)*cm/s;
+  G4cout << "Drift velocity = " << argonDriftVelocity << G4cout;
+  /*if ((E/argonPressure < 2) || (E/argonPressure > 1000))
+  {
+    G4cout << "WARNING: reduced field is outside reliable linear range. Calculated drift velocity may be inaccurate." << G4cout;
+  }*/
  
   root_manager->SetDriftVelocity(argonDriftVelocity);
  
