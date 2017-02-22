@@ -88,6 +88,8 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
  G4double E = 12.5*kilovolt/m;
  G4double temperature = 293.0*kelvin;
  
+ root_manager -> SetElectricField(E);
+ 
 // ------------- Materials -------------
 
   G4double a, z, density;
