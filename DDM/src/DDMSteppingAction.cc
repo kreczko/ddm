@@ -141,6 +141,8 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
     for (G4int i = 0; i < numOfElectrons; i++)
     {
       root_manager->IncrementElectronCounter();
+     
+      // *****  electron initial positions  ***********************************************
       
       // randomly generate step fraction
       G4double stepFraction = G4UniformRand();
@@ -158,7 +160,8 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       //root_manager->FillHist_ElectronGen(initial_x, initial_y, initial_z);
       root_manager->FillGraph_ElectronGen(initial_x, initial_y, initial_z);
       
-      // Electron drift
+      // *****  electron drift  ***********************************************************
+      
       G4double tankHeight = root_manager->GetTankHeight();
       G4double driftVelocity = root_manager->GetDriftVelocity();
       G4double distanceToDrift = tankHeight - initial_z;
@@ -168,7 +171,11 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       G4double final_y = initial_y;
       G4double final_z = tankHeight;
       
-      // Electron diffusion
+      // *****  electron diffusion  ******************************************************
+      
+      // put Gaussians here
+      
+      // *****  filling data  ************************************************************
       
       // fill data
       root_manager->FillTree_ElectronData(final_time, final_x, final_y);
