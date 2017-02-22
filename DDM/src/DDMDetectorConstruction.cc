@@ -116,7 +116,7 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
   G4double reducedField = E/argonPressure;
   G4double reducedField_VperCmTorr = reducedField/(volt*760/(cm*atmosphere));
   G4double argonDriftVelocity = pow(reducedField_VperCmTorr, 0.85)*3.0e5*cm/s;
-  G4cout << "Drift velocity = " << argonDriftVelocity << G4endl;
+  G4cout << "Drift velocity = " << argonDriftVelocity/(cm/s) << G4endl;
   if ((reducedField_VperCmTorr < 2) || (reducedField_VperCmTorr > 1000))
   {
     G4cout << "WARNING: reduced field of " << reducedField_VperCmTorr << " V/(cm Torr) is outside reliable linear range. Calculated drift velocity may be inaccurate." << G4endl;
