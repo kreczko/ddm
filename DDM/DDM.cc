@@ -192,12 +192,14 @@ int main(int argc,char** argv)
   
   DDMRootManager::DestroyRootManager();
   
+  /*
   // trial generating Gaussian random numbers
   for(G4int i = 0; i < 10; i++)
   {
     G4double randNum = G4RandGauss::shoot();
     G4cout << "randNum = " << randNum << G4endl;
   }
+  */
 
   return 0;
 }
