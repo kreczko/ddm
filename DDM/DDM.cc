@@ -196,7 +196,7 @@ int main(int argc,char** argv)
   // trial generating Gaussian random numbers
   for(G4int i = 0; i < 50; i++)
   {
-    G4double randNum = G4RandGauss::shoot();
+    G4double randNum = G4RandGauss::shoot(10.0, 0.1);
     G4cout << randNum << G4endl;
   }
   
