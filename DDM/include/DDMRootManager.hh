@@ -30,6 +30,7 @@ class DDMRootManager
 		Int_t EventCounter_mng = -1;
 		Int_t ElectronCounter_mng = 0;
 		Double_t DriftVelocity_mng = 0;
+		Double_t ElectricField_mng = 0;
 		Double_t TankHeight_mng = 0;
 		Double_t RecoResults_mng[9] = {0};
 		//Double_t InitialMomentum_mng[4] = {0};
@@ -102,6 +103,11 @@ class DDMRootManager
 		Bool_t IsFirstStep(){return IsFirstStep_mng;}
 	
 		Double_t GetSigmaTransverse_mng(){return SigmaTransverse_mng;}
+	
+		void SetElectricField(Double_t input){ElectricField_mng = input;}
+		Double_t GetElectricField(){return ElectricField_mng;}
+	
+		Double_t GetElectronMobility(){return DriftVelocity_mng/ElectricField_mng;}
 
 		~DDMRootManager();
 };
