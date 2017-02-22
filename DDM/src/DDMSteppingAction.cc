@@ -158,7 +158,7 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       //root_manager->FillHist_ElectronGen(initial_x, initial_y, initial_z);
       root_manager->FillGraph_ElectronGen(initial_x, initial_y, initial_z);
       
-      // Drift
+      // Electron drift
       G4double tankHeight = root_manager->GetTankHeight();
       G4double driftVelocity = root_manager->GetDriftVelocity();
       G4double distanceToDrift = tankHeight - initial_z;
