@@ -209,8 +209,8 @@ G4double CalculateSigmaT(G4double input_time, G4double input_mu, G4double input_
 {
 	G4double transverseD = input_mu*input_T*k_Boltzmann/electron_charge;
 	
-	G4double SigmaTransverse = sqrt(2*transverseD*input_time);
-	return SigmaTransverse;
+	G4double sigmaTransverse = sqrt(2*transverseD*input_time);
+	return sigmaTransverse;
 }
 
 void DDMRootManager::FinaliseEvent()
