@@ -83,11 +83,11 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
  // get root manager
  DDMRootManager* root_manager = DDMRootManager::GetRootManager();
  
- // Define electric field strength:
+ // define electric field strength and temperature
  G4double E = 12.5*kilovolt/m;
  G4double temperature = 293.0*kelvin;
  
- // give root manager E field and temperature
+ // give root manager electric field strength and temperature
  root_manager -> SetElectricField(E);
  root_manager -> SetTemperature(temperature);
  
@@ -125,7 +125,8 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
   {
     G4cout << "WARNING: reduced field of " << reducedField_VperCmTorr << " V/(cm Torr) is outside reliable linear range. Calculated drift velocity may be inaccurate." << G4endl;
   }
- 
+  
+  // give root manager drift velocity and pressure
   root_manager->SetDriftVelocity(argonDriftVelocity);
   root_manager->SetGasPressure(argonPressure);
  
