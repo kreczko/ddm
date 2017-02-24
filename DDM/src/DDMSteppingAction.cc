@@ -173,12 +173,14 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       
       // *****  electron diffusion  ******************************************************
       
-      // calculate standard deviation for transerse diffusion
-      G4double sigmaT = root_manager->CalculateSigmaT(timeToDrift, root_manager->GetElectronMobility(),
-                                                                 root_manager->GetTemperature());
+      // calculate standard deviation for transerse and longitudinal diffusion
+      G4double sigmaT = root_manager->CalculateSigmaT(timeToDrift,
+                                                      root_manager->GetElectronMobility(),             
+                                                      root_manager->GetTemperature());
       
-      //G4double sigmaL = root_manager->CalculateSigmaL(timeToDrift, root_manager->GetElectronMobility(),
-      //                                                           root_manager->GetTemperature());
+      G4double sigmaL = root_manager->CalculateSigmaL(timeToDrift, 
+                                                      root_manager->GetElectronMobility(),
+                                                      root_manager->GetTemperature());
       
       G4cout << "Sigma_T: " << sigmaT << G4endl;
       
