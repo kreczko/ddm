@@ -83,11 +83,11 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
  // get root manager
  DDMRootManager* root_manager = DDMRootManager::GetRootManager();
  
-// Define electric field strength:
- 
+ // Define electric field strength:
  G4double E = 12.5*kilovolt/m;
  G4double temperature = 293.0*kelvin;
  
+ // give root manager E field and temperature
  root_manager -> SetElectricField(E);
  root_manager -> SetTemperature(temperature);
  
