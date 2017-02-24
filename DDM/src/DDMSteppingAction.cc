@@ -164,6 +164,7 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       
       G4double tankHeight = root_manager->GetTankHeight();
       G4double driftVelocity = /*root_manager->GetDriftVelocity();*/ 5.0e5;
+      if (root_manager->IsFirstStep()) {G4cout << "Drift velocity from manager: " root_manager->GetDriftVelocity() << G4endl;}
       G4double distanceToDrift = tankHeight - initial_z;
       G4double timeToDrift = distanceToDrift/driftVelocity;
       G4double final_time = initial_time + timeToDrift;
