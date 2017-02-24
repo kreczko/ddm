@@ -220,11 +220,11 @@ G4double DDMRootManager::CalculateDriftVelocity()
   	}
 	return DriftVelocity_mng;
 }
-
+/*
 G4double DDMRootManager::CalculateSecondaryScintYield()
 {
 	
-}
+}*/
 
 G4double DDMRootManager::CalculateSigmaT(G4double input_time, G4double input_mu, G4double input_T)
 {
