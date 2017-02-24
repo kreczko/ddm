@@ -187,7 +187,7 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       // add Gaussian terms to x and y coords
       final_x += G4RandGauss::shoot(0.0, sigmaT)*mm;
       final_y += G4RandGauss::shoot(0.0, sigmaT)*mm;
-      //final_z += G4RandGauss::shoot(0.0, sigmaL)*mm;
+      final_z += G4RandGauss::shoot(0.0, sigmaL)*mm;
       
       // *****  filling data  ************************************************************
       
