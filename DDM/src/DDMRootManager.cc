@@ -207,10 +207,10 @@ void DDMRootManager::FillTree_RecoResults(G4double input_tanphi, G4double input_
 	recoResults_tree->Fill();
 }
 
-G4double DDMRootManager::CalculateDriftVelocity(G4double input_pressure)
+G4double DDMRootManager::CalculateDriftVelocity()
 {
 	G4cout << "Calculating drift velocity..." << G4endl;
-  	G4double reducedField = ElectricField_mng/input_pressure;
+  	G4double reducedField = ElectricField_mng/GasPressure_mng;
   	G4double reducedField_VperCmTorr = reducedField/(volt*760/(cm*atmosphere));
   	G4double DriftVelocity_mng = pow(reducedField_VperCmTorr, 0.85)*3.0e5*cm/s;
   	G4cout << "Drift velocity = " << DriftVelocity_mng/(cm/s) << G4endl;
