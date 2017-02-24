@@ -115,20 +115,9 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
  
   G4double argonPressure = 0.1*atmosphere; // pressure in atmospheres
   //G4double argonPressure = 0.001*atmosphere; // pressure in atmospheres
- 
-  G4cout << "Calculating drift velocity..." << G4endl;
-  G4double reducedField = E/argonPressure;
-  G4double reducedField_VperCmTorr = reducedField/(volt*760/(cm*atmosphere));
-  G4double argonDriftVelocity = pow(reducedField_VperCmTorr, 0.85)*3.0e5*cm/s;
-  G4cout << "Drift velocity = " << argonDriftVelocity/(cm/s) << G4endl;
-  if ((reducedField_VperCmTorr < 2) || (reducedField_VperCmTorr > 1000))
-  {
-    G4cout << "WARNING: reduced field of " << reducedField_VperCmTorr << " V/(cm Torr) is outside reliable linear range. Calculated drift velocity may be inaccurate." << G4endl;
-  }
-  
-  // give root manager drift velocity and pressure
-  root_manager->SetDriftVelocity(argonDriftVelocity);
   root_manager->SetGasPressure(argonPressure);
+ 
+  G4double argonDriftVelocity = root_manager->CalculateDriftVelocity(argonPressure);
  
   G4Material* argon_gas = new G4Material("Gaseous Argon", density=(argonPressure/atmosphere)*1.784*mg/cm3, nelements=1);
   argon_gas->AddElement(Ar, 100.*perCent);
