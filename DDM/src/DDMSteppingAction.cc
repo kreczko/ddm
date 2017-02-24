@@ -192,7 +192,7 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       // *****  filling data  ************************************************************
       
       // fill data
-      root_manager->FillTree_ElectronData(final_time, final_x, final_y);
+      root_manager->FillTree_ElectronData(final_time, initial_x, initial_y);  // may need to change time input
       
       // recorded and reconstructed information
       G4double recorded_x = final_x;
