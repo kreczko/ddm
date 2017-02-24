@@ -75,7 +75,7 @@ class DDMRootManager
 		G4double CalculateSigmaT(G4double input_time, G4double input_mu, G4double input_T);
 		G4double CalculateSigmaL(G4double input_time, G4double input_mu, G4double input_T);
 	
-		G4double CalculateDriftVelocity(G4double input_pressure);
+		G4double CalculateDriftVelocity();
 
 		// define Get and Set methods for each _mng variable: can be defined inline.
 		Int_t GetEventCounter() {return EventCounter_mng;}
