@@ -72,8 +72,10 @@ class DDMRootManager
 		Double_t CalculateTanThetaFromXZ(Double_t input_tanphi, Double_t input_tanalpha);
 		Double_t CalculateTanThetaFromYZ(Double_t input_tanphi, Double_t input_tanbeta);
 	
-		Double_t CalculateSigmaT(G4double input_time, G4double input_mu, G4double input_T);
-		Double_t CalculateSigmaL(G4double input_time, G4double input_mu, G4double input_T);
+		G4double CalculateSigmaT(G4double input_time, G4double input_mu, G4double input_T);
+		G4double CalculateSigmaL(G4double input_time, G4double input_mu, G4double input_T);
+	
+		G4double CalculateDriftVelocity(G4double input_pressure);
 
 		// define Get and Set methods for each _mng variable: can be defined inline.
 		Int_t GetEventCounter() {return EventCounter_mng;}
