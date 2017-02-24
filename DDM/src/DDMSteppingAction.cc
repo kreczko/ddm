@@ -177,11 +177,15 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       G4double sigmaT = root_manager->CalculateSigmaT(timeToDrift, root_manager->GetElectronMobility(),
                                                                  root_manager->GetTemperature());
       
+      //G4double sigmaL = root_manager->CalculateSigmaL(timeToDrift, root_manager->GetElectronMobility(),
+      //                                                           root_manager->GetTemperature());
+      
       G4cout << "Sigma_T: " << sigmaT << G4endl;
       
       // add Gaussian terms to x and y coords
       final_x += G4RandGauss::shoot(0.0, sigmaT)*mm;
       final_y += G4RandGauss::shoot(0.0, sigmaT)*mm;
+      //final_z += G4RandGauss::shoot(0.0, sigmaL)*mm;
       
       // *****  filling data  ************************************************************
       
