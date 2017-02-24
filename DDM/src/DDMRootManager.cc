@@ -219,7 +219,7 @@ G4double DDMRootManager::CalculateSigmaL(G4double input_time, G4double input_mu,
 {
 	G4double longitudinalD = input_mu*input_T*k_Boltzmann/(-electron_charge);
 	
-	G4double sigmaLongitudinal = sqrt(2*transverseD*input_time);
+	G4double sigmaLongitudinal = sqrt(2*longitudinalD*input_time);
 	return sigmaLongitudinal;
 }
 
