@@ -91,7 +91,7 @@ class DDMRootManager
 		Int_t GetElectronCounter() {return ElectronCounter_mng;}
 	
 		void InitialiseSecondaryScintCounter() {SecondaryScintCounter_mng = 0;}
-		void IncrementSecondaryScintCounter() {SecondaryScintCounter_mng++;}
+		void AddToSecondaryScintCounter(Int_t input) {SecondaryScintCounter_mng += input;}
 		Int_t GetSecondaryScintCounter_mng() {return SecondaryScintCounter_mng;}
 	
 		/*void SetInitialMomentum(Double_t input_pabs, Double_t input_px, Double_t input_py, Double_t input_pz)
