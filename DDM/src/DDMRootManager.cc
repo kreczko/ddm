@@ -218,6 +218,10 @@ G4double DDMRootManager::CalculateDriftVelocity()
   	{
     		G4cout << "WARNING: reduced field of " << reducedField_VperCmTorr << " V/(cm Torr) is outside reliable linear range. Calculated drift velocity may be inaccurate." << G4endl;
   	}
+}
+
+G4double DDMRootManager::CalculateSecondaryScintYield()
+{
 	
 }
 
