@@ -33,6 +33,7 @@ class DDMRootManager
 		Double_t DriftVelocity_mng = 0;
 		Double_t ElectricField_mng = 0;
 		Double_t Temperature_mng = 0;
+		Double_t GasPressure_mng = 0;
 		Double_t TankHeight_mng = 0;
 		Double_t RecoResults_mng[9] = {0};
 		//Double_t InitialMomentum_mng[4] = {0};
@@ -116,6 +117,9 @@ class DDMRootManager
 	
 		void SetTemperature(Double_t input){Temperature_mng = input;}
 		Double_t GetTemperature(){return Temperature_mng;}
+	
+		void SetGasPressure(Double_t input){GasPressure_mng = input;}
+		Double_t GetGasPressure(){return GasPressure_mng;}
 
 		~DDMRootManager();
 };
