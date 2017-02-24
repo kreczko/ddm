@@ -84,6 +84,7 @@ class DDMRootManager
 
 		void PrintToScreen(G4String input) {G4cout << input << G4endl;}
 	
+		// initialise, increment and get counters
 		void InitialiseElectronCounter() {ElectronCounter_mng = 0;}
 		void IncrementElectronCounter() {ElectronCounter_mng++;}
 		Int_t GetElectronCounter() {return ElectronCounter_mng;}
