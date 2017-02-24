@@ -38,7 +38,6 @@ class DDMRootManager
 		Bool_t IsFirstStep_mng = false;
 		Double_t TrueTheta_mng = 0;
 		Double_t TruePhi_mng = 0;
-		Double_t SigmaTransverse_mng = 0;
 		
 	public:
 		static void CreateRootManager(G4String filename);
@@ -102,8 +101,6 @@ class DDMRootManager
 		void FlagFirstStep(){IsFirstStep_mng = true;}
 		void UnflagFirstStep(){IsFirstStep_mng = false;}
 		Bool_t IsFirstStep(){return IsFirstStep_mng;}
-	
-		Double_t GetSigmaTransverse(){return SigmaTransverse_mng;}
 	
 		void SetElectricField(Double_t input){ElectricField_mng = input;}
 		Double_t GetElectricField(){return ElectricField_mng;}
