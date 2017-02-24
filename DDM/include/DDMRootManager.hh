@@ -29,6 +29,7 @@ class DDMRootManager
 		Double_t RecoData_mng[4] = {0};
 		Int_t EventCounter_mng = -1;
 		Int_t ElectronCounter_mng = 0;
+		Int_t SecondaryScintCounter_mng = 0;
 		Double_t DriftVelocity_mng = 0;
 		Double_t ElectricField_mng = 0;
 		Double_t Temperature_mng = 0;
@@ -88,6 +89,10 @@ class DDMRootManager
 		void InitialiseElectronCounter() {ElectronCounter_mng = 0;}
 		void IncrementElectronCounter() {ElectronCounter_mng++;}
 		Int_t GetElectronCounter() {return ElectronCounter_mng;}
+	
+		void InitialiseSecondaryScintCounter() {SecondaryScintCounter_mng = 0;}
+		void IncrementSecondaryScintCounter() {SecondaryScintCounter_mng++;}
+		Int_t GetSecondaryScintCounter_mng() {return SecondaryScintCounter_mng;}
 	
 		/*void SetInitialMomentum(Double_t input_pabs, Double_t input_px, Double_t input_py, Double_t input_pz)
 											{InitialMomentum_mng[0] = input_pabs;
