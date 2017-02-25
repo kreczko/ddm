@@ -221,14 +221,14 @@ G4double DDMRootManager::CalculateDriftVelocity()
 	return DriftVelocity_mng;
 }
 /*
-G4double DDMRootManager::CalculateSecondaryScintYield(G4double input_AvalancheField)
+G4double DDMRootManager::CalculateSecondaryScintYield(G4double input_avalancheField)
 {
 	// Y/p (photons electron^-1 cm ^-1 bar^-1) = 81 E/p (kV cm^-1 bar^-1) - 47
 	
 	G4double scintYield;
 	
-	G4double GasPressureBar = GasPressure_mng/bar;
-	G4double avalancheFieldPerCm = input_AvalancheField/(kilovolt/cm);
+	G4double gasPressureBar = GasPressure_mng/bar;
+	G4double avalancheFieldPerCm = input_avalancheField/(kilovolt/cm);
 	
 	scintYield = gasPressureBar * (81.0 * input_avalancheField/pBar - 47.0);
 	
