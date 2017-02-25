@@ -36,6 +36,7 @@ class DDMRootManager
 		Double_t GasPressure_mng = 0;
 		Double_t TankHeight_mng = 0;
 		Double_t RecoResults_mng[9] = {0};
+		Double_t SecondaryScintYield_mng = 0;
 		//Double_t InitialMomentum_mng[4] = {0};
 		Bool_t IsFirstStep_mng = false;
 		Double_t TrueTheta_mng = 0;
@@ -83,6 +84,8 @@ class DDMRootManager
 		
 		//void SetDriftVelocity(Double_t input) {DriftVelocity_mng = input;}
 		Double_t GetDriftVelocity() {return DriftVelocity_mng;}
+	
+		Double_t GetSecondaryScintYield_mng() {return SecondaryScintYield_mng;}
 	
 		void SetTankHeight(Double_t input) {TankHeight_mng = input;}
 		Double_t GetTankHeight() {return TankHeight_mng;}
