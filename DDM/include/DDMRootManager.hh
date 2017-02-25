@@ -53,17 +53,17 @@ class DDMRootManager
 		void InitialiseResultsTree();
 
 		//void FillTree(); Make more of these (with specific names and the required parameters) for the individual branches as needed.
-		void FillTree_TimeStepData(G4double input_time, G4double input_x, G4double input_y, G4double input_z, G4double input_energy);
-		void FillTree_ElectronData(G4double input_time, G4double input_x, G4double input_y);
-		//void FillHist_ElectronGen(G4double input_x, G4double input_y, G4double input_z);
-		void FillTree_RecoTrack(G4double input_x, G4double input_y, G4double input_z, G4double input_time);
-		//void FillHist_RecoTrack(G4double input_x, G4double input_y, G4double input_z);
-		void FillGraph_RecoTrackXY(G4double input_x, G4double input_y);
-		void FillGraph_RecoTrackXZ(G4double input_x, G4double input_z);
-		void FillGraph_RecoTrackYZ(G4double input_y, G4double input_z);
-		void FillGraph_RecoTrack(G4double input_x, G4double input_y, G4double input_z);
-		void FillTree_RecoResults(G4double input_tanphi, G4double input_tantheta_xz, G4double input_tantheta_yz);
-		void FillGraph_ElectronGen(G4double input_x, G4double input_y, G4double input_z);
+		void FillTree_TimeStepData(Double_t input_time, Double_t input_x, Double_t input_y, Double_t input_z, Double_t input_energy);
+		void FillTree_ElectronData(Double_t input_time, Double_t input_x, Double_t input_y);
+		//void FillHist_ElectronGen(Double_t input_x, Double_t input_y, Double_t input_z);
+		void FillTree_RecoTrack(Double_t input_x, Double_t input_y, Double_t input_z, Double_t input_time);
+		//void FillHist_RecoTrack(Double_t input_x, Double_t input_y, Double_t input_z);
+		void FillGraph_RecoTrackXY(Double_t input_x, Double_t input_y);
+		void FillGraph_RecoTrackXZ(Double_t input_x, Double_t input_z);
+		void FillGraph_RecoTrackYZ(Double_t input_y, Double_t input_z);
+		void FillGraph_RecoTrack(Double_t input_x, Double_t input_y, Double_t input_z);
+		void FillTree_RecoResults(Double_t input_tanphi, Double_t input_tantheta_xz, Double_t input_tantheta_yz);
+		void FillGraph_ElectronGen(Double_t input_x, Double_t input_y, Double_t input_z);
 	
 		void FinaliseEvent();
 		void CloseResultsTree();
@@ -73,11 +73,11 @@ class DDMRootManager
 		Double_t CalculateTanThetaFromXZ(Double_t input_tanphi, Double_t input_tanalpha);
 		Double_t CalculateTanThetaFromYZ(Double_t input_tanphi, Double_t input_tanbeta);
 	
-		G4double CalculateSigmaT(G4double input_time, G4double input_mu, G4double input_T);
-		G4double CalculateSigmaL(G4double input_time, G4double input_mu, G4double input_T);
+		G4double CalculateSigmaT(Double_t input_time, Double_t input_mu, Double_t input_T);
+		G4double CalculateSigmaL(Double_t input_time, Double_t input_mu, Double_t input_T);
 	
 		G4double CalculateDriftVelocity();
-		G4double CalculateSecondaryScintYield(G4double input_avalancheField);
+		G4double CalculateSecondaryScintYield(Double_t input_avalancheField);
 
 		// define Get and Set methods for each _mng variable: can be defined inline.
 		Int_t GetEventCounter() {return EventCounter_mng;}
