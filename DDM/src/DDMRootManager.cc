@@ -220,7 +220,7 @@ G4double DDMRootManager::CalculateDriftVelocity()
   	}
 	return DriftVelocity_mng;
 }
-/*
+
 G4double DDMRootManager::CalculateSecondaryScintYield(G4double input_avalancheField)
 {
 	// Y/p (photons electron^-1 cm ^-1 bar^-1) = 81 E/p (kV cm^-1 bar^-1) - 47
@@ -233,7 +233,7 @@ G4double DDMRootManager::CalculateSecondaryScintYield(G4double input_avalancheFi
 	scintYield = gasPressureBar * (81.0 * input_avalancheField/gasPressureBar - 47.0);
 	
 	return scintYield;
-}*/
+}
 
 G4double DDMRootManager::CalculateSigmaT(G4double input_time, G4double input_mu, G4double input_T)
 {
