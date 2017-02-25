@@ -122,7 +122,6 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
  
   G4out << "ScintYield = " << root_manager->CalculateSecondaryScintYield(avalancheE) << Gendl;
 
- 
   G4Material* argon_gas = new G4Material("Gaseous Argon", density=(argonPressure/atmosphere)*1.784*mg/cm3, nelements=1);
   argon_gas->AddElement(Ar, 100.*perCent);
 
