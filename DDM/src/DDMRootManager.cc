@@ -214,10 +214,12 @@ G4double DDMRootManager::CalculateDriftVelocity()
   	G4double reducedField_VperCmTorr = reducedField/(volt*760/(cm*atmosphere));
   	DriftVelocity_mng = pow(reducedField_VperCmTorr, 0.85)*3.0e5*cm/s;
   	G4cout << "Drift velocity = " << DriftVelocity_mng/(cm/s) << G4endl;
+	
   	if ((reducedField_VperCmTorr < 2) || (reducedField_VperCmTorr > 1000))
   	{
     		G4cout << "WARNING: reduced field of " << reducedField_VperCmTorr << " V/(cm Torr) is outside reliable linear range. Calculated drift velocity may be inaccurate." << G4endl;
   	}
+	
 	return DriftVelocity_mng;
 }
 
