@@ -85,6 +85,7 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
  
  // define electric field strength and temperature
  G4double E = 12.5*kilovolt/m;
+ G4double avalancheE = 12.5*kilovolt/m; // set avalanche field same as drift field for now
  G4double temperature = 293.0*kelvin;
  
  // give root manager electric field strength and temperature
@@ -118,6 +119,9 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
   root_manager->SetGasPressure(argonPressure);
  
   G4double argonDriftVelocity = root_manager->CalculateDriftVelocity();
+ 
+  G4out << "ScintYield = " << root_manager->CalculateSecondaryScintYield(avalancheE) << Gendl;
+
  
   G4Material* argon_gas = new G4Material("Gaseous Argon", density=(argonPressure/atmosphere)*1.784*mg/cm3, nelements=1);
   argon_gas->AddElement(Ar, 100.*perCent);
