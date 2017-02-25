@@ -122,7 +122,7 @@ void DDMRootManager::InitialiseResultsTree()
 				   "EventNo/D:phi_true/D:theta_true/D:tanphi/D:phi/D:tantheta_xz/D:theta_xz/D:tantheta_yz/D:theta_yz/D");
 }
 
-void DDMRootManager::FillTree_TimeStepData(G4double input_time, G4double input_x, G4double input_y, G4double input_z, G4double input_energy)
+void DDMRootManager::FillTree_TimeStepData(Double_t input_time, Double_t input_x, Double_t input_y, Double_t input_z, Double_t input_energy)
 {
 	TimeStepData_mng[0]=input_time/ns;
 	TimeStepData_mng[1]=input_x/m;
@@ -133,12 +133,12 @@ void DDMRootManager::FillTree_TimeStepData(G4double input_time, G4double input_x
 	trueTrack_tree->Fill();
 }
 
-/*void DDMRootManager::FillHist_ElectronGen(G4double input_x, G4double input_y, G4double input_z)
+/*void DDMRootManager::FillHist_ElectronGen(Double_t input_x, Double_t input_y, Double_t input_z)
 {
 	electronGen_hist->Fill(input_x/m, input_y/m, input_z/m);
 }*/
 
-void DDMRootManager::FillTree_ElectronData(G4double input_time, G4double input_x, G4double input_y)
+void DDMRootManager::FillTree_ElectronData(Double_t input_time, Double_t input_x, Double_t input_y)
 {
 	ElectronData_mng[0]=input_time/ns;
 	ElectronData_mng[1]=input_x/m;
@@ -147,18 +147,18 @@ void DDMRootManager::FillTree_ElectronData(G4double input_time, G4double input_x
 	electronData_tree->Fill();
 }
 
-void DDMRootManager::FillGraph_ElectronGen(G4double input_x, G4double input_y, G4double input_z)
+void DDMRootManager::FillGraph_ElectronGen(Double_t input_x, Double_t input_y, Double_t input_z)
 {
 	electronGen_graph->Set(ElectronCounter_mng);
 	electronGen_graph->SetPoint(ElectronCounter_mng - 1, input_x/m, input_y/m, input_z/m);
 }
 
-/*void DDMRootManager::FillHist_RecoTrack(G4double input_x, G4double input_y, G4double input_z)
+/*void DDMRootManager::FillHist_RecoTrack(Double_t input_x, Double_t input_y, Double_t input_z)
 {
 	recoTrack_hist->Fill(input_x/m, input_y/m, input_z/m);
 }*/
 
-void DDMRootManager::FillTree_RecoTrack(G4double input_x, G4double input_y, G4double input_z, G4double input_time)
+void DDMRootManager::FillTree_RecoTrack(Double_t input_x, Double_t input_y, Double_t input_z, Double_t input_time)
 {
 	RecoData_mng[0] = input_x/m;
 	RecoData_mng[1] = input_y/m;
@@ -168,31 +168,31 @@ void DDMRootManager::FillTree_RecoTrack(G4double input_x, G4double input_y, G4do
 	recoTrack_tree->Fill();
 }
 
-void DDMRootManager::FillGraph_RecoTrackXY(G4double input_x, G4double input_y)
+void DDMRootManager::FillGraph_RecoTrackXY(Double_t input_x, Double_t input_y)
 {
 	recoTrackXY_graph->Set(ElectronCounter_mng); // Increase size of TGraph as needed
 	recoTrackXY_graph->SetPoint(ElectronCounter_mng - 1, input_x/m, input_y/m); // Set coords of newly-created point
 }
 
-void DDMRootManager::FillGraph_RecoTrackYZ(G4double input_y, G4double input_z)
+void DDMRootManager::FillGraph_RecoTrackYZ(Double_t input_y, Double_t input_z)
 {
 	recoTrackYZ_graph->Set(ElectronCounter_mng);
 	recoTrackYZ_graph->SetPoint(ElectronCounter_mng - 1, input_y/m, input_z/m);
 }
 
-void DDMRootManager::FillGraph_RecoTrackXZ(G4double input_x, G4double input_z)
+void DDMRootManager::FillGraph_RecoTrackXZ(Double_t input_x, Double_t input_z)
 {
 	recoTrackXZ_graph->Set(ElectronCounter_mng);
 	recoTrackXZ_graph->SetPoint(ElectronCounter_mng - 1, input_x/m, input_z/m);
 }
 
-void DDMRootManager::FillGraph_RecoTrack(G4double input_x, G4double input_y, G4double input_z)
+void DDMRootManager::FillGraph_RecoTrack(Double_t input_x, Double_t input_y, Double_t input_z)
 {
 	recoTrack_graph->Set(ElectronCounter_mng);
 	recoTrack_graph->SetPoint(ElectronCounter_mng - 1, input_x/m, input_y/m, input_z/m);
 }
 
-void DDMRootManager::FillTree_RecoResults(G4double input_tanphi, G4double input_tantheta_xz, G4double input_tantheta_yz)
+void DDMRootManager::FillTree_RecoResults(Double_t input_tanphi, Double_t input_tantheta_xz, Double_t input_tantheta_yz)
 {
 	RecoResults_mng[0] = EventCounter_mng;
 	RecoResults_mng[1] = TruePhi_mng;
@@ -223,7 +223,7 @@ G4double DDMRootManager::CalculateDriftVelocity()
 	return DriftVelocity_mng;
 }
 
-G4double DDMRootManager::CalculateSecondaryScintYield(G4double input_avalancheField)
+G4double DDMRootManager::CalculateSecondaryScintYield(Double_t input_avalancheField)
 {
 	// Y/p (photons electron^-1 cm ^-1 bar^-1) = 81 E/p (kV cm^-1 bar^-1) - 47
 	
@@ -242,7 +242,7 @@ G4double DDMRootManager::CalculateSecondaryScintYield(G4double input_avalancheFi
 	return scintYield;
 }
 
-G4double DDMRootManager::CalculateSigmaT(G4double input_time, G4double input_mu, G4double input_T)
+G4double DDMRootManager::CalculateSigmaT(Double_t input_time, Double_t input_mu, Double_t input_T)
 {
 	G4double transverseD = input_mu*input_T*k_Boltzmann/(-electron_charge);
 	
@@ -250,7 +250,7 @@ G4double DDMRootManager::CalculateSigmaT(G4double input_time, G4double input_mu,
 	return sigmaTransverse;
 }
 
-G4double DDMRootManager::CalculateSigmaL(G4double input_time, G4double input_mu, G4double input_T)
+G4double DDMRootManager::CalculateSigmaL(Double_t input_time, Double_t input_mu, Double_t input_T)
 {
 	G4double longitudinalD = input_mu*input_T*k_Boltzmann/(-electron_charge);
 	
