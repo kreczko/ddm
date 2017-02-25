@@ -120,7 +120,8 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
  
   G4double argonDriftVelocity = root_manager->CalculateDriftVelocity();
  
-  G4out << "ScintYield = " << root_manager->CalculateSecondaryScintYield(avalancheE) << Gendl;
+  // print out scintillation yield
+  G4out << "ScintYield = " << root_manager->CalculateSecondaryScintYield(avalancheE) << G4endl;
 
   G4Material* argon_gas = new G4Material("Gaseous Argon", density=(argonPressure/atmosphere)*1.784*mg/cm3, nelements=1);
   argon_gas->AddElement(Ar, 100.*perCent);
