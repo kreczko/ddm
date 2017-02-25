@@ -223,7 +223,7 @@ G4double DDMRootManager::CalculateDriftVelocity()
 /*
 G4double DDMRootManager::CalculateSecondaryScintYield()
 {
-	
+	//  Y/p (photons electron^-1 cm ^-1 bar^-1) = 81 E/p (kV cm^-1 bar^-1) - 47
 }*/
 
 G4double DDMRootManager::CalculateSigmaT(G4double input_time, G4double input_mu, G4double input_T)
