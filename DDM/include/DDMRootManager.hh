@@ -31,6 +31,7 @@ class DDMRootManager
 		Int_t EventCounter_mng = -1;
 		Int_t ElectronCounter_mng = 0;
 		Int_t SecondaryScintCounter_mng = 0;
+		Double_t SecondaryScintYield_mng = 0;
 		Double_t DriftVelocity_mng = 0;
 		Double_t ElectricField_mng = 0;
 		Double_t Temperature_mng = 0;
