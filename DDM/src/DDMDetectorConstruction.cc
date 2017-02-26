@@ -85,8 +85,8 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
  
  // define electric field strength and temperature
  G4double E = 12.5*kilovolt/m;
- //G4double avalancheE = 1200.0*kilovolt/m; // set avalanche field (trial value for now)
- G4double avalancheE = 12.5*kilovolt/m;
+ G4double avalancheE = 1200.0*kilovolt/m; // set avalanche field (trial value for now)
+ //G4double avalancheE = 12.5*kilovolt/m;
  G4double temperature = 293.0*kelvin;
  
  // give root manager electric field strength and temperature
