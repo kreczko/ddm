@@ -217,7 +217,7 @@ void DDMRootManager::FillTree_RecoResults(Double_t input_tanphi, Double_t input_
 
 void DDMRootManager::FillHist_DirectScint(Double_t input_x, Double_t input_y, Int_t input_photonNum)
 {
-	directScint_hist->Fill(input_x, input_y, input_photonNum);
+	directScint_hist->Fill(input_x/m, input_y/m, input_photonNum);
 }
 
 G4double DDMRootManager::CalculateDriftVelocity()
