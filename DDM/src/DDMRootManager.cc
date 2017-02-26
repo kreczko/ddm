@@ -242,19 +242,17 @@ G4double DDMRootManager::CalculateSecondaryScintYield(Double_t input_avalancheFi
 {
 	// Y/p (photons electron^-1 cm ^-1 bar^-1) = 81 E/p (kV cm^-1 bar^-1) - 47
 	
-	G4double scintYield;
-	
 	G4double gasPressureBar = GasPressure_mng/bar;
 	G4double avalancheFieldPerCm = input_avalancheField/(kilovolt/cm);
 	
-	scintYield = gasPressureBar * (81.0 * (avalancheFieldPerCm/gasPressureBar) - 47.0);
+	SecondaryScintYield_mng = gasPressureBar * (81.0 * (avalancheFieldPerCm/gasPressureBar) - 47.0);
 	
 	if (avalancheFieldPerCm/gasPressureBar < 0.7 || avalancheFieldPerCm/gasPressureBar > 3.0)
 	{
 		G4cout << "WARNING: reduced field of " << avalancheFieldPerCm/gasPressureBar << " (kV/cm) out of linear range. Scintillation yield NOT reliable." << G4endl;
 	}
 	
-	return scintYield;
+	return SecondaryScintYield_mng;
 }
 
 G4double DDMRootManager::CalculateSigmaT(Double_t input_time, Double_t input_mu, Double_t input_T)
