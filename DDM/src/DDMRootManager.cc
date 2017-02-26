@@ -236,7 +236,7 @@ G4double DDMRootManager::CalculateSecondaryScintYield(Double_t input_avalancheFi
 	
 	if (avalancheFieldPerCm/gasPressureBar < 0.7 || avalancheFieldPerCm/gasPressureBar > 3.0)
 	{
-		G4cout << "WARNING: reduced field of" << avalancheFieldPerCm/gasPressureBar << " (kV/cm) out of linear range. Scintillation yield NOT reliable." << G4endl;
+		G4cout << "WARNING: reduced field of " << avalancheFieldPerCm/gasPressureBar << " (kV/cm) out of linear range. Scintillation yield NOT reliable." << G4endl;
 	}
 	
 	return scintYield;
