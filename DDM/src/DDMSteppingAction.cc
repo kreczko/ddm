@@ -192,7 +192,7 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       
       // ***** scintillation ************************************************************
       
-      G4double scintYield = root_manager->GetSecondaryScintYield();
+      G4int scintPhotons = root_manager->GetSecondaryScintYield();
       
       // *****  filling data  ************************************************************
       
@@ -205,7 +205,8 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       G4double recorded_time = final_time;
       G4double reconstructed_z = tankHeight - (timeToDrift*driftVelocity);
       
-      root_manager->FillHist_DirectScint(final_x, final_y, scintYield);
+      // pixellated view of photons
+      root_manager->FillHist_DirectScint(final_x, final_y, scintPhotons);
       
       // fill data to reconstruct track
       //root_manager->FillHist_RecoTrack(recorded_x, recorded_y, reconstructed_z);
