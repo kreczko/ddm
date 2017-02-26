@@ -232,7 +232,7 @@ G4double DDMRootManager::CalculateSecondaryScintYield(Double_t input_avalancheFi
 	G4double gasPressureBar = GasPressure_mng/bar;
 	G4double avalancheFieldPerCm = input_avalancheField/(kilovolt/cm);
 	
-	scintYield = gasPressureBar * (81.0 * avalancheFieldPerCm/gasPressureBar - 47.0);
+	scintYield = gasPressureBar * (81.0 * (avalancheFieldPerCm/gasPressureBar) - 47.0);
 	
 	if (avalancheFieldPerCm/gasPressureBar < 0.7 || avalancheFieldPerCm/gasPressureBar > 3.0)
 	{
