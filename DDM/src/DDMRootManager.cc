@@ -13,6 +13,7 @@ TGraph* recoTrackXZ_graph;
 TGraph* recoTrackYZ_graph;
 TGraph2D* recoTrack_graph;
 TGraph2D* electronGen_graph;
+TH2I* directScint_hist;
 
 void DDMRootManager::CreateRootManager(G4String filename)
 {
@@ -64,7 +65,7 @@ void DDMRootManager::InitialiseTrees()
 	electronGen_hist = new TH3I(electronGen_histname.str().c_str(), "Electron generation", 200, -1.0, 1.0, 200, -1.0, 1.0, 200, -1.0, 1.0);
 	*/
 	
-	// *****  reconstructed track information  *****************************
+	// *****  reconstructed track information (perfect detection)  *****************************
 	
 	// recoTrack_tree
 	stringstream recoTrack_treename;
@@ -113,6 +114,15 @@ void DDMRootManager::InitialiseTrees()
 	electronGen_graphname << "electronGen_G_" << EventCounter_mng;
 	electronGen_graph->SetTitle(electronGen_graphname.str().c_str());
 	electronGen_graph->SetName(electronGen_graphname.str().c_str());
+	
+	// ***** scintillation information *****************************************
+	
+	// directScint_hist
+	stringstream directScint_histname;
+	directScint_histname << "directScint_" << EventCounter_mng;
+	directScint_hist = new TH3I(directScint_histname.str().c_str(), "Scintillation photons", 200, -1.0, 1.0, 200, -1.0, 1.0);
+	
+	
 }
 
 void DDMRootManager::InitialiseResultsTree()
@@ -266,6 +276,7 @@ void DDMRootManager::FinaliseEvent()
 	//electronGen_hist->Write();
 	recoTrack_tree->Write();
 	//recoTrack_hist->Write();
+	directScint_hist->Write();
 	
 	
 	// linear fits
@@ -312,6 +323,7 @@ void DDMRootManager::FinaliseEvent()
 	delete recoTrackXZ_graph;
 	delete recoTrackYZ_graph;
 	delete recoTrack_graph;
+	delete directScint_hist;
 }
 
 Double_t DDMRootManager::CalculateTanThetaFromXZ(Double_t input_tanphi, Double_t input_tanalpha)
