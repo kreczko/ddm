@@ -87,7 +87,7 @@ class DDMRootManager
 		//void SetDriftVelocity(Double_t input) {DriftVelocity_mng = input;}
 		Double_t GetDriftVelocity() {return DriftVelocity_mng;}
 	
-		Double_t GetSecondaryScintYield_mng() {return SecondaryScintYield_mng;}
+		Double_t GetSecondaryScintYield() {return SecondaryScintYield_mng;}
 	
 		void SetTankHeight(Double_t input) {TankHeight_mng = input;}
 		Double_t GetTankHeight() {return TankHeight_mng;}
@@ -101,7 +101,7 @@ class DDMRootManager
 	
 		void InitialiseSecondaryScintCounter() {SecondaryScintCounter_mng = 0;}
 		void AddToSecondaryScintCounter(Int_t input) {SecondaryScintCounter_mng += input;}
-		Int_t GetSecondaryScintCounter_mng() {return SecondaryScintCounter_mng;}
+		Int_t GetSecondaryScintCounter() {return SecondaryScintCounter_mng;}
 	
 		/*void SetInitialMomentum(Double_t input_pabs, Double_t input_px, Double_t input_py, Double_t input_pz)
 											{InitialMomentum_mng[0] = input_pabs;
