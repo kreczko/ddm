@@ -217,6 +217,11 @@ void DDMRootManager::FillTree_RecoResults(Double_t input_tanphi, Double_t input_
 	recoResults_tree->Fill();
 }
 
+void DDMRootManager::FillHist_DirectScint(Double_t input_x, Double_t input_y, Double_t input_photonNum)
+{
+	directScint_hist->Fill(input_x, input_y, input_photonNum);
+}
+
 G4double DDMRootManager::CalculateDriftVelocity()
 {
 	G4cout << "Calculating drift velocity..." << G4endl;
