@@ -205,9 +205,9 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
         {
           G4double camera_x = final_x + (scintToCameraDistance*tan(photonTheta)*cos(photonPhi));
           G4double camera_y = final_y + (scintToCameraDistance*tan(photonTheta)*sin(photonPhi));
+                  
+          root_manager->FillHist_Camera(camera_x, camera_y);
         }
-        
-        root_manager->FillHist_Camera(final_x, final_y);
       }
       
       // *****  filling data  ************************************************************
