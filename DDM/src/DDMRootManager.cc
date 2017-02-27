@@ -14,6 +14,7 @@ TGraph* recoTrackYZ_graph;
 TGraph2D* recoTrack_graph;
 TGraph2D* electronGen_graph;
 TH2I* directScint_hist;
+TH2I* camera_hist;
 
 void DDMRootManager::CreateRootManager(G4String filename)
 {
@@ -121,6 +122,11 @@ void DDMRootManager::InitialiseTrees()
 	stringstream directScint_histname;
 	directScint_histname << "directScint_" << EventCounter_mng;
 	directScint_hist = new TH2I(directScint_histname.str().c_str(), "Scintillation photons", 200, -1.0, 1.0, 200, -1.0, 1.0);
+	
+	// camera_hist
+	stringstream camera_histname;
+	camera_histname << "camera_" << EventCounter_mng;
+	camera_hist = new TH2I(camera_histname.str().c_str(), "Camera image", 1000, -1.0, 1.0, 1000, -1.0, 1.0);
 }
 
 void DDMRootManager::InitialiseResultsTree()
@@ -220,6 +226,11 @@ void DDMRootManager::FillHist_DirectScint(Double_t input_x, Double_t input_y, In
 	directScint_hist->Fill(input_x/m, input_y/m, input_photonNum);
 }
 
+void DDMRootManager::FillHist_Camera(Double_t input_x, Double_t input_y)
+{
+	directScint_hist->Fill(input_x/m, input_y/m);
+}
+
 G4double DDMRootManager::CalculateDriftVelocity()
 {
 	G4cout << "Calculating drift velocity..." << G4endl;
@@ -278,6 +289,7 @@ void DDMRootManager::FinaliseEvent()
 	recoTrack_tree->Write();
 	//recoTrack_hist->Write();
 	directScint_hist->Write();
+	camera_hist->Write();
 	
 	
 	// linear fits
@@ -325,6 +337,7 @@ void DDMRootManager::FinaliseEvent()
 	delete recoTrackYZ_graph;
 	delete recoTrack_graph;
 	delete directScint_hist;
+	delete camera_hist;
 }
 
 Double_t DDMRootManager::CalculateTanThetaFromXZ(Double_t input_tanphi, Double_t input_tanalpha)
