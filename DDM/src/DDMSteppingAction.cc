@@ -172,7 +172,7 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       G4double final_y = initial_y;
       G4double final_z = tankHeight;
       
-      // *****  electron diffusion  ******************************************************
+      // *************************************  electron diffusion  ****************************************
       
       // calculate standard deviation for transerse diffusion
       G4double sigmaT = root_manager->CalculateSigmaT(timeToDrift,
