@@ -194,6 +194,22 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       
       G4int scintPhotons = root_manager->GetSecondaryScintYield();
       
+      G4double scintToCameraDistance = 0.5*m;
+      
+      for (G4int j=0; j < scintPhotons; j++)
+      {
+        G4double photonTheta = G4UniformRand()*M_PI;
+        G4double photonPhi = G4UniformRand()*2*M_PI;
+        
+        if (photonTheta < 0.5*M_PI)
+        {
+          G4double camera_x = final_x + (scintToCameraDistance*tan(photonTheta)*cos(photonPhi));
+          G4double camera_y = final_y + (scintToCameraDistance*tan(photonTheta)*sin(photonPhi));
+        }
+        
+        root_manager->FillHist_Camera(final_x, final_y);
+      }
+      
       // *****  filling data  ************************************************************
       
       // fill data
