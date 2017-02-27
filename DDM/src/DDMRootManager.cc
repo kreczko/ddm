@@ -289,13 +289,13 @@ void DDMRootManager::FinaliseEvent()
 	recoTrack_tree->Write();
 	//recoTrack_hist->Write();
 	directScint_hist->Write();
-	camera_hist->Write();
 	
 	// TLine test
-	TLine* testLine = new TLine(-0.5, -0.5, 0.5, 0.5);
+	TLine* testLine = new TLine(-0.5, 0.5, 0.5, -0.5);
 	testLine->SetLineColor(kRed);
-	testLine->Write();
-	delete testLine;
+
+	camera_hist->GetListOfFunctions()->Add(testLine)	
+	camera_hist->Write();
 	
 	// linear fits of each track projection
 	TFitResultPtr fitXY = recoTrackXY_graph->Fit("pol1", "S");
