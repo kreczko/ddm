@@ -295,7 +295,7 @@ void DDMRootManager::FinaliseEvent()
 	TFitResultPtr fitXZ = recoTrackXZ_graph->Fit("pol1", "S");
 	TFitResultPtr fitYZ = recoTrackYZ_graph->Fit("pol1", "S");
 	
-	// linear fit camera image
+	// linear fit of camera image
 	camera_hist->Fit("pol1", "S");
 	camera_hist->Write();
 	
