@@ -193,13 +193,13 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       // add Gaussian term to time
       final_time += ((G4RandGauss::shoot(0.0, sigmaL)*mm) / driftVelocity);
       
-      // ***** scintillation ************************************************************
+      // *************************************** scintillation ***********************************************
       
       G4int scintPhotons = root_manager->GetSecondaryScintYield();
       
       G4double scintToCameraDistance = 0.5*m;
       
-      // *****  filling data  ************************************************************
+      // **************************************  filling data  ***********************************************
       
       // fill data
       root_manager->FillTree_ElectronData(final_time, initial_x, initial_y);  // may need to change time input
