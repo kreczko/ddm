@@ -183,7 +183,7 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
                                                       root_manager->GetElectronMobility(),
                                                       root_manager->GetTemperature());
       
-      G4cout << "Sigma_T: " << sigmaT << G4endl;
+      //G4cout << "Sigma_T: " << sigmaT << G4endl;
       
       // add Gaussian terms to x and y coords
       final_x += G4RandGauss::shoot(0.0, sigmaT)*mm;
