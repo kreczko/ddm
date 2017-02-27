@@ -290,13 +290,12 @@ void DDMRootManager::FinaliseEvent()
 	//recoTrack_hist->Write();
 	directScint_hist->Write();
 	
-	
-	
-	// linear fits
+	// linear fits of each track projection
 	TFitResultPtr fitXY = recoTrackXY_graph->Fit("pol1", "S");
 	TFitResultPtr fitXZ = recoTrackXZ_graph->Fit("pol1", "S");
 	TFitResultPtr fitYZ = recoTrackYZ_graph->Fit("pol1", "S");
 	
+	// linear fit camera image
 	camera_hist->Fit("pol1", "S");
 	camera_hist->Write();
 	
