@@ -42,7 +42,7 @@ void DDMRootManager::InitialiseTrees()
 	
 	//c1 = new TCanvas("c1");
 	
-	// *****  true track information  *************************************
+	// ***********************************  true track information  *************************************
 	
 	// trueTrackTree
 	stringstream trueTrack_treename;
@@ -51,7 +51,7 @@ void DDMRootManager::InitialiseTrees()
 
 	trueTrack_tree -> Branch("trueTrack_branch",&TimeStepData_mng, "Time_ns/D:posx_m/D:posy_m/D:posz_m/D:IonisationEnergy_keV/D");
 	
-	// ***** electron information *****************************************
+	// *********************************** electron information *****************************************
 	
 	// electronData_tree
 	stringstream electronData_treename;
@@ -66,7 +66,7 @@ void DDMRootManager::InitialiseTrees()
 	electronGen_hist = new TH3I(electronGen_histname.str().c_str(), "Electron generation", 200, -1.0, 1.0, 200, -1.0, 1.0, 200, -1.0, 1.0);
 	*/
 	
-	// *****  reconstructed track information (perfect detection)  *****************************
+	// ***********************  reconstructed track information (perfect detection)  ********************
 	
 	// recoTrack_tree
 	stringstream recoTrack_treename;
@@ -116,7 +116,7 @@ void DDMRootManager::InitialiseTrees()
 	electronGen_graph->SetTitle(electronGen_graphname.str().c_str());
 	electronGen_graph->SetName(electronGen_graphname.str().c_str());
 	
-	// ***** scintillation information *****************************************
+	// *********************************** scintillation information ************************************
 	
 	// directScint_hist
 	stringstream directScint_histname;
