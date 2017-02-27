@@ -199,7 +199,7 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       for (G4int j = 0; j < scintPhotons; j++)
       {
         G4double photonTheta = G4UniformRand()*M_PI;
-        G4double photonPhi = G4UniformRand()*2*M_PI;
+        G4double photonPhi = G4UniformRand()*2.0*M_PI;
         
         if (photonTheta < 0.5*M_PI)
         {
