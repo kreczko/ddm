@@ -17,6 +17,7 @@
 #include <sstream>
 #include "TFitResult.h"
 #include "G4PhysicalConstants.hh"
+#include "TLine.h"
 
 using namespace std;
 
