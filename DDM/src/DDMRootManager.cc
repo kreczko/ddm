@@ -289,13 +289,16 @@ void DDMRootManager::FinaliseEvent()
 	recoTrack_tree->Write();
 	//recoTrack_hist->Write();
 	directScint_hist->Write();
-	camera_hist->Write();
+	
 	
 	
 	// linear fits
 	TFitResultPtr fitXY = recoTrackXY_graph->Fit("pol1", "S");
 	TFitResultPtr fitXZ = recoTrackXZ_graph->Fit("pol1", "S");
 	TFitResultPtr fitYZ = recoTrackYZ_graph->Fit("pol1", "S");
+	
+	camera_hist->Fit("pol1", "S");
+	camera_hist->Write();
 	
 	// fill results tree
 	Double_t tanThetaXZ = CalculateTanThetaFromXZ(fitXY->Parameter(1), fitXZ->Parameter(1));
