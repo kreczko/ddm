@@ -228,7 +228,7 @@ void DDMRootManager::FillHist_DirectScint(Double_t input_x, Double_t input_y, In
 
 void DDMRootManager::FillHist_Camera(Double_t input_x, Double_t input_y)
 {
-	directScint_hist->Fill(input_x/m, input_y/m);
+	camera_hist->Fill(input_x/m, input_y/m);
 }
 
 G4double DDMRootManager::CalculateDriftVelocity()
