@@ -66,6 +66,7 @@ class DDMRootManager
 		void FillTree_RecoResults(Double_t input_tanphi, Double_t input_tantheta_xz, Double_t input_tantheta_yz);
 		void FillGraph_ElectronGen(Double_t input_x, Double_t input_y, Double_t input_z);
 		void FillHist_DirectScint(Double_t input_x, Double_t input_y, Int_t input_photonNum);
+		void FillHist_Camera(Double_t input_x, Double_t input_y);
 	
 		void FinaliseEvent();
 		void CloseResultsTree();
