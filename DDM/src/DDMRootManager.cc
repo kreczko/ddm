@@ -294,7 +294,7 @@ void DDMRootManager::FinaliseEvent()
 	TLine* testLine = new TLine(-0.5, 0.5, 0.5, -0.5);
 	testLine->SetLineColor(kRed);
 
-	camera_hist->GetListOfFunctions()->Add(testLine)	
+	camera_hist->GetListOfFunctions()->Add(testLine);	
 	camera_hist->Write();
 	
 	// linear fits of each track projection
