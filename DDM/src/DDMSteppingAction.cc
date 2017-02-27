@@ -188,27 +188,15 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       // add Gaussian terms to x and y coords
       final_x += G4RandGauss::shoot(0.0, sigmaT)*mm;
       final_y += G4RandGauss::shoot(0.0, sigmaT)*mm;
-      final_z += G4RandGauss::shoot(0.0, sigmaL)*mm;
+      
+      // add Gaussian term to time
+      final_time += ((G4RandGauss::shoot(0.0, sigmaL)*mm) / driftVelocity);
       
       // ***** scintillation ************************************************************
       
       G4int scintPhotons = root_manager->GetSecondaryScintYield();
       
       G4double scintToCameraDistance = 0.5*m;
-      
-      for (G4int j = 0; j < scintPhotons; j++)
-      {
-        G4double photonTheta = G4UniformRand()*M_PI;
-        G4double photonPhi = G4UniformRand()*2.0*M_PI;
-        
-        if (photonTheta < 0.5*M_PI)
-        {
-          G4double camera_x = final_x + (scintToCameraDistance*tan(photonTheta)*cos(photonPhi));
-          G4double camera_y = final_y + (scintToCameraDistance*tan(photonTheta)*sin(photonPhi));
-                  
-          root_manager->FillHist_Camera(camera_x, camera_y);
-        }
-      }
       
       // *****  filling data  ************************************************************
       
@@ -223,6 +211,24 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       
       // pixellated view of photons
       root_manager->FillHist_DirectScint(final_x, final_y, scintPhotons);
+      
+      for (G4int j = 0; j < scintPhotons; j++)
+      {
+        G4double photonTheta = G4UniformRand()*M_PI;
+        G4double photonPhi = G4UniformRand()*2.0*M_PI;
+        
+        if (photonTheta < 0.5*M_PI)
+        {
+          G4double photonTravel_x = (scintToCameraDistance*tan(photonTheta)*cos(photonPhi));
+          G4double photonTravel_y = (scintToCameraDistance*tan(photonTheta)*sin(photonPhi));
+          
+          G4double camera_x = final_x + photonTravel_x;
+          G4double camera_y = final_y + photonTravel_y;
+          G4double camera_time = final_time + (sqrt(pow(photonTravel_x,2) + pow(photonTravel_y,2) + pow(scintToCameraDistance,2)) / c_light);
+                  
+          root_manager->FillHist_Camera(camera_x, camera_y);
+        }
+      }
       
       // fill data to reconstruct track
       //root_manager->FillHist_RecoTrack(recorded_x, recorded_y, reconstructed_z);
