@@ -196,7 +196,7 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       
       G4double scintToCameraDistance = 0.5*m;
       
-      for (G4int j=0; j < scintPhotons; j++)
+      for (G4int j = 0; j < scintPhotons; j++)
       {
         G4double photonTheta = G4UniformRand()*M_PI;
         G4double photonPhi = G4UniformRand()*2*M_PI;
