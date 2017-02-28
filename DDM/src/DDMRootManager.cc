@@ -336,8 +336,6 @@ void DDMRootManager::FinaliseEvent()
 	testLine->SetLineColor(kRed);
 	camera_hist->GetListOfFunctions()->Add(testLine);*/	
 	
-	camera_hist->Write();
-	
 	// linear fits of each track projection
 	TFitResultPtr fitXY = recoTrackXY_graph->Fit("pol1", "S");
 	TFitResultPtr fitXZ = recoTrackXZ_graph->Fit("pol1", "S");
@@ -376,6 +374,7 @@ void DDMRootManager::FinaliseEvent()
 	
 	// linear fit of camera histogram
 	FitCameraHist();
+	camera_hist->Write();
 	
 	delete trueTrack_tree;
 	delete electronData_tree;
