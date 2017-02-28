@@ -241,7 +241,7 @@ void DDMRootManager::FitCameraHist()
 	
 	fitCamera_graph->Set(SecondaryScintCounter_mng);
 	
-	G4int photonCut = 0;
+	G4int photonCut = camera_hist->GetMaximum()/4;
 	
 	G4int point = 0;
 	
