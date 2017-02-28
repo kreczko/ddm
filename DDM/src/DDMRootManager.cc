@@ -248,9 +248,9 @@ void DDMRootManager::FitCameraHist()
 	G4cout << "Camera histogram size: " << camera_hist->GetNbinsX() << "x" << camera_hist->GetNbinsY() << G4endl;
 
 	// loop through all bins
-	for(G4int binx = 0; binx < camera_hist->GetNbinsX(); binx++)
+	for(G4int binx = 1; binx <= camera_hist->GetNbinsX(); binx++)
 	{
-		for(G4int biny = 0; biny < camera_hist->GetNbinsY(); biny++)
+		for(G4int biny = 1; biny <= camera_hist->GetNbinsY(); biny++)
 		{
 			// find bin centre
 			G4double binCentreX = camera_hist->GetXaxis()->GetBinCenter(binx);
