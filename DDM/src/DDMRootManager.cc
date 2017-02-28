@@ -361,7 +361,7 @@ void DDMRootManager::FinaliseEvent()
 	
 	recoTrack_graph->Write();
 	
-	// fit camera histogram
+	// linear fit of camera histogram
 	FitCameraHist();
 	
 	delete trueTrack_tree;
