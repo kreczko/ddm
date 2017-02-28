@@ -230,7 +230,24 @@ void DDMRootManager::FillHist_Camera(Double_t input_x, Double_t input_y)
 {
 	camera_hist->Fill(input_x/m, input_y/m);
 }
+/*
+void DDMRootManager::FitCameraHist()
+{
+	TGraph* fitCamera_graph = new TGraph(1);
+	
+	fitCamera_graph->Set(ElectronCounter_mng);
+	fitCamera_graph->SetPoint(ElectronCounter_mng - 1, input_x/m, input_y/m, input_z/m);
 
+	for()
+	{
+		camera_hist->GetBinContent();
+	}
+	
+	cameraPlot_graph->Fill();
+	
+	delete cameraPlot_graph;
+}
+*/
 G4double DDMRootManager::CalculateDriftVelocity()
 {
 	G4cout << "Calculating drift velocity..." << G4endl;
