@@ -395,7 +395,7 @@ void DDMRootManager::FinaliseEvent()
 	delete recoTrack_graph;
 	delete directScint_hist;
 	delete camera_hist;
-	delete cameraFitLine;
+	//delete cameraFitLine;
 }
 
 Double_t DDMRootManager::CalculateTanThetaFromXZ(Double_t input_tanphi, Double_t input_tanalpha)
