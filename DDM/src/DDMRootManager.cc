@@ -17,6 +17,8 @@ TH2I* directScint_hist;
 TH2I* camera_hist;
 TLine* cameraFitLine;
 
+TGraph* fitCamera_graph;
+
 void DDMRootManager::CreateRootManager(G4String filename)
 {
 	the_root_manager = new DDMRootManager(filename);
@@ -234,7 +236,8 @@ void DDMRootManager::FillHist_Camera(Double_t input_x, Double_t input_y)
 
 void DDMRootManager::FitCameraHist()
 {
-	TGraph* fitCamera_graph = new TGraph(1);
+	//TGraph* fitCamera_graph = new TGraph(1);
+	fitCamera_graph = new TGraph(1);
 	
 	fitCamera_graph->Set(SecondaryScintCounter_mng);
 	
@@ -271,7 +274,7 @@ void DDMRootManager::FitCameraHist()
 	camera_hist->GetListOfFunctions()->Add(cameraFitLine);
 	PrintToScreen("Fit line drawn onto camera image.");
 
-	delete fitCamera_graph;
+	//delete fitCamera_graph;
 	
 	//G4cout << "Fit of camera image complete." << G4endl;
 }
@@ -378,6 +381,9 @@ void DDMRootManager::FinaliseEvent()
 	
 	// linear fit of camera histogram
 	FitCameraHist();
+	
+	fitCamera_graph->Write();
+	
 	camera_hist->Write();
 	
 	delete trueTrack_tree;
@@ -393,6 +399,8 @@ void DDMRootManager::FinaliseEvent()
 	delete directScint_hist;
 	delete camera_hist;
 	//delete cameraFitLine;
+	
+	delete fitCamera_graph;
 }
 
 Double_t DDMRootManager::CalculateTanThetaFromXZ(Double_t input_tanphi, Double_t input_tanalpha)
