@@ -254,8 +254,8 @@ void DDMRootManager::FitCameraHist()
 		}
 	}
 
-	cameraPlot_graph->Fit("pol1", "S");
-	
+	//cameraPlot_graph->Fit("pol1", "S");
+
 	delete cameraPlot_graph;
 }
 
