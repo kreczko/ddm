@@ -258,8 +258,11 @@ void DDMRootManager::FitCameraHist()
 	
 	G4double start_x = -1.0;
 	G4double start_y = (start_x*cameraFit->Parameter(1)) + cameraFit->Parameter(0);
+	G4cout << "Starting point of fit line: " << start_x << ", " << start_y << G4endl;
+	
 	G4double end_x = 1.0;
 	G4double end_y = (end_x*cameraFit->Parameter(1)) + cameraFit->Parameter(0);
+	G4cout << "Ending point of fit line: " << end_x << ", " << end_y << G4endl;
 	
 	TLine* fitLine = new TLine(start_x, start_y, end_x, end_y);
 	fitLine->SetLineColor(kRed);
