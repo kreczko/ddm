@@ -260,11 +260,6 @@ void DDMRootManager::FitCameraHist()
 			{
 				for(G4int photonPerBin = 0; photonPerBin < camera_hist->GetBinContent(binx, biny); photonPerBin++)
 				{	
-					//G4double smearedBinCentreX = G4RandGauss::shoot(binCentreX, 0.001);
-					//G4double smearedBinCentreY = G4RandGauss::shoot(binCentreY, 0.001);
-					
-					//fitCamera_graph->SetPoint(point, smearedBinCentreX, smearedBinCentreY);
-					
 					fitCamera_graph->SetPoint(point, binCentreX, binCentreY);
 					point++;
 				}
