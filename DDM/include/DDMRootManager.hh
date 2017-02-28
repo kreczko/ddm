@@ -18,6 +18,7 @@
 #include "TFitResult.h"
 #include "G4PhysicalConstants.hh"
 #include "TLine.h"
+#include "Randomize.hh"
 
 using namespace std;
 
