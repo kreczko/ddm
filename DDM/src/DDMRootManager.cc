@@ -230,24 +230,35 @@ void DDMRootManager::FillHist_Camera(Double_t input_x, Double_t input_y)
 {
 	camera_hist->Fill(input_x/m, input_y/m);
 }
-/*
+
 void DDMRootManager::FitCameraHist()
 {
 	TGraph* fitCamera_graph = new TGraph(1);
 	
-	fitCamera_graph->Set(ElectronCounter_mng);
-	fitCamera_graph->SetPoint(ElectronCounter_mng - 1, input_x/m, input_y/m, input_z/m);
-
-	for()
-	{
-		camera_hist->GetBinContent();
-	}
+	fitCamera_graph->Set(SecondaryScintCounter_mng);
 	
-	cameraPlot_graph->Fill();
+	G4int point = 0;
+
+	for(G4int binx = 0; binx < fitCamera_graph->GetNBinsX; binx++)
+	{
+		for(G4int biny = 0; biny < fitCamera_graph->GetNBinsY; biny++)
+		{
+			for(G4int photonPerBin = 0; photonPerBin < fitCamera_graph->GetBinContent(binx, biny); photonPerBin++)
+			{
+				G4double binCentreX = fitCamera_graph->GetXaxis()->GetBinCenter(fitCamera_graph->GetXaxis()->FindBin(binx));
+				G4double binCentreY = fitCamera_graph->GetYaxis()->GetBinCenter(fitCamera_graph->GetYaxis()->FindBin(biny));
+				
+				fitCamera_graph->SetPoint(point, binCentreX, binCentreY);
+				point++;
+			}
+		}
+	}
+
+	cameraPlot_graph->Fit("pol1", "S");
 	
 	delete cameraPlot_graph;
 }
-*/
+
 G4double DDMRootManager::CalculateDriftVelocity()
 {
 	G4cout << "Calculating drift velocity..." << G4endl;
