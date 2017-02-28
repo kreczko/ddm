@@ -241,6 +241,8 @@ void DDMRootManager::FitCameraHist()
 	
 	fitCamera_graph->Set(SecondaryScintCounter_mng);
 	
+	G4int photonCut = 10;
+	
 	G4int point = 0;
 	
 	G4cout << "Camera histogram size: " << camera_hist->GetNbinsX() << "x" << camera_hist->GetNbinsY() << G4endl;
@@ -254,10 +256,13 @@ void DDMRootManager::FitCameraHist()
 			G4double binCentreX = camera_hist->GetXaxis()->GetBinCenter(binx);
 			G4double binCentreY = camera_hist->GetYaxis()->GetBinCenter(biny);
 			
-			for(G4int photonPerBin = 0; photonPerBin < camera_hist->GetBinContent(binx, biny); photonPerBin++)
-			{	
-				fitCamera_graph->SetPoint(point, binCentreX, binCentreY);
-				point++;
+			if (camera_hist->GetBinContent(binx, biny) > photonCut)
+			{
+				for(G4int photonPerBin = 0; photonPerBin < camera_hist->GetBinContent(binx, biny); photonPerBin++)
+				{	
+					fitCamera_graph->SetPoint(point, binCentreX, binCentreY);
+					point++;
+				}
 			}
 		}
 	}
