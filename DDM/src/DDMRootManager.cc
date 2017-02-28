@@ -249,8 +249,8 @@ void DDMRootManager::FitCameraHist()
 		for(G4int biny = 0; biny < camera_hist->GetNbinsY(); biny++)
 		{
 			// find bin centre
-			G4double binCentreX = camera_hist->GetXaxis()->GetBinCenter(camera_hist->GetXaxis()->FindBin(binx));
-			G4double binCentreY = camera_hist->GetYaxis()->GetBinCenter(camera_hist->GetYaxis()->FindBin(biny));
+			G4double binCentreX = camera_hist->ProjectionX()->GetBinCenter(binx);
+			G4double binCentreY = camera_hist->ProjectionY()->GetBinCenter(biny);
 			
 			for(G4int photonPerBin = 0; photonPerBin < camera_hist->GetBinContent(binx, biny); photonPerBin++)
 			{	
