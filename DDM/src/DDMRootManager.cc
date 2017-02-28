@@ -361,6 +361,9 @@ void DDMRootManager::FinaliseEvent()
 	
 	recoTrack_graph->Write();
 	
+	// fit camera histogram
+	FitCameraHist();
+	
 	delete trueTrack_tree;
 	delete electronData_tree;
 	//delete electronGen_hist;
