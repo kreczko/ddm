@@ -271,6 +271,8 @@ void DDMRootManager::FitCameraHist()
 
 	delete fitCamera_graph;
 	delete fitLine;
+	
+	G4cout << "Fit of camera image complete." << G4endl;
 }
 
 G4double DDMRootManager::CalculateDriftVelocity()
