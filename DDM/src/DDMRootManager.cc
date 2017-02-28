@@ -267,12 +267,13 @@ void DDMRootManager::FitCameraHist()
 	G4cout << "Ending point of fit line: " << end_x << ", " << end_y << G4endl;
 	
 	cameraFitLine = new TLine(start_x, start_y, end_x, end_y);
-	//cameraFitLine->SetLineColor(kRed);
-	//camera_hist->GetListOfFunctions()->Add(cameraFitLine);
+	cameraFitLine->SetLineColor(kRed);
+	camera_hist->GetListOfFunctions()->Add(cameraFitLine);
+	PrintToScreen("Fit line drawn onto camera image.");
 
 	delete fitCamera_graph;
 	
-	G4cout << "Fit of camera image complete." << G4endl;
+	//G4cout << "Fit of camera image complete." << G4endl;
 }
 
 G4double DDMRootManager::CalculateDriftVelocity()
@@ -377,10 +378,6 @@ void DDMRootManager::FinaliseEvent()
 	
 	// linear fit of camera histogram
 	FitCameraHist();
-	
-	cameraFitLine->SetLineColor(kRed);
-	camera_hist->GetListOfFunctions()->Add(cameraFitLine);
-	PrintToScreen("Fit line drawn onto camera image.");
 	camera_hist->Write();
 	
 	delete trueTrack_tree;
