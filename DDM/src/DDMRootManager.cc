@@ -239,9 +239,9 @@ void DDMRootManager::FitCameraHist()
 	
 	G4int point = 0;
 
-	for(G4int binx = 0; binx < camera_hist->GetNBinsX(); binx++)
+	for(G4int binx = 0; binx < camera_hist->GetNbinsX(); binx++)
 	{
-		for(G4int biny = 0; biny < camera_hist->GetNBinsY(); biny++)
+		for(G4int biny = 0; biny < camera_hist->GetNbinsY(); biny++)
 		{
 			for(G4int photonPerBin = 0; photonPerBin < camera_hist->GetBinContent(binx, biny); photonPerBin++)
 			{
