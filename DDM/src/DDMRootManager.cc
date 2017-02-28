@@ -267,8 +267,8 @@ void DDMRootManager::FitCameraHist()
 	G4cout << "Ending point of fit line: " << end_x << ", " << end_y << G4endl;
 	
 	cameraFitLine = new TLine(start_x, start_y, end_x, end_y);
-	cameraFitLine->SetLineColor(kRed);
-	camera_hist->GetListOfFunctions()->Add(cameraFitLine);
+	//cameraFitLine->SetLineColor(kRed);
+	//camera_hist->GetListOfFunctions()->Add(cameraFitLine);
 
 	delete fitCamera_graph;
 	
@@ -377,6 +377,9 @@ void DDMRootManager::FinaliseEvent()
 	
 	// linear fit of camera histogram
 	FitCameraHist();
+	
+	cameraFitLine->SetLineColor(kRed);
+	camera_hist->GetListOfFunctions()->Add(cameraFitLine);
 	camera_hist->Write();
 	
 	delete trueTrack_tree;
