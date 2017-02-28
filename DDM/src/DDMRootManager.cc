@@ -242,6 +242,8 @@ void DDMRootManager::FitCameraHist()
 	fitCamera_graph->Set(SecondaryScintCounter_mng);
 	
 	G4int point = 0;
+	
+	G4cout << "Camera histogram size: " << camera_hist->GetNbinsX() << "x" << camera_hist->GetNbinsY() << G4endl;
 
 	// loop through all bins
 	for(G4int binx = 0; binx < camera_hist->GetNbinsX(); binx++)
