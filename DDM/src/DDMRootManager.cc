@@ -241,7 +241,7 @@ void DDMRootManager::FitCameraHist()
 	
 	fitCamera_graph->Set(SecondaryScintCounter_mng);
 	
-	G4int photonCut = 2;
+	G4int photonCut = 0;
 	
 	G4int point = 0;
 	
@@ -260,7 +260,12 @@ void DDMRootManager::FitCameraHist()
 			{
 				for(G4int photonPerBin = 0; photonPerBin < camera_hist->GetBinContent(binx, biny); photonPerBin++)
 				{	
-					fitCamera_graph->SetPoint(point, binCentreX, binCentreY);
+					G4double smearedBinCentreX = G4RandGauss::shoot(binCentreX, 0.001);
+					G4double smearedBinCentreY = G4RandGauss::shoot(binCentreY, 0.001);
+					
+					fitCamera_graph->SetPoint(point, smearedBinCentreX, smearedBinCentreY);
+					
+					//fitCamera_graph->SetPoint(point, binCentreX, binCentreY);
 					point++;
 				}
 			}
