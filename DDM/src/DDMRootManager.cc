@@ -254,9 +254,19 @@ void DDMRootManager::FitCameraHist()
 		}
 	}
 
-	fitCamera_graph->Fit("pol1", "S");
+	TFitResultPtr cameraFit = fitCamera_graph->Fit("pol1", "S");
+	
+	G4double start_x = -1.0;
+	G4double start_y = (start_x*cameraFit->Parameter(1)) + cameraFit->Parameter(0);
+	G4double end_x = 1.0;
+	G4double end_y = (end_x*cameraFit->Parameter(1)) + cameraFit->Parameter(0);
+	
+	TLine* fitLine = new TLine(start_x, start_y, end_x, end_y);
+	fitLine->SetLineColor(kRed);
+	camera_hist->GetListOfFunctions()->Add(fitLine);
 
 	delete fitCamera_graph;
+	delete fitLine;
 }
 
 G4double DDMRootManager::CalculateDriftVelocity()
@@ -319,10 +329,10 @@ void DDMRootManager::FinaliseEvent()
 	directScint_hist->Write();
 	
 	// TLine test
-	TLine* testLine = new TLine(-0.5, 0.5, 0.5, -0.5);
+	/*TLine* testLine = new TLine(-0.5, 0.5, 0.5, -0.5);
 	testLine->SetLineColor(kRed);
-
-	camera_hist->GetListOfFunctions()->Add(testLine);	
+	camera_hist->GetListOfFunctions()->Add(testLine);*/	
+	
 	camera_hist->Write();
 	
 	// linear fits of each track projection
