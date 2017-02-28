@@ -15,6 +15,7 @@ TGraph2D* recoTrack_graph;
 TGraph2D* electronGen_graph;
 TH2I* directScint_hist;
 TH2I* camera_hist;
+TLine* cameraFitLine;
 
 void DDMRootManager::CreateRootManager(G4String filename)
 {
@@ -265,12 +266,11 @@ void DDMRootManager::FitCameraHist()
 	G4double end_y = (end_x*cameraFit->Parameter(1)) + cameraFit->Parameter(0);
 	G4cout << "Ending point of fit line: " << end_x << ", " << end_y << G4endl;
 	
-	TLine* fitLine = new TLine(start_x, start_y, end_x, end_y);
-	fitLine->SetLineColor(kRed);
-	camera_hist->GetListOfFunctions()->Add(fitLine);
+	cameraFitLine = new TLine(start_x, start_y, end_x, end_y);
+	cameraFitLine->SetLineColor(kRed);
+	camera_hist->GetListOfFunctions()->Add(cameraFitLine);
 
 	delete fitCamera_graph;
-	delete fitLine;
 	
 	G4cout << "Fit of camera image complete." << G4endl;
 }
@@ -391,6 +391,7 @@ void DDMRootManager::FinaliseEvent()
 	delete recoTrack_graph;
 	delete directScint_hist;
 	delete camera_hist;
+	delete cameraFitLine;
 }
 
 Double_t DDMRootManager::CalculateTanThetaFromXZ(Double_t input_tanphi, Double_t input_tanalpha)
