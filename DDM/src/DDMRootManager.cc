@@ -380,6 +380,7 @@ void DDMRootManager::FinaliseEvent()
 	
 	cameraFitLine->SetLineColor(kRed);
 	camera_hist->GetListOfFunctions()->Add(cameraFitLine);
+	PrintToScreen("Fit line drawn onto camera image.");
 	camera_hist->Write();
 	
 	delete trueTrack_tree;
