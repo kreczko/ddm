@@ -239,6 +239,7 @@ void DDMRootManager::FitCameraHist()
 	
 	G4int point = 0;
 
+	// loop through all bins
 	for(G4int binx = 0; binx < camera_hist->GetNbinsX(); binx++)
 	{
 		for(G4int biny = 0; biny < camera_hist->GetNbinsY(); biny++)
