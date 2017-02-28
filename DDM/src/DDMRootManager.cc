@@ -239,14 +239,14 @@ void DDMRootManager::FitCameraHist()
 	
 	G4int point = 0;
 
-	for(G4int binx = 0; binx < fitCamera_graph->GetNBinsX; binx++)
+	for(G4int binx = 0; binx < camera_hist->GetNBinsX; binx++)
 	{
-		for(G4int biny = 0; biny < fitCamera_graph->GetNBinsY; biny++)
+		for(G4int biny = 0; biny < camera_hist->GetNBinsY; biny++)
 		{
 			for(G4int photonPerBin = 0; photonPerBin < fitCamera_graph->GetBinContent(binx, biny); photonPerBin++)
 			{
-				G4double binCentreX = fitCamera_graph->GetXaxis()->GetBinCenter(fitCamera_graph->GetXaxis()->FindBin(binx));
-				G4double binCentreY = fitCamera_graph->GetYaxis()->GetBinCenter(fitCamera_graph->GetYaxis()->FindBin(biny));
+				G4double binCentreX = camera_hist->GetXaxis()->GetBinCenter(camera_hist->GetXaxis()->FindBin(binx));
+				G4double binCentreY = camera_hist->GetYaxis()->GetBinCenter(camera_hist->GetYaxis()->FindBin(biny));
 				
 				fitCamera_graph->SetPoint(point, binCentreX, binCentreY);
 				point++;
@@ -256,7 +256,7 @@ void DDMRootManager::FitCameraHist()
 
 	//cameraPlot_graph->Fit("pol1", "S");
 
-	delete cameraPlot_graph;
+	delete fitCamera_graph;
 }
 
 G4double DDMRootManager::CalculateDriftVelocity()
