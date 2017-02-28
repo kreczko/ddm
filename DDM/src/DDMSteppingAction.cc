@@ -195,8 +195,10 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       
       // **************************************** scintillation ********************************************
       
+      // calculate number of scint photons per electron
       G4int scintPhotons = root_manager->GetSecondaryScintYield();
       
+      // add number of scint photons to root manager counter
       root_manager->AddToSecondaryScintCounter(scintPhotons);
       
       G4double scintToCameraDistance = 0.5*m;
