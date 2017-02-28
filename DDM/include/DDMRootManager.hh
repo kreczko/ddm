@@ -68,6 +68,7 @@ class DDMRootManager
 		void FillGraph_ElectronGen(Double_t input_x, Double_t input_y, Double_t input_z);
 		void FillHist_DirectScint(Double_t input_x, Double_t input_y, Int_t input_photonNum);
 		void FillHist_Camera(Double_t input_x, Double_t input_y);
+		void FitCameraHist();
 	
 		void FinaliseEvent();
 		void CloseResultsTree();
