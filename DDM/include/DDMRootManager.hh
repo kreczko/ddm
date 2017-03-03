@@ -44,6 +44,7 @@ class DDMRootManager
 		Bool_t IsFirstStep_mng = false;
 		Double_t TrueTheta_mng = 0;
 		Double_t TruePhi_mng = 0;
+		Double_t CameraTanPhi_mng = 0;
 		
 	public:
 		static void CreateRootManager(G4String filename);
