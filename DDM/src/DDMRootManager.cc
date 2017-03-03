@@ -212,7 +212,7 @@ void DDMRootManager::FillGraph_RecoTrack(Double_t input_x, Double_t input_y, Dou
 	recoTrack_graph->SetPoint(ElectronCounter_mng - 1, input_x/m, input_y/m, input_z/m);
 }
 
-void DDMRootManager::FillTree_RecoResults(Double_t input_tanphi, Double_t input_tantheta_xz, Double_t input_tantheta_yz, input_tanphi_scint)
+void DDMRootManager::FillTree_RecoResults(Double_t input_tanphi, Double_t input_tantheta_xz, Double_t input_tantheta_yz, Double_t input_tanphi_scint)
 {
 	RecoResults_mng[0] = EventCounter_mng;
 	RecoResults_mng[1] = TruePhi_mng;
