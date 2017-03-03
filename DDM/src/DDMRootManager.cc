@@ -36,6 +36,12 @@ void DDMRootManager::DestroyRootManager()
 
 DDMRootManager::DDMRootManager(G4String filename)
 {
+	if (filename == "[dynamic]")
+	{
+		stringstream filename_stream;
+		filename_stream << "ddm_N" << eventCounter_mng << "_p" << GasPressure_mng << "_E" << ElectricField_mng << ".root";
+		filename = filename_stream.str();
+	}
 	root_file = new TFile(filename.c_str(),"RECREATE");
 }
 
