@@ -65,7 +65,7 @@ class DDMRootManager
 		void FillGraph_RecoTrackXZ(Double_t input_x, Double_t input_z);
 		void FillGraph_RecoTrackYZ(Double_t input_y, Double_t input_z);
 		void FillGraph_RecoTrack(Double_t input_x, Double_t input_y, Double_t input_z);
-		void FillTree_RecoResults(Double_t input_tanphi, Double_t input_tantheta_xz, Double_t input_tantheta_yz);
+		void FillTree_RecoResults(Double_t input_tanphi, Double_t input_tantheta_xz, Double_t input_tantheta_yz, Double_t input_tanphi_scint);
 		void FillGraph_ElectronGen(Double_t input_x, Double_t input_y, Double_t input_z);
 		void FillHist_DirectScint(Double_t input_x, Double_t input_y, Int_t input_photonNum);
 		void FillHist_Camera(Double_t input_x, Double_t input_y);
