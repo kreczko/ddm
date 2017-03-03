@@ -201,7 +201,9 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       // add number of scint photons to root manager counter
       root_manager->AddToSecondaryScintCounter(scintPhotons);
       
-      G4double scintToCameraDistance = 0.5*m;
+      // set distance to camera
+      G4double scintToCameraDistance = 2.0*m;
+      //G4double scintToCameraDistance = 0.5*m;
       
       // ***************************************  filling data  ********************************************
       
