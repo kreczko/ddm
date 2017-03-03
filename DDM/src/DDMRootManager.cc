@@ -18,6 +18,7 @@ TH2I* camera_hist;
 TLine* cameraFitLine;
 
 TGraph* fitCamera_graph;
+TFitResultPtr cameraFit;
 
 void DDMRootManager::CreateRootManager(G4String filename)
 {
@@ -275,7 +276,7 @@ void DDMRootManager::FitCameraHist()
 	}
 
 	// linear fit of graph
-	TFitResultPtr cameraFit = fitCamera_graph->Fit("pol1", "S");
+	cameraFit = fitCamera_graph->Fit("pol1", "S");
 
 	G4double start_x = -1.0;
 	G4double start_y = (start_x*cameraFit->Parameter(1)) + cameraFit->Parameter(0);
