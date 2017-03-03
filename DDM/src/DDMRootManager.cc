@@ -259,6 +259,7 @@ void DDMRootManager::FitCameraHist()
 			// check number of entries in bin is more than the cut
 			if (camera_hist->GetBinContent(binx, biny) > photonCut)
 			{
+				// plot a point at bin centre for each photon in bin
 				for(G4int photonPerBin = 0; photonPerBin < camera_hist->GetBinContent(binx, biny); photonPerBin++)
 				{	
 					fitCamera_graph->SetPoint(point, binCentreX, binCentreY);
@@ -268,8 +269,9 @@ void DDMRootManager::FitCameraHist()
 		}
 	}
 
+	// linear fit of graph
 	TFitResultPtr cameraFit = fitCamera_graph->Fit("pol1", "S");
-	
+
 	G4double start_x = -1.0;
 	G4double start_y = (start_x*cameraFit->Parameter(1)) + cameraFit->Parameter(0);
 	G4cout << "Starting point of fit line: " << start_x << ", " << start_y << G4endl;
@@ -278,6 +280,7 @@ void DDMRootManager::FitCameraHist()
 	G4double end_y = (end_x*cameraFit->Parameter(1)) + cameraFit->Parameter(0);
 	G4cout << "Ending point of fit line: " << end_x << ", " << end_y << G4endl;
 	
+	// overlay fit onto camera histogram
 	cameraFitLine = new TLine(start_x, start_y, end_x, end_y);
 	cameraFitLine->SetLineColor(kRed);
 	camera_hist->GetListOfFunctions()->Add(cameraFitLine);
