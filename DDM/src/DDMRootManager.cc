@@ -135,8 +135,11 @@ void DDMRootManager::InitialiseTrees()
 void DDMRootManager::InitialiseResultsTree()
 {
 	recoResults_tree = new TTree("recoResults", "recoResults");
+	//recoResults_tree -> Branch("recoResults_branch",&RecoResults_mng,
+				   //"EventNo/D:phi_true/D:theta_true/D:tanphi/D:phi/D:tantheta_xz/D:theta_xz/D:tantheta_yz/D:theta_yz/D");
+	
 	recoResults_tree -> Branch("recoResults_branch",&RecoResults_mng,
-				   "EventNo/D:phi_true/D:theta_true/D:tanphi/D:phi/D:tantheta_xz/D:theta_xz/D:tantheta_yz/D:theta_yz/D");
+				   "EventNo/D:phi_true/D:theta_true/D:tanphi/D:phi/D:tantheta_xz/D:theta_xz/D:tantheta_yz/D:theta_yz/D:tanphi_scint/D:phi_scint/D");
 }
 
 void DDMRootManager::FillTree_TimeStepData(Double_t input_time, Double_t input_x, Double_t input_y, Double_t input_z, Double_t input_energy)
@@ -209,7 +212,7 @@ void DDMRootManager::FillGraph_RecoTrack(Double_t input_x, Double_t input_y, Dou
 	recoTrack_graph->SetPoint(ElectronCounter_mng - 1, input_x/m, input_y/m, input_z/m);
 }
 
-void DDMRootManager::FillTree_RecoResults(Double_t input_tanphi, Double_t input_tantheta_xz, Double_t input_tantheta_yz)
+void DDMRootManager::FillTree_RecoResults(Double_t input_tanphi, Double_t input_tantheta_xz, Double_t input_tantheta_yz, input_tanphi_scint)
 {
 	RecoResults_mng[0] = EventCounter_mng;
 	RecoResults_mng[1] = TruePhi_mng;
@@ -220,6 +223,8 @@ void DDMRootManager::FillTree_RecoResults(Double_t input_tanphi, Double_t input_
 	RecoResults_mng[6] = atan(input_tantheta_xz);
 	RecoResults_mng[7] = input_tantheta_yz;
 	RecoResults_mng[8] = atan(input_tantheta_yz);
+	RecoResults_mng[9] = input_tanphi_scint;
+	RecoResults_mng[10] = atan(input_tanphi_scint);
 	
 	recoResults_tree->Fill();
 }
@@ -366,7 +371,8 @@ void DDMRootManager::FinaliseEvent()
 	Double_t tanThetaXZ = CalculateTanThetaFromXZ(fitXY->Parameter(1), fitXZ->Parameter(1));
 	Double_t tanThetaYZ = CalculateTanThetaFromYZ(fitXY->Parameter(1), fitYZ->Parameter(1));
 	
-	FillTree_RecoResults(fitXY->Parameter(1), tanThetaXZ, tanThetaYZ);
+	//FillTree_RecoResults(fitXY->Parameter(1), tanThetaXZ, tanThetaYZ);
+	FillTree_RecoResults(fitXY->Parameter(1), tanThetaXZ, tanThetaYZ, cameraFit->Parameter(1));
 	
 	// label recoTrack_graph axes
 	recoTrack_graph->GetXaxis()->SetTitle("x (m)");
