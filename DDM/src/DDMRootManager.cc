@@ -252,10 +252,11 @@ void DDMRootManager::FitCameraHist()
 	{
 		for(G4int biny = 1; biny <= camera_hist->GetNbinsY(); biny++)
 		{
-			// find bin centre
+			// find bin centres
 			G4double binCentreX = camera_hist->GetXaxis()->GetBinCenter(binx);
 			G4double binCentreY = camera_hist->GetYaxis()->GetBinCenter(biny);
 			
+			// check number of entries in bin is more than the cut
 			if (camera_hist->GetBinContent(binx, biny) > photonCut)
 			{
 				for(G4int photonPerBin = 0; photonPerBin < camera_hist->GetBinContent(binx, biny); photonPerBin++)
