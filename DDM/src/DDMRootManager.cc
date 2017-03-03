@@ -277,6 +277,7 @@ void DDMRootManager::FitCameraHist()
 	// linear fit of graph
 	TFitResultPtr cameraFit = fitCamera_graph->Fit("pol1", "S");
 	CameraTanPhi_mng = cameraFit->Parameter(1);
+	G4cout << "CameraTanPhi_mng in FitCamera = " << CameraTanPhi_mng << G4endl;
 
 	G4double start_x = -1.0;
 	G4double start_y = (start_x*cameraFit->Parameter(1)) + cameraFit->Parameter(0);
@@ -373,7 +374,7 @@ void DDMRootManager::FinaliseEvent()
 	Double_t tanThetaYZ = CalculateTanThetaFromYZ(fitXY->Parameter(1), fitYZ->Parameter(1));
 	
 	//FillTree_RecoResults(fitXY->Parameter(1), tanThetaXZ, tanThetaYZ);
-	G4cout << "CameraTanPhi_mng = " << CameraTanPhi_mng << G4endl;
+	G4cout << "CameraTanPhi_mng in Finalise events = " << CameraTanPhi_mng << G4endl;
 	FillTree_RecoResults(fitXY->Parameter(1), tanThetaXZ, tanThetaYZ, CameraTanPhi_mng);
 	
 	// label recoTrack_graph axes
