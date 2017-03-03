@@ -373,10 +373,6 @@ void DDMRootManager::FinaliseEvent()
 	Double_t tanThetaXZ = CalculateTanThetaFromXZ(fitXY->Parameter(1), fitXZ->Parameter(1));
 	Double_t tanThetaYZ = CalculateTanThetaFromYZ(fitXY->Parameter(1), fitYZ->Parameter(1));
 	
-	//FillTree_RecoResults(fitXY->Parameter(1), tanThetaXZ, tanThetaYZ);
-	G4cout << "CameraTanPhi_mng in Finalise events = " << CameraTanPhi_mng << G4endl;
-	FillTree_RecoResults(fitXY->Parameter(1), tanThetaXZ, tanThetaYZ, CameraTanPhi_mng);
-	
 	// label recoTrack_graph axes
 	recoTrack_graph->GetXaxis()->SetTitle("x (m)");
 	recoTrack_graph->GetYaxis()->SetTitle("y (m)");
@@ -406,6 +402,10 @@ void DDMRootManager::FinaliseEvent()
 	fitCamera_graph->Write();
 	
 	camera_hist->Write();
+	
+	//FillTree_RecoResults(fitXY->Parameter(1), tanThetaXZ, tanThetaYZ);
+	G4cout << "CameraTanPhi_mng in Finalise events = " << CameraTanPhi_mng << G4endl;
+	FillTree_RecoResults(fitXY->Parameter(1), tanThetaXZ, tanThetaYZ, CameraTanPhi_mng);
 	
 	delete trueTrack_tree;
 	delete electronData_tree;
