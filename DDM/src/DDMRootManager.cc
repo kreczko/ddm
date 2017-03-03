@@ -372,7 +372,7 @@ void DDMRootManager::FinaliseEvent()
 	Double_t tanThetaXZ = CalculateTanThetaFromXZ(fitXY->Parameter(1), fitXZ->Parameter(1));
 	Double_t tanThetaYZ = CalculateTanThetaFromYZ(fitXY->Parameter(1), fitYZ->Parameter(1));
 	
-	G4cout << "parameter = " << cameraFit->Parameter(1) << << G4endl;
+	G4cout << "parameter = " << cameraFit->Parameter(1) << G4endl;
 	
 	//FillTree_RecoResults(fitXY->Parameter(1), tanThetaXZ, tanThetaYZ);
 	//FillTree_RecoResults(fitXY->Parameter(1), tanThetaXZ, tanThetaYZ, cameraFit->Parameter(1));
