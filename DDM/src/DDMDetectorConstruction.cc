@@ -115,8 +115,8 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
 //
   G4Element* Ar = new G4Element("Argon", "Ar", z=18, a=39.95*g/mole);
  
-  G4double argonPressure = 0.1*atmosphere; // pressure in atmospheres
-  //G4double argonPressure = 0.001*atmosphere; // pressure in atmospheres
+  //G4double argonPressure = 0.1*atmosphere; // pressure in atmospheres
+  G4double argonPressure = 0.001*atmosphere; // pressure in atmospheres
   root_manager->SetGasPressure(argonPressure);
  
   G4double argonDriftVelocity = root_manager->CalculateDriftVelocity();
