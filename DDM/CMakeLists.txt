@@ -65,6 +65,7 @@ set(DDM_SCRIPTS
     vis.mac
     testProton.mac
     testArgon.mac
+    testParticle.mac
   )
 
 foreach(_script ${DDM_SCRIPTS})
