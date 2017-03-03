@@ -276,18 +276,21 @@ void DDMRootManager::FitCameraHist()
 
 	// linear fit of graph
 	TFitResultPtr cameraFit = fitCamera_graph->Fit("pol1", "S");
+	
+	// put fit gradient into ROOT manager variable
 	CameraTanPhi_mng = cameraFit->Parameter(1);
-	G4cout << "CameraTanPhi_mng in FitCamera = " << CameraTanPhi_mng << G4endl;
 
+	// calculate start point for fit line
 	G4double start_x = -1.0;
 	G4double start_y = (start_x*cameraFit->Parameter(1)) + cameraFit->Parameter(0);
 	G4cout << "Starting point of fit line: " << start_x << ", " << start_y << G4endl;
 	
+	// calculate end point for fit line
 	G4double end_x = 1.0;
 	G4double end_y = (end_x*cameraFit->Parameter(1)) + cameraFit->Parameter(0);
 	G4cout << "Ending point of fit line: " << end_x << ", " << end_y << G4endl;
 	
-	// overlay fit onto camera histogram
+	// overlay fit line onto camera histogram
 	cameraFitLine = new TLine(start_x, start_y, end_x, end_y);
 	cameraFitLine->SetLineColor(kRed);
 	camera_hist->GetListOfFunctions()->Add(cameraFitLine);
@@ -367,9 +370,7 @@ void DDMRootManager::FinaliseEvent()
 	TFitResultPtr fitXZ = recoTrackXZ_graph->Fit("pol1", "S");
 	TFitResultPtr fitYZ = recoTrackYZ_graph->Fit("pol1", "S");
 	
-	
-	
-	// fill results tree
+	// calculate tan(theta) from the fits of XZ and YZ projections
 	Double_t tanThetaXZ = CalculateTanThetaFromXZ(fitXY->Parameter(1), fitXZ->Parameter(1));
 	Double_t tanThetaYZ = CalculateTanThetaFromYZ(fitXY->Parameter(1), fitYZ->Parameter(1));
 	
@@ -404,7 +405,8 @@ void DDMRootManager::FinaliseEvent()
 	camera_hist->Write();
 	
 	//FillTree_RecoResults(fitXY->Parameter(1), tanThetaXZ, tanThetaYZ);
-	G4cout << "CameraTanPhi_mng in Finalise events = " << CameraTanPhi_mng << G4endl;
+	
+	// fill results tree
 	FillTree_RecoResults(fitXY->Parameter(1), tanThetaXZ, tanThetaYZ, CameraTanPhi_mng);
 	
 	delete trueTrack_tree;
