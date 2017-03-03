@@ -39,7 +39,7 @@ class DDMRootManager
 		Double_t Temperature_mng = 0;
 		Double_t GasPressure_mng = 0;
 		Double_t TankHeight_mng = 0;
-		Double_t RecoResults_mng[9] = {0};
+		Double_t RecoResults_mng[11] = {0};
 		//Double_t InitialMomentum_mng[4] = {0};
 		Bool_t IsFirstStep_mng = false;
 		Double_t TrueTheta_mng = 0;
