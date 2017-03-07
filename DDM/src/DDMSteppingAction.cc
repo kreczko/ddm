@@ -205,8 +205,8 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       G4double scintToCameraDistance = 0.5*m;
       
       G4double lensRadius = 85.0*mm;
-      G4double lensCentreX = 0.0*mm
-      G4double lensCentreY = 0.0*mm
+      G4double lensCentreX = 0.0*mm;
+      G4double lensCentreY = 0.0*mm;
       
       // ***************************************  filling data  ********************************************
       
