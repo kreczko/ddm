@@ -45,6 +45,9 @@ class DDMRootManager
 		Double_t TrueTheta_mng = 0;
 		Double_t TruePhi_mng = 0;
 		Double_t CameraTanPhi_mng = 0;
+	
+		// CLA flags:
+		Bool_t PressureCLAFlag_mng = false;
 		
 	public:
 		static void CreateRootManager(G4String filename);
@@ -52,6 +55,8 @@ class DDMRootManager
 		static void DestroyRootManager();
 
 		DDMRootManager(G4String filename);
+	
+		void CreateOutputFile(G4string filename);
 
 		void InitialiseTrees();// Add more trees as arguments if desired.
 		void InitialiseResultsTree();
@@ -133,6 +138,9 @@ class DDMRootManager
 	
 		void SetGasPressure(Double_t input){GasPressure_mng = input;}
 		Double_t GetGasPressure(){return GasPressure_mng;}
+	
+		Bool_t PressureIsCLA() {return PressureCLAFlag_mng;}
+		void FlagPressureAsCLA() {PressureCLAFlag_mng = true;}
 
 		~DDMRootManager();
 };
