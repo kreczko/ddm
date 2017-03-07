@@ -45,6 +45,7 @@ class DDMRootManager
 		Double_t TrueTheta_mng = 0;
 		Double_t TruePhi_mng = 0;
 		Double_t CameraTanPhi_mng = 0;
+		Int_t NumOfPixels_mng = 1000;
 	
 		// CLA flags:
 		Bool_t PressureCLAFlag_mng = false;
