@@ -50,11 +50,11 @@ class DDMRootManager
 		Bool_t PressureCLAFlag_mng = false;
 		
 	public:
-		static void CreateRootManager(G4String filename);
+		static void CreateRootManager();
 		static DDMRootManager* GetRootManager();
 		static void DestroyRootManager();
 
-		DDMRootManager(G4String filename);
+		DDMRootManager();
 	
 		void CreateOutputFile(G4String filename);
 
