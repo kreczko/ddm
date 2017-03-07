@@ -56,7 +56,7 @@ class DDMRootManager
 
 		DDMRootManager(G4String filename);
 	
-		void CreateOutputFile(G4string filename);
+		void CreateOutputFile(G4String filename);
 
 		void InitialiseTrees();// Add more trees as arguments if desired.
 		void InitialiseResultsTree();
