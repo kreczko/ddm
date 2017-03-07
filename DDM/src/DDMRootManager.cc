@@ -45,7 +45,7 @@ DDMRootManager::DDMRootManager()
 	root_file = new TFile(filename.c_str(),"RECREATE");*/
 }
 
-void DDMRootManager::CreateOutputFile(G4string filename)
+void DDMRootManager::CreateOutputFile(G4String filename)
 {
 	if (filename == "[dynamic]")
 	{
