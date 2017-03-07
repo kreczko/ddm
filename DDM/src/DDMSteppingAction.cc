@@ -237,9 +237,10 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
           G4double camera_y = final_y + photonTravel_y;
           G4double camera_time = final_time + (sqrt(pow(photonTravel_x,2) + pow(photonTravel_y,2) + pow(scintToCameraDistance,2)) / c_light);
                   
-          if(pow(camera_x - lensCentreX, 2.0) + pow(camera_y - lensCentreY, 2.0) < pow(lensRadius, 2.0))
+          if(pow(camera_x - lensCentreX, 2.0) + pow(camera_y - lensCentreY, 2.0) <= pow(lensRadius, 2.0))
           {
             root_manager->FillHist_Camera(camera_x, camera_y);
+            //root_manager->FillHist_Camera(camera_x, camera_y);
           }
         }
       }
