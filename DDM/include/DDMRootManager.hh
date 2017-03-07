@@ -27,24 +27,35 @@ class DDMRootManager
 	private:
 		TFile* root_file;
 		// Define _mng variables/arrays as needed.
+	
+		// arrays for filling data
 		Double_t TimeStepData_mng[5] = {0};
 		Double_t ElectronData_mng[3] = {0};
 		Double_t RecoData_mng[4] = {0};
-		Int_t EventCounter_mng = -1;
-		Int_t ElectronCounter_mng = 0;
-		Int_t SecondaryScintCounter_mng = 0;
-		Double_t SecondaryScintYield_mng = 0;
+		Double_t RecoResults_mng[11] = {0};
+	
+		// detector construction information
 		Double_t DriftVelocity_mng = 0;
 		Double_t ElectricField_mng = 0;
 		Double_t Temperature_mng = 0;
 		Double_t GasPressure_mng = 0;
 		Double_t TankHeight_mng = 0;
-		Double_t RecoResults_mng[11] = {0};
+	
+		// counters / yields
+		Int_t EventCounter_mng = -1;
+		Int_t ElectronCounter_mng = 0;
+		Int_t SecondaryScintCounter_mng = 0;
+		Double_t SecondaryScintYield_mng = 0;
 		//Double_t InitialMomentum_mng[4] = {0};
+	
 		Bool_t IsFirstStep_mng = false;
+	
+		// trajectory angles
 		Double_t TrueTheta_mng = 0;
 		Double_t TruePhi_mng = 0;
 		Double_t CameraTanPhi_mng = 0;
+	
+		// camera variables
 		Int_t NumOfPixels_mng = 1000;
 	
 		// CLA flags:
