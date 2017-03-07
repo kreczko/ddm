@@ -204,6 +204,10 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       // set distance to camera
       G4double scintToCameraDistance = 0.5*m;
       
+      G4double lensRadius = 85.0*mm;
+      G4double lensCentreX = 0.0*mm
+      G4double lensCentreY = 0.0*mm
+      
       // ***************************************  filling data  ********************************************
       
       // fill data
@@ -233,7 +237,10 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
           G4double camera_y = final_y + photonTravel_y;
           G4double camera_time = final_time + (sqrt(pow(photonTravel_x,2) + pow(photonTravel_y,2) + pow(scintToCameraDistance,2)) / c_light);
                   
-          root_manager->FillHist_Camera(camera_x, camera_y);
+          if(pow(camera_x - lensCentreX, 2.0) + pow(camera_y - lensCentreY, 2.0) < pow(lensRadius, 2.0))
+          {
+            root_manager->FillHist_Camera(camera_x, camera_y);
+          }
         }
       }
       
