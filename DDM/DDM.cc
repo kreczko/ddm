@@ -60,7 +60,7 @@
 namespace {
   void PrintUsage() {
     G4cerr << " Usage: " << G4endl;
-    G4cerr << " DDM [-m macro ] [-u UIsession] [-t nThreads] [-r seed] "
+    G4cerr << " DDM [-m macro ] [-u UIsession] [-t nThreads] [-r seed] [-pressure gasPressure]"
            << G4endl;
     G4cerr << "   note: -t option is available only for multi-threaded mode."
            << G4endl;
@@ -73,7 +73,7 @@ int main(int argc,char** argv)
 {
   // Evaluate arguments
   //
-  if ( argc > 9 ) {
+  if ( argc > 11 ) {
     PrintUsage();
     return 1;
   }
@@ -94,6 +94,8 @@ int main(int argc,char** argv)
                     nThreads = G4UIcommand::ConvertToInt(argv[i+1]);
     }
 #endif
+    // DDM-specific CLAs:
+    else if   ( G4String(argv[i]) == "-pressure" ) {}
     else {
       PrintUsage();
       return 1;
