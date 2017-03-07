@@ -19,7 +19,7 @@ TLine* cameraFitLine;
 
 TGraph* fitCamera_graph;
 
-void DDMRootManager::CreateRootManager(G4String filename)
+void DDMRootManager::CreateRootManager()
 {
 	the_root_manager = new DDMRootManager();
 }
