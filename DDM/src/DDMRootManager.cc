@@ -252,7 +252,7 @@ void DDMRootManager::FitCameraHist()
 	
 	fitCamera_graph->Set(SecondaryScintCounter_mng);
 	
-	G4int photonCut = camera_hist->GetMaximum()/4;
+	//G4int photonCut = camera_hist->GetMaximum()/4;
 	
 	G4int point = 0;
 	
@@ -268,15 +268,15 @@ void DDMRootManager::FitCameraHist()
 			G4double binCentreY = camera_hist->GetYaxis()->GetBinCenter(biny);
 			
 			// check number of entries in bin is more than the cut
-			if (camera_hist->GetBinContent(binx, biny) > photonCut)
-			{
+			//if (camera_hist->GetBinContent(binx, biny) > photonCut)
+			//{
 				// plot a point at bin centre for each photon in bin
 				for(G4int photonPerBin = 0; photonPerBin < camera_hist->GetBinContent(binx, biny); photonPerBin++)
 				{	
 					fitCamera_graph->SetPoint(point, binCentreX, binCentreY);
 					point++;
 				}
-			}
+			//}
 		}
 	}
 
