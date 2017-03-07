@@ -239,7 +239,7 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
                   
           if(pow(camera_x - lensCentreX, 2.0) + pow(camera_y - lensCentreY, 2.0) <= pow(lensRadius, 2.0))
           {
-            root_manager->FillHist_Camera(camera_x, camera_y);
+            root_manager->FillHist_Camera(final_x, final_y);
             //root_manager->FillHist_Camera(camera_x, camera_y);
           }
         }
