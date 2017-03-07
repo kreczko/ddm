@@ -104,8 +104,9 @@ int main(int argc,char** argv)
   
   // Set up root manager
   //
-  DDMRootManager::CreateRootManager("[dynamic]");
+  DDMRootManager::CreateRootManager();
   DDMRootManager* root_manager = DDMRootManager::GetRootManager();
+  root_manager->CreateOutputFile("[dynamic]");
   
   // initialise recoResults_tree
   root_manager->InitialiseResultsTree();
