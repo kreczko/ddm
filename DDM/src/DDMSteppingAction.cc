@@ -205,10 +205,14 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       G4double scintToCameraDistance = 0.5*m;
       
       // set lens radius and (x,y) position
+      G4double lensRadius = root_manager->GetLensRadius();
+      G4double lensCentreX = root_manager->GetLensCentreX();
+      G4double lensCentreY = root_manager->GetLensCentreY();
+      /*
       G4double lensRadius = 85.0*mm;
       G4double lensCentreX = 0.0*mm;
       G4double lensCentreY = 0.0*mm;
-      
+      */
       // ***************************************  filling data  ********************************************
       
       // fill data
@@ -257,6 +261,9 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
   }
   
   //G4cout << "TrackID: " << track->GetTrackID() << G4endl;
+  G4cout << "lens radius = " << root_manager->GetLensRadius() << G4endl;
+  G4cout << "lens centreX = " << root_manager->GetLensCentreX() << G4endl;
+  G4cout << "lens centreY = " << root_manager->GetLensCentreY() << G4endl;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
