@@ -218,6 +218,8 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       // pixellated view of photons
       root_manager->FillHist_DirectScint(final_x, final_y, scintPhotons);
       
+      
+      // propagation of photons to lens
       for (G4int j = 0; j < scintPhotons; j++)
       {
         G4double photonTheta = G4UniformRand()*M_PI;
