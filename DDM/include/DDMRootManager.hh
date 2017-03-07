@@ -57,6 +57,9 @@ class DDMRootManager
 	
 		// camera variables
 		Int_t NumOfPixels_mng = 1000;
+		Double_t LensRadius_mng = 85.0*mm;
+		Double_t LensCentreX_mng = 0.0*mm;
+		Double_t LensCentreY_mng = 0.0*mm;
 	
 		// CLA flags:
 		Bool_t PressureCLAFlag_mng = false;
@@ -153,6 +156,11 @@ class DDMRootManager
 	
 		Bool_t PressureIsCLA() {return PressureCLAFlag_mng;}
 		void FlagPressureAsCLA() {PressureCLAFlag_mng = true;}
+	
+		// functions for camera settings
+		Double_t GetLensRadius() {return LensRadius_mng;}
+		Double_t GetLensCentreX() {return LensCentreX_mng;}
+		Double_t GetLensCentreY() {return LensCentreY_mng;}
 
 		~DDMRootManager();
 };
