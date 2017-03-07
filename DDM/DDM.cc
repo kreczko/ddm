@@ -71,6 +71,11 @@ namespace {
 
 int main(int argc,char** argv)
 {
+  // Set up root manager
+  //
+  DDMRootManager::CreateRootManager();
+  DDMRootManager* root_manager = DDMRootManager::GetRootManager();
+  
   // Evaluate arguments
   //
   if ( argc > 11 ) {
@@ -95,17 +100,14 @@ int main(int argc,char** argv)
     }
 #endif
     // DDM-specific CLAs:
-    else if   ( G4String(argv[i]) == "-pressure" ) {}
+    else if   ( G4String(argv[i]) == "-pressure" ) {root_manager->FlagPressureAsCLA(); root_manager->SetGasPressure(atof[i+1]);}
     else {
       PrintUsage();
       return 1;
     }
   }
   
-  // Set up root manager
-  //
-  DDMRootManager::CreateRootManager();
-  DDMRootManager* root_manager = DDMRootManager::GetRootManager();
+  // initialise output file
   root_manager->CreateOutputFile("[dynamic]");
   
   // initialise recoResults_tree
