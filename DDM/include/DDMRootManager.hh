@@ -60,7 +60,7 @@ class DDMRootManager
 		Double_t LensRadius_mng = 85.0*mm;
 		Double_t LensCentreX_mng = 0.0*mm;
 		Double_t LensCentreY_mng = 0.0*mm;
-		//Double_t ScintToLensDistance_mng = 0.5*m;
+		Double_t ScintToLensDistance_mng = 0.5*m;
 	
 		// CLA flags:
 		Bool_t PressureCLAFlag_mng = false;
@@ -162,7 +162,7 @@ class DDMRootManager
 		Double_t GetLensRadius() {return LensRadius_mng;}
 		Double_t GetLensCentreX() {return LensCentreX_mng;}
 		Double_t GetLensCentreY() {return LensCentreY_mng;}
-		//Double_t GetScintToLensDistance() {return ScintToLensDistance_mng;}
+		Double_t GetScintToLensDistance() {return ScintToLensDistance_mng;}
 
 		~DDMRootManager();
 };
