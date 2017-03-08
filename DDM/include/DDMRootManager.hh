@@ -57,10 +57,18 @@ class DDMRootManager
 	
 		// camera variables
 		Int_t CameraResolution_mng = 1000;
+	
 		Double_t LensRadius_mng = 85.0*mm;
 		Double_t LensCentreX_mng = 0.0*mm;
 		Double_t LensCentreY_mng = 0.0*mm;
 		Double_t ScintToLensDistance_mng = 0.5*m;
+		Double_t LensMag_mng = 1.0;
+	
+		Double_t SensorX_mng = LensRadius_mng;
+		Double_t SensorEffectiveX_mng = SensorX_mng/LensMag_mng;
+		Double_t SensorY_mng = LensRadius_mng;
+		Double_t SensorEffectiveY_mng = SensorY_mng/LensMag_mng;
+		
 	
 		// CLA flags:
 		Bool_t PressureCLAFlag_mng = false;
