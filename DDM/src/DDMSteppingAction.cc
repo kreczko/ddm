@@ -201,8 +201,9 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       // add number of scint photons to root manager counter
       root_manager->AddToSecondaryScintCounter(scintPhotons);
       
-      // set distance to camera (may change to lens later?)
-      G4double scintToCameraDistance = 0.5*m;
+      // get distance to lens
+      G4double scintToLensDistance = root_manager->GetScintToLensDistance();
+      //G4double scintToCameraDistance = 0.5*m;
       
       // get lens radius and (x,y) position
       G4double lensRadius = root_manager->GetLensRadius();
@@ -235,12 +236,12 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
         
         if (photonTheta < 0.5*M_PI)
         {
-          G4double photonTravel_x = (scintToCameraDistance*tan(photonTheta)*cos(photonPhi));
-          G4double photonTravel_y = (scintToCameraDistance*tan(photonTheta)*sin(photonPhi));
+          G4double photonTravel_x = (scintToLensDistance*tan(photonTheta)*cos(photonPhi));
+          G4double photonTravel_y = (scintToLensDistance*tan(photonTheta)*sin(photonPhi));
           
           G4double camera_x = final_x + photonTravel_x;
           G4double camera_y = final_y + photonTravel_y;
-          G4double camera_time = final_time + (sqrt(pow(photonTravel_x, 2.0) + pow(photonTravel_y, 2.0) + pow(scintToCameraDistance, 2.0)) / c_light);
+          G4double camera_time = final_time + (sqrt(pow(photonTravel_x, 2.0) + pow(photonTravel_y, 2.0) + pow(scintToLensDistance, 2.0)) / c_light);
                   
           if(pow(camera_x - lensCentreX, 2.0) + pow(camera_y - lensCentreY, 2.0) <= pow(lensRadius, 2.0))
           {
@@ -264,6 +265,7 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
   //G4cout << "lens radius = " << root_manager->GetLensRadius() << G4endl;
   //G4cout << "lens centreX = " << root_manager->GetLensCentreX() << G4endl;
   //G4cout << "lens centreY = " << root_manager->GetLensCentreY() << G4endl;
+  G4cout << "scint to lens distance = " << root_manager->GetScintToLensDistance() << G4endl;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
