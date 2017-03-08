@@ -4,6 +4,6 @@
 /gun/particle proton
 /gun/energy 100 MeV
 #
-/gun/position 0 0 0 m
-/gun/direction 1 0 0
+/gun/position -1 -1 -1 m
+/gun/direction 1 1 1
 /run/beamOn 1
