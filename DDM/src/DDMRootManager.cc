@@ -1,4 +1,5 @@
 #include "DDMRootManager.hh"
+#include <TStyle.h>
 
 DDMRootManager* the_root_manager;
 TTree* trueTrack_tree;
