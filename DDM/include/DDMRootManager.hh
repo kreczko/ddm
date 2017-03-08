@@ -60,6 +60,7 @@ class DDMRootManager
 		Double_t LensRadius_mng = 85.0*mm;
 		Double_t LensCentreX_mng = 0.0*mm;
 		Double_t LensCentreY_mng = 0.0*mm;
+		//Double_t ScintToLensDistance = 0.5*m;
 	
 		// CLA flags:
 		Bool_t PressureCLAFlag_mng = false;
