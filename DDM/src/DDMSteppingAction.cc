@@ -265,7 +265,7 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
   //G4cout << "lens radius = " << root_manager->GetLensRadius() << G4endl;
   //G4cout << "lens centreX = " << root_manager->GetLensCentreX() << G4endl;
   //G4cout << "lens centreY = " << root_manager->GetLensCentreY() << G4endl;
-  G4cout << "scint to lens distance = " << root_manager->GetScintToLensDistance() << G4endl;
+  //G4cout << "scint to lens distance = " << root_manager->GetScintToLensDistance() << G4endl;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
