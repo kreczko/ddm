@@ -1,5 +1,4 @@
 #include "DDMRootManager.hh"
-#include <TStyle.h>
 
 DDMRootManager* the_root_manager;
 TTree* trueTrack_tree;
@@ -150,7 +149,6 @@ void DDMRootManager::InitialiseTrees()
 	camera_hist = new TH2I(camera_histname.str().c_str(), "Camera image",
 			       CameraResolution_mng, -SensorEffectiveX_mng/m, SensorEffectiveX_mng/m,
 			       CameraResolution_mng, -SensorEffectiveY_mng/m, SensorEffectiveY_mng/m);
-	gStyle->SetOptStat(kFALSE);
 	//camera_hist = new TH2I(camera_histname.str().c_str(), "Camera image", 1000, -1.0, 1.0, 1000, -1.0, 1.0);
 }
 
