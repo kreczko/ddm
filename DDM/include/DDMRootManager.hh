@@ -62,7 +62,7 @@ class DDMRootManager
 		Double_t LensCentreX_mng = 0.0*mm;
 		Double_t LensCentreY_mng = 0.0*mm;
 		Double_t ScintToLensDistance_mng = 0.5*m;
-		Double_t LensMag_mng = 1.0;
+		Double_t LensMag_mng = 2.0;
 	
 		Double_t SensorX_mng = LensRadius_mng;
 		Double_t SensorEffectiveX_mng = SensorX_mng/LensMag_mng;
