@@ -50,7 +50,7 @@ void DDMRootManager::CreateOutputFile(G4String filename)
 	if (filename == "[dynamic]")
 	{
 		stringstream filename_stream;
-		filename_stream << "ddm_p" << GasPressure_mng << ".root";
+		filename_stream << "ddm_p" << GasPressure_mng/atmosphere << ".root";
 		filename = filename_stream.str();
 	}
 	root_file = new TFile(filename.c_str(),"RECREATE");
