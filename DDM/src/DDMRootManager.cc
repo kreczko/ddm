@@ -429,6 +429,9 @@ void DDMRootManager::FinaliseEvent()
 	// fill results tree
 	FillTree_RecoResults(fitXY->Parameter(1), tanThetaXZ, tanThetaYZ, CameraTanPhi_mng);
 	
+	G4cout << "skewness x = " << camera_hist->GetSkewness(1) << G4endl;
+	G4cout << "skewness y = " << camera_hist->GetSkewness(2) << G4endl;
+	
 	delete trueTrack_tree;
 	delete electronData_tree;
 	//delete electronGen_hist;
