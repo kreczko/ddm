@@ -100,7 +100,7 @@ int main(int argc,char** argv)
     }
 #endif
     // DDM-specific CLAs:
-    else if   ( G4String(argv[i]) == "-pressure" ) {root_manager->FlagPressureAsCLA(); root_manager->SetGasPressure(atof[i+1]*atm);}
+    else if   ( G4String(argv[i]) == "-pressure" ) {root_manager->FlagPressureAsCLA(); root_manager->SetGasPressure(atof(argv[i+1])*atmosphere);}
     else {
       PrintUsage();
       return 1;
