@@ -56,7 +56,7 @@ class DDMRootManager
 		Double_t CameraTanPhi_mng = 0;
 	
 		// camera variables
-		Int_t NumOfPixels_mng = 1000;
+		Int_t CameraResolution_mng = 1000;
 		Double_t LensRadius_mng = 85.0*mm;
 		Double_t LensCentreX_mng = 0.0*mm;
 		Double_t LensCentreY_mng = 0.0*mm;
