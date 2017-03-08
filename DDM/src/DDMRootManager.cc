@@ -148,7 +148,7 @@ void DDMRootManager::InitialiseTrees()
 	camera_histname << "camera_" << EventCounter_mng;
 	camera_hist = new TH2I(camera_histname.str().c_str(), "Camera image",
 			       CameraResolution_mng, -SensorEffectiveX_mng, SensorEffectiveX_mng,
-			       CameraResolution_mng, -SensorEffectiveX_mng, SensorEffectiveX_mng);
+			       CameraResolution_mng, -SensorEffectiveY_mng, SensorEffectiveY_mng);
 	//camera_hist = new TH2I(camera_histname.str().c_str(), "Camera image", 1000, -1.0, 1.0, 1000, -1.0, 1.0);
 }
 
