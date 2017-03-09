@@ -408,6 +408,9 @@ void DDMRootManager::FinaliseEvent()
 	//recoTrack_hist->Write();
 	directScint_hist->Write();
 	
+	cameraProjectionX_hist->Write();
+	cameraProjectionY_hist->Write();
+	
 	// TLine test
 	/*TLine* testLine = new TLine(-0.5, 0.5, 0.5, -0.5);
 	testLine->SetLineColor(kRed);
