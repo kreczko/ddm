@@ -461,11 +461,11 @@ void DDMRootManager::FinaliseEvent()
 	G4cout << "skewness x = " << camera_hist->GetSkewness(1) << G4endl;
 	G4cout << "skewness y = " << camera_hist->GetSkewness(2) << G4endl;
 	
-	cameraProjectionX_hist = camera_hist->ProjectionX("projx", 1, CameraResolution_mng);
-	cameraProjectionY_hist = camera_hist->ProjectionY("projy", 1, CameraResolution_mng);
+	cameraProjectionX_hist = camera_hist->ProjectionX("Camera_projection_X", 1, CameraResolution_mng);
+	cameraProjectionY_hist = camera_hist->ProjectionY("Camera_projection_Y", 1, CameraResolution_mng);
 	
-	cameraProjectionX_hist->Write();
-	cameraProjectionY_hist->Write();
+	//cameraProjectionX_hist->Write();
+	//cameraProjectionY_hist->Write();
 	
 	delete trueTrack_tree;
 	delete electronData_tree;
