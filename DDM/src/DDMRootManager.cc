@@ -408,9 +408,6 @@ void DDMRootManager::FinaliseEvent()
 	//recoTrack_hist->Write();
 	directScint_hist->Write();
 	
-	cameraProjectionX_hist->Write();
-	cameraProjectionY_hist->Write();
-	
 	// TLine test
 	/*TLine* testLine = new TLine(-0.5, 0.5, 0.5, -0.5);
 	testLine->SetLineColor(kRed);
@@ -460,8 +457,15 @@ void DDMRootManager::FinaliseEvent()
 	// fill results tree
 	FillTree_RecoResults(fitXY->Parameter(1), tanThetaXZ, tanThetaYZ, CameraTanPhi_mng);
 	
+	// print skewness along x and skewness along y of camera image
 	G4cout << "skewness x = " << camera_hist->GetSkewness(1) << G4endl;
 	G4cout << "skewness y = " << camera_hist->GetSkewness(2) << G4endl;
+	
+	cameraProjectionX_hist = camera_hist->ProjectionX();
+	cameraProjectionY_hist = camera_hist->ProjectionY();
+	
+	cameraProjectionX_hist->Write();
+	cameraProjectionY_hist->Write();
 	
 	delete trueTrack_tree;
 	delete electronData_tree;
