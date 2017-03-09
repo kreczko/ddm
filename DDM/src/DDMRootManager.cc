@@ -68,7 +68,7 @@ void DDMRootManager::ReadParameterFile(G4String filename)
 		if (word == "Pressure:") 
 		{
 			parameterFile >> word;
-			SetGasPressure(atof(word));
+			SetGasPressure(atof(word)*atmosphere);
 		}
 	}
 }
