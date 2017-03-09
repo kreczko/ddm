@@ -63,6 +63,7 @@ set(DDM_SCRIPTS
     icons.mac
     run.png
     vis.mac
+    defaultParameters.txt
     testProton.mac
     testArgon.mac
     testParticle.mac
