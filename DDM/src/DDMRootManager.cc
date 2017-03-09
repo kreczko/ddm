@@ -56,6 +56,23 @@ void DDMRootManager::CreateOutputFile(G4String filename)
 	root_file = new TFile(filename.c_str(),"RECREATE");
 }
 
+void DDMRootManager::ReadParameterFile(G4String filename)
+{
+	ifstream parameterFile;
+	parameterFile.open(filename);
+	
+	G4String word;
+	
+	while (parameterFile >> word)
+	{
+		if (word == "Pressure:") 
+		{
+			parameterFile >> word;
+			SetGasPressure(atof(word));
+		}
+	}
+}
+
 void DDMRootManager::InitialiseTrees()
 {
 	EventCounter_mng++;
