@@ -106,12 +106,13 @@ int main(int argc,char** argv)
       return 1;
     }
   }
-  
-  // initialise output file
-  root_manager->CreateOutputFile("[dynamic]");
+ 
   
   // read in parameters from file
   root_manager->ReadParameterFile(parameterFile);
+  
+  // initialise output file
+  root_manager->CreateOutputFile("[dynamic]");
   
   // initialise recoResults_tree
   root_manager->InitialiseResultsTree();
