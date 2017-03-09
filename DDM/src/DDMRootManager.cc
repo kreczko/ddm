@@ -464,8 +464,8 @@ void DDMRootManager::FinaliseEvent()
 	cameraProjectionX_hist = camera_hist->ProjectionX("Camera_projection_X", 1, CameraResolution_mng);
 	cameraProjectionY_hist = camera_hist->ProjectionY("Camera_projection_Y", 1, CameraResolution_mng);
 	
-	cameraProjectionX_hist->Write();
-	cameraProjectionY_hist->Write();
+	//cameraProjectionX_hist->Write();
+	//cameraProjectionY_hist->Write();
 	
 	delete trueTrack_tree;
 	delete electronData_tree;
