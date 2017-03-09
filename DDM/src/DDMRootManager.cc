@@ -461,8 +461,8 @@ void DDMRootManager::FinaliseEvent()
 	G4cout << "skewness x = " << camera_hist->GetSkewness(1) << G4endl;
 	G4cout << "skewness y = " << camera_hist->GetSkewness(2) << G4endl;
 	
-	cameraProjectionX_hist = camera_hist->ProjectionX();
-	cameraProjectionY_hist = camera_hist->ProjectionY();
+	cameraProjectionX_hist = camera_hist->ProjectionX("projx", 1, nx);
+	cameraProjectionY_hist = camera_hist->ProjectionY("projy", 1, nx);
 	
 	cameraProjectionX_hist->Write();
 	cameraProjectionY_hist->Write();
