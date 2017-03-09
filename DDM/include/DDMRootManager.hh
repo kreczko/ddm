@@ -15,6 +15,7 @@
 #include "TGraph2D.h"
 //#include "TCanvas.h"
 #include <sstream>
+#include <fstream>
 #include "TFitResult.h"
 #include "G4PhysicalConstants.hh"
 #include "TLine.h"
@@ -69,9 +70,6 @@ class DDMRootManager
 		Double_t SensorY_mng = LensRadius_mng;
 		Double_t SensorEffectiveY_mng = SensorY_mng/LensMag_mng;
 		
-	
-		// CLA flags:
-		Bool_t PressureCLAFlag_mng = false;
 		
 	public:
 		static void CreateRootManager();
@@ -81,6 +79,7 @@ class DDMRootManager
 		DDMRootManager();
 	
 		void CreateOutputFile(G4String filename);
+		void ReadParameterFile(G4String filename);
 
 		void InitialiseTrees();// Add more trees as arguments if desired.
 		void InitialiseResultsTree();
@@ -162,9 +161,6 @@ class DDMRootManager
 	
 		void SetGasPressure(Double_t input){GasPressure_mng = input;}
 		Double_t GetGasPressure(){return GasPressure_mng;}
-	
-		Bool_t PressureIsCLA() {return PressureCLAFlag_mng;}
-		void FlagPressureAsCLA() {PressureCLAFlag_mng = true;}
 	
 		// functions for camera settings
 		Double_t GetLensRadius() {return LensRadius_mng;}
