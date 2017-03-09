@@ -19,8 +19,8 @@ TLine* cameraFitLine;
 
 TGraph* fitCamera_graph;
 
-TH1I* cameraProjectionX_hist;
-TH1I* cameraProjectionY_hist;
+TH1D* cameraProjectionX_hist;
+TH1D* cameraProjectionY_hist;
 
 void DDMRootManager::CreateRootManager()
 {
@@ -172,11 +172,11 @@ void DDMRootManager::InitialiseTrees()
 	//camera_hist = new TH2I(camera_histname.str().c_str(), "Camera image", 1000, -1.0, 1.0, 1000, -1.0, 1.0);
 	
 	// cameraProjectionX_hist
-	cameraProjectionX_hist = new TH1I("ProjectionXName", "ProjectionX",
+	cameraProjectionX_hist = new TH1D("ProjectionXName", "ProjectionX",
 					  CameraResolution_mng, -SensorEffectiveX_mng/m, SensorEffectiveX_mng/m);
 	
 	// cameraProjectionY_hist
-	cameraProjectionY_hist = new TH1I("ProjectionYName", "ProjectionY",
+	cameraProjectionY_hist = new TH1D("ProjectionYName", "ProjectionY",
 					  CameraResolution_mng, -SensorEffectiveY_mng/m, SensorEffectiveY_mng/m);
 }
 
