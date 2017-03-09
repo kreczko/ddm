@@ -3,7 +3,7 @@
 #
 /gun/particle ion
 /gun/ion 18 40
-/gun/energy 100 keV
+/gun/energy 200 keV
 #
 /gun/position 0 0 0 m
 /gun/direction -1 -1 0
