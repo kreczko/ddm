@@ -60,7 +60,7 @@
 namespace {
   void PrintUsage() {
     G4cerr << " Usage: " << G4endl;
-    G4cerr << " DDM [-m macro ] [-u UIsession] [-t nThreads] [-r seed] [-pressure gasPressure]"
+    G4cerr << " DDM [-m macro ] [-u UIsession] [-t nThreads] [-r seed] [-p parameterFile]"
            << G4endl;
     G4cerr << "   note: -t option is available only for multi-threaded mode."
            << G4endl;
@@ -85,6 +85,7 @@ int main(int argc,char** argv)
 
   G4String macro;
   G4String session;
+  G4String parameterFile = "defaultParameters.txt";
 #ifdef G4MULTITHREADED
   G4int nThreads = 0;
 #endif
@@ -99,8 +100,7 @@ int main(int argc,char** argv)
                     nThreads = G4UIcommand::ConvertToInt(argv[i+1]);
     }
 #endif
-    // DDM-specific CLAs:
-    else if   ( G4String(argv[i]) == "-pressure" ) {root_manager->FlagPressureAsCLA(); root_manager->SetGasPressure(atof(argv[i+1])*atmosphere);}
+    else if   ( G4String(argv[i]) == "-p" ) {parameterFile = argv[i+1];}
     else {
       PrintUsage();
       return 1;
@@ -109,6 +109,9 @@ int main(int argc,char** argv)
   
   // initialise output file
   root_manager->CreateOutputFile("[dynamic]");
+  
+  // read in parameters from file
+  root_manager->ReadParameterFile(parameterFile);
   
   // initialise recoResults_tree
   root_manager->InitialiseResultsTree();
