@@ -5,6 +5,6 @@
 /gun/ion 18 40
 /gun/energy 100 keV
 #
-/gun/position 0 0 0 m
+/gun/position -0.15 0 0 m
 /gun/direction 1 0 0
 /run/beamOn 1
