@@ -117,9 +117,8 @@ G4VPhysicalVolume* DDMDetectorConstruction::Construct()
  
   G4double argonPressure; // pressure in atmospheres
  
-  // Get pressure from CLAs or use default
-  if (root_manager->PressureIsCLA()) {argonPressure = root_manager->GetGasPressure();}
-  else {argonPressure = 0.1*atmosphere; root_manager->SetGasPressure(argonPressure);}
+  // Get pressure from root manager
+  argonPressure = root_manager->GetGasPressure();
  
   G4double argonDriftVelocity = root_manager->CalculateDriftVelocity();
  
