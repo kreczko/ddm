@@ -64,6 +64,7 @@ set(DDM_SCRIPTS
     run.png
     vis.mac
     defaultParameters.txt
+    trialParameters.txt
     testProton.mac
     testArgon.mac
     testParticle.mac
