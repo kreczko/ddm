@@ -2,7 +2,7 @@
 /control/verbose 2
 /tracking/verbose 3
 #
-/gun/particle muon
+/gun/particle mu-
 /gun/energy 4000 MeV
 #
 /gun/position -1 -1 -1 m
