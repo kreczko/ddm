@@ -71,7 +71,7 @@ class DDMRootManager
 		Double_t SensorEffectiveY_mng = SensorY_mng/LensMag_mng;
 	
 		Double_t TimeResolution_mng = 1.0*ns;
-		Double_t SnapshotNumber_mng = 1000;
+		Int_t SnapshotNumber_mng = 1000;
 		
 		
 	public:
