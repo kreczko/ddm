@@ -287,6 +287,11 @@ void DDMRootManager::FillHist_Camera(Double_t input_x, Double_t input_y)
 	camera_hist->Fill(input_x/m, input_y/m);
 }
 
+void DDMRootManager::FillHist_Camera3D(Double_t input_x, Double_t input_y, Double_t input_z)
+{
+	
+}
+
 void DDMRootManager::FitCameraHist()
 {
 	//TGraph* fitCamera_graph = new TGraph(1);
