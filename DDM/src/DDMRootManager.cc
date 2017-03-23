@@ -178,10 +178,16 @@ void DDMRootManager::InitialiseTrees()
 	
 	Double_t Camera3DRange_z = (SnapshotNumber_mng * TimeResolution_mng) / DriftVelocity_mng;
 	
+	/*camera3D_hist = new TH3I(camera3D_histname.str().c_str(), "Camera image",
+			       CameraResolution_mng, -SensorEffectiveX_mng/m, SensorEffectiveX_mng/m,
+			       CameraResolution_mng, -SensorEffectiveY_mng/m, SensorEffectiveY_mng/m,
+			       SnapshotNumber_mng, -0.5*Camera3DRange_z/m, 0.5*Camera3DRange_z/m);*/
+	
 	camera3D_hist = new TH3I(camera3D_histname.str().c_str(), "Camera image",
 			       CameraResolution_mng, -SensorEffectiveX_mng/m, SensorEffectiveX_mng/m,
 			       CameraResolution_mng, -SensorEffectiveY_mng/m, SensorEffectiveY_mng/m,
-			       SnapshotNumber_mng, -0.5*Camera3DRange_z/m, 0.5*Camera3DRange_z/m);
+			       CameraResolution_mng, -1.0, 1.0);
+	
 	
 	// cameraProjectionX_hist
 	cameraProjectionX_hist = new TH1D("ProjectionXName", "ProjectionX",
