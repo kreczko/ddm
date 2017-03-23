@@ -69,6 +69,9 @@ class DDMRootManager
 		Double_t SensorEffectiveX_mng = SensorX_mng/LensMag_mng;
 		Double_t SensorY_mng = LensRadius_mng;
 		Double_t SensorEffectiveY_mng = SensorY_mng/LensMag_mng;
+	
+		Double_t TimeResolution_mng = 1.0*ns;
+		Double_t SnapshotNumber_mng = 1000;
 		
 		
 	public:
@@ -98,6 +101,7 @@ class DDMRootManager
 		void FillGraph_ElectronGen(Double_t input_x, Double_t input_y, Double_t input_z);
 		void FillHist_DirectScint(Double_t input_x, Double_t input_y, Int_t input_photonNum);
 		void FillHist_Camera(Double_t input_x, Double_t input_y);
+		void FillHist_Camera3D(Double_t input_x, Double_t input_y, Double_t input_z);
 		void FitCameraHist();
 	
 		void FinaliseEvent();
