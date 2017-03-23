@@ -301,7 +301,7 @@ void DDMRootManager::FillHist_Camera(Double_t input_x, Double_t input_y)
 
 void DDMRootManager::FillHist_Camera3D(Double_t input_x, Double_t input_y, Double_t input_z)
 {
-	
+	camera3D_hist->Fill(input_x/m, input_y/m, input_z/m);
 }
 
 void DDMRootManager::FitCameraHist()
