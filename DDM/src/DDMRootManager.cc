@@ -468,7 +468,7 @@ void DDMRootManager::FinaliseEvent()
 	fitCamera_graph->Write();
 	
 	camera_hist->Write();
-	//camera3D_hist->Write();
+	camera3D_hist->Write();
 	
 	//FillTree_RecoResults(fitXY->Parameter(1), tanThetaXZ, tanThetaYZ);
 	
