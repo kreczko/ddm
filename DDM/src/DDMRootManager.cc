@@ -306,9 +306,14 @@ void DDMRootManager::FillHist_Camera(Double_t input_x, Double_t input_y)
 	camera_hist->Fill(input_x/m, input_y/m);
 }
 
-void DDMRootManager::FillHist_Camera3D(Double_t input_x, Double_t input_y, Double_t input_z)
+void DDMRootManager::FillHist_CameraXZ(Double_t input_x, Double_t input_z)
 {
-	camera3D_hist->Fill(input_x/m, input_y/m, input_z/m);
+	cameraXZ_hist->Fill(input_x/m, input_z/m);
+}
+
+void DDMRootManager::FillHist_CameraYZ(Double_t input_y, Double_t input_z)
+{
+	cameraYZ_hist->Fill(input_y/m, input_z/m);
 }
 
 void DDMRootManager::FitCameraHist()
