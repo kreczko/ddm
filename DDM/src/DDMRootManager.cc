@@ -482,6 +482,7 @@ void DDMRootManager::FinaliseEvent()
 	camera_hist->Write();
 	cameraXZ_hist->Write();
 	cameraYZ_hist->Write();
+	G4cout << "Calculated snapshot number: " << SnapshotNumber_mng << G4endl;
 	
 	//FillTree_RecoResults(fitXY->Parameter(1), tanThetaXZ, tanThetaYZ);
 	
