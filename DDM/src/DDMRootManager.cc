@@ -483,6 +483,7 @@ void DDMRootManager::FinaliseEvent()
 	
 	// linear fit of camera histogram
 	FitCameraHist(camera_hist);
+	FitCameraHist(cameraXZ_hist);
 	
 	//fitCamera_graph->Write();
 	
@@ -519,9 +520,8 @@ void DDMRootManager::FinaliseEvent()
 	delete camera_hist;
 	delete cameraXZ_hist;
 	delete cameraYZ_hist;
-	//delete cameraFitLine;
 	
-	delete fitCamera_graph;
+	//delete fitCamera_graph;
 	
 	delete cameraProjectionX_hist;
 	delete cameraProjectionY_hist;
