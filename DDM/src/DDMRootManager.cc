@@ -174,7 +174,7 @@ void DDMRootManager::InitialiseTrees()
 	//camera_hist = new TH2I(camera_histname.str().c_str(), "Camera image", 1000, -1.0, 1.0, 1000, -1.0, 1.0);
 	
 	// calcualate z range for camera projection histograms
-	Double_t CameraRange_z = (SnapshotNumber_mng * TimeResolution_mng) / DriftVelocity_mng;
+	Double_t CameraRange_z = SnapshotNumber_mng * TimeResolution_mng * DriftVelocity_mng;
 	
 	// cameraXZ_hist
 	stringstream cameraXZ_histname;
