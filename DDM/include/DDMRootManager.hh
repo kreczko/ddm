@@ -101,7 +101,7 @@ class DDMRootManager
 		void FillHist_Camera(Double_t input_x, Double_t input_y);
 		void FillHist_CameraXZ(Double_t input_x, Double_t input_z);
 		void FillHist_CameraYZ(Double_t input_y, Double_t input_z);
-		void FitCameraHist();
+		Double_t FitCameraHist(TH2I* input_hist);
 	
 		void FinaliseEvent();
 		void CloseResultsTree();
