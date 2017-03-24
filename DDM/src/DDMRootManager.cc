@@ -174,21 +174,22 @@ void DDMRootManager::InitialiseTrees()
 	//camera_hist = new TH2I(camera_histname.str().c_str(), "Camera image", 1000, -1.0, 1.0, 1000, -1.0, 1.0);
 	
 	// calcualate z range for camera projection histograms
-	Double_t CameraRange_z = SnapshotNumber_mng * TimeResolution_mng * DriftVelocity_mng;
+	Int_t SnapshotNumber = (2.0*TankHeight_mng/(TimeResolution_mng*DriftVelocity_mng));
+	Double_t CameraRange_z = SnapshotNumber * TimeResolution_mng * DriftVelocity_mng;
 	
 	// cameraXZ_hist
 	stringstream cameraXZ_histname;
 	cameraXZ_histname << "cameraXZ_" << EventCounter_mng;
 	cameraXZ_hist = new TH2I(cameraXZ_histname.str().c_str(), "Camera image XZ",
 			       CameraResolution_mng, -SensorEffectiveX_mng/m, SensorEffectiveX_mng/m,
-			       SnapshotNumber_mng, -0.5*CameraRange_z/m, 0.5*CameraRange_z/m);
+			       SnapshotNumber, -0.5*CameraRange_z/m, 0.5*CameraRange_z/m);
 	
 	// cameraYZ_hist
 	stringstream cameraYZ_histname;
 	cameraYZ_histname << "cameraYZ_" << EventCounter_mng;
 	cameraYZ_hist = new TH2I(cameraYZ_histname.str().c_str(), "Camera image YZ",
 			       CameraResolution_mng, -SensorEffectiveY_mng/m, SensorEffectiveY_mng/m,
-			       SnapshotNumber_mng, -0.5*CameraRange_z/m, 0.5*CameraRange_z/m);
+			       SnapshotNumber, -0.5*CameraRange_z/m, 0.5*CameraRange_z/m);
 	
 	// cameraProjectionX_hist
 	cameraProjectionX_hist = new TH1D("ProjectionXName", "ProjectionX",
