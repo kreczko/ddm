@@ -379,6 +379,7 @@ Double_t DDMRootManager::FitCameraHist(TH2I* input_hist)
 	
 	//G4cout << "Fit of camera image complete." << G4endl;
 	
+	// return gradient
 	return cameraFit->Parameter(1);
 }
 
