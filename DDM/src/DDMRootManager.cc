@@ -481,9 +481,10 @@ void DDMRootManager::FinaliseEvent()
 	
 	recoTrack_graph->Write();
 	
-	// linear fit of camera histogram
+	// linear fit of camera histograms
 	FitCameraHist(camera_hist);
 	FitCameraHist(cameraXZ_hist);
+	FitCameraHist(cameraYZ_hist);
 	
 	//fitCamera_graph->Write();
 	
