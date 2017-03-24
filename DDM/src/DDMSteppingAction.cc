@@ -248,7 +248,8 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
             root_manager->FillHist_Camera(final_x, final_y);
             //root_manager->FillHist_Camera(camera_x, camera_y);
             
-            root_manager->FillHist_Camera3D(final_x, final_y, reconstructed_z);
+            root_manager->FillHist_CameraXZ(final_x, reconstructed_z);
+            root_manager->FillHist_CameraYZ(final_y, reconstructed_z);
           }
         }
       }
