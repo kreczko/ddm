@@ -71,7 +71,6 @@ class DDMRootManager
 		Double_t SensorEffectiveY_mng = SensorY_mng/LensMag_mng;
 	
 		Double_t TimeResolution_mng = 1.0*ns;
-		Int_t SnapshotNumber_mng = (2.0*TankHeight_mng/(TimeResolution_mng*DriftVelocity_mng));
 		
 		
 	public:
