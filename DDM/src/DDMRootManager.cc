@@ -374,13 +374,15 @@ Double_t DDMRootManager::FitCameraHist(TH2I* input_hist)
 	cameraFitLine->SetLineColor(kRed);
 	input_hist->GetListOfFunctions()->Add(cameraFitLine);
 	PrintToScreen("Fit line drawn onto camera image.");
+	
+	Double_t cameraGradient = cameraFit->Parameter(1);
 
-	//delete fitCamera_graph;
+	delete fitCamera_graph;
 	
 	//G4cout << "Fit of camera image complete." << G4endl;
 	
 	// return gradient
-	return cameraFit->Parameter(1);
+	return cameraGradient;
 }
 
 G4double DDMRootManager::CalculateDriftVelocity()
