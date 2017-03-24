@@ -337,14 +337,14 @@ Double_t DDMRootManager::FitCameraHist(TH2I* input_hist)
 		for(G4int biny = 1; biny <= input_hist->GetNbinsY(); biny++)
 		{
 			// find bin centres
-			G4double binCentreX = input_hist->GetXaxis()->GetBinCenter(binx);
-			G4double binCentreY = input_hist->GetYaxis()->GetBinCenter(biny);
+			Double_t binCentreX = input_hist->GetXaxis()->GetBinCenter(binx);
+			Double_t binCentreY = input_hist->GetYaxis()->GetBinCenter(biny);
 			
 			// check number of entries in bin is more than the cut
 			//if (camera_hist->GetBinContent(binx, biny) > photonCut)
 			//{
 				// plot a point at bin centre for each photon in bin
-				for(G4int photonPerBin = 0; photonPerBin < input_hist->GetBinContent(binx, biny); photonPerBin++)
+				for(Int_t photonPerBin = 0; photonPerBin < input_hist->GetBinContent(binx, biny); photonPerBin++)
 				{	
 					fitCamera_graph->SetPoint(point, binCentreX, binCentreY);
 					point++;
@@ -360,13 +360,13 @@ Double_t DDMRootManager::FitCameraHist(TH2I* input_hist)
 	CameraTanPhi_mng = cameraFit->Parameter(1);
 
 	// calculate start point for fit line
-	G4double start_x = -1.0;
-	G4double start_y = (start_x*cameraFit->Parameter(1)) + cameraFit->Parameter(0);
+	Double_t start_x = -1.0;
+	Double_t start_y = (start_x*cameraFit->Parameter(1)) + cameraFit->Parameter(0);
 	G4cout << "Starting point of fit line: " << start_x << ", " << start_y << G4endl;
 	
 	// calculate end point for fit line
-	G4double end_x = 1.0;
-	G4double end_y = (end_x*cameraFit->Parameter(1)) + cameraFit->Parameter(0);
+	Double_t end_x = 1.0;
+	Double_t end_y = (end_x*cameraFit->Parameter(1)) + cameraFit->Parameter(0);
 	G4cout << "Ending point of fit line: " << end_x << ", " << end_y << G4endl;
 	
 	// overlay fit line onto camera histogram
@@ -375,7 +375,7 @@ Double_t DDMRootManager::FitCameraHist(TH2I* input_hist)
 	input_hist->GetListOfFunctions()->Add(cameraFitLine);
 	PrintToScreen("Fit line drawn onto camera image.");
 	
-	G4double cameraGradient = cameraFit->Parameter(1);
+	Double_t cameraGradient = cameraFit->Parameter(1);
 
 	delete fitCamera_graph;
 	
