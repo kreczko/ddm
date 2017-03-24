@@ -16,7 +16,8 @@ TGraph2D* electronGen_graph;
 TH2I* directScint_hist;
 TH2I* camera_hist;
 TLine* cameraFitLine;
-TH3I* camera3D_hist;
+TH2I* cameraXZ_hist;
+TH2I* cameraYZ_hist;
 
 TGraph* fitCamera_graph;
 
@@ -172,22 +173,22 @@ void DDMRootManager::InitialiseTrees()
 			       CameraResolution_mng, -SensorEffectiveY_mng/m, SensorEffectiveY_mng/m);
 	//camera_hist = new TH2I(camera_histname.str().c_str(), "Camera image", 1000, -1.0, 1.0, 1000, -1.0, 1.0);
 	
-	// camera3D_hist
-	stringstream camera3D_histname;
-	camera3D_histname << "camera3D_" << EventCounter_mng;
+	// calcualate z range for camera projection histograms
+	Double_t CameraRange_z = (SnapshotNumber_mng * TimeResolution_mng) / DriftVelocity_mng;
 	
-	Double_t Camera3DRange_z = (SnapshotNumber_mng * TimeResolution_mng) / DriftVelocity_mng;
-	
-	/*camera3D_hist = new TH3I(camera3D_histname.str().c_str(), "Camera image",
+	// cameraXZ_hist
+	stringstream cameraXZ_histname;
+	cameraXZ_histname << "cameraXZ_" << EventCounter_mng;
+	cameraXZ_hist = new TH2I(cameraXZ_histname.str().c_str(), "Camera image XZ",
 			       CameraResolution_mng, -SensorEffectiveX_mng/m, SensorEffectiveX_mng/m,
-			       CameraResolution_mng, -SensorEffectiveY_mng/m, SensorEffectiveY_mng/m,
-			       SnapshotNumber_mng, -0.5*Camera3DRange_z/m, 0.5*Camera3DRange_z/m);*/
+			       SnapshotNumber_mng, -0.5*CameraRange_z/m, 0.5*CameraRange_z/m);
 	
-	camera3D_hist = new TH3I(camera3D_histname.str().c_str(), "Camera image",
-			       CameraResolution_mng, -SensorEffectiveX_mng/m, SensorEffectiveX_mng/m,
+	// cameraYZ_hist
+	stringstream cameraYZ_histname;
+	cameraYZ_histname << "cameraYZ_" << EventCounter_mng;
+	cameraYZ_hist = new TH2I(cameraYZ_histname.str().c_str(), "Camera image YZ",
 			       CameraResolution_mng, -SensorEffectiveY_mng/m, SensorEffectiveY_mng/m,
-			       5, -1.0, 1.0);
-	
+			       SnapshotNumber_mng, -0.5*CameraRange_z/m, 0.5*CameraRange_z/m);
 	
 	// cameraProjectionX_hist
 	cameraProjectionX_hist = new TH1D("ProjectionXName", "ProjectionX",
@@ -474,7 +475,8 @@ void DDMRootManager::FinaliseEvent()
 	fitCamera_graph->Write();
 	
 	camera_hist->Write();
-	camera3D_hist->Write();
+	cameraXZ_hist->Write();
+	cameraYZ_hist->Write();
 	
 	//FillTree_RecoResults(fitXY->Parameter(1), tanThetaXZ, tanThetaYZ);
 	
@@ -503,7 +505,8 @@ void DDMRootManager::FinaliseEvent()
 	delete recoTrack_graph;
 	delete directScint_hist;
 	delete camera_hist;
-	delete camera3D_hist;
+	delete cameraXZ_hist;
+	delete cameraYZ_hist;
 	//delete cameraFitLine;
 	
 	delete fitCamera_graph;
