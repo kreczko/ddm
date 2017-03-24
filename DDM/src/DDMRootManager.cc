@@ -484,7 +484,7 @@ void DDMRootManager::FinaliseEvent()
 	// linear fit of camera histogram
 	FitCameraHist(camera_hist);
 	
-	fitCamera_graph->Write();
+	//fitCamera_graph->Write();
 	
 	camera_hist->Write();
 	cameraXZ_hist->Write();
