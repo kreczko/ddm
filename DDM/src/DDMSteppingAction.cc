@@ -191,7 +191,7 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       final_y += G4RandGauss::shoot(0.0, sigmaT);
       
       // add Gaussian term to time
-      final_time += ((G4RandGauss::shoot(0.0, sigmaL)*mm) / driftVelocity);
+      final_time += (G4RandGauss::shoot(0.0, sigmaL) / driftVelocity);
       
       // **************************************** scintillation ********************************************
       
@@ -223,7 +223,7 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       G4double recorded_x = final_x;
       G4double recorded_y = final_y;
       G4double recorded_time = final_time;
-      G4double reconstructed_z = tankHeight - (timeToDrift*driftVelocity);
+      G4double reconstructed_z = tankHeight - (final_time*driftVelocity);
       
       // pixellated view of photons
       root_manager->FillHist_DirectScint(final_x, final_y, scintPhotons);
