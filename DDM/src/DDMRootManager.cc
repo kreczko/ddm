@@ -318,7 +318,7 @@ void DDMRootManager::FillHist_CameraYZ(Double_t input_y, Double_t input_z)
 	cameraYZ_hist->Fill(input_y/m, input_z/m);
 }
 
-void DDMRootManager::FitCameraHist()
+Double_t DDMRootManager::FitCameraHist(TH2I* input_hist)
 {
 	//TGraph* fitCamera_graph = new TGraph(1);
 	fitCamera_graph = new TGraph(1);
@@ -329,22 +329,22 @@ void DDMRootManager::FitCameraHist()
 	
 	G4int point = 0;
 	
-	G4cout << "Camera histogram size: " << camera_hist->GetNbinsX() << "x" << camera_hist->GetNbinsY() << G4endl;
+	G4cout << "Camera histogram size: " << input_hist->GetNbinsX() << "x" << input_hist->GetNbinsY() << G4endl;
 
 	// loop through all bins
-	for(G4int binx = 1; binx <= camera_hist->GetNbinsX(); binx++)
+	for(G4int binx = 1; binx <= input_hist->GetNbinsX(); binx++)
 	{
-		for(G4int biny = 1; biny <= camera_hist->GetNbinsY(); biny++)
+		for(G4int biny = 1; biny <= input_hist->GetNbinsY(); biny++)
 		{
 			// find bin centres
-			G4double binCentreX = camera_hist->GetXaxis()->GetBinCenter(binx);
-			G4double binCentreY = camera_hist->GetYaxis()->GetBinCenter(biny);
+			G4double binCentreX = input_hist->GetXaxis()->GetBinCenter(binx);
+			G4double binCentreY = input_hist->GetYaxis()->GetBinCenter(biny);
 			
 			// check number of entries in bin is more than the cut
 			//if (camera_hist->GetBinContent(binx, biny) > photonCut)
 			//{
 				// plot a point at bin centre for each photon in bin
-				for(G4int photonPerBin = 0; photonPerBin < camera_hist->GetBinContent(binx, biny); photonPerBin++)
+				for(G4int photonPerBin = 0; photonPerBin < input_hist->GetBinContent(binx, biny); photonPerBin++)
 				{	
 					fitCamera_graph->SetPoint(point, binCentreX, binCentreY);
 					point++;
@@ -372,12 +372,14 @@ void DDMRootManager::FitCameraHist()
 	// overlay fit line onto camera histogram
 	cameraFitLine = new TLine(start_x, start_y, end_x, end_y);
 	cameraFitLine->SetLineColor(kRed);
-	camera_hist->GetListOfFunctions()->Add(cameraFitLine);
+	input_hist->GetListOfFunctions()->Add(cameraFitLine);
 	PrintToScreen("Fit line drawn onto camera image.");
 
 	//delete fitCamera_graph;
 	
 	//G4cout << "Fit of camera image complete." << G4endl;
+	
+	return cameraFit->Parameter(1);
 }
 
 G4double DDMRootManager::CalculateDriftVelocity()
@@ -477,7 +479,7 @@ void DDMRootManager::FinaliseEvent()
 	recoTrack_graph->Write();
 	
 	// linear fit of camera histogram
-	FitCameraHist();
+	FitCameraHist(camera_hist);
 	
 	fitCamera_graph->Write();
 	
