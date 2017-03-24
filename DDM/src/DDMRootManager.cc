@@ -375,7 +375,7 @@ Double_t DDMRootManager::FitCameraHist(TH2I* input_hist)
 	input_hist->GetListOfFunctions()->Add(cameraFitLine);
 	PrintToScreen("Fit line drawn onto camera image.");
 	
-	Double_t cameraGradient = cameraFit->Parameter(1);
+	G4double cameraGradient = cameraFit->Parameter(1);
 
 	delete fitCamera_graph;
 	
