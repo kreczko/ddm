@@ -58,6 +58,7 @@ class DDMRootManager
 	
 		// camera variables
 		Int_t CameraResolution_mng = 1000;
+		Double_t TimeResolution_mng = 20.0*ns;
 	
 		Double_t LensRadius_mng = 85.0*mm;
 		Double_t LensCentreX_mng = 0.0*mm;
@@ -69,8 +70,6 @@ class DDMRootManager
 		Double_t SensorEffectiveX_mng = SensorX_mng/LensMag_mng;
 		Double_t SensorY_mng = LensRadius_mng;
 		Double_t SensorEffectiveY_mng = SensorY_mng/LensMag_mng;
-	
-		Double_t TimeResolution_mng = 1.0*ns;
 		
 		
 	public:
