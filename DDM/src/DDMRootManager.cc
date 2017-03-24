@@ -175,6 +175,7 @@ void DDMRootManager::InitialiseTrees()
 	
 	// calcualate z range for camera projection histograms
 	Int_t SnapshotNumber = (2.0*TankHeight_mng/(TimeResolution_mng*DriftVelocity_mng));
+	G4cout << "Calculated snapshot number: " << SnapshotNumber << G4endl;
 	Double_t CameraRange_z = SnapshotNumber * TimeResolution_mng * DriftVelocity_mng;
 	
 	// cameraXZ_hist
@@ -483,7 +484,6 @@ void DDMRootManager::FinaliseEvent()
 	camera_hist->Write();
 	cameraXZ_hist->Write();
 	cameraYZ_hist->Write();
-	G4cout << "Calculated snapshot number: " << SnapshotNumber << G4endl;
 	
 	//FillTree_RecoResults(fitXY->Parameter(1), tanThetaXZ, tanThetaYZ);
 	
