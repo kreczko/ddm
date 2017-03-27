@@ -563,6 +563,7 @@ Double_t DDMRootManager::CalculateTanThetaFromYZ(Double_t input_tanphi, Double_t
 void DDMRootManager::CloseResultsTree()
 {
 	recoResults_tree->Write();
+	//recoResultsCamera_tree->Write();
 	delete recoResults_tree;
 	delete recoResultsCamera_tree;
 }
