@@ -36,6 +36,7 @@ class DDMRootManager
 		Double_t ElectronData_mng[3] = {0};
 		Double_t RecoData_mng[4] = {0};
 		Double_t RecoResults_mng[11] = {0};
+		Double_t RecoResultsCamera_mng[3] = {0};
 	
 		// detector construction information
 		Double_t DriftVelocity_mng = 0;
@@ -98,6 +99,7 @@ class DDMRootManager
 		void FillGraph_RecoTrackYZ(Double_t input_y, Double_t input_z);
 		void FillGraph_RecoTrack(Double_t input_x, Double_t input_y, Double_t input_z);
 		void FillTree_RecoResults(Double_t input_tanphi, Double_t input_tantheta_xz, Double_t input_tantheta_yz, Double_t input_tanphi_scint);
+		void FillTree_RecoResultsCamera();
 		void FillGraph_ElectronGen(Double_t input_x, Double_t input_y, Double_t input_z);
 		void FillHist_DirectScint(Double_t input_x, Double_t input_y, Int_t input_photonNum);
 		void FillHist_Camera(Double_t input_x, Double_t input_y);
