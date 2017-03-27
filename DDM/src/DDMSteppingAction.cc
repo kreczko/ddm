@@ -130,7 +130,8 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
     
     // fill tree
     //root_manager->FillTree_TimeStepData(stepTime,position,ionisationEnergy);
-    root_manager->FillTree_TimeStepData(stepTime, position.x(), position.y(), position.z(), ionisationEnergy);
+    if (root_manager->IsStreamliningOff())
+      {root_manager->FillTree_TimeStepData(stepTime, position.x(), position.y(), position.z(), ionisationEnergy);}
     
     // generate electrons
     G4int numOfElectrons = ionisationEnergy/(15.75962*eV);
@@ -157,8 +158,8 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       G4double initial_time = step->GetPreStepPoint()->GetLocalTime()
                          + stepFraction*(step->GetPostStepPoint()->GetLocalTime() - step->GetPreStepPoint()->GetLocalTime());
       
-      //root_manager->FillHist_ElectronGen(initial_x, initial_y, initial_z);
-      root_manager->FillGraph_ElectronGen(initial_x, initial_y, initial_z);
+      if (root_manager->IsStreamliningOff())
+        {root_manager->FillGraph_ElectronGen(initial_x, initial_y, initial_z);}
       
       // ***************************************  electron drift  ******************************************
       
@@ -217,7 +218,8 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       // ***************************************  filling data  ********************************************
       
       // fill data
-      root_manager->FillTree_ElectronData(final_time, initial_x, initial_y);  // may need to change time input
+      if (root_manager->IsStreamliningOff())
+        {root_manager->FillTree_ElectronData(final_time, initial_x, initial_y);}  // may need to change time input
       
       // recorded and reconstructed information
       G4double recorded_x = final_x;
@@ -226,7 +228,8 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       G4double reconstructed_z = tankHeight - (final_time*driftVelocity);
       
       // pixellated view of photons
-      root_manager->FillHist_DirectScint(final_x, final_y, scintPhotons);
+      if (root_manager->IsStreamliningOff())
+        {root_manager->FillHist_DirectScint(final_x, final_y, scintPhotons);}
       
       // propagation of photons to lens
       for (G4int j = 0; j < scintPhotons; j++)
@@ -256,11 +259,14 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       
       // fill data to reconstruct track
       //root_manager->FillHist_RecoTrack(recorded_x, recorded_y, reconstructed_z);
-      root_manager->FillTree_RecoTrack(recorded_x, recorded_y, reconstructed_z, recorded_time);
-      root_manager->FillGraph_RecoTrackXY(recorded_x, recorded_y);
-      root_manager->FillGraph_RecoTrack(recorded_x, recorded_y, reconstructed_z);
-      root_manager->FillGraph_RecoTrackXZ(recorded_x, reconstructed_z);
-      root_manager->FillGraph_RecoTrackYZ(recorded_y, reconstructed_z);
+      if (root_manager->IsStreamliningOff())
+      {
+        root_manager->FillTree_RecoTrack(recorded_x, recorded_y, reconstructed_z, recorded_time);
+        root_manager->FillGraph_RecoTrackXY(recorded_x, recorded_y);
+        root_manager->FillGraph_RecoTrack(recorded_x, recorded_y, reconstructed_z);
+        root_manager->FillGraph_RecoTrackXZ(recorded_x, reconstructed_z);
+        root_manager->FillGraph_RecoTrackYZ(recorded_y, reconstructed_z);
+      }
     }
   }
   
