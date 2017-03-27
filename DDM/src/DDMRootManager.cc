@@ -204,17 +204,15 @@ void DDMRootManager::InitialiseTrees()
 
 void DDMRootManager::InitialiseResultsTree()
 {
+	// old version of results tree
 	recoResults_tree = new TTree("recoResults", "recoResults");
 	//recoResults_tree -> Branch("recoResults_branch",&RecoResults_mng,
 				   //"EventNo/D:phi_true/D:theta_true/D:tanphi/D:phi/D:tantheta_xz/D:theta_xz/D:tantheta_yz/D:theta_yz/D");
 	
 	recoResults_tree -> Branch("recoResults_branch",&RecoResults_mng,
 				   "EventNo/D:phi_true/D:theta_true/D:tanphi/D:phi/D:tantheta_xz/D:theta_xz/D:tantheta_yz/D:theta_yz/D:tanphi_scint/D:phi_scint/D");
-}
 
-//   PUT THIS INTO INITIALISERESULTSTREE() LATER !!
-void DDMRootManager::InitialiseCameraResultsTree()
-{
+	// camera results tree
 	recoResultsCamera_tree = new TTree("recoResultsCamera", "recoResultsCamera");
 	
 	recoResultsCamera_tree -> Branch("recoResultsCamera_branch",&RecoResultsCamera_mng,
