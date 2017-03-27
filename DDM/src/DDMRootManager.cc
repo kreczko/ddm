@@ -5,6 +5,7 @@ TTree* trueTrack_tree;
 TTree* electronData_tree;
 TTree* recoTrack_tree;
 TTree* recoResults_tree;
+TTree* recoResultsCamera_tree;
 //TCanvas* c1;
 //TH3I* electronGen_hist;
 //TH3I* recoTrack_hist;
@@ -211,6 +212,14 @@ void DDMRootManager::InitialiseResultsTree()
 				   "EventNo/D:phi_true/D:theta_true/D:tanphi/D:phi/D:tantheta_xz/D:theta_xz/D:tantheta_yz/D:theta_yz/D:tanphi_scint/D:phi_scint/D");
 }
 
+void DDMRootManager::InitialiseCameraResultsTree()
+{
+	recoResultsCamera_tree = new TTree("recoResultsCamera", "recoResultsCamera");
+	
+	recoResultsCamera_tree -> Branch("recoResultsCamera_branch",&RecoResultsCamera_mng,
+				   "EventNo/D:phi_true/D:theta_true/D");
+}
+
 void DDMRootManager::FillTree_TimeStepData(Double_t input_time, Double_t input_x, Double_t input_y, Double_t input_z, Double_t input_energy)
 {
 	TimeStepData_mng[0]=input_time/ns;
@@ -296,6 +305,15 @@ void DDMRootManager::FillTree_RecoResults(Double_t input_tanphi, Double_t input_
 	RecoResults_mng[10] = atan(input_tanphi_scint);
 	
 	recoResults_tree->Fill();
+}
+
+void DDMRootManager::FillTree_RecoResultsCamera()
+{
+	RecoResultsCamera_mng[0] = EventCounter_mng;
+	RecoResultsCamera_mng[1] = TruePhi_mng;
+	RecoResultsCamera_mng[2] = TrueTheta_mng;
+	
+	recoResultsCamera_tree->Fill();
 }
 
 void DDMRootManager::FillHist_DirectScint(Double_t input_x, Double_t input_y, Int_t input_photonNum)
@@ -547,6 +565,7 @@ void DDMRootManager::CloseResultsTree()
 {
 	recoResults_tree->Write();
 	delete recoResults_tree;
+	delete recoResultsCamera_tree;
 }
 
 DDMRootManager::~DDMRootManager()
