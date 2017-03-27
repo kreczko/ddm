@@ -505,6 +505,8 @@ void DDMRootManager::FinaliseEvent()
 		recoTrackYZ_graph->Write();
 	
 		recoTrack_graph->Write();
+		
+		FillTree_RecoResults(fitXY->Parameter(1), tanThetaXZ, tanThetaYZ, CameraTanPhi_mng);
 	}
 	
 	// linear fit of camera histograms
@@ -517,12 +519,6 @@ void DDMRootManager::FinaliseEvent()
 	camera_hist->Write();
 	cameraXZ_hist->Write();
 	cameraYZ_hist->Write();
-	
-	//FillTree_RecoResults(fitXY->Parameter(1), tanThetaXZ, tanThetaYZ);
-	
-	// fill results tree
-	if (IsStreamliningOff())
-		{FillTree_RecoResults(fitXY->Parameter(1), tanThetaXZ, tanThetaYZ, CameraTanPhi_mng);}
 	
 	// print skewness along x and skewness along y of camera image
 	G4cout << "skewness x = " << camera_hist->GetSkewness(1) << G4endl;
