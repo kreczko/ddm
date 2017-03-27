@@ -87,6 +87,7 @@ class DDMRootManager
 
 		void InitialiseTrees();// Add more trees as arguments if desired.
 		void InitialiseResultsTree();
+		void InitialiseCameraResultsTree();
 
 		//void FillTree(); Make more of these (with specific names and the required parameters) for the individual branches as needed.
 		void FillTree_TimeStepData(Double_t input_time, Double_t input_x, Double_t input_y, Double_t input_z, Double_t input_energy);
