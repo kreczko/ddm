@@ -28,6 +28,8 @@ class DDMRootManager
 	private:
 		TFile* root_file;
 		// Define _mng variables/arrays as needed.
+		
+		Bool_t UseStreamlining_mng = false;
 	
 		// arrays for filling data
 		Double_t TimeStepData_mng[5] = {0};
@@ -118,6 +120,11 @@ class DDMRootManager
 		G4double CalculateSecondaryScintYield(Double_t input_avalancheField);
 
 		// define Get and Set methods for each _mng variable: can be defined inline.
+	
+		void ActivateStreamlining() {UseStreamlining_mng = true;}
+		Bool_t IsStreamliningOn() {return UseStreamlining_mng;}
+		Bool_t IsStreamliningOff() {return !UseStreamlining_mng;}
+	
 		Int_t GetEventCounter() {return EventCounter_mng;}
 		
 		//void SetDriftVelocity(Double_t input) {DriftVelocity_mng = input;}
