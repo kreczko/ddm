@@ -95,6 +95,7 @@ int main(int argc,char** argv)
      if      ( G4String(argv[i]) == "-m" ) macro   = argv[i+1];
      else if ( G4String(argv[i]) == "-u" ) session = argv[i+1];
      else if ( G4String(argv[i]) == "-r" ) myseed  = atoi(argv[i+1]);
+     else if ( G4String(argv[i]) == "-s" ) root_manager->ActivateStreamlining();
 #ifdef G4MULTITHREADED
      else if ( G4String(argv[i]) == "-t" ) {
                     nThreads = G4UIcommand::ConvertToInt(argv[i+1]);
