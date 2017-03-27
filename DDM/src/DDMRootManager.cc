@@ -456,7 +456,7 @@ G4double DDMRootManager::CalculateSigmaL(Double_t input_time, Double_t input_mu,
 
 void DDMRootManager::FinaliseEvent()
 {
-	if (root_manager->IsStreamliningOff())
+	if (IsStreamliningOff())
 	{
 		trueTrack_tree->Write();
 		electronData_tree->Write();
@@ -472,7 +472,7 @@ void DDMRootManager::FinaliseEvent()
 	testLine->SetLineColor(kRed);
 	camera_hist->GetListOfFunctions()->Add(testLine);*/	
 	
-	if (root_manager->IsStreamliningOff())
+	if (IsStreamliningOff())
 	{
 		// linear fits of each track projection
 		TFitResultPtr fitXY = recoTrackXY_graph->Fit("pol1", "S");
@@ -521,7 +521,7 @@ void DDMRootManager::FinaliseEvent()
 	//FillTree_RecoResults(fitXY->Parameter(1), tanThetaXZ, tanThetaYZ);
 	
 	// fill results tree
-	if (root_manager->IsStreamliningOff())
+	if (IsStreamliningOff())
 		{FillTree_RecoResults(fitXY->Parameter(1), tanThetaXZ, tanThetaYZ, CameraTanPhi_mng);}
 	
 	// print skewness along x and skewness along y of camera image
