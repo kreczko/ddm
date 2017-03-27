@@ -103,8 +103,9 @@ void DDMStackingAction::PrepareNewEvent()
   // initialise new tree
   root_manager->InitialiseTrees();
   
-  // initialise electron counter and flag first step
+  // initialise counters and flag first step
   root_manager->InitialiseElectronCounter();
+  root_manager->InitialiseSecondaryScintCounter();
   root_manager->FlagFirstStep();
 }
 
