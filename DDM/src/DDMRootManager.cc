@@ -22,8 +22,8 @@ TH2I* cameraYZ_hist;
 
 TGraph* fitCamera_graph;
 
-TH1D* cameraProjectionX_hist;
-TH1D* cameraProjectionY_hist;
+//TH1D* cameraProjectionX_hist;
+//TH1D* cameraProjectionY_hist;
 
 void DDMRootManager::CreateRootManager()
 {
@@ -193,6 +193,7 @@ void DDMRootManager::InitialiseTrees()
 			       CameraResolution_mng, -SensorEffectiveY_mng/m, SensorEffectiveY_mng/m,
 			       SnapshotNumber, -0.5*CameraRange_z/m, 0.5*CameraRange_z/m);
 	
+	/*
 	// cameraProjectionX_hist
 	cameraProjectionX_hist = new TH1D("ProjectionXName", "ProjectionX",
 					  CameraResolution_mng, -SensorEffectiveX_mng/m, SensorEffectiveX_mng/m);
@@ -200,6 +201,7 @@ void DDMRootManager::InitialiseTrees()
 	// cameraProjectionY_hist
 	cameraProjectionY_hist = new TH1D("ProjectionYName", "ProjectionY",
 					  CameraResolution_mng, -SensorEffectiveY_mng/m, SensorEffectiveY_mng/m);
+	*/
 }
 
 void DDMRootManager::InitialiseResultsTree()
@@ -519,11 +521,13 @@ void DDMRootManager::FinaliseEvent()
 	G4cout << "skewness x = " << camera_hist->GetSkewness(1) << G4endl;
 	G4cout << "skewness y = " << camera_hist->GetSkewness(2) << G4endl;
 	
+	/*
 	cameraProjectionX_hist = camera_hist->ProjectionX("Camera_projection_X", 1, CameraResolution_mng);
 	cameraProjectionY_hist = camera_hist->ProjectionY("Camera_projection_Y", 1, CameraResolution_mng);
 	
 	cameraProjectionX_hist->Write();
 	cameraProjectionY_hist->Write();
+	*/
 	
 	delete trueTrack_tree;
 	delete electronData_tree;
@@ -542,8 +546,9 @@ void DDMRootManager::FinaliseEvent()
 	
 	//delete fitCamera_graph;
 	
-	delete cameraProjectionX_hist;
-	delete cameraProjectionY_hist;
+	//delete cameraProjectionX_hist;
+	//delete cameraProjectionY_hist;
+	
 }
 
 Double_t DDMRootManager::CalculateTanThetaFromXZ(Double_t input_tanphi, Double_t input_tanalpha)
