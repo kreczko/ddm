@@ -456,50 +456,56 @@ G4double DDMRootManager::CalculateSigmaL(Double_t input_time, Double_t input_mu,
 
 void DDMRootManager::FinaliseEvent()
 {
-	trueTrack_tree->Write();
-	electronData_tree->Write();
-	electronGen_graph->Write();
-	//electronGen_hist->Write();
-	recoTrack_tree->Write();
-	//recoTrack_hist->Write();
-	directScint_hist->Write();
+	if (root_manager->IsStreamliningOff())
+	{
+		trueTrack_tree->Write();
+		electronData_tree->Write();
+		electronGen_graph->Write();
+		//electronGen_hist->Write();
+		recoTrack_tree->Write();
+		//recoTrack_hist->Write();
+		directScint_hist->Write();
+	}
 	
 	// TLine test
 	/*TLine* testLine = new TLine(-0.5, 0.5, 0.5, -0.5);
 	testLine->SetLineColor(kRed);
 	camera_hist->GetListOfFunctions()->Add(testLine);*/	
 	
-	// linear fits of each track projection
-	TFitResultPtr fitXY = recoTrackXY_graph->Fit("pol1", "S");
-	TFitResultPtr fitXZ = recoTrackXZ_graph->Fit("pol1", "S");
-	TFitResultPtr fitYZ = recoTrackYZ_graph->Fit("pol1", "S");
+	if (root_manager->IsStreamliningOff())
+	{
+		// linear fits of each track projection
+		TFitResultPtr fitXY = recoTrackXY_graph->Fit("pol1", "S");
+		TFitResultPtr fitXZ = recoTrackXZ_graph->Fit("pol1", "S");
+		TFitResultPtr fitYZ = recoTrackYZ_graph->Fit("pol1", "S");
 	
-	// calculate tan(theta) from the fits of XZ and YZ projections
-	Double_t tanThetaXZ = CalculateTanThetaFromXZ(fitXY->Parameter(1), fitXZ->Parameter(1));
-	Double_t tanThetaYZ = CalculateTanThetaFromYZ(fitXY->Parameter(1), fitYZ->Parameter(1));
+		// calculate tan(theta) from the fits of XZ and YZ projections
+		Double_t tanThetaXZ = CalculateTanThetaFromXZ(fitXY->Parameter(1), fitXZ->Parameter(1));
+		Double_t tanThetaYZ = CalculateTanThetaFromYZ(fitXY->Parameter(1), fitYZ->Parameter(1));
 	
-	// label recoTrack_graph axes
-	recoTrack_graph->GetXaxis()->SetTitle("x (m)");
-	recoTrack_graph->GetYaxis()->SetTitle("y (m)");
-	recoTrack_graph->GetZaxis()->SetTitle("z (m)");
+		// label recoTrack_graph axes
+		recoTrack_graph->GetXaxis()->SetTitle("x (m)");
+		recoTrack_graph->GetYaxis()->SetTitle("y (m)");
+		recoTrack_graph->GetZaxis()->SetTitle("z (m)");
 	
-	// label recoTrackXY_graph axes
-	recoTrackXY_graph->GetXaxis()->SetTitle("x (m)");
-	recoTrackXY_graph->GetYaxis()->SetTitle("y (m)");
+		// label recoTrackXY_graph axes
+		recoTrackXY_graph->GetXaxis()->SetTitle("x (m)");
+		recoTrackXY_graph->GetYaxis()->SetTitle("y (m)");
 	
-	// label recoTrackXZ_graph axes
-	recoTrackXZ_graph->GetXaxis()->SetTitle("x (m)");
-	recoTrackXZ_graph->GetYaxis()->SetTitle("z (m)");
+		// label recoTrackXZ_graph axes
+		recoTrackXZ_graph->GetXaxis()->SetTitle("x (m)");
+		recoTrackXZ_graph->GetYaxis()->SetTitle("z (m)");
 	
-	// label recoTrackYZ_graph axes
-	recoTrackYZ_graph->GetXaxis()->SetTitle("y (m)");
-	recoTrackYZ_graph->GetYaxis()->SetTitle("z (m)");
+		// label recoTrackYZ_graph axes
+		recoTrackYZ_graph->GetXaxis()->SetTitle("y (m)");
+		recoTrackYZ_graph->GetYaxis()->SetTitle("z (m)");
 	
-	recoTrackXY_graph->Write();
-	recoTrackXZ_graph->Write();
-	recoTrackYZ_graph->Write();
+		recoTrackXY_graph->Write();
+		recoTrackXZ_graph->Write();
+		recoTrackYZ_graph->Write();
 	
-	recoTrack_graph->Write();
+		recoTrack_graph->Write();
+	}
 	
 	// linear fit of camera histograms
 	FitCameraHist(camera_hist);
@@ -515,7 +521,8 @@ void DDMRootManager::FinaliseEvent()
 	//FillTree_RecoResults(fitXY->Parameter(1), tanThetaXZ, tanThetaYZ);
 	
 	// fill results tree
-	FillTree_RecoResults(fitXY->Parameter(1), tanThetaXZ, tanThetaYZ, CameraTanPhi_mng);
+	if (root_manager->IsStreamliningOff())
+		{FillTree_RecoResults(fitXY->Parameter(1), tanThetaXZ, tanThetaYZ, CameraTanPhi_mng);}
 	
 	// print skewness along x and skewness along y of camera image
 	G4cout << "skewness x = " << camera_hist->GetSkewness(1) << G4endl;
