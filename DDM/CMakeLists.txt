@@ -69,6 +69,7 @@ set(DDM_SCRIPTS
     testArgon.mac
     testParticle.mac
     testMuon.mac
+    isoArgon.mac
   )
 
 foreach(_script ${DDM_SCRIPTS})
