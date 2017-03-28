@@ -512,10 +512,16 @@ void DDMRootManager::FinaliseEvent()
 		FillTree_RecoResults(fitXY->Parameter(1), tanThetaXZ, tanThetaYZ, CameraTanPhi_mng);
 	}
 	
-	// linear fit of camera histograms
+	// calculate phi from linear fit of camera histogram
 	Double_t cameraTanPhi =  FitCameraHist(camera_hist);
-	Double_t cameraTanTheta_xz = FitCameraHist(cameraXZ_hist);
-	Double_t cameraTanTheta_yz = FitCameraHist(cameraYZ_hist);
+	
+	// calculate alpha and beta angles from the fits of XZ and YZ camera projections
+	Double_t cameraTanAlpha = FitCameraHist(cameraXZ_hist);
+	Double_t cameraTanBeta = FitCameraHist(cameraYZ_hist);
+	
+	// calculate tan(theta) from camera XZ and YZ projections
+	Double_t cameraTanTheta_xz = CalculateTanThetaFromXZ(cameraTanPhi, cameraTanAlpha);
+	Double_t cameraTanTheta_yz = CalculateTanThetaFromYZ(cameraTanPhi, cameraTanBeta);
 	
 	//fitCamera_graph->Write();
 	
