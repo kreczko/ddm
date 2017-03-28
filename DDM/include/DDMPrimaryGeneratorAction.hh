@@ -35,6 +35,7 @@
 #include "globals.hh"
 
 class G4ParticleGun;
+class G4GeneralParticleSource;
 class G4Event;
 class DDMPrimaryGeneratorMessenger;
 
@@ -54,6 +55,7 @@ class DDMPrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
 
   private:
     G4ParticleGun* fParticleGun;
+    G4GeneralParticleSource *fParticleSource;
     DDMPrimaryGeneratorMessenger* fGunMessenger;
 };
 
