@@ -45,29 +45,29 @@ DDMPrimaryGeneratorAction::DDMPrimaryGeneratorAction()
  : G4VUserPrimaryGeneratorAction(), 
    fParticleGun(0)
 {
-  G4int n_particle = 1;
-  fParticleGun = new G4GeneralParticleSource(n_particle);
+  /*G4int n_particle = 1;
+  fParticleGun = new G4GeneralParticleSource(n_particle);*/
 
   //create a messenger for this class
   fGunMessenger = new DDMPrimaryGeneratorMessenger(this);
 
   //default kinematic
   //
-  G4ParticleTable* particleTable = G4ParticleTable::GetParticleTable();
+  /*G4ParticleTable* particleTable = G4ParticleTable::GetParticleTable();
   G4ParticleDefinition* particle = particleTable->FindParticle("e+");
 
   fParticleGun->SetParticleDefinition(particle);
   fParticleGun->SetParticleTime(0.0*ns);
   fParticleGun->SetParticlePosition(G4ThreeVector(0.0*cm,0.0*cm,0.0*cm));
   fParticleGun->SetParticleMomentumDirection(G4ThreeVector(1.,0.,0.));
-  fParticleGun->SetParticleEnergy(500.0*keV);
+  fParticleGun->SetParticleEnergy(500.0*keV);*/
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 DDMPrimaryGeneratorAction::~DDMPrimaryGeneratorAction()
 {
-  delete fParticleGun;
+  //delete fParticleGun;
   delete fGunMessenger;
 }
 
@@ -75,12 +75,12 @@ DDMPrimaryGeneratorAction::~DDMPrimaryGeneratorAction()
 
 void DDMPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 {
-  fParticleGun->GeneratePrimaryVertex(anEvent);
+  //fParticleGun->GeneratePrimaryVertex(anEvent);
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void DDMPrimaryGeneratorAction::SetOptPhotonPolar()
+/*void DDMPrimaryGeneratorAction::SetOptPhotonPolar()
 {
  G4double angle = G4UniformRand() * 360.0*deg;
  SetOptPhotonPolar(angle);
@@ -108,6 +108,6 @@ void DDMPrimaryGeneratorAction::SetOptPhotonPolar(G4double angle)
  
  G4ThreeVector polar = std::cos(angle)*e_paralle + std::sin(angle)*e_perpend;
  fParticleGun->SetParticlePolarization(polar);
-}
+}*/
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
