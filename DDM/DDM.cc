@@ -159,6 +159,9 @@ int main(int argc,char** argv)
   // Get the pointer to the User Interface manager
   //
   G4UImanager* UImanager = G4UImanager::GetUIpointer(); 
+  
+  // set verbose flag
+  UI->ApplyCommand("/tracking/verbose 1");
    
   if ( macro.size() ) {
      // Batch mode
