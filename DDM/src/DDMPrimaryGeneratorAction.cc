@@ -34,7 +34,6 @@
 #include "Randomize.hh"
 
 #include "G4Event.hh"
-#include "G4ParticleGun.hh"
 #include "G4GeneralParticleSource.hh"
 #include "G4ParticleTable.hh"
 #include "G4ParticleDefinition.hh"
@@ -47,7 +46,7 @@ DDMPrimaryGeneratorAction::DDMPrimaryGeneratorAction()
    fParticleGun(0)
 {
   G4int n_particle = 1;
-  fParticleGun = new G4ParticleGun(n_particle);
+  fParticleGun = new G4GeneralParticleSource(n_particle);
 
   //create a messenger for this class
   fGunMessenger = new DDMPrimaryGeneratorMessenger(this);
