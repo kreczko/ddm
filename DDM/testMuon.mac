@@ -2,9 +2,9 @@
 /control/verbose 2
 /tracking/verbose 3
 #
-/gun/particle mu-
-/gun/energy 4000 MeV
+/gps/particle mu-
+/gps/energy 4000 MeV
 #
-/gun/position -1 -1 -1 m
-/gun/direction 1 1 1
+/gps/position -1 -1 -1 m
+/gps/direction 1 1 1
 /run/beamOn 1
