@@ -35,6 +35,7 @@
 
 #include "G4Event.hh"
 #include "G4ParticleGun.hh"
+#include "G4GeneralParticleSource.hh"
 #include "G4ParticleTable.hh"
 #include "G4ParticleDefinition.hh"
 #include "G4SystemOfUnits.hh"
@@ -47,6 +48,7 @@ DDMPrimaryGeneratorAction::DDMPrimaryGeneratorAction()
 {
   G4int n_particle = 1;
   fParticleGun = new G4ParticleGun(n_particle);
+  fParticleSource = new G4GeneralParticleSource;
 
   //create a messenger for this class
   fGunMessenger = new DDMPrimaryGeneratorMessenger(this);
@@ -68,6 +70,7 @@ DDMPrimaryGeneratorAction::DDMPrimaryGeneratorAction()
 DDMPrimaryGeneratorAction::~DDMPrimaryGeneratorAction()
 {
   delete fParticleGun;
+  delete fParticleSource;
   delete fGunMessenger;
 }
 
