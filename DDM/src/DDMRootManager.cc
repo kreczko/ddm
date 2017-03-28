@@ -164,7 +164,7 @@ void DDMRootManager::InitialiseTrees()
 	// directScint_hist
 	stringstream directScint_histname;
 	directScint_histname << "directScint_" << EventCounter_mng;
-	directScint_hist = new TH2I(directScint_histname.str().c_str(), "Scintillation photons", 200, -1.0, 1.0, 200, -1.0, 1.0);
+	directScint_hist = new TH2I(directScint_histname.str().c_str(), "Scintillation photons", 200, -1.0/m, 1.0/m, 200, -1.0/m, 1.0/m);
 	
 	// camera_hist
 	stringstream camera_histname;
