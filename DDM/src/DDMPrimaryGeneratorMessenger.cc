@@ -73,11 +73,11 @@ void DDMPrimaryGeneratorMessenger::SetNewValue(
 {
   if( command == fPolarCmd ) {
       G4double angle = fPolarCmd->GetNewDoubleValue(newValue);
-      if ( angle == -360.0*deg ) {
+      /*if ( angle == -360.0*deg ) {
          fDDMAction->SetOptPhotonPolar();
       } else {
          fDDMAction->SetOptPhotonPolar(angle);
-      }
+      }*/
   }
 }
 
