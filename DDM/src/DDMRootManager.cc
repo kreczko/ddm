@@ -218,7 +218,7 @@ void DDMRootManager::InitialiseResultsTree()
 	recoResultsCamera_tree = new TTree("recoResultsCamera", "recoResultsCamera");
 	
 	recoResultsCamera_tree -> Branch("recoResultsCamera_branch",&RecoResultsCamera_mng,
-				   "EventNo/D:phi_true/D:theta_true/D");
+				   "EventNo/D:phi_true/D:theta_true/D:camera_phi/D:camera_theta_xz/D:camera_theta_yz/D");
 }
 
 void DDMRootManager::FillTree_TimeStepData(Double_t input_time, Double_t input_x, Double_t input_y, Double_t input_z, Double_t input_energy)
@@ -313,6 +313,9 @@ void DDMRootManager::FillTree_RecoResultsCamera()
 	RecoResultsCamera_mng[0] = EventCounter_mng;
 	RecoResultsCamera_mng[1] = TruePhi_mng;
 	RecoResultsCamera_mng[2] = TrueTheta_mng;
+	//RecoResultsCamera_mng[3] = camera phi
+	//RecoResultsCamera_mng[4] = camera theta_xz
+	//RecoResultsCamera_mng[5] = camera theta_yz
 	
 	recoResultsCamera_tree->Fill();
 }
