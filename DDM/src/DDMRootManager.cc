@@ -313,9 +313,9 @@ void DDMRootManager::FillTree_RecoResultsCamera(Double_t input_tanphi, Double_t 
 	RecoResultsCamera_mng[0] = EventCounter_mng;
 	RecoResultsCamera_mng[1] = TruePhi_mng;
 	RecoResultsCamera_mng[2] = TrueTheta_mng;
-	RecoResultsCamera_mng[3] = atan(input_phi);
-	RecoResultsCamera_mng[4] = atan(input_theta_xz);
-	RecoResultsCamera_mng[5] = atan(input_theta_yz);
+	RecoResultsCamera_mng[3] = atan(input_tanphi);
+	RecoResultsCamera_mng[4] = atan(input_tantheta_xz);
+	RecoResultsCamera_mng[5] = atan(input_tantheta_yz);
 	
 	recoResultsCamera_tree->Fill();
 }
