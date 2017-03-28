@@ -513,15 +513,18 @@ void DDMRootManager::FinaliseEvent()
 	}
 	
 	// linear fit of camera histograms
-	FitCameraHist(camera_hist);
-	FitCameraHist(cameraXZ_hist);
-	FitCameraHist(cameraYZ_hist);
+	Double_t cameraTanPhi =  FitCameraHist(camera_hist);
+	Double_t cameraTanTheta_xz = FitCameraHist(cameraXZ_hist);
+	Double_t cameraTanTheta_yz = FitCameraHist(cameraYZ_hist);
 	
 	//fitCamera_graph->Write();
 	
 	camera_hist->Write();
 	cameraXZ_hist->Write();
 	cameraYZ_hist->Write();
+	
+	// fill camera results tree
+	FillTree_RecoResultsCamera(cameraTanPhi, cameraTanTheta_xz, cameraTanTheta_yz);
 	
 	// print skewness along x and skewness along y of camera image
 	G4cout << "skewness x = " << camera_hist->GetSkewness(1) << G4endl;
@@ -574,7 +577,7 @@ Double_t DDMRootManager::CalculateTanThetaFromYZ(Double_t input_tanphi, Double_t
 void DDMRootManager::CloseResultsTree()
 {
 	if (IsStreamliningOff()) {recoResults_tree->Write();}
-	//recoResultsCamera_tree->Write();
+	recoResultsCamera_tree->Write();
 	delete recoResults_tree;
 	delete recoResultsCamera_tree;
 }
