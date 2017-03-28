@@ -1,10 +1,10 @@
 /control/verbose 2
 /tracking/verbose 3
 #
-/gun/particle ion
-/gun/ion 18 40
-/gun/energy 200 keV
+/gps/particle ion
+/gps/ion 18 40
+/gps/energy 200 keV
 #
-/gun/position 0 0 0 m
-/gun/direction -1 -1 0
+/gps/position 0 0 0 m
+/gps/direction -1 -1 0
 /run/beamOn 1
