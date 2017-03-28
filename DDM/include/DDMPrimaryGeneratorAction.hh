@@ -53,7 +53,7 @@ class DDMPrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
     void SetOptPhotonPolar(G4double);
 
   private:
-    G4Particle* fParticleGun;
+    G4ParticleGun* fParticleGun;
     DDMPrimaryGeneratorMessenger* fGunMessenger;
 };
 
