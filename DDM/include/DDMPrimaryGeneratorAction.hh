@@ -34,7 +34,7 @@
 #include "G4VUserPrimaryGeneratorAction.hh"
 #include "globals.hh"
 
-class G4GeneralParticleSource;
+class G4ParticleGun;
 class G4Event;
 class DDMPrimaryGeneratorMessenger;
 
@@ -53,7 +53,7 @@ class DDMPrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
     void SetOptPhotonPolar(G4double);
 
   private:
-    G4GeneralParticleSource* fParticleGun;
+    G4Particle* fParticleGun;
     DDMPrimaryGeneratorMessenger* fGunMessenger;
 };
 
