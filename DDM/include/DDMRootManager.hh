@@ -36,7 +36,7 @@ class DDMRootManager
 		Double_t ElectronData_mng[3] = {0};
 		Double_t RecoData_mng[4] = {0};
 		Double_t RecoResults_mng[11] = {0};
-		Double_t RecoResultsCamera_mng[3] = {0};
+		Double_t RecoResultsCamera_mng[6] = {0};
 	
 		// detector construction information
 		Double_t DriftVelocity_mng = 0;
