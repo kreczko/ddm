@@ -612,7 +612,7 @@ Double_t DDMRootManager::CalculateVectorAngle(Double_t input_tanphi, Double_t in
 	Double_t theta = atan(input_tantheta);
 	
 	Double_t phi = atan(input_tanphi);
-	if (input_skewnessX > 0) {phi += M_PI*rad} // apply head-tailing, assuming more electrons at head
+	if (input_skewnessX > 0) {phi += M_PI*rad;} // apply head-tailing, assuming more electrons at head
 	
 	G4ThreeVector* recoDirection = new G4ThreeVector(1.0, 0.0, 0.0);
 	recoDirection->setPhi(phi);
