@@ -553,7 +553,7 @@ void DDMRootManager::FinaliseEvent()
 	G4cout << "skewness x = " << camera_hist->GetSkewness(1) << G4endl;
 	G4cout << "skewness y = " << camera_hist->GetSkewness(2) << G4endl;
 	
-	G4double deviation = CalculateVectorAngle(cameraTanPhi, cameraTanTheta_xz, camera_hist->GetSkewness(1));
+	Double_t deviation = CalculateVectorAngle(cameraTanPhi, cameraTanTheta_xz, camera_hist->GetSkewness(1));
 	G4cout << "Directional deviation: " << deviation << G4endl;
 	
 	// fill camera results tree
@@ -618,7 +618,7 @@ Double_t DDMRootManager::CalculateVectorAngle(Double_t input_tanphi, Double_t in
 	recoDirection->setPhi(phi);
 	recoDirection->setTheta(theta);
 	
-	Double_t deviation = recoDirection->angle(trueDirection);
+	Double_t deviation = recoDirection->angle(*trueDirection);
 	
 	return deviation;
 }
