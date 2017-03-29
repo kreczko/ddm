@@ -35,6 +35,8 @@
 
 #include "G4Run.hh"
 
+#include "DDMRootManager.hh"
+
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 DDMRunAction::DDMRunAction()
@@ -55,7 +57,12 @@ DDMRunAction::~DDMRunAction()
 
 void DDMRunAction::BeginOfRunAction(const G4Run* aRun)
 {
-  G4cout << "### Run " << aRun->GetRunID() << " start." << G4endl;
+  DDMRootManager* root_manager = DDMRootManager::GetRootManager();
+ 
+  if (root_manager->IsStreamliningOff()) 
+  {
+    G4cout << "### Run " << aRun->GetRunID() << " start." << G4endl;
+  }
   fTimer->Start();
 }
 
@@ -63,9 +70,14 @@ void DDMRunAction::BeginOfRunAction(const G4Run* aRun)
 
 void DDMRunAction::EndOfRunAction(const G4Run* aRun)
 {
+  DDMRootManager* root_manager = DDMRootManager::GetRootManager();
+ 
   fTimer->Stop();
-  G4cout << "number of event = " << aRun->GetNumberOfEvent()
-         << " " << *fTimer << G4endl;
+  if (root_manager->IsStreamliningOff()) 
+  {
+    G4cout << "number of event = " << aRun->GetNumberOfEvent()
+           << " " << *fTimer << G4endl;
+  }
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
