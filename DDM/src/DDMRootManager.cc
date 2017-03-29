@@ -68,14 +68,33 @@ void DDMRootManager::ReadParameterFile(G4String filename)
 	parameterFile.open(filename);
 	
 	G4String word;
+	Int_t paramCount = 0;
+	Int_t expectedParamCount = 2;
 	
 	while (parameterFile >> word)
 	{
 		if (word == "Pressure:") 
 		{
+			paramCount++;
 			parameterFile >> word;
 			SetGasPressure(atof(word)*atmosphere);
+			
+			G4cout << "Input pressure: " << word << " atm" << G4endl;
 		}
+		
+		if (word == "TimeRes:") 
+		{
+			paramCount++;
+			parameterFile >> word;
+			TimeResolution_mng = atof(word)*ns;
+			
+			G4cout << "Input time resolution: " << word << " ns" << G4endl;
+		}
+	}
+	
+	if (paramCount != expectedParamCount)
+	{
+		G4cout << "WARNING: Parameter file is missing " << expectedParamCount - paramCount << " values!!!" << G4endl;
 	}
 }
 
