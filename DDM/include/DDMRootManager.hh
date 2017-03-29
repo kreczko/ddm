@@ -61,7 +61,7 @@ class DDMRootManager
 	
 		// camera variables
 		Int_t CameraResolution_mng = 1000;
-		Double_t TimeResolution_mng = 20.0*ns;
+		Double_t TimeResolution_mng = 0;
 	
 		Double_t LensRadius_mng = 85.0*mm;
 		Double_t LensCentreX_mng = 0.0*mm;
