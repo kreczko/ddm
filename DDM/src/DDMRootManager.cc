@@ -362,11 +362,12 @@ void DDMRootManager::FillHist_CameraYZ(Double_t input_y, Double_t input_z)
 
 Double_t DDMRootManager::FitCameraHist(TH2I* input_hist)
 {
+	input_hist->ClearUnderflowAndOverflow();
 	
 	//TGraph* fitCamera_graph = new TGraph(1);
 	fitCamera_graph = new TGraph(1);
 	
-	fitCamera_graph->Set(SecondaryScintCounter_mng);
+	fitCamera_graph->Set(input_hist->GetEntries);
 	
 	//G4int photonCut = camera_hist->GetMaximum()/4;
 	
@@ -374,7 +375,7 @@ Double_t DDMRootManager::FitCameraHist(TH2I* input_hist)
 	
 	G4cout << "Camera histogram size: " << input_hist->GetNbinsX() << "x" << input_hist->GetNbinsY() << G4endl;
 	
-	input_hist->ClearUnderflowAndOverflow();
+	
 	
 	// loop through all bins
 	for(G4int binx = 1; binx <= input_hist->GetNbinsX(); binx++)
