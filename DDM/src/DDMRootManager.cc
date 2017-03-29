@@ -367,7 +367,7 @@ Double_t DDMRootManager::FitCameraHist(TH2I* input_hist)
 	//TGraph* fitCamera_graph = new TGraph(1);
 	fitCamera_graph = new TGraph(1);
 	
-	fitCamera_graph->Set(input_hist->GetEntries);
+	fitCamera_graph->Set(input_hist->GetEntries());
 	
 	//G4int photonCut = camera_hist->GetMaximum()/4;
 	
