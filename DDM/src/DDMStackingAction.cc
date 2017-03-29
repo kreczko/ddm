@@ -78,6 +78,8 @@ DDMStackingAction::ClassifyNewTrack(const G4Track * aTrack)
 
 void DDMStackingAction::NewStage()
 {
+  DDMRootManager* root_manager = DDMRootManager::GetRootManager();
+  
   if (root_manager->IsStreamliningOff())
   {
     G4cout << "Number of Scintillation photons produced in this event : "
