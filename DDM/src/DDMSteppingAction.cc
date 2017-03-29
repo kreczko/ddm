@@ -126,7 +126,10 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
     G4double ionisationEnergy = step->GetTotalEnergyDeposit() - step->GetNonIonizingEnergyDeposit();
     G4ThreeVector position = step->GetPreStepPoint()->GetPosition();
     G4double stepTime = step->GetPreStepPoint()->GetLocalTime();
-    G4cout << "time: " << stepTime << ", pos: " << position << ", E: " << ionisationEnergy << G4endl;
+    if (IsStreamliningOff()) 
+    {
+      G4cout << "time: " << stepTime << ", pos: " << position << ", E: " << ionisationEnergy << G4endl;
+    }
     
     // fill tree
     //root_manager->FillTree_TimeStepData(stepTime,position,ionisationEnergy);
@@ -136,7 +139,10 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
     // generate electrons
     G4int numOfElectrons = ionisationEnergy/(15.75962*eV);
     fIonisationCounter += numOfElectrons;
-    G4cout << "Electrons manually generated in this step: " << numOfElectrons << G4endl;
+    if (IsStreamliningOff())
+    {
+      G4cout << "Electrons manually generated in this step: " << numOfElectrons << G4endl;
+    }
     
     // propagate and save electrons
     for (G4int i = 0; i < numOfElectrons; i++)
