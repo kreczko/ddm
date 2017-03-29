@@ -79,7 +79,10 @@ void DDMRootManager::ReadParameterFile(G4String filename)
 			parameterFile >> word;
 			SetGasPressure(atof(word)*atmosphere);
 			
-			G4cout << "Input pressure: " << word << " atm" << G4endl;
+			if (IsStreamliningOff())
+			{
+				G4cout << "Input pressure: " << word << " atm" << G4endl;
+			}
 		}
 		
 		if (word == "TimeRes:") 
@@ -88,7 +91,10 @@ void DDMRootManager::ReadParameterFile(G4String filename)
 			parameterFile >> word;
 			TimeResolution_mng = atof(word)*ns;
 			
-			G4cout << "Input time resolution: " << word << " ns" << G4endl;
+			if (IsStreamliningOff())
+			{
+				G4cout << "Input time resolution: " << word << " ns" << G4endl;
+			}
 		}
 	}
 	
@@ -195,7 +201,10 @@ void DDMRootManager::InitialiseTrees()
 	
 	// calcualate z range for camera projection histograms
 	Int_t SnapshotNumber = (2.0*TankHeight_mng/(TimeResolution_mng*DriftVelocity_mng));
-	G4cout << "Calculated snapshot number: " << SnapshotNumber << G4endl;
+	if (IsStreamliningOff())
+	{
+		G4cout << "Calculated snapshot number: " << SnapshotNumber << G4endl;
+	}
 	Double_t CameraRange_z = SnapshotNumber * TimeResolution_mng * DriftVelocity_mng;
 	
 	// cameraXZ_hist
@@ -373,7 +382,10 @@ Double_t DDMRootManager::FitCameraHist(TH2I* input_hist)
 	
 	G4int point = 0;
 	
-	G4cout << "Camera histogram size: " << input_hist->GetNbinsX() << "x" << input_hist->GetNbinsY() << G4endl;
+	if (IsStreamliningOff())
+	{
+		G4cout << "Camera histogram size: " << input_hist->GetNbinsX() << "x" << input_hist->GetNbinsY() << G4endl;
+	}
 	
 	
 	
@@ -408,18 +420,27 @@ Double_t DDMRootManager::FitCameraHist(TH2I* input_hist)
 	// calculate start point for fit line
 	Double_t start_x = -1.0;
 	Double_t start_y = (start_x*cameraFit->Parameter(1)) + cameraFit->Parameter(0);
-	G4cout << "Starting point of fit line: " << start_x << ", " << start_y << G4endl;
+	if (IsStreamliningOff())
+	{
+		G4cout << "Starting point of fit line: " << start_x << ", " << start_y << G4endl;
+	}
 	
 	// calculate end point for fit line
 	Double_t end_x = 1.0;
 	Double_t end_y = (end_x*cameraFit->Parameter(1)) + cameraFit->Parameter(0);
-	G4cout << "Ending point of fit line: " << end_x << ", " << end_y << G4endl;
+	if (IsStreamliningOff())
+	{
+		G4cout << "Ending point of fit line: " << end_x << ", " << end_y << G4endl;
+	}
 	
 	// overlay fit line onto camera histogram
 	cameraFitLine = new TLine(start_x, start_y, end_x, end_y);
 	cameraFitLine->SetLineColor(kRed);
 	input_hist->GetListOfFunctions()->Add(cameraFitLine);
-	PrintToScreen("Fit line drawn onto camera image.");
+	if (IsStreamliningOff())
+	{
+		PrintToScreen("Fit line drawn onto camera image.");
+	}
 	
 	// save gradient of fit in a variable
 	Double_t cameraGradient = cameraFit->Parameter(1);
@@ -437,11 +458,17 @@ Double_t DDMRootManager::FitCameraHist(TH2I* input_hist)
 
 G4double DDMRootManager::CalculateDriftVelocity()
 {
-	G4cout << "Calculating drift velocity..." << G4endl;
+	if (IsStreamliningOff())
+	{
+		G4cout << "Calculating drift velocity..." << G4endl;
+	}
   	G4double reducedField = ElectricField_mng/GasPressure_mng;
   	G4double reducedField_VperCmTorr = reducedField/(volt*760/(cm*atmosphere));
   	DriftVelocity_mng = pow(reducedField_VperCmTorr, 0.85)*3.0e5*cm/s;
-  	G4cout << "Drift velocity = " << DriftVelocity_mng/(cm/s) << G4endl;
+	if (IsStreamliningOff())
+	{
+  		G4cout << "Drift velocity = " << DriftVelocity_mng/(cm/s) << G4endl;
+	}
 	
   	if ((reducedField_VperCmTorr < 2) || (reducedField_VperCmTorr > 1000))
   	{
@@ -552,16 +579,26 @@ void DDMRootManager::FinaliseEvent()
 	
 	//fitCamera_graph->Write();
 	
-	camera_hist->Write();
-	cameraXZ_hist->Write();
-	cameraYZ_hist->Write();
+	if (IsStreamliningOff())
+	{
+		camera_hist->Write();
+		cameraXZ_hist->Write();
+		cameraYZ_hist->Write();
+	}
 	
-	// print skewness along x and skewness along y of camera image
-	G4cout << "skewness x = " << camera_hist->GetSkewness(1) << G4endl;
-	G4cout << "skewness y = " << camera_hist->GetSkewness(2) << G4endl;
+	if (IsStreamliningOff())
+	{
+		// print skewness along x and skewness along y of camera image
+		G4cout << "skewness x = " << camera_hist->GetSkewness(1) << G4endl;
+		G4cout << "skewness y = " << camera_hist->GetSkewness(2) << G4endl;
+	}
 	
-	Double_t deviation = CalculateVectorAngle(cameraTanPhi, cameraTanTheta_xz, camera_hist->GetSkewness(1));
-	G4cout << "Directional deviation: " << deviation << G4endl;
+	if (IsStreamliningOff())
+	{
+		// calculate deviation in true and reconstructed vectors
+		Double_t deviation = CalculateVectorAngle(cameraTanPhi, cameraTanTheta_xz, camera_hist->GetSkewness(1));
+		G4cout << "Directional deviation: " << deviation << G4endl;
+	}
 	
 	// fill camera results tree
 	FillTree_RecoResultsCamera(cameraTanPhi, cameraTanTheta_xz, cameraTanTheta_yz);
