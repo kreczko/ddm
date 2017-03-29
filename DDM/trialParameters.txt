@@ -1,1 +1,2 @@
 Pressure: 0.001
+TimeRes: 20.0
