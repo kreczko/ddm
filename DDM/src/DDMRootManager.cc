@@ -446,7 +446,7 @@ Double_t DDMRootManager::FitCameraHist(TH2I* input_hist)
 	Double_t cameraGradient = cameraFit->Parameter(1);
 
 	// write sacrifical graph to file
-	fitCamera_graph->Write();
+	//fitCamera_graph->Write();
 	
 	delete fitCamera_graph;
 	
