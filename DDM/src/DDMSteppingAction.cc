@@ -228,16 +228,17 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
       G4double reconstructed_z = tankHeight - (final_time*driftVelocity);
       
       // pixellated view of photons
+      /*
       if (root_manager->IsStreamliningOff())
-        //{root_manager->FillHist_DirectScint(final_x, final_y, scintPhotons);}
-      
-      root_manager->FillHist_DirectScint(final_x, final_y, 2.0);
-      
-      
+        {root_manager->FillHist_DirectScint(final_x, final_y, scintPhotons);}
+      */ 
       
       // propagation of photons to lens
       for (G4int j = 0; j < scintPhotons; j++)
       {
+        // fill direct scint histogram
+        root_manager->FillHist_DirectScint(final_x, final_y);
+        
         G4double photonTheta = G4UniformRand()*M_PI;
         G4double photonPhi = G4UniformRand()*2.0*M_PI;
         
