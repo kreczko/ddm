@@ -78,12 +78,15 @@ DDMStackingAction::ClassifyNewTrack(const G4Track * aTrack)
 
 void DDMStackingAction::NewStage()
 {
-  G4cout << "Number of Scintillation photons produced in this event : "
-         << fScintillationCounter << G4endl;
-  G4cout << "Number of Cerenkov photons produced in this event : "
-         << fCerenkovCounter << G4endl;
-  G4cout << "Number of electrons produced in this event : "
-         << fIonisationCounter << G4endl;
+  if (root_manager->IsStreamliningOff())
+  {
+    G4cout << "Number of Scintillation photons produced in this event : "
+           << fScintillationCounter << G4endl;
+    G4cout << "Number of Cerenkov photons produced in this event : "
+          << fCerenkovCounter << G4endl;
+    G4cout << "Number of electrons produced in this event : "
+          << fIonisationCounter << G4endl;
+  }
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
