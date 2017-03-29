@@ -549,12 +549,15 @@ void DDMRootManager::FinaliseEvent()
 	cameraXZ_hist->Write();
 	cameraYZ_hist->Write();
 	
-	// fill camera results tree
-	FillTree_RecoResultsCamera(cameraTanPhi, cameraTanTheta_xz, cameraTanTheta_yz);
-	
 	// print skewness along x and skewness along y of camera image
 	G4cout << "skewness x = " << camera_hist->GetSkewness(1) << G4endl;
 	G4cout << "skewness y = " << camera_hist->GetSkewness(2) << G4endl;
+	
+	G4double deviation = CalculateVectorAngle(cameraTanPhi, cameraTanTheta_xz, camera_hist->GetSkewness(1));
+	G4cout << "Directional deviation: " << deviation << G4endl;
+	
+	// fill camera results tree
+	FillTree_RecoResultsCamera(cameraTanPhi, cameraTanTheta_xz, cameraTanTheta_yz);
 	
 	/*
 	cameraProjectionX_hist = camera_hist->ProjectionX("Camera_projection_X", 1, CameraResolution_mng);
@@ -598,6 +601,26 @@ Double_t DDMRootManager::CalculateTanThetaFromYZ(Double_t input_tanphi, Double_t
 	Double_t phi = atan(input_tanphi);
 	Double_t tantheta = 1.0/(input_tanbeta * sin(phi));
 	return tantheta;
+}
+
+Double_t DDMRootManager::CalculateVectorAngle(Double_t input_tanphi, Double_t input_tantheta, Double_t input_skewnessX)
+{
+	G4ThreeVector* trueDirection = new G4ThreeVector(1.0, 0.0, 0.0);
+	trueDirection->setPhi(TruePhi_mng);
+	trueDirection->setTheta(TrueTheta_mng);
+	
+	Double_t theta = atan(input_tantheta);
+	
+	Double_t phi = atan(input_tanphi);
+	if (input_skewnessX > 0) {phi += M_PI*rad} // apply head-tailing, assuming more electrons at head
+	
+	G4ThreeVector* recoDirection = new G4ThreeVector(1.0, 0.0, 0.0);
+	recoDirection->setPhi(phi);
+	recoDirection->setTheta(theta);
+	
+	Double_t deviation = recoDirection->angle(trueDirection);
+	
+	return deviation;
 }
 
 void DDMRootManager::CloseResultsTree()
