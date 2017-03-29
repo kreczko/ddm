@@ -320,7 +320,7 @@ void DDMRootManager::FillTree_RecoResultsCamera(Double_t input_tanphi, Double_t 
 	recoResultsCamera_tree->Fill();
 }
 
-void DDMRootManager::FillHist_DirectScint(Double_t input_x, Double_t input_y, Int_t input_photonNum)
+void DDMRootManager::FillHist_DirectScint(Double_t input_x, Double_t input_y, Double_t input_photonNum)
 {
 	directScint_hist->Fill(input_x/m, input_y/m, input_photonNum);
 }
