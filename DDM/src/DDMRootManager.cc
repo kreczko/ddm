@@ -613,9 +613,17 @@ void DDMRootManager::FinaliseEvent()
 	
 	if (headTail < 0)
 	{
-		correctedPhi += M_PI;
-		correctedTheta_xz = M_PI - correctedTheta_xz;
+		//correctedPhi += M_PI;
+		//correctedTheta_xz = M_PI - correctedTheta_xz;
 		correctedTheta_yz = M_PI - correctedTheta_yz;
+		
+		G4ThreeVector* direction = new G4ThreeVector();
+		direction->setRThetaPhi(1.0, correctedTheta_xz, correctedPhi)
+		
+		G4ThreeVector reversed = -direction;
+		
+		correctedTheta_xz = reversed.getTheta();
+		correctedPhi = reversed.getPhi();
 	}
 	
 	//fitCamera_graph->Write();
