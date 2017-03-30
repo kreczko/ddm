@@ -605,6 +605,9 @@ void DDMRootManager::FinaliseEvent()
 	Double_t cameraTanTheta_xz = CalculateTanThetaFromXZ(cameraTanPhi, cameraTanAlpha);
 	Double_t cameraTanTheta_yz = CalculateTanThetaFromYZ(cameraTanPhi, cameraTanBeta);
 	
+	// NEW METHOD: vector
+	G4ThreeVector* recoVector = new G4ThreeVector(1.0, cameraTanPhi, cameraTanAlpha);
+	
 	// apply head-tailing
 	Double_t headTail = HeadTail(cameraTanPhi, camera_hist->GetSkewness(1), camera_hist->GetSkewness(2));
 	Double_t correctedPhi = atan(cameraTanPhi);
@@ -622,9 +625,14 @@ void DDMRootManager::FinaliseEvent()
 		
 		G4ThreeVector reversed = direction->operator-();
 		
+		recoVector->operator*=(-1.0);
+		
 		correctedTheta_xz = reversed.getTheta();
 		correctedPhi = reversed.getPhi();
 	}
+
+	Double_t vectorPhi = recoVector->getPhi();
+	Double_t vectorTheta = recoVector->getTheta();
 	
 	//fitCamera_graph->Write();
 	
@@ -645,10 +653,10 @@ void DDMRootManager::FinaliseEvent()
 	}
 	
 	// calculate deviation in true and reconstructed vectors
-	Double_t deviation = CalculateVectorAngle(correctedPhi, correctedTheta_xz);
+	Double_t deviation = CalculateVectorAngle(vectorPhi, vectorTheta);
 	// calculate deviation in individual angles
-	Double_t deltaPhi = fabs(correctedPhi - TruePhi_mng);
-	Double_t deltaTheta_xz = fabs(correctedTheta_xz - TrueTheta_mng);
+	Double_t deltaPhi = fabs(vectorPhi - TruePhi_mng);
+	Double_t deltaTheta_xz = fabs(vectorTheta - TrueTheta_mng);
 	Double_t deltaTheta_yz = fabs(correctedTheta_yz - TrueTheta_mng);
 	
 	if (IsStreamliningOff())
