@@ -1,5 +1,5 @@
 #include <iostream>
-//#include <fstream>
+#include <fstream>
 #include <sstream>
 #include <string>
 
@@ -7,7 +7,7 @@ using namespace std;
 
 int main()
 {
-  ofstream shellScript;
+  //ofstream shellScript;
   
   int numPointsP = 2; // number of points (pressure)
   int numPointsTres = 2; // number of points (time resolution)
