@@ -36,10 +36,10 @@ int main()
       stringstream filename;
       filename << "/storage/gp_ws_ddm/parameterFiles/P" << pressure << "atm_Tres" << timeRes << "ns.txt";
       
-      paramFile.open(filename.str());
+      paramFile.open(filename.str().c_str());
       paramFile << "Pressure: " << pressure << endl;
       paramFile << "TimeRes: " << timeRes << endl;
-      paramfile.close();
+      paramFile.close();
       
       shellScript << "./DDM -s 1 -storage 1 -m isoArgon.mac -p " << filename.str() << endl;
     }
