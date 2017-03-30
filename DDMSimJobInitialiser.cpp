@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <string>
 
 using namespace std;
 
@@ -17,11 +18,11 @@ int main()
   double stepP = 0.005; // step in pressure (atm)
   double stepTres = 10.0; // step in time resolution (ns)
   
-  shellScript.open("~/DDMSimJob.sh");
+  /*shellScript.open("~/DDMSimJob.sh");
   
   shellScript << "# Pressure (atm): " << lowP << "--" << lowP + (numPointsP*stepP) << endl;
   shellScript << "# Time resolution (ns): " << lowTres << "--" << lowTres + (numPointsTres*stepTres) << endl;
-  shellScript << "cd ~/geant4/DDM-build" << endl;
+  shellScript << "cd ~/geant4/DDM-build" << endl;*/
   
   for (int i = 0; i < numPointsP; i++)
   {
@@ -45,9 +46,9 @@ int main()
     }
   }
   
-  shellScript << "echo === SIMULATION JOB COMPLETE ===";
+  /*shellScript << "echo === SIMULATION JOB COMPLETE ===";
   
-  shellScript.close();
+  shellScript.close();*/
   
   return 0;
 }
