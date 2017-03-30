@@ -593,7 +593,7 @@ void DDMRootManager::FinaliseEvent()
 	}
 	
 	// calculate gradient in x-y from linear fit of camera histogram
-	Double_t cameraGradXZ =  FitCameraHist(camera_hist);
+	Double_t cameraGradXY =  FitCameraHist(camera_hist);
 	
 	// calculate gradients in x-z and y-z from the fits of XZ and YZ camera projections
 	Double_t cameraGradXZ = FitCameraHist(cameraXZ_hist);
