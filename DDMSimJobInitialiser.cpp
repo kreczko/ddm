@@ -41,7 +41,7 @@ int main()
       paramFile << "TimeRes: " << timeRes << endl;
       paramFile.close();*/
       
-      shellScript << "./DDM -s 1 -storage 1 -m isoArgon.mac -p " << filename.str() << endl;
+      shellScript << "./DDM -s 1 -storage 1 -m isoArgon.mac -p " << filename << endl;
     }
   }
   
