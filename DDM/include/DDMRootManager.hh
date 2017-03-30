@@ -106,6 +106,7 @@ class DDMRootManager
 		void FillHist_CameraXZ(Double_t input_x, Double_t input_z);
 		void FillHist_CameraYZ(Double_t input_y, Double_t input_z);
 		Double_t FitCameraHist(TH2I* input_hist);
+		Double_t HeadTail(Double_t input_tanphi, Double_t input_skewnessX, Double_t input_skewnessY);
 	
 		void FinaliseEvent();
 		void CloseResultsTree();
@@ -120,7 +121,7 @@ class DDMRootManager
 	
 		G4double CalculateDriftVelocity();
 		G4double CalculateSecondaryScintYield(Double_t input_avalancheField);
-	
+		
 		Double_t CalculateVectorAngle(Double_t input_tanphi, Double_t input_tantheta, Double_t input_skewnessX);
 
 		// define Get and Set methods for each _mng variable: can be defined inline.
