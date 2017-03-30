@@ -622,10 +622,12 @@ void DDMRootManager::FinaliseEvent()
 		
 	}
 	
+	// calculate deviation in true and reconstructed vectors
+	Double_t deviation = CalculateVectorAngle(cameraTanPhi, cameraTanTheta_xz, headTail);
+	
 	if (IsStreamliningOff())
 	{
-		// calculate deviation in true and reconstructed vectors
-		Double_t deviation = CalculateVectorAngle(cameraTanPhi, cameraTanTheta_xz, headTail);
+		// print deviation result
 		G4cout << "Directional deviation: " << deviation << G4endl;
 	}
 	
