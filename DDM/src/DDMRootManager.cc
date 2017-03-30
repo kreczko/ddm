@@ -456,6 +456,28 @@ Double_t DDMRootManager::FitCameraHist(TH2I* input_hist)
 	return cameraGradient;
 }
 
+Double_t DDMRootManager::HeadTail(Double_t input_tanphi, Double_t input_skewnessX, Double_t input_skewnessY)
+{
+	Double_t headTailResult = 0;
+	
+	if (input_tanphi > 1.0)
+	{
+		if (input_skewnessY < 0) {headTailResult = fabs(input_skewnessY);} // gradient > 1 and y-skewness -ve, therefore phi is right
+		else if (input_skewnessY > 0) {headTailResult = -fabs(input_skewnessY);} // gradient > 1 and y-skewness +ve, therefore phi is wrong
+	}
+	else if (input_tanphi < -1.0)
+	{
+		if (input_skewnessY < 0) {headTailResult = -fabs(input_skewnessY);} // gradient < -1 and y-skewness -ve, therefore phi is wrong
+		else if (input_skewnessY > 0) {headTailResult = fabs(input_skewnessY);} // gradient < -1 and y-skewness +ve, therefore phi is right
+	}
+	else
+	{
+		headTailResult = -input_skewnessX;
+	}
+	
+	return headTailResult;
+}
+
 G4double DDMRootManager::CalculateDriftVelocity()
 {
 	if (IsStreamliningOff())
@@ -577,6 +599,9 @@ void DDMRootManager::FinaliseEvent()
 	Double_t cameraTanTheta_xz = CalculateTanThetaFromXZ(cameraTanPhi, cameraTanAlpha);
 	Double_t cameraTanTheta_yz = CalculateTanThetaFromYZ(cameraTanPhi, cameraTanBeta);
 	
+	// apply head-tailing
+	Double_t headTail = HeadTail(cameraTanPhi, camera_hist->GetSkewness(1), camera_hist->GetSkewness(2));
+	
 	//fitCamera_graph->Write();
 	
 	if (IsStreamliningOff())
@@ -591,12 +616,14 @@ void DDMRootManager::FinaliseEvent()
 		// print skewness along x and skewness along y of camera image
 		G4cout << "skewness x = " << camera_hist->GetSkewness(1) << G4endl;
 		G4cout << "skewness y = " << camera_hist->GetSkewness(2) << G4endl;
+		G4cout << "Head-tail result: " << headTail << G4endl;
+		
 	}
 	
 	if (IsStreamliningOff())
 	{
 		// calculate deviation in true and reconstructed vectors
-		Double_t deviation = CalculateVectorAngle(cameraTanPhi, cameraTanTheta_xz, camera_hist->GetSkewness(1));
+		Double_t deviation = CalculateVectorAngle(cameraTanPhi, cameraTanTheta_xz, headTail);
 		G4cout << "Directional deviation: " << deviation << G4endl;
 	}
 	
@@ -647,7 +674,7 @@ Double_t DDMRootManager::CalculateTanThetaFromYZ(Double_t input_tanphi, Double_t
 	return tantheta;
 }
 
-Double_t DDMRootManager::CalculateVectorAngle(Double_t input_tanphi, Double_t input_tantheta, Double_t input_skewnessX)
+Double_t DDMRootManager::CalculateVectorAngle(Double_t input_tanphi, Double_t input_tantheta, Double_t input_headTail)
 {
 	G4ThreeVector* trueDirection = new G4ThreeVector(1.0, 0.0, 0.0);
 	trueDirection->setPhi(TruePhi_mng);
@@ -656,7 +683,7 @@ Double_t DDMRootManager::CalculateVectorAngle(Double_t input_tanphi, Double_t in
 	Double_t theta = atan(input_tantheta);
 	
 	Double_t phi = atan(input_tanphi);
-	if (input_skewnessX > 0) {phi += M_PI*rad;} // apply head-tailing, assuming more electrons at head
+	if (input_headTail < 0) {phi += M_PI*rad;} // apply head-tailing, assuming more electrons at head
 	
 	G4ThreeVector* recoDirection = new G4ThreeVector(1.0, 0.0, 0.0);
 	recoDirection->setPhi(phi);
