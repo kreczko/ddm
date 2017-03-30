@@ -607,6 +607,8 @@ void DDMRootManager::FinaliseEvent()
 	
 	// apply head-tailing
 	Double_t headTail = HeadTail(cameraTanPhi, camera_hist->GetSkewness(1), camera_hist->GetSkewness(2));
+	Double_t correctedPhi = atan(cameraTanPhi);
+	if (headTail < 0) {correctedPhi += M_PI*rad;}
 	
 	//fitCamera_graph->Write();
 	
@@ -628,6 +630,10 @@ void DDMRootManager::FinaliseEvent()
 	
 	// calculate deviation in true and reconstructed vectors
 	Double_t deviation = CalculateVectorAngle(cameraTanPhi, cameraTanTheta_xz, headTail);
+	// calculate deviation in individual angles
+	Double_t deltaPhi = fabs(correctedPhi - TruePhi_mng);
+	Double_t deltaTheta_xz = fabs(atan(cameraTanTheta_xz) - TrueTheta_mng);
+	Double_t deltaTheta_yz = fabs(atan(cameraTanTheta_yz) - TrueTheta_mng);
 	
 	if (IsStreamliningOff())
 	{
@@ -636,7 +642,7 @@ void DDMRootManager::FinaliseEvent()
 	}
 	
 	// fill camera results tree
-	FillTree_RecoResultsCamera(cameraTanPhi, cameraTanTheta_xz, cameraTanTheta_yz, deviation, headTail);
+	FillTree_RecoResultsCamera(cameraTanPhi, cameraTanTheta_xz, cameraTanTheta_yz, deviation, headTail, deltaPhi, deltaTheta_xz, deltaTheta_yz);
 	
 	/*
 	cameraProjectionX_hist = camera_hist->ProjectionX("Camera_projection_X", 1, CameraResolution_mng);
