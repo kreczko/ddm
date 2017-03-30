@@ -32,7 +32,7 @@ int main()
     {
       double timeRes = lowTres + (j*stepTres);
       
-      ofstream paramFile;
+      //ofstream paramFile;
       
       /*stringstream filename;
       filename << "/storage/gp_ws_ddm/parameterFiles/P" << pressure << "atm_Tres" << timeRes << "ns.txt";
