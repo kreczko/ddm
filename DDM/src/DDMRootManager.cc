@@ -618,7 +618,7 @@ void DDMRootManager::FinaliseEvent()
 		correctedTheta_yz = M_PI - correctedTheta_yz;
 		
 		G4ThreeVector* direction = new G4ThreeVector();
-		direction->setRThetaPhi(1.0, correctedTheta_xz, correctedPhi)
+		direction->setRThetaPhi(1.0, correctedTheta_xz, correctedPhi);
 		
 		G4ThreeVector reversed = -direction;
 		
