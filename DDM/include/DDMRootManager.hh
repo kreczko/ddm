@@ -123,7 +123,7 @@ class DDMRootManager
 		G4double CalculateDriftVelocity();
 		G4double CalculateSecondaryScintYield(Double_t input_avalancheField);
 		
-		Double_t CalculateVectorAngle(Double_t input_tanphi, Double_t input_tantheta, Double_t input_skewnessX);
+		Double_t CalculateVectorAngle(Double_t input_phi, Double_t input_theta);
 
 		// define Get and Set methods for each _mng variable: can be defined inline.
 	
