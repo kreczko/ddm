@@ -620,7 +620,7 @@ void DDMRootManager::FinaliseEvent()
 		G4ThreeVector* direction = new G4ThreeVector();
 		direction->setRThetaPhi(1.0, correctedTheta_xz, correctedPhi);
 		
-		G4ThreeVector reversed = -direction;
+		G4ThreeVector reversed = direction->operator-();
 		
 		correctedTheta_xz = reversed.getTheta();
 		correctedPhi = reversed.getPhi();
