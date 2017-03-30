@@ -57,7 +57,7 @@ void DDMRootManager::CreateOutputFile(G4String filename)
 	{
 		stringstream filename_stream;
 		if (SavingToStorage()) {filename_stream << "/storage/gp_ws_ddm/simOutput/";}
-		filename_stream << "ddm_p" << GasPressure_mng/atmosphere << ".root";
+		filename_stream << "ddm_p" << GasPressure_mng/atmosphere << "atm_tres" << TimeResolution_mng/ns << "ns.root";
 		filename = filename_stream.str();
 	}
 	root_file = new TFile(filename.c_str(),"RECREATE");
