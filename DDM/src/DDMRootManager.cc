@@ -608,7 +608,15 @@ void DDMRootManager::FinaliseEvent()
 	// apply head-tailing
 	Double_t headTail = HeadTail(cameraTanPhi, camera_hist->GetSkewness(1), camera_hist->GetSkewness(2));
 	Double_t correctedPhi = atan(cameraTanPhi);
-	if (headTail < 0) {correctedPhi += M_PI*rad;}
+	Double_t correctedTheta_xz = atan(cameraTanTheta_xz);
+	Double_t correctedTheta_yz = atan(cameraTanTheta_yz);
+	
+	if (headTail < 0)
+	{
+		correctedPhi += M_PI;
+		correctedTheta_xz = M_PI - correctedTheta_xz;
+		correctedTheta_yz = M_PI - correctedTheta_yz;
+	}
 	
 	//fitCamera_graph->Write();
 	
@@ -632,8 +640,8 @@ void DDMRootManager::FinaliseEvent()
 	Double_t deviation = CalculateVectorAngle(cameraTanPhi, cameraTanTheta_xz, headTail);
 	// calculate deviation in individual angles
 	Double_t deltaPhi = fabs(correctedPhi - TruePhi_mng);
-	Double_t deltaTheta_xz = fabs(atan(cameraTanTheta_xz) - TrueTheta_mng);
-	Double_t deltaTheta_yz = fabs(atan(cameraTanTheta_yz) - TrueTheta_mng);
+	Double_t deltaTheta_xz = correctedTheta_xz - TrueTheta_mng);
+	Double_t deltaTheta_yz = correctedTheta_yz - TrueTheta_mng);
 	
 	if (IsStreamliningOff())
 	{
@@ -697,7 +705,7 @@ Double_t DDMRootManager::CalculateVectorAngle(Double_t input_tanphi, Double_t in
 	Double_t theta = atan(input_tantheta);
 	
 	Double_t phi = atan(input_tanphi);
-	if (input_headTail < 0) {phi += M_PI*rad;} // apply head-tailing, assuming more electrons at head
+	if (input_headTail < 0){phi += M_PI*rad;} // apply head-tailing, assuming more electrons at head
 	
 	G4ThreeVector* recoDirection = new G4ThreeVector(1.0, 0.0, 0.0);
 	recoDirection->setPhi(phi);
