@@ -106,7 +106,7 @@ class DDMRootManager
 		void FillHist_CameraXZ(Double_t input_x, Double_t input_z);
 		void FillHist_CameraYZ(Double_t input_y, Double_t input_z);
 		Double_t FitCameraHist(TH2I* input_hist);
-		Double_t HeadTail(Double_t input_tanphi, Double_t input_skewnessX, Double_t input_skewnessY);
+		Double_t HeadTail(Double_t input_tanphi, Double_t input_skewnessX, Double_t input_headTail);
 	
 		void FinaliseEvent();
 		void CloseResultsTree();
