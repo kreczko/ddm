@@ -8,8 +8,8 @@ int main()
 {
   ofstream shellScript;
   
-  int numPointsP = 10; // number of points (pressure)
-  int numPointsTres = 10; // number of points (time resolution)
+  int numPointsP = 2; // number of points (pressure)
+  int numPointsTres = 2; // number of points (time resolution)
   
   double lowP = 0.005; // lowest pressure (atm)
   double lowTres = 10.0; // lowest time resolution (ns)
@@ -23,11 +23,11 @@ int main()
   shellScript << "# Time resolution (ns): " << lowTres << "--" << lowTres + (numPointsTres*stepTres) << endl;
   shellScript << "cd ~/geant4/DDM-build" << endl;
   
-  for (i = 0; i < numPointsP; i++)
+  for (int i = 0; i < numPointsP; i++)
   {
     double pressure = lowP + (i*stepP);
       
-    for (j = 0; j < numPointsTres; j++)
+    for (int j = 0; j < numPointsTres; j++)
     {
       double timeRes = lowTres + (j*stepTres);
       
