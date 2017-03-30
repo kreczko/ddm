@@ -246,7 +246,7 @@ void DDMRootManager::InitialiseResultsTree()
 	recoResultsCamera_tree = new TTree("recoResultsCamera", "recoResultsCamera");
 	
 	recoResultsCamera_tree -> Branch("recoResultsCamera_branch",&RecoResultsCamera_mng,
-				   "EventNo/D:phi_true/D:theta_true/D:camera_phi/D:camera_theta_xz/D:camera_theta_yz/D");
+				   "EventNo/D:phi_true/D:theta_true/D:camera_phi/D:camera_theta_xz/D:camera_theta_yz/D:deviation/D:head_tail/D");
 }
 
 void DDMRootManager::FillTree_TimeStepData(Double_t input_time, Double_t input_x, Double_t input_y, Double_t input_z, Double_t input_energy)
@@ -336,7 +336,7 @@ void DDMRootManager::FillTree_RecoResults(Double_t input_tanphi, Double_t input_
 	recoResults_tree->Fill();
 }
 
-void DDMRootManager::FillTree_RecoResultsCamera(Double_t input_tanphi, Double_t input_tantheta_xz, Double_t input_tantheta_yz)
+void DDMRootManager::FillTree_RecoResultsCamera(Double_t input_tanphi, Double_t input_tantheta_xz, Double_t input_tantheta_yz, Double_t input_deviation, Double_t input_headtail)
 {
 	RecoResultsCamera_mng[0] = EventCounter_mng;
 	RecoResultsCamera_mng[1] = TruePhi_mng;
@@ -344,6 +344,8 @@ void DDMRootManager::FillTree_RecoResultsCamera(Double_t input_tanphi, Double_t 
 	RecoResultsCamera_mng[3] = atan(input_tanphi);
 	RecoResultsCamera_mng[4] = atan(input_tantheta_xz);
 	RecoResultsCamera_mng[5] = atan(input_tantheta_yz);
+	RecoResultsCamera_mng[6] = input_deviation;
+	RecoResultsCamera_mng[7] = input_headtail;
 	
 	recoResultsCamera_tree->Fill();
 }
@@ -628,7 +630,7 @@ void DDMRootManager::FinaliseEvent()
 	}
 	
 	// fill camera results tree
-	FillTree_RecoResultsCamera(cameraTanPhi, cameraTanTheta_xz, cameraTanTheta_yz);
+	FillTree_RecoResultsCamera(cameraTanPhi, cameraTanTheta_xz, cameraTanTheta_yz, deviation, headTail);
 	
 	/*
 	cameraProjectionX_hist = camera_hist->ProjectionX("Camera_projection_X", 1, CameraResolution_mng);
