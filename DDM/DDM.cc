@@ -60,7 +60,7 @@
 namespace {
   void PrintUsage() {
     G4cerr << " Usage: " << G4endl;
-    G4cerr << " DDM [-m macro ] [-u UIsession] [-t nThreads] [-r seed] [-p parameterFile]"
+    G4cerr << " DDM [-m macro ] [-u UIsession] [-t nThreads] [-r seed] [-p parameterFile] [-s 1] [-storage 1]"
            << G4endl;
     G4cerr << "   note: -t option is available only for multi-threaded mode."
            << G4endl;
@@ -78,7 +78,7 @@ int main(int argc,char** argv)
   
   // Evaluate arguments
   //
-  if ( argc > 11 ) {
+  if ( argc > 13 ) {
     PrintUsage();
     return 1;
   }
@@ -96,6 +96,7 @@ int main(int argc,char** argv)
      else if ( G4String(argv[i]) == "-u" ) session = argv[i+1];
      else if ( G4String(argv[i]) == "-r" ) myseed  = atoi(argv[i+1]);
      else if ( G4String(argv[i]) == "-s" ) root_manager->ActivateStreamlining();
+     else if ( G4String(argv[i]) == "-storage" ) root_manager->ActivateSaveToStorage();
 #ifdef G4MULTITHREADED
      else if ( G4String(argv[i]) == "-t" ) {
                     nThreads = G4UIcommand::ConvertToInt(argv[i+1]);
