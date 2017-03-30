@@ -30,6 +30,7 @@ class DDMRootManager
 		// Define _mng variables/arrays as needed.
 		
 		Bool_t UseStreamlining_mng = false;
+		Bool_t SaveToStorage_mng = false;
 	
 		// arrays for filling data
 		Double_t TimeStepData_mng[5] = {0};
@@ -130,6 +131,9 @@ class DDMRootManager
 		void ActivateStreamlining() {UseStreamlining_mng = true;}
 		Bool_t IsStreamliningOn() {return UseStreamlining_mng;}
 		Bool_t IsStreamliningOff() {return !UseStreamlining_mng;}
+	
+		void ActivateSaveToStorage() {SaveToStorage_mng = true;}
+		Bool_t SavingToStorage() {return SaveToStorage_mng;}
 	
 		Int_t GetEventCounter() {return EventCounter_mng;}
 		
