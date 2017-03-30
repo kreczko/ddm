@@ -36,7 +36,7 @@ class DDMRootManager
 		Double_t ElectronData_mng[3] = {0};
 		Double_t RecoData_mng[4] = {0};
 		Double_t RecoResults_mng[11] = {0};
-		Double_t RecoResultsCamera_mng[11] = {0};
+		Double_t RecoResultsCamera_mng[9] = {0};
 	
 		// detector construction information
 		Double_t DriftVelocity_mng = 0;
@@ -99,15 +99,15 @@ class DDMRootManager
 		void FillGraph_RecoTrackYZ(Double_t input_y, Double_t input_z);
 		void FillGraph_RecoTrack(Double_t input_x, Double_t input_y, Double_t input_z);
 		void FillTree_RecoResults(Double_t input_tanphi, Double_t input_tantheta_xz, Double_t input_tantheta_yz, Double_t input_tanphi_scint);
-		void FillTree_RecoResultsCamera(Double_t input_tanphi, Double_t input_tantheta_xz, Double_t input_tantheta_yz,  Double_t input_deviation, Double_t input_headtail,
-					        Double_t input_deltaPhi, Double_t input_deltaTheta_xz, Double_t input_deltaTheta_yz);
+		void FillTree_RecoResultsCamera(Double_t input_phi, Double_t input_theta, Double_t input_headtail, Double_t input_deviation,
+					        Double_t input_deltaPhi, Double_t input_deltaTheta);
 		void FillGraph_ElectronGen(Double_t input_x, Double_t input_y, Double_t input_z);
 		void FillHist_DirectScint(Double_t input_x, Double_t input_y);
 		void FillHist_Camera(Double_t input_x, Double_t input_y);
 		void FillHist_CameraXZ(Double_t input_x, Double_t input_z);
 		void FillHist_CameraYZ(Double_t input_y, Double_t input_z);
 		Double_t FitCameraHist(TH2I* input_hist);
-		Double_t HeadTail(Double_t input_tanphi, Double_t input_skewnessX, Double_t input_headTail);
+		Double_t HeadTail(Double_t input_grad, Double_t input_skewnessX, Double_t input_headTail);
 	
 		void FinaliseEvent();
 		void CloseResultsTree();
