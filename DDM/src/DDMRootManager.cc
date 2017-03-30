@@ -56,6 +56,7 @@ void DDMRootManager::CreateOutputFile(G4String filename)
 	if (filename == "[dynamic]")
 	{
 		stringstream filename_stream;
+		if (SavingToStorage()) {filename_stream << "/storage/gp_ws_ddm/simOutput/";}
 		filename_stream << "ddm_p" << GasPressure_mng/atmosphere << ".root";
 		filename = filename_stream.str();
 	}
@@ -600,8 +601,8 @@ void DDMRootManager::FinaliseEvent()
 	Double_t cameraTanBeta = FitCameraHist(cameraYZ_hist);
 	
 	// calculate tan(theta) from camera XZ and YZ projections
-	Double_t cameraTanTheta_xz = CalculateTanThetaFromXZ(cameraGradXY, cameraGradXZ);
-	Double_t cameraTanTheta_yz = CalculateTanThetaFromYZ(cameraGradXY, cameraTanBeta);
+	//Double_t cameraTanTheta_xz = CalculateTanThetaFromXZ(cameraGradXY, cameraGradXZ);
+	//Double_t cameraTanTheta_yz = CalculateTanThetaFromYZ(cameraGradXY, cameraTanBeta);
 	
 	// NEW METHOD: vector
 	G4ThreeVector* recoVector = new G4ThreeVector(1.0, cameraGradXY, cameraGradXZ);
@@ -610,13 +611,13 @@ void DDMRootManager::FinaliseEvent()
 	Double_t headTail = HeadTail(cameraGradXY, camera_hist->GetSkewness(1), camera_hist->GetSkewness(2));
 	//Double_t correctedPhi = atan(cameraGradXY);
 	//Double_t correctedTheta_xz = atan(cameraTanTheta_xz);
-	Double_t correctedTheta_yz = atan(cameraTanTheta_yz);
+	//Double_t correctedTheta_yz = atan(cameraTanTheta_yz);
 	
 	if (headTail < 0)
 	{
 		//correctedPhi += M_PI;
 		//correctedTheta_xz = M_PI - correctedTheta_xz;
-		correctedTheta_yz = M_PI - correctedTheta_yz;
+		//correctedTheta_yz = M_PI - correctedTheta_yz;
 		
 		//G4ThreeVector* direction = new G4ThreeVector();
 		//direction->setRThetaPhi(1.0, correctedTheta_xz, correctedPhi);
@@ -655,7 +656,7 @@ void DDMRootManager::FinaliseEvent()
 	// calculate deviation in individual angles
 	Double_t deltaPhi = fabs(vectorPhi - TruePhi_mng);
 	Double_t deltaTheta = fabs(vectorTheta - TrueTheta_mng);
-	Double_t deltaTheta_yz = fabs(correctedTheta_yz - TrueTheta_mng);
+	//Double_t deltaTheta_yz = fabs(correctedTheta_yz - TrueTheta_mng);
 	
 	if (IsStreamliningOff())
 	{
