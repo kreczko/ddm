@@ -637,7 +637,7 @@ void DDMRootManager::FinaliseEvent()
 	}
 	
 	// calculate deviation in true and reconstructed vectors
-	Double_t deviation = CalculateVectorAngle(cameraTanPhi, cameraTanTheta_xz, headTail);
+	Double_t deviation = CalculateVectorAngle(correctedPhi, correctedTheta_xz);
 	// calculate deviation in individual angles
 	Double_t deltaPhi = fabs(correctedPhi - TruePhi_mng);
 	Double_t deltaTheta_xz = fabs(correctedTheta_xz - TrueTheta_mng);
@@ -696,20 +696,15 @@ Double_t DDMRootManager::CalculateTanThetaFromYZ(Double_t input_tanphi, Double_t
 	return tantheta;
 }
 
-Double_t DDMRootManager::CalculateVectorAngle(Double_t input_tanphi, Double_t input_tantheta, Double_t input_headTail)
+Double_t DDMRootManager::CalculateVectorAngle(Double_t input_phi, Double_t input_theta)
 {
 	G4ThreeVector* trueDirection = new G4ThreeVector(1.0, 0.0, 0.0);
 	trueDirection->setPhi(TruePhi_mng);
 	trueDirection->setTheta(TrueTheta_mng);
 	
-	Double_t theta = atan(input_tantheta);
-	
-	Double_t phi = atan(input_tanphi);
-	if (input_headTail < 0){phi += M_PI*rad;} // apply head-tailing, assuming more electrons at head
-	
 	G4ThreeVector* recoDirection = new G4ThreeVector(1.0, 0.0, 0.0);
-	recoDirection->setPhi(phi);
-	recoDirection->setTheta(theta);
+	recoDirection->setPhi(input_phi);
+	recoDirection->setTheta(input_theta);
 	
 	Double_t deviation = recoDirection->angle(*trueDirection);
 	
