@@ -36,7 +36,7 @@ int main()
       stringstream filename;
       filename << "/storage/gp_ws_ddm/parameterFiles/P" << pressure << "atm_Tres" << timeRes << "ns.txt";
       
-      paramFile.open(filename.str().c_str());
+      paramFile.open(filename.str());
       paramFile << "Pressure: " << pressure << endl;
       paramFile << "TimeRes: " << timeRes << endl;
       paramFile.close();
