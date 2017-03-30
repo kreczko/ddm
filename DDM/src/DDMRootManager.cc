@@ -640,8 +640,8 @@ void DDMRootManager::FinaliseEvent()
 	Double_t deviation = CalculateVectorAngle(cameraTanPhi, cameraTanTheta_xz, headTail);
 	// calculate deviation in individual angles
 	Double_t deltaPhi = fabs(correctedPhi - TruePhi_mng);
-	Double_t deltaTheta_xz = correctedTheta_xz - TrueTheta_mng);
-	Double_t deltaTheta_yz = correctedTheta_yz - TrueTheta_mng);
+	Double_t deltaTheta_xz = fabs(correctedTheta_xz - TrueTheta_mng);
+	Double_t deltaTheta_yz = fabs(correctedTheta_yz - TrueTheta_mng);
 	
 	if (IsStreamliningOff())
 	{
