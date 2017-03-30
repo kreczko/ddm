@@ -336,20 +336,18 @@ void DDMRootManager::FillTree_RecoResults(Double_t input_tanphi, Double_t input_
 	recoResults_tree->Fill();
 }
 
-void DDMRootManager::FillTree_RecoResultsCamera(Double_t input_tanphi, Double_t input_tantheta_xz, Double_t input_tantheta_yz, Double_t input_deviation, Double_t input_headtail,
-					        Double_t input_deltaPhi, Double_t input_deltaTheta_xz, Double_t input_deltaTheta_yz)
+void DDMRootManager::FillTree_RecoResultsCamera(Double_t input_phi, Double_t input_theta,  Double_t input_headtail, Double_t input_deviation,
+					        Double_t input_deltaPhi, Double_t input_deltaTheta)
 {
 	RecoResultsCamera_mng[0] = EventCounter_mng;
 	RecoResultsCamera_mng[1] = TruePhi_mng;
 	RecoResultsCamera_mng[2] = TrueTheta_mng;
-	RecoResultsCamera_mng[3] = atan(input_tanphi);
-	RecoResultsCamera_mng[4] = atan(input_tantheta_xz);
-	RecoResultsCamera_mng[5] = atan(input_tantheta_yz);
+	RecoResultsCamera_mng[3] = input_phi;
+	RecoResultsCamera_mng[4] = input_theta;
+	RecoResultsCamera_mng[5] = input_headtail;
 	RecoResultsCamera_mng[6] = input_deviation;
-	RecoResultsCamera_mng[7] = input_headtail;
-	RecoResultsCamera_mng[8] = input_deltaPhi;
-	RecoResultsCamera_mng[9] = input_deltaTheta_xz;
-	RecoResultsCamera_mng[10] = input_deltaTheta_yz;
+	RecoResultsCamera_mng[7] = input_deltaPhi;
+	RecoResultsCamera_mng[8] = input_deltaTheta;
 	
 	recoResultsCamera_tree->Fill();
 }
@@ -462,16 +460,16 @@ Double_t DDMRootManager::FitCameraHist(TH2I* input_hist)
 	return cameraGradient;
 }
 
-Double_t DDMRootManager::HeadTail(Double_t input_tanphi, Double_t input_skewnessX, Double_t input_skewnessY)
+Double_t DDMRootManager::HeadTail(Double_t input_grad, Double_t input_skewnessX, Double_t input_skewnessY)
 {
 	Double_t headTailResult = 0;
 	
-	if (input_tanphi > 1.0)
+	if (input_grad > 1.0)
 	{
 		if (input_skewnessY < 0) {headTailResult = fabs(input_skewnessY);} // gradient > 1 and y-skewness -ve, therefore phi is right
 		else if (input_skewnessY > 0) {headTailResult = -fabs(input_skewnessY);} // gradient > 1 and y-skewness +ve, therefore phi is wrong
 	}
-	else if (input_tanphi < -1.0)
+	else if (input_grad < -1.0)
 	{
 		if (input_skewnessY < 0) {headTailResult = -fabs(input_skewnessY);} // gradient < -1 and y-skewness -ve, therefore phi is wrong
 		else if (input_skewnessY > 0) {headTailResult = fabs(input_skewnessY);} // gradient < -1 and y-skewness +ve, therefore phi is right
@@ -594,24 +592,24 @@ void DDMRootManager::FinaliseEvent()
 		FillTree_RecoResults(fitXY->Parameter(1), tanThetaXZ, tanThetaYZ, CameraTanPhi_mng);
 	}
 	
-	// calculate phi from linear fit of camera histogram
-	Double_t cameraTanPhi =  FitCameraHist(camera_hist);
+	// calculate gradient in x-y from linear fit of camera histogram
+	Double_t cameraGradXZ =  FitCameraHist(camera_hist);
 	
-	// calculate alpha and beta angles from the fits of XZ and YZ camera projections
-	Double_t cameraTanAlpha = FitCameraHist(cameraXZ_hist);
+	// calculate gradients in x-z and y-z from the fits of XZ and YZ camera projections
+	Double_t cameraGradXZ = FitCameraHist(cameraXZ_hist);
 	Double_t cameraTanBeta = FitCameraHist(cameraYZ_hist);
 	
 	// calculate tan(theta) from camera XZ and YZ projections
-	Double_t cameraTanTheta_xz = CalculateTanThetaFromXZ(cameraTanPhi, cameraTanAlpha);
-	Double_t cameraTanTheta_yz = CalculateTanThetaFromYZ(cameraTanPhi, cameraTanBeta);
+	Double_t cameraTanTheta_xz = CalculateTanThetaFromXZ(cameraGradXY, cameraGradXZ);
+	Double_t cameraTanTheta_yz = CalculateTanThetaFromYZ(cameraGradXY, cameraTanBeta);
 	
 	// NEW METHOD: vector
-	G4ThreeVector* recoVector = new G4ThreeVector(1.0, cameraTanPhi, cameraTanAlpha);
+	G4ThreeVector* recoVector = new G4ThreeVector(1.0, cameraGradXY, cameraGradXZ);
 	
 	// apply head-tailing
-	Double_t headTail = HeadTail(cameraTanPhi, camera_hist->GetSkewness(1), camera_hist->GetSkewness(2));
-	Double_t correctedPhi = atan(cameraTanPhi);
-	Double_t correctedTheta_xz = atan(cameraTanTheta_xz);
+	Double_t headTail = HeadTail(cameraGradXY, camera_hist->GetSkewness(1), camera_hist->GetSkewness(2));
+	//Double_t correctedPhi = atan(cameraGradXY);
+	//Double_t correctedTheta_xz = atan(cameraTanTheta_xz);
 	Double_t correctedTheta_yz = atan(cameraTanTheta_yz);
 	
 	if (headTail < 0)
@@ -620,15 +618,15 @@ void DDMRootManager::FinaliseEvent()
 		//correctedTheta_xz = M_PI - correctedTheta_xz;
 		correctedTheta_yz = M_PI - correctedTheta_yz;
 		
-		G4ThreeVector* direction = new G4ThreeVector();
-		direction->setRThetaPhi(1.0, correctedTheta_xz, correctedPhi);
+		//G4ThreeVector* direction = new G4ThreeVector();
+		//direction->setRThetaPhi(1.0, correctedTheta_xz, correctedPhi);
 		
-		G4ThreeVector reversed = direction->operator-();
+		//G4ThreeVector reversed = direction->operator-();
 		
 		recoVector->operator*=(-1.0);
 		
-		correctedTheta_xz = reversed.getTheta();
-		correctedPhi = reversed.getPhi();
+		//correctedTheta_xz = reversed.getTheta();
+		//correctedPhi = reversed.getPhi();
 	}
 
 	Double_t vectorPhi = recoVector->getPhi();
@@ -656,7 +654,7 @@ void DDMRootManager::FinaliseEvent()
 	Double_t deviation = CalculateVectorAngle(vectorPhi, vectorTheta);
 	// calculate deviation in individual angles
 	Double_t deltaPhi = fabs(vectorPhi - TruePhi_mng);
-	Double_t deltaTheta_xz = fabs(vectorTheta - TrueTheta_mng);
+	Double_t deltaTheta = fabs(vectorTheta - TrueTheta_mng);
 	Double_t deltaTheta_yz = fabs(correctedTheta_yz - TrueTheta_mng);
 	
 	if (IsStreamliningOff())
@@ -666,7 +664,7 @@ void DDMRootManager::FinaliseEvent()
 	}
 	
 	// fill camera results tree
-	FillTree_RecoResultsCamera(cameraTanPhi, cameraTanTheta_xz, cameraTanTheta_yz, deviation, headTail, deltaPhi, deltaTheta_xz, deltaTheta_yz);
+	FillTree_RecoResultsCamera(vectorPhi, vectorTheta, headTail, deviation, deltaPhi, deltaTheta);
 	
 	/*
 	cameraProjectionX_hist = camera_hist->ProjectionX("Camera_projection_X", 1, CameraResolution_mng);
