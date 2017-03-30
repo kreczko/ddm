@@ -1,4 +1,4 @@
-//#include <iostream>
+#include <iostream>
 #include <fstream>
 #include <sstream>
 #include <string>
@@ -18,11 +18,11 @@ int main()
   double stepP = 0.005; // step in pressure (atm)
   double stepTres = 10.0; // step in time resolution (ns)
   
-  /*shellScript.open("~/DDMSimJob.sh");
+  shellScript.open("~/DDMSimJob.sh");
   
   shellScript << "# Pressure (atm): " << lowP << "--" << lowP + (numPointsP*stepP) << endl;
   shellScript << "# Time resolution (ns): " << lowTres << "--" << lowTres + (numPointsTres*stepTres) << endl;
-  shellScript << "cd ~/geant4/DDM-build" << endl;*/
+  shellScript << "cd ~/geant4/DDM-build" << endl;
   
   for (int i = 0; i < numPointsP; i++)
   {
@@ -32,23 +32,23 @@ int main()
     {
       double timeRes = lowTres + (j*stepTres);
       
-      //ofstream paramFile;
+      ofstream paramFile;
       
-      /*stringstream filename;
+      stringstream filename;
       filename << "/storage/gp_ws_ddm/parameterFiles/P" << pressure << "atm_Tres" << timeRes << "ns.txt";
       
       paramFile.open(filename.str().c_str());
       paramFile << "Pressure: " << pressure << endl;
       paramFile << "TimeRes: " << timeRes << endl;
-      paramFile.close();*/
+      paramFile.close();
       
-      //shellScript << "./DDM -s 1 -storage 1 -m isoArgon.mac -p " << filename << endl;
+      shellScript << "./DDM -s 1 -storage 1 -m isoArgon.mac -p " << filename << endl;
     }
   }
   
-  /*shellScript << "echo === SIMULATION JOB COMPLETE ===";
+  shellScript << "echo === SIMULATION JOB COMPLETE ===";
   
-  shellScript.close();*/
+  shellScript.close();
   
   return 0;
 }
