@@ -255,7 +255,11 @@ void DDMSteppingAction::UserSteppingAction(const G4Step* step)
           
           G4double camera_x = final_x + photonTravel_x;
           G4double camera_y = final_y + photonTravel_y;
-          G4double camera_time = final_time + (sqrt(pow(photonTravel_x, 2.0) + pow(photonTravel_y, 2.0) + pow(scintToLensDistance, 2.0)) / c_light);
+          G4double camera_time = final_time 
+                                 + (sqrt(pow(photonTravel_x, 2.0) + pow(photonTravel_y, 2.0) + pow(scintToLensDistance, 2.0)) / c_light)
+                                 + (G4RandGauss::shoot(0.0, 0.0)*ns);
+          
+          G4double cameraReco_z = tankHeight - (camera_time*driftVelocity);
                   
           if(pow(camera_x - lensCentreX, 2.0) + pow(camera_y - lensCentreY, 2.0) <= pow(lensRadius, 2.0))
           {
