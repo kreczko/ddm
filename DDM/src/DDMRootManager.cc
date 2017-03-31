@@ -393,8 +393,6 @@ Double_t DDMRootManager::FitCameraHist(TH2I* input_hist)
 	}
 	
 	
-	G4cout << "Data range x: " << input_hist->FindFirstBinAbove(0, 1) << "--" << input_hist->FindLastBinAbove(0, 1) << G4endl;
-	G4cout << "Data range y: " << input_hist->FindFirstBinAbove(0, 2) << "--" << input_hist->FindLastBinAbove(0, 2) << G4endl;
 	// loop through all bins
 	//for(G4int binx = 1; binx <= input_hist->GetNbinsX(); binx++)
 	
@@ -403,6 +401,9 @@ Double_t DDMRootManager::FitCameraHist(TH2I* input_hist)
 	G4int lastBinX = input_hist->FindLastBinAbove(0, 1);
 	G4int firstBinY = input_hist->FindFirstBinAbove(0, 2);
 	G4int lastBinY = input_hist->FindLastBinAbove(0, 2);
+	
+	G4cout << "Data range x: " << firstBinX << "--" << lastBinX << G4endl;
+	G4cout << "Data range y: " << firstBinY << "--" << lastBinY << G4endl;
 	
 	// loop through all bins which contain data only
 	for (G4int binx = firstBinX; binx <= lastBinX; binx++)
