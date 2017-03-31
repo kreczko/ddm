@@ -18,7 +18,7 @@ int main()
   double stepP = 0.005; // step in pressure (atm)
   double stepTres = 10.0; // step in time resolution (ns)
   
-  shellScript.open("/storage/gp_ws_ddm/DDMSimJob.sh");
+  shellScript.open("/storage/gp_ws_ddm/DDMSimJob.txt");
   
   shellScript << "# Pressure (atm): " << lowP << "--" << lowP + (numPointsP*stepP) << endl;
   shellScript << "# Time resolution (ns): " << lowTres << "--" << lowTres + (numPointsTres*stepTres) << endl;
