@@ -399,7 +399,7 @@ Double_t DDMRootManager::FitCameraHist(TH2I* input_hist)
 	//for(G4int binx = 1; binx <= input_hist->GetNbinsX(); binx++)
 	for (G4int binx = input_hist->FindFirstBinAbove(0, 1); binx <= input_hist->FindLastBinAbove(0, 1); binx++)
 	{
-		for(G4int biny = input_hist->FindFirstBinAbove(0, 2); biny <= input_hist->FindLastBinAbove(0, 2); biny++)
+		for (G4int biny = input_hist->FindFirstBinAbove(0, 2); biny <= input_hist->FindLastBinAbove(0, 2); biny++)
 		{
 			// find bin centres
 			Double_t binCentreX = input_hist->GetXaxis()->GetBinCenter(binx);
