@@ -9,8 +9,8 @@ int main()
 {
   ofstream shellScript;
   
-  int numPointsP = 2; // number of points (pressure)
-  int numPointsTres = 2; // number of points (time resolution)
+  int numPointsP = 4; // number of points (pressure)
+  int numPointsTres = 4; // number of points (time resolution)
   
   double lowP = 0.005; // lowest pressure (atm)
   double lowTres = 10.0; // lowest time resolution (ns)
