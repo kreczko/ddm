@@ -9,19 +9,21 @@ int main()
 {
   ofstream shellScript;
   
-  int numPointsP = 4; // number of points (pressure)
-  int numPointsTres = 4; // number of points (time resolution)
+  int numPointsP = 10; // number of points (pressure)
+  int numPointsTres = 10; // number of points (time resolution)
   
   double lowP = 0.005; // lowest pressure (atm)
   double lowTres = 10.0; // lowest time resolution (ns)
   
   double stepP = 0.005; // step in pressure (atm)
-  double stepTres = 10.0; // step in time resolution (ns)
+  //double stepTres = 10.0; // step in time resolution (ns)
+  double factorTres = 2.0; // multiplicative factor for time resolution (ns)
   
   shellScript.open("/storage/gp_ws_ddm/DDMSimJob.sh");
   
-  shellScript << "# Pressure (atm): " << lowP << "--" << lowP + (numPointsP*stepP) << endl;
-  shellScript << "# Time resolution (ns): " << lowTres << "--" << lowTres + (numPointsTres*stepTres) << endl;
+  shellScript << "# Pressure (atm): " << lowP << "--" << lowP + ((numPointsP-1)*stepP) << endl;
+  //shellScript << "# Time resolution (ns): " << lowTres << "--" << lowTres + ((numPointsTres-1)*stepTres) << endl;
+  shellScript << "# Time resolution (ns): " << lowTres << "--" << lowTres * pow(stepTres, numPointsTres-1) << endl;
   shellScript << "cd ~/geant4/DDM-build" << endl;
   
   int seed = 2;
@@ -32,7 +34,7 @@ int main()
       
     for (int j = 0; j < numPointsTres; j++)
     {
-      double timeRes = lowTres + (j*stepTres);
+      double timeRes = lowTres * pow(stepTres,j);
       
       ofstream paramFile;
       
