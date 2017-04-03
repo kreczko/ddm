@@ -2,6 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <cmath>
 
 using namespace std;
 
@@ -25,7 +26,7 @@ int main()
   
   shellScript << "# Pressure (atm): " << lowP << "--" << lowP + ((numPointsP-1)*stepP) << endl;
   //shellScript << "# Time resolution (ns): " << lowTres << "--" << lowTres + ((numPointsTres-1)*stepTres) << endl;
-  shellScript << "# Time resolution (ns): " << lowTres << "--" << lowTres * pow(stepTres, numPointsTres-1) << endl;
+  shellScript << "# Time resolution (ns): " << lowTres << "--" << lowTres * pow(factorTres, numPointsTres-1) << endl;
   shellScript << "cd ~/geant4/DDM-build" << endl;
   
   int seed = 2;
@@ -36,7 +37,7 @@ int main()
       
     for (int j = 0; j < numPointsTres; j++)
     {
-      double timeRes = lowTres * pow(stepTres,j);
+      double timeRes = lowTres * pow(factorTres,j);
       
       ofstream paramFile;
       
