@@ -8,18 +8,20 @@ using namespace std;
 int main()
 {
   ofstream shellScript;
+  ofstream steeringFile;
   
   int numPointsP = 10; // number of points (pressure)
   int numPointsTres = 10; // number of points (time resolution)
   
   double lowP = 0.005; // lowest pressure (atm)
-  double lowTres = 10.0; // lowest time resolution (ns)
+  double lowTres = 1.0; // lowest time resolution (ns)
   
   double stepP = 0.005; // step in pressure (atm)
   //double stepTres = 10.0; // step in time resolution (ns)
   double factorTres = 2.0; // multiplicative factor for time resolution (ns)
   
   shellScript.open("/storage/gp_ws_ddm/DDMSimJob.sh");
+  steeringFile.open("/storage/gp_ws_ddm/simOutput/steering.txt", fstream::app);
   
   shellScript << "# Pressure (atm): " << lowP << "--" << lowP + ((numPointsP-1)*stepP) << endl;
   //shellScript << "# Time resolution (ns): " << lowTres << "--" << lowTres + ((numPointsTres-1)*stepTres) << endl;
@@ -47,6 +49,7 @@ int main()
       paramFile.close();
       
       shellScript << "./DDM -s 1 -storage 1 -m isoArgon.mac -p " << filename.str() << " -r " << seed << endl;
+      steeringFile << filename.str() << " " << pressure << " " << timeRes << endl;
       
       seed++;
     }
@@ -55,6 +58,7 @@ int main()
   shellScript << "echo === SIMULATION JOB COMPLETE ===";
   
   shellScript.close();
+  steeringFile.close();
   
   return 0;
 }
