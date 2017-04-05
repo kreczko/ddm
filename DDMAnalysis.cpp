@@ -24,10 +24,10 @@ int main (int argc, char** argv)
     filename = word;
     
     steeringFile >> word;
-    pressure << atof(word);
+    pressure = atof(word);
     
     steeringFile >> word;
-    timeRes << atof(word);
+    timeRes = atof(word);
     
     cout << "Reading file: " << filename << " (pressure " << pressure << " atm, time resolution " << timeRes << " ns)" << endl;
   }
