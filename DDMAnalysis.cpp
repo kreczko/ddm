@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 
 //#include "TFile.h"
 //#include "TTree.h"
@@ -11,7 +12,7 @@ int main (int argc, char** argv)
   string steeringFileName = argv[1];
   
   ifstream steeringFile;
-  steeringFile.open(steeringFileName);
+  steeringFile.open(steeringFileName.c_str());
   
   string word;
   string filename;
