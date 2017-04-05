@@ -1,4 +1,3 @@
-#include <cstdlib>
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -25,10 +24,10 @@ int main (int argc, char** argv)
     filename = word;
     
     steeringFile >> word;
-    pressure << word;
+    pressure = stod(word);
     
     steeringFile >> word;
-    timeRes << word;
+    timeRes = stod(word);
     
     cout << "Reading file: " << filename << " (pressure " << pressure << " atm, time resolution " << timeRes << " ns)" << endl;
   }
