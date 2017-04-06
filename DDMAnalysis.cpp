@@ -6,6 +6,7 @@
 
 #include "TFile.h"
 #include "TTree.h"
+#include "TBranch.h"
 
 using namespace std;
 
@@ -40,7 +41,7 @@ int main (int argc, char** argv)
     
     // Open data file and read in results tree
     TFile* dataFile = new TFile(filename.str().c_str(), "READ");
-    TTree* dataTree = (TTree*)TFile->Get("recoResultsCamera");
+    TTree* dataTree = TFile->Get("recoResultsCamera");
     TBranch* dataBranch = dataTree->GetBranch("recoResultsCamera_branch");
     
     // Close data file
