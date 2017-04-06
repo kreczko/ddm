@@ -20,8 +20,11 @@ int main (int argc, char** argv)
   double pressure;
   double timeRes;
   
+  TFile* analysisFile = new TFile("/storage/gp_ws_ddm/Analysis.root", "UPDATE");
+  
   while (steeringFile >> word)
   {
+    // Get file name and parameters from steering file
     filename = word;
     
     steeringFile >> word;
@@ -31,9 +34,17 @@ int main (int argc, char** argv)
     timeRes = atof(word.c_str());
     
     cout << "Reading file: " << filename << " (pressure " << pressure << " atm, time resolution " << timeRes << " ns)" << endl;
+    
+    // Open data file
+    TFile* analysisFile = new TFile(filename.c_str(), "READ");
+    
+    // Close data file
+    analysisFile->Close();
+    
   }
   
   steeringFile.close();
+  analysisFile->Close();
   
   return 0;
 }
