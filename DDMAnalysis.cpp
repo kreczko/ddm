@@ -27,7 +27,6 @@ int main (int argc, char** argv)
   {
     // Get parameters from steering file
     
-    
     steeringFile >> word;
     pressure = atof(word.c_str());
     
@@ -39,11 +38,13 @@ int main (int argc, char** argv)
     
     cout << "Reading file: " << filename.str() << " (pressure " << pressure << " atm, time resolution " << timeRes << " ns)" << endl;
     
-    // Open data file
-    TFile* analysisFile = new TFile(filename.str().c_str(), "READ");
+    // Open data file and read in results tree
+    TFile* dataFile = new TFile(filename.str().c_str(), "READ");
+    TTree* dataTree = (TTree*)TFile->Get("recoResultsCamera");
+    TBranch* dataBranch = dataTree->GetBranch("recoResultsCamera_branch");
     
     // Close data file
-    analysisFile->Close();
+    dataFile->Close();
     
   }
   
