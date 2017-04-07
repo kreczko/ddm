@@ -19,8 +19,8 @@ int main (int argc, char** argv)
   
   string word;
   string filename;
-  double pressure;
-  double timeRes;
+  Double_t pressure;
+  Double_t timeRes;
   
   TFile* analysisFile = new TFile("/storage/gp_ws_ddm/Analysis.root", "UPDATE");
   
@@ -43,6 +43,10 @@ int main (int argc, char** argv)
     TFile* dataFile = new TFile(filename.str().c_str(), "READ");
     TTree* dataTree = (TTree*)dataFile->Get("recoResultsCamera");
     TBranch* dataBranch = dataTree->GetBranch("recoResultsCamera_branch");
+    Int_t nEvents = dataTree->GetEntries();
+    
+    // Get branch contents
+    
     
     // Close data file
     dataFile->Close();
