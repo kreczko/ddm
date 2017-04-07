@@ -46,6 +46,16 @@ int main (int argc, char** argv)
     Int_t nEvents = dataTree->GetEntries();
     
     // Get branch contents
+    Double_t branchData[9];
+    dataTree->SetBranchAddress("recoResultsCamera_branch", &branchData);
+    
+    // Loop over data
+    for (Int_t i=0; i<nEvents; i++)
+    {
+      dataTree->GetEntry(i);
+      
+      
+    }
     
     
     // Close data file
