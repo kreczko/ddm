@@ -8,6 +8,7 @@
 #include "TTree.h"
 #include "TBranch.h"
 #include "TH1I.h"
+#include "TGraph2D.h"
 
 using namespace std;
 
@@ -25,8 +26,15 @@ int main (int argc, char** argv)
   
   TFile* analysisFile = new TFile("/storage/gp_ws_ddm/Analysis.root", "UPDATE");
   
+  TGraph2D* deviationPlot = new TGraph2D(1);
+  
+  Int_t pointCounter = 0;
+  
   while (steeringFile >> word)
   {
+    pointCounter++;
+    deviationPlot->Set(pointCounter);
+    
     TH1I* deviationHist = new TH1I("deviation", "deviation", 100, 0, M_PI);
     
     // Get parameters from steering file
@@ -60,6 +68,7 @@ int main (int argc, char** argv)
       deviationHist->Fill(branchData[6]);
     }
     
+    // Calculate mean and median of deviation distribution
     Double_t deviationMean = deviationHist->GetMean();
     Double_t deviationMedian;
     Double_t medianQuantile = 0.5;
@@ -73,7 +82,12 @@ int main (int argc, char** argv)
     // Close data file
     dataFile->Close();
     
+    // Save data point
+    deviationPlot->SetPoint(pointCounter - 1, pressure, timeRes, deviationMedian);
   }
+  
+  deviationPlot->Write();
+  delete deviationPlot;
   
   steeringFile.close();
   analysisFile->Close();
