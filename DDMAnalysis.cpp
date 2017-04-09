@@ -24,8 +24,6 @@ int main (int argc, char** argv)
   Double_t pressure;
   Double_t timeRes;
   
-  TFile* analysisFile = new TFile("/storage/gp_ws_ddm/Analysis.root", "UPDATE");
-  
   TGraph2D* deviationPlot = new TGraph2D(1);
   
   Int_t pointCounter = 0;
@@ -86,7 +84,8 @@ int main (int argc, char** argv)
     deviationPlot->SetPoint(pointCounter - 1, pressure, timeRes, deviationMedian);
   }
   
-  deviationPlot->SetDirectory(analysisFile);
+  TFile* analysisFile = new TFile("/storage/gp_ws_ddm/Analysis.root", "UPDATE");
+  
   deviationPlot->Write();
   delete deviationPlot;
   
