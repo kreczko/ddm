@@ -86,6 +86,7 @@ int main (int argc, char** argv)
     deviationPlot->SetPoint(pointCounter - 1, pressure, timeRes, deviationMedian);
   }
   
+  deviationPlot->SetDirectory(analysisFile);
   deviationPlot->Write();
   delete deviationPlot;
   
