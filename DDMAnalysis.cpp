@@ -61,8 +61,12 @@ int main (int argc, char** argv)
     }
     
     Double_t deviationMean = deviationHist->GetMean();
+    Double_t deviationMedian;
+    Double_t medianQuantile = 0.5;
     
-    cout << "Mean deviation: " << deviationMean << endl << endl;
+    deviationHist->GetQuantiles(1,&deviationMedian,&medianQuantile);
+    
+    cout << "Median deviation: " << deviationMedian << endl << endl;
     
     delete deviationHist;
     
