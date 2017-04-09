@@ -7,6 +7,7 @@
 #include "TFile.h"
 #include "TTree.h"
 #include "TBranch.h"
+#include "TH1I.h"
 
 using namespace std;
 
@@ -26,6 +27,8 @@ int main (int argc, char** argv)
   
   while (steeringFile >> word)
   {
+    TH1I* deviationHist = new TH1I("deviation", "deviation", 100, 0, M_PI);
+    
     // Get parameters from steering file
     
     steeringFile >> word;
@@ -54,9 +57,14 @@ int main (int argc, char** argv)
     {
       dataTree->GetEntry(i);
       
-      
+      deviationHist->Fill(branchData[6]);
     }
     
+    Double_t deviationMean = deviationHist->GetMean();
+    
+    cout << "Mean deviation: " << deviationMean << endl << endl;
+    
+    delete deviationHist;
     
     // Close data file
     dataFile->Close();
