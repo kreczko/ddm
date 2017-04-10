@@ -19,7 +19,7 @@ int main()
   
   double stepP = 0.005; // step in pressure (atm)
   //double stepTres = 10.0; // step in time resolution (ns)
-  double factorTres = 2.0; // multiplicative factor for time resolution (ns)
+  double factorTres = 3.0; // multiplicative factor for time resolution (ns)
   
   shellScript.open("/storage/gp_ws_ddm/DDMSimJob.sh");
   steeringFile.open("/storage/gp_ws_ddm/simOutput/steering.txt", fstream::app);
