@@ -616,6 +616,7 @@ void DDMRootManager::FinaliseEvent()
 	Double_t cameraGradXZ = FitCameraHist(cameraXZ_hist, &fitErrorXZ);
 	Double_t fitErrorYZ;
 	Double_t cameraTanBeta = FitCameraHist(cameraYZ_hist, &fitErrorYZ);
+	Double_t cameraGradYZ = cameraTanBeta;
 	
 	// calculate tan(theta) from camera XZ and YZ projections
 	//Double_t cameraTanTheta_xz = CalculateTanThetaFromXZ(cameraGradXY, cameraGradXZ);
