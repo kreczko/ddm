@@ -374,7 +374,7 @@ void DDMRootManager::FillHist_CameraYZ(Double_t input_y, Double_t input_z)
 	cameraYZ_hist->Fill(input_y/m, input_z/m);
 }
 
-Double_t DDMRootManager::FitCameraHist(TH2I* input_hist)
+Double_t DDMRootManager::FitCameraHist(TH2I* input_hist, Double_t* fitError)
 {
 	input_hist->ClearUnderflowAndOverflow();
 	
@@ -460,6 +460,9 @@ Double_t DDMRootManager::FitCameraHist(TH2I* input_hist)
 	
 	// save gradient of fit in a variable
 	Double_t cameraGradient = cameraFit->Parameter(1);
+	
+	// save error in gradient
+	*fitError = cameraFit->Error(1);
 
 	// write sacrifical graph to file
 	//fitCamera_graph->Write();
@@ -605,18 +608,38 @@ void DDMRootManager::FinaliseEvent()
 	}
 	
 	// calculate gradient in x-y from linear fit of camera histogram
-	Double_t cameraGradXY =  FitCameraHist(camera_hist);
+	Double_t fitErrorXY;
+	Double_t cameraGradXY =  FitCameraHist(camera_hist, &fitErrorXY);
 	
 	// calculate gradients in x-z and y-z from the fits of XZ and YZ camera projections
-	Double_t cameraGradXZ = FitCameraHist(cameraXZ_hist);
-	Double_t cameraTanBeta = FitCameraHist(cameraYZ_hist);
+	Double_t fitErrorXZ;
+	Double_t cameraGradXZ = FitCameraHist(cameraXZ_hist, &fitErrorXZ);
+	Double_t fitErrorYZ;
+	Double_t cameraTanBeta = FitCameraHist(cameraYZ_hist, &fitErrorYZ);
 	
 	// calculate tan(theta) from camera XZ and YZ projections
 	//Double_t cameraTanTheta_xz = CalculateTanThetaFromXZ(cameraGradXY, cameraGradXZ);
 	//Double_t cameraTanTheta_yz = CalculateTanThetaFromYZ(cameraGradXY, cameraTanBeta);
 	
 	// NEW METHOD: vector
-	G4ThreeVector* recoVector = new G4ThreeVector(1.0, cameraGradXY, cameraGradXZ);
+	G4ThreeVector* recoVector;
+	recoVector = new G4ThreeVector(1.0, cameraGradXY, cameraGradXZ);
+	
+	/*if ( (fitErrorYZ > fitErrorXY) && (fitErrorYZ > fitErrorXZ) ) // dz/dy has biggest error
+		{recoVector = new G4ThreeVector(1.0, cameraGradXY, cameraGradXZ);}
+	else if ( (fitErrorXZ > fitErrorXY) && (fitErrorXZ > fitErrorYZ) )
+		{recoVector = new G4ThreeVector(1.0/cameraGradXY, 1.0, cameraGradYZ);} // dz/dx has biggest error
+	else
+		{recoVector = new G4ThreeVector(1.0/cameraGradXZ, 1.0/cameraGradYZ, 1.0);}*/ // dy/dx has biggest error
+	
+	/*if ( (fabs(cameraGradXY) > 2) && (fabs(cameraGradYZ) < 0.5) ) // Close to y-axis
+		{recoVector = new G4ThreeVector(1.0/cameraGradXY, 1.0, cameraGradYZ);}
+	else if ( (fabs(cameraGradXZ) > 2) && (fabs(cameraGradYZ) > 2) ) // Close to z-axis
+		{recoVector = new G4ThreeVector(1.0/cameraGradXZ, 1.0/cameraGradYZ, 1.0);}
+	else
+		{recoVector = new G4ThreeVector(1.0, cameraGradXY, cameraGradXZ);}*/ // Ok to use the 'usual' method
+	
+	
 	
 	// apply head-tailing
 	Double_t headTail = HeadTail(cameraGradXY, camera_hist->GetSkewness(1), camera_hist->GetSkewness(2));
