@@ -626,19 +626,19 @@ void DDMRootManager::FinaliseEvent()
 	G4ThreeVector* recoVector;
 	//recoVector = new G4ThreeVector(1.0, cameraGradXY, cameraGradXZ);
 	
-	/*if ( (fitErrorYZ > fitErrorXY) && (fitErrorYZ > fitErrorXZ) ) // dz/dy has biggest error
+	if ( (fitErrorYZ > fitErrorXY) && (fitErrorYZ > fitErrorXZ) ) // dz/dy has biggest error
 		{recoVector = new G4ThreeVector(1.0, cameraGradXY, cameraGradXZ);}
 	else if ( (fitErrorXZ > fitErrorXY) && (fitErrorXZ > fitErrorYZ) )
 		{recoVector = new G4ThreeVector(1.0/cameraGradXY, 1.0, cameraGradYZ);} // dz/dx has biggest error
 	else
-		{recoVector = new G4ThreeVector(1.0/cameraGradXZ, 1.0/cameraGradYZ, 1.0);}*/ // dy/dx has biggest error
+		{recoVector = new G4ThreeVector(1.0/cameraGradXZ, 1.0/cameraGradYZ, 1.0);} // dy/dx has biggest error
 	
-	if ( (fabs(cameraGradXY) > 2) && (fabs(cameraGradYZ) < 0.5) ) // Close to y-axis
+	/*if ( (fabs(cameraGradXY) > 2) && (fabs(cameraGradYZ) < 0.5) ) // Close to y-axis
 		{recoVector = new G4ThreeVector(1.0/cameraGradXY, 1.0, cameraGradYZ);}
 	else if ( (fabs(cameraGradXZ) > 2) && (fabs(cameraGradYZ) > 2) ) // Close to z-axis
 		{recoVector = new G4ThreeVector(1.0/cameraGradXZ, 1.0/cameraGradYZ, 1.0);}
 	else
-		{recoVector = new G4ThreeVector(1.0, cameraGradXY, cameraGradXZ);} // Ok to use the 'usual' method
+		{recoVector = new G4ThreeVector(1.0, cameraGradXY, cameraGradXZ);}/* // Ok to use the 'usual' method
 	
 	
 	
