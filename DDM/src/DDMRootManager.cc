@@ -638,7 +638,7 @@ void DDMRootManager::FinaliseEvent()
 	else if ( (fabs(cameraGradXZ) > 2) && (fabs(cameraGradYZ) > 2) ) // Close to z-axis
 		{recoVector = new G4ThreeVector(1.0/cameraGradXZ, 1.0/cameraGradYZ, 1.0);}
 	else
-		{recoVector = new G4ThreeVector(1.0, cameraGradXY, cameraGradXZ);}/* // Ok to use the 'usual' method
+		{recoVector = new G4ThreeVector(1.0, cameraGradXY, cameraGradXZ);}*/ // Ok to use the 'usual' method
 	
 	
 	
