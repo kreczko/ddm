@@ -383,7 +383,8 @@ Double_t DDMRootManager::FitCameraHist(TH2I* input_hist, Double_t* fitError)
 	
 	fitCamera_graph->Set(input_hist->GetEntries());
 	
-	G4cout << "GetEntries = " << input_hist->GetEntries() << G4endl;
+	// print the number of entries (used to define size of sacrificial graph)
+	//G4cout << "GetEntries = " << input_hist->GetEntries() << G4endl;
 	
 	//G4int photonCut = camera_hist->GetMaximum()/4;
 	
@@ -429,7 +430,8 @@ Double_t DDMRootManager::FitCameraHist(TH2I* input_hist, Double_t* fitError)
 		}
 	}
 	
-	G4cout << "point = " << point << G4endl;
+	// print final value of 'point'
+	//G4cout << "point = " << point << G4endl;
 
 	// linear fit of graph
 	TFitResultPtr cameraFit = fitCamera_graph->Fit("pol1", "S");
