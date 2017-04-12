@@ -426,6 +426,8 @@ Double_t DDMRootManager::FitCameraHist(TH2I* input_hist, Double_t* fitError)
 			//}
 		}
 	}
+	
+	G4cout << "point = " << point << G4endl;
 
 	// linear fit of graph
 	TFitResultPtr cameraFit = fitCamera_graph->Fit("pol1", "S");
