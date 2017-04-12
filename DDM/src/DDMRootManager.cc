@@ -465,7 +465,7 @@ Double_t DDMRootManager::FitCameraHist(TH2I* input_hist, Double_t* fitError)
 	*fitError = cameraFit->Error(1);
 
 	// write sacrifical graph to ROOT file
-	fitCamera_graph->Write();
+	//fitCamera_graph->Write();
 	
 	delete fitCamera_graph;
 	
