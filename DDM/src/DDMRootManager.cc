@@ -383,6 +383,8 @@ Double_t DDMRootManager::FitCameraHist(TH2I* input_hist, Double_t* fitError)
 	
 	fitCamera_graph->Set(input_hist->GetEntries());
 	
+	G4cout << "GetEntries = " << input_hist->GetEntries() << G4endl;
+	
 	//G4int photonCut = camera_hist->GetMaximum()/4;
 	
 	G4int point = 0;
