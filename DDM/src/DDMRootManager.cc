@@ -381,7 +381,7 @@ Double_t DDMRootManager::FitCameraHist(TH2I* input_hist, Double_t* fitError)
 	//TGraph* fitCamera_graph = new TGraph(1);
 	fitCamera_graph = new TGraph(1);
 	
-	fitCamera_graph->Set(input_hist->GetEntries());
+	//fitCamera_graph->Set(input_hist->GetEntries());
 	
 	// print the number of entries (used to define size of sacrificial graph)
 	//G4cout << "GetEntries = " << input_hist->GetEntries() << G4endl;
@@ -423,6 +423,8 @@ Double_t DDMRootManager::FitCameraHist(TH2I* input_hist, Double_t* fitError)
 				// plot a point at bin centre for each photon in bin
 				for(Int_t photonPerBin = 0; photonPerBin < input_hist->GetBinContent(binx, biny); photonPerBin++)
 				{	
+					fitCamera_graph->Set(point + 1);
+					
 					fitCamera_graph->SetPoint(point, binCentreX, binCentreY);
 					point++;
 				}
