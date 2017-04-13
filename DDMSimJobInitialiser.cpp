@@ -12,14 +12,14 @@ int main()
   ofstream steeringFile;
   
   int numPointsP = 10; // number of points (pressure)
-  int numPointsTres = 10; // number of points (time resolution)
+  int numPointsTres = 6; // number of points (time resolution)
   
   double lowP = 0.005; // lowest pressure (atm)
-  double lowTres = 1000.0; // lowest time resolution (ns)
+  double lowTres = 1.0; // lowest time resolution (ns)
   
-  double stepP = 0.005; // step in pressure (atm)
+  double stepP = 0.003; // step in pressure (atm)
   //double stepTres = 10.0; // step in time resolution (ns)
-  double factorTres = 2.0; // multiplicative factor for time resolution (ns)
+  double factorTres = 10.0; // multiplicative factor for time resolution (ns)
   
   shellScript.open("/storage/gp_ws_ddm/DDMSimJob.sh");
   steeringFile.open("/storage/gp_ws_ddm/simOutput/steering.txt", fstream::app);
@@ -37,6 +37,7 @@ int main()
       
     for (int j = 0; j < numPointsTres; j++)
     {
+      //double timeRes = lowTres + (j*stepTres);
       double timeRes = lowTres * pow(factorTres,j);
       
       ofstream paramFile;
