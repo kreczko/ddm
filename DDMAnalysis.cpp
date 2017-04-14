@@ -31,6 +31,9 @@ int main (int argc, char** argv)
   TGraph2D* deviationPlot = new TGraph2D(1);
   deviationPlot->SetNameTitle("deviation", "Median directional deviation vs pressure and time resolution");
   
+  TGraph2D* deviatonPlotMean = new TGraph2D(1);
+  deviationPlotMean->SetNameTitle("deviationMean", "Mean directional deviation vs pressure and time resolution");
+  
   Int_t pointCounter = 0;
   
   while (steeringFile >> word)
@@ -87,12 +90,16 @@ int main (int argc, char** argv)
     
     // Save data point
     deviationPlot->SetPoint(pointCounter - 1, pressure, timeRes, deviationMedian);
+    deviationPlotMean->SetPoint(pointCounter - 1, pressure, timeRes, deviationMean);
   }
   
   TFile* analysisFile = new TFile("/storage/gp_ws_ddm/Analysis.root", "UPDATE");
   
   deviationPlot->Write();
   delete deviationPlot;
+  
+  deviationPlotMean->Write();
+  delete deviationPlotMean;
   
   steeringFile.close();
   analysisFile->Close();
