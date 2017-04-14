@@ -14,10 +14,14 @@ using namespace std;
 
 int main (int argc, char** argv)
 {
-  string steeringFileName = argv[1];
+  //string steeringFileName = argv[1];
+  string directory = argv[1];
+  
+  stringstream steeringFileName;
+  steeringFileName << directory << "steering.txt";
   
   ifstream steeringFile;
-  steeringFile.open(steeringFileName.c_str());
+  steeringFile.open(steeringFileName.str().c_str());
   
   string word;
   string filename;
@@ -45,7 +49,7 @@ int main (int argc, char** argv)
     timeRes = atof(word.c_str());
     
     stringstream filename;
-    filename << "/storage/gp_ws_ddm/simOutput/ddm_p" << pressure << "atm_tres" << timeRes << "ns.root";
+    filename << directory << "ddm_p" << pressure << "atm_tres" << timeRes << "ns.root";
     
     cout << "Reading file: " << filename.str() << " (pressure " << pressure << " atm, time resolution " << timeRes << " ns)" << endl;
     
