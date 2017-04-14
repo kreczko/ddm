@@ -25,6 +25,7 @@ int main (int argc, char** argv)
   Double_t timeRes;
   
   TGraph2D* deviationPlot = new TGraph2D(1);
+  deviationPlot->SetNameTitle("deviation", "Median directional deviation vs pressure and time resolution");
   
   Int_t pointCounter = 0;
   
