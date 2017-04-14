@@ -31,7 +31,7 @@ int main (int argc, char** argv)
   TGraph2D* deviationPlot = new TGraph2D(1);
   deviationPlot->SetNameTitle("deviation", "Median directional deviation vs pressure and time resolution");
   
-  TGraph2D* deviatonPlotMean = new TGraph2D(1);
+  TGraph2D* deviationPlotMean = new TGraph2D(1);
   deviationPlotMean->SetNameTitle("deviationMean", "Mean directional deviation vs pressure and time resolution");
   
   Int_t pointCounter = 0;
