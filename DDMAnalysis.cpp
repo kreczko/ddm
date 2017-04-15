@@ -48,8 +48,8 @@ int main (int argc, char** argv)
     deviationPlot->Set(pointCounter);
     
     TH1I* deviationHist = new TH1I("deviation", "deviation", 100, 0, M_PI);
-    TH1I* thetaHist = new TH1I("thetaError", "thetaError", 100, 0, M_PI);
-    TH1I* phiHist = new TH1I("phiError", "phiError", 100, 0, 2*M_PI);
+    TH1I* thetaErrorHist = new TH1I("thetaError", "thetaError", 100, 0, M_PI);
+    TH1I* phiErrorHist = new TH1I("phiError", "phiError", 100, 0, 2*M_PI);
     
     // Get parameters from steering file
     
