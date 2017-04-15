@@ -99,6 +99,8 @@ int main (int argc, char** argv)
     //cout << "Median deviation: " << deviationMedian << endl << endl;
     
     delete deviationHist;
+    delete thetaErrorHist;
+    delete phiErrorHist;
     
     // Close data file
     dataFile->Close();
