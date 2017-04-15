@@ -80,8 +80,8 @@ int main (int argc, char** argv)
       dataTree->GetEntry(i);
       
       deviationHist->Fill(branchData[6]);
-      thetaErrorHist->Fill(branchData[7]);
-      phiErrorHist->Fill(branchData[8]);
+      thetaErrorHist->Fill(branchData[8]);
+      phiErrorHist->Fill(branchData[7]);
     }
     
     // Calculate mean and median of deviation distribution
