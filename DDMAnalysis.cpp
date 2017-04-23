@@ -37,8 +37,14 @@ int main (int argc, char** argv)
   TGraph2D* thetaErrorPlot = new TGraph2D(1);
   thetaErrorPlot->SetNameTitle("thetaError", "Median theta deviation vs pressure and time resolution");
   
+  TGraph2D* thetaErrorPlotMean = new TGraph2D(1);
+  thetaErrorPlotMean->SetNameTitle("thetaErrorMean", "Mean theta deviation vs pressure and time resolution");
+  
   TGraph2D* phiErrorPlot = new TGraph2D(1);
   phiErrorPlot->SetNameTitle("phiError", "Median phi deviation vs pressure and time resolution");
+  
+  TGraph2D* phiErrorPlotMean = new TGraph2D(1);
+  phiErrorPlotMean->SetNameTitle("phiErrorMean", "Mean phi deviation vs pressure and time resolution");
   
   Int_t pointCounter = 0;
   
@@ -87,7 +93,9 @@ int main (int argc, char** argv)
     // Calculate mean and median of deviation distribution
     Double_t deviationMean = deviationHist->GetMean();
     Double_t deviationMedian;
+    Double_t thetaErrorMean = thetaErrorHist->GetMean();
     Double_t thetaErrorMedian;
+    Double_t phiErrorMean = phiErrorHist->GetMean();
     Double_t phiErrorMedian;
     
     Double_t medianQuantile = 0.5;
@@ -109,7 +117,9 @@ int main (int argc, char** argv)
     deviationPlot->SetPoint(pointCounter - 1, pressure, timeRes, deviationMedian);
     deviationPlotMean->SetPoint(pointCounter - 1, pressure, timeRes, deviationMean);
     thetaErrorPlot->SetPoint(pointCounter - 1, pressure, timeRes, thetaErrorMedian);
+    thetaErrorPlotMean->SetPoint(pointCounter - 1, pressure, timeRes, thetaErrorMean);
     phiErrorPlot->SetPoint(pointCounter - 1, pressure, timeRes, phiErrorMedian);
+    phiErrorPlotMean->SetPoint(pointCounter - 1, pressure, timeRes, phiErrorMean);
   }
   
   TFile* analysisFile = new TFile("/storage/gp_ws_ddm/Analysis.root", "UPDATE");
@@ -123,8 +133,14 @@ int main (int argc, char** argv)
   thetaErrorPlot->Write();
   delete thetaErrorPlot;
   
+  thetaErrorPlotMean->Write();
+  delete thetaErrorPlotMean;
+  
   phiErrorPlot->Write();
   delete phiErrorPlot;
+  
+  phiErrorPlotMean->Write();
+  delete phiErrorPlotMean;
   
   steeringFile.close();
   analysisFile->Close();
