@@ -9,6 +9,7 @@
 #include "TBranch.h"
 #include "TH1I.h"
 #include "TGraph2D.h"
+#include "TGraphErrors.h"
 
 using namespace std;
 
@@ -45,6 +46,12 @@ int main (int argc, char** argv)
   
   TGraph2D* phiErrorPlotMean = new TGraph2D(1);
   phiErrorPlotMean->SetNameTitle("phiErrorMean", "Mean phi deviation vs pressure and time resolution");
+  
+  TGraphErrors* deviationMeanPressureErrors = new TGraphErrors(1);
+  deviationMeanPressureErrors->SetNameTitle("deviationMeanPressureErrors", "Mean directional deviation versus pressure (best time resolution)");
+  
+  TGraphErrors* deviationMeanTimeResErrors = new TGraphErrors(1);
+  deviationMeanTimeResErrors->SetNameTitle("deviationMeanTimeResErrors", "Mean directional deviation versus time resolution (best pressure)");
   
   Int_t pointCounter = 0;
   
@@ -92,6 +99,7 @@ int main (int argc, char** argv)
     
     // Calculate mean and median of deviation distribution
     Double_t deviationMean = deviationHist->GetMean();
+    Double_t deviationMeanError = deviationHist->GetMeanError();
     Double_t deviationMedian;
     Double_t thetaErrorMean = thetaErrorHist->GetMean();
     Double_t thetaErrorMedian;
@@ -113,13 +121,24 @@ int main (int argc, char** argv)
     // Close data file
     dataFile->Close();
     
-    // Save data point
+    // Save data points
     deviationPlot->SetPoint(pointCounter - 1, pressure, timeRes, deviationMedian);
     deviationPlotMean->SetPoint(pointCounter - 1, pressure, timeRes, deviationMean);
     thetaErrorPlot->SetPoint(pointCounter - 1, pressure, timeRes, thetaErrorMedian);
     thetaErrorPlotMean->SetPoint(pointCounter - 1, pressure, timeRes, thetaErrorMean);
     phiErrorPlot->SetPoint(pointCounter - 1, pressure, timeRes, phiErrorMedian);
     phiErrorPlotMean->SetPoint(pointCounter - 1, pressure, timeRes, phiErrorMean);
+    
+    if (timeRes == 1.0)
+    {
+      deviationMeanPressureErrors->SetPoint(pointCounter - 1, pressure, deviationMean);
+      deviationMeanPressureErrors->SetErrors(pointCounter - 1, 0, deviationMeanError);
+    }
+     if (pressure == 0.005)
+    {
+      deviationMeanTimeResErrors->SetPoint(pointCounter - 1, timeRes, deviationMean);
+      deviationMeanTimeResErrors->SetErrors(pointCounter - 1, 0, deviationMeanError);
+    }
   }
   
   TFile* analysisFile = new TFile("/storage/gp_ws_ddm/Analysis.root", "UPDATE");
@@ -141,6 +160,12 @@ int main (int argc, char** argv)
   
   phiErrorPlotMean->Write();
   delete phiErrorPlotMean;
+  
+  deviationMeanPressureErrors->Write();
+  delete deviationMeanPressureErrors;
+  
+  deviationMeanTimeResErrors->Write();
+  delete deviationMeanTimeResErrors;
   
   steeringFile.close();
   analysisFile->Close();
