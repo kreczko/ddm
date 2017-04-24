@@ -54,6 +54,8 @@ int main (int argc, char** argv)
   deviationMeanTimeResErrors->SetNameTitle("deviationMeanTimeResErrors", "Mean directional deviation versus time resolution (best pressure)");
   
   Int_t pointCounter = 0;
+  Int_t pointCounterPressure = 0;
+  Int_t pointCounterTimeRes = 0;
   
   while (steeringFile >> word)
   {
@@ -131,13 +133,15 @@ int main (int argc, char** argv)
     
     if (timeRes == 1.0)
     {
-      deviationMeanPressureErrors->SetPoint(pointCounter - 1, pressure, deviationMean);
-      deviationMeanPressureErrors->SetPointError(pointCounter - 1, 0, deviationMeanError);
+      pointCounterPressure++;
+      deviationMeanPressureErrors->SetPoint(pointCounterPressure - 1, pressure, deviationMean);
+      deviationMeanPressureErrors->SetPointError(pointCounterPressure - 1, 0, deviationMeanError);
     }
      if (pressure == 0.005)
     {
-      deviationMeanTimeResErrors->SetPoint(pointCounter - 1, timeRes, deviationMean);
-      deviationMeanTimeResErrors->SetPointError(pointCounter - 1, 0, deviationMeanError);
+      pointCounterTimeRes++;
+      deviationMeanTimeResErrors->SetPoint(pointCounterTimeRes - 1, timeRes, deviationMean);
+      deviationMeanTimeResErrors->SetPointError(pointCounterTimeRes - 1, 0, deviationMeanError);
     }
   }
   
