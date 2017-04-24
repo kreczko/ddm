@@ -132,12 +132,12 @@ int main (int argc, char** argv)
     if (timeRes == 1.0)
     {
       deviationMeanPressureErrors->SetPoint(pointCounter - 1, pressure, deviationMean);
-      deviationMeanPressureErrors->SetErrors(pointCounter - 1, 0, deviationMeanError);
+      deviationMeanPressureErrors->SetPointError(pointCounter - 1, 0, deviationMeanError);
     }
      if (pressure == 0.005)
     {
       deviationMeanTimeResErrors->SetPoint(pointCounter - 1, timeRes, deviationMean);
-      deviationMeanTimeResErrors->SetErrors(pointCounter - 1, 0, deviationMeanError);
+      deviationMeanTimeResErrors->SetPointError(pointCounter - 1, 0, deviationMeanError);
     }
   }
   
