@@ -37,7 +37,7 @@ The sensitive volume is currently set to contain gaseous argon. The following pa
   - The equation used to calculate the electron drift velocity, obtained from [1]
   - The equation used to calculate the yield of scintillation photons generated per drift electron, obtained from [2]
 
-references
+References
 
 [1] C. M. B. Monteiro, et al., ”Secondary scintillation yield in pure argon”, Phys. Lett. B, 668, 167 (2008)
 		[http://www.sciencedirect.com/science/article/pii/S0370269308010435]
