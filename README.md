@@ -41,5 +41,5 @@ References
 
 [1] C. M. B. Monteiro, et al., ”Secondary scintillation yield in pure argon”, Phys. Lett. B, 668, 167 (2008)  
 		[http://www.sciencedirect.com/science/article/pii/S0370269308010435]  
-[2] V. Lisovskiy, et al., ”Electron drift velocity in argon, nitrogen, hydrogen, oxygen and ammonia in strong electric fields deter- mined from 	rf breakdown curves”, J. Phys. D: Appl. Phys., 39, 660 (2006)
+[2] V. Lisovskiy, et al., ”Electron drift velocity in argon, nitrogen, hydrogen, oxygen and ammonia in strong electric fields determined from rf breakdown curves”, J. Phys. D: Appl. Phys., 39, 660 (2006)
 		[http://iopscience.iop.org/article/10.1088/0022-3727/39/4/011/meta]
