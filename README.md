@@ -1,11 +1,13 @@
 # ddm
 Directional Dark Matter research project
 
-Gabriel Penn and Will Sugg
+Gabriel Penn and Will Sugg (Bristol MSci final year project students 2016/17)
 
 ## Running the simulation
+This guide outlines the basic steps you will need to take to run the DDM simulation.
 
-### Environment setup
+### Environment setup (once per login)
+
 
 
 
