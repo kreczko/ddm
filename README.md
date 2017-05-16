@@ -1,5 +1,5 @@
 # ddm
-Directional Dark Matter research project
+Directional Dark Matter Research Project
 
 Gabriel Penn and Will Sugg (Bristol MSci final year project students 2016/17)
 
