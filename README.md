@@ -18,3 +18,5 @@ The sensitive volume is currently set to contain gaseous argon. The following pa
   - The generation of drift electrons, which uses the ionisation energy of argon
   - The equation used to calculate the electron drift velocity, obtained from [1]
   - The equation used to calculate the yield of scintillation photons generated per drift electron, obtained from [2]
+
+references
