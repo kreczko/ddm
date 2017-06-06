@@ -7,6 +7,7 @@ source /cvmfs/geant4.cern.ch/geant4/10.2.p02/x86_64-slc6-gcc49-opt/CMake-setup.s
 
 echo Setting up ROOT...
 
-source /software/root/v6.02.04/bin/thisroot.sh
+#source /software/root/v6.02.04/bin/thisroot.sh
+source /cvmfs/sft.cern.ch/lcg/views/LCG_88/x86_64-slc6-gcc49-opt/setup.sh
 
 echo ROOT setup finished
