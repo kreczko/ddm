@@ -22,10 +22,10 @@ You may wish to use the shell script provided (ddm/DDM/DDM_build.sh) to build th
 Otherwise, execute the following commands in the directory of your choice:
 
 ```bash
-mkdir [desired build directory]
-cd [desired build directory]
-cmake -DGeant4_DIR=/cvmfs/geant4.cern.ch/geant4/10.2.p02/x86_64-slc6-gcc49-opt/lib64/ [path to ddm]/DDM
-make -j4
+mkdir _build
+cd _build
+cmake -DGeant4_DIR=/cvmfs/geant4.cern.ch/geant4/10.2.p02/x86_64-slc6-gcc49-opt/lib64/ ../DDM
+make -j2
 ```
 
 (Note: a lot of warnings may appear; these can be safely ignored, as long as the build is successful.)
@@ -81,11 +81,14 @@ In order to run DDM on your own machine with Vagrant, you need to
 2. Install [Vagrant](https://www.vagrantup.com/downloads.html)
 The Vagrant box in use is the CernVM.
 
+**NOTE:** By default this setup will use 2 cores and 2 GB of RAM. If you want to adjust these numbers, please edit the Vagrantfile before continuing.
+
 Next
 1. Clone repository
 2. Open terminal (or powershell on Windows)
 3. cd into the project directory
-4. ```bash
+4.
+```bash
 vagrant up # can take a while
 vagrant ssh
 cd /vagrant
